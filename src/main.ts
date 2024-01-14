@@ -3,15 +3,16 @@ import "./reset.css"
 import * as PIXI from "pixi.js"
 import _ from "lodash"
 
+const DIAGONAL_MOVEMENT_FACTOR = Math.sqrt(1 / 2)
 const CAT_MOVING_SPEED_PER_SECOND = 8
-const ROCKET_MOVING_SPEED_PER_SECOND = 12
+const CAT_DIAGONAL_MOVING_SPEED_PER_SECOND = CAT_MOVING_SPEED_PER_SECOND * DIAGONAL_MOVEMENT_FACTOR
+const ROCKET_MOVING_SPEED_PER_SECOND = 24
 const CANVAS_WIDTH = 800
 const CANVAS_HEIGHT = 700
 
 const app = new PIXI.Application({ width: CANVAS_WIDTH, height: CANVAS_HEIGHT })
 // @ts-expect-error: PIXI's typing is failing
 document.body.appendChild(app.view)
-document.body.style.marginLeft = "50px"
 
 const background = new PIXI.Graphics()
 background.beginFill(0x2A4FAF) // White color for the rectangle
@@ -46,6 +47,13 @@ type TCoordinates = {
 	y: number
 }
 
+type TAction = (
+	"moveLeft" |
+	"moveUp" |
+	"moveRight" |
+	"moveDown"
+)
+
 class Cat {
 	constructor() {
 		this.sprite = new PIXI.Sprite(catTexture)
@@ -55,10 +63,6 @@ class Cat {
 		this.sprite.y = this.coordinates.y - (this.sprite.height / 2)
 
 		background.addChild(this.sprite)
-
-		document.addEventListener("keydown", (event) => {
-			if (event.key === "a") this.shootRocket({ x: mouseCoordinates.x, y: mouseCoordinates.y })
-		})
 	}
 
 	sprite: PIXI.Sprite
@@ -126,19 +130,27 @@ class Dog {
 		this.sprite = new PIXI.Sprite(dogTexture)
 		this.sprite.width = 80
 		this.sprite.height = 80
-		this.sprite.x = Math.random() * (CANVAS_WIDTH - this.sprite.width * 2) + this.sprite.width
-		this.sprite.y = Math.random() * (CANVAS_HEIGHT - this.sprite.height * 2) + this.sprite.height
+		this.sprite.x = 600
+		this.sprite.y = 100
 
 		app.stage.addChild(this.sprite)
 	}
 
 	sprite: PIXI.Sprite
+	destCoordinates: TCoordinates | null = {
+		x: 600,
+		y: 600,
+	}
 }
 
 const cat = new Cat()
 const dog = new Dog()
 
 document.addEventListener("contextmenu", event => event.preventDefault())
+
+;(app.view as unknown as HTMLElement).addEventListener("mousedown", (event) => {
+	cat.shootRocket({ x: event.clientX, y: event.clientY })
+})
 
 /**
  * Return the distance on x and the distance on y in order to travel an euclidian distance.
@@ -176,38 +188,77 @@ window.onkeyup = event => {
 	}
 }
 
-const processCatMovement = (delta: number) => {
-	if (!cat.destCoordinates) return
+const getActionsFromKeyboard = (): TAction[] => {
+	const actions: TAction[] = []
 
-	const remainingXDistance = cat.destCoordinates.x - cat.coordinates.x
-	const remainingYDistance = cat.destCoordinates.y - cat.coordinates.y
-	const remainingDistance = Math.sqrt(remainingXDistance * remainingXDistance + remainingYDistance * remainingYDistance)
+	if (cat.keyboard.KeyA) actions.push("moveLeft")
+	if (cat.keyboard.KeyW) actions.push("moveUp")
+	if (cat.keyboard.KeyD) actions.push("moveRight")
+	if (cat.keyboard.KeyS) actions.push("moveDown")
 
-	if (remainingDistance < CAT_MOVING_SPEED_PER_SECOND) {
-		cat.setCoordinates(cat.destCoordinates)
-		cat.destCoordinates = null
+	return actions
+}
+
+const processCatMovement = (delta: number, actions: TAction[]) => {
+	if (actions.includes("moveLeft") && actions.includes("moveUp")) {
+		cat.setCoordinates({
+			x: cat.coordinates.x - delta * CAT_DIAGONAL_MOVING_SPEED_PER_SECOND,
+			y: cat.coordinates.y - delta * CAT_DIAGONAL_MOVING_SPEED_PER_SECOND,
+		})
+	} else if (actions.includes("moveLeft") && actions.includes("moveDown")) {
+		cat.setCoordinates({
+			x: cat.coordinates.x - delta * CAT_DIAGONAL_MOVING_SPEED_PER_SECOND,
+			y: cat.coordinates.y + delta * CAT_DIAGONAL_MOVING_SPEED_PER_SECOND,
+		})
+	} else if (actions.includes("moveRight") && actions.includes("moveUp")) {
+		cat.setCoordinates({
+			x: cat.coordinates.x + delta * CAT_DIAGONAL_MOVING_SPEED_PER_SECOND,
+			y: cat.coordinates.y - delta * CAT_DIAGONAL_MOVING_SPEED_PER_SECOND,
+		})
+	} else if (actions.includes("moveRight") && actions.includes("moveDown")) {
+		cat.setCoordinates({
+			x: cat.coordinates.x + delta * CAT_DIAGONAL_MOVING_SPEED_PER_SECOND,
+			y: cat.coordinates.y + delta * CAT_DIAGONAL_MOVING_SPEED_PER_SECOND,
+		})
+	} else if (actions.includes("moveLeft")) {
+		cat.setCoordinates({
+			x: cat.coordinates.x - delta * CAT_MOVING_SPEED_PER_SECOND,
+			y: cat.coordinates.y,
+		})
+	} else if (actions.includes("moveRight")) {
+		cat.setCoordinates({
+			x: cat.coordinates.x + delta * CAT_MOVING_SPEED_PER_SECOND,
+			y: cat.coordinates.y,
+		})
+	} else if (actions.includes("moveUp")) {
+		cat.setCoordinates({
+			x: cat.coordinates.x,
+			y: cat.coordinates.y - delta * CAT_MOVING_SPEED_PER_SECOND,
+		})
+	} else if (actions.includes("moveDown")) {
+		cat.setCoordinates({
+			x: cat.coordinates.x,
+			y: cat.coordinates.y + delta * CAT_MOVING_SPEED_PER_SECOND,
+		})
 	}
-
-	const movementXRatio = remainingXDistance / (Math.abs(remainingXDistance) + Math.abs(remainingYDistance))
-	const movementYRatio = remainingYDistance / (Math.abs(remainingXDistance) + Math.abs(remainingYDistance))
-
-	const { xDistance, yDistance } = getEuclidianDistances(CAT_MOVING_SPEED_PER_SECOND, movementXRatio, movementYRatio)
-
-	const movement = {
-		x: xDistance,
-		y: yDistance,
-	}
-	const newCoordinates: TCoordinates = {
-		x: cat.coordinates.x + (movement.x * delta),
-		y: cat.coordinates.y + (movement.y * delta),
-	}
-	cat.setCoordinates(newCoordinates)
 }
 
 const processRocketsMovement = (delta: number) => {
 	cat.rockets.forEach((rocket) => {
 		processRocketMovement(delta, rocket)
 	})
+}
+
+const processDogMovement = (delta: number) => {
+	if (dog.destCoordinates?.y === 600) {
+		dog.sprite.x -= delta * CAT_MOVING_SPEED_PER_SECOND
+		dog.sprite.y += delta * CAT_MOVING_SPEED_PER_SECOND
+	} else {
+		dog.sprite.x += delta * CAT_MOVING_SPEED_PER_SECOND
+		dog.sprite.y -= delta * CAT_MOVING_SPEED_PER_SECOND
+	}
+	if (dog.destCoordinates && dog.sprite.y < 100) dog.destCoordinates.y = 600
+	if (dog.destCoordinates && dog.sprite.y > 600) dog.destCoordinates.y = 100
 }
 
 const processRocketMovement = (delta: number, rocket: Rocket) => {
@@ -221,7 +272,9 @@ const render = () => {
 }
 
 app.ticker.add((delta) => {
-	processCatMovement(delta)
+	const actions = getActionsFromKeyboard()
+	processCatMovement(delta, actions)
 	processRocketsMovement(delta)
+	processDogMovement(delta)
 	render()
 })
