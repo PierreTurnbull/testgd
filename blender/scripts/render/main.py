@@ -1,0 +1,24 @@
+import bpy
+import os
+import time
+import sys
+from math import *
+
+start0 = time.time()
+
+sys.path.append("/Users/pierreturnbull/Desktop/games/testgd/blender/scripts/render")
+
+import process
+
+# basedir = os.path.dirname(bpy.data.filepath)
+
+# process
+
+process.processPlayer()
+process.processMonster1()
+
+bpy.context.scene.render.filepath = "//render/test/"
+
+end0 = time.time()
+
+print("Rendered in " + str(round(end0 - start0, 1)) + "s.")

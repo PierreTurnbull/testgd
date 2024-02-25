@@ -6,7 +6,12 @@
 	"scripts": {
 		"dev": "vite --port=12200",
 		"build": "tsc && vite build",
-		"preview": "vite preview"
+		"preview": "vite preview",
+		"render": "npm run render:run && npm run render:prepareExport && npm run render:export && npm run render:clean",
+		"render:run": "blender -b blender/testgd.blend -P blender/scripts/render/main.py",
+		"render:prepareExport": "rm -rf src/assets/images && mkdir -p src/assets/images",
+		"render:export": "cp -r blender/tmp/* src/assets/images/",
+		"render:clean": "rm -rf blender/tmp"
 	},
 	"devDependencies": {
 		"@types/lodash": "^4.14.202",
