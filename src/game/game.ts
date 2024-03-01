@@ -7,8 +7,8 @@ import { TTextures } from "@root/textures"
 import * as PIXI from "pixi.js"
 import { TGame } from "@root/types/game/game.type"
 import { Monster1 } from "@root/entities/characters/monster1/monster1.entity"
-
-PIXI.BaseTexture.defaultOptions.scaleMode = PIXI.SCALE_MODES.NEAREST
+import { TPerformanceTracker } from "@root/types/performanceTracker/performanceTracker.type"
+import { startPerformanceLap } from "@root/logic/performance/performance"
 
 class Game {
 	constructor() {
@@ -27,11 +27,11 @@ class Game {
 	initGame = async () => {
 		await loadTextures()
 		initEntities()
-		// watchInput()
 	}
 
 	startGame = async () => {
 		this.app.ticker.add((delta) => {
+			startPerformanceLap()
 			setPlayerActionFromKeyboard(game.player)
 			game.monsters.forEach(monster => {
 				if (monster instanceof Monster1) setMonster1ActionFromKeyboard(monster)
@@ -74,6 +74,12 @@ class Game {
 	}
 
 	background: PIXI.Graphics
+
+	performanceTracker: TPerformanceTracker = {
+		current: null,
+		graphics: null,
+		history: [],
+	}
 }
 
 export const game = new Game()
