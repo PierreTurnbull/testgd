@@ -3,12 +3,12 @@ import { CANVAS_HEIGHT, CANVAS_WIDTH } from "@root/constants"
 import { process } from "@root/logic/process/process"
 import { initEntities } from "@root/logic/initEntities/initEntities"
 import { loadTextures } from "@root/logic/load/textures/loadTextures"
-import { TTextures } from "@root/textures"
 import * as PIXI from "pixi.js"
 import { TGame } from "@root/types/game/game.type"
 import { Monster1 } from "@root/entities/characters/monster1/monster1.entity"
 import { TPerformanceTracker } from "@root/types/performanceTracker/performanceTracker.type"
 import { startPerformanceLap } from "@root/logic/performance/performance"
+import { loadSpritesheets } from "@root/logic/load/spritesheets/spritesheets"
 
 class Game {
 	constructor() {
@@ -26,6 +26,7 @@ class Game {
 
 	initGame = async () => {
 		await loadTextures()
+		await loadSpritesheets()
 		initEntities()
 	}
 
