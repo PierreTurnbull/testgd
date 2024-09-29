@@ -1,19 +1,13 @@
-import { fileURLToPath, URL } from "node:url"
-import { defineConfig } from "vite"
-import eslintPlugin from "vite-plugin-eslint"
+import { fileURLToPath, URL } from "url";
+import { defineConfig } from "vite";
 
 export default defineConfig({
-	plugins: [
-		// ... other plugins
-		eslintPlugin({
-			// ESLint options (optional)
-			cache: false, // default
-			include: ["src/**/*.js", "src/**/*.ts", "src/**/*.jsx", "src/**/*.tsx", "src/**/*.vue"],
-		}),
-	],
+	plugins: [],
 	resolve: {
 		alias: {
-			"@root": fileURLToPath(new URL("./src", import.meta.url))
-		}
-	}
-})
+			"@root": fileURLToPath(new URL("./src", import.meta.url)),
+			"@assets": fileURLToPath(new URL("./src/assets", import.meta.url)),
+			"@aspects": fileURLToPath(new URL("./src/aspects", import.meta.url)),
+		},
+	},
+});

@@ -10,10 +10,6 @@ sys.path.append("/Users/pierreturnbull/Desktop/games/testgd/blender/scripts/rend
 
 import process
 
-# basedir = os.path.dirname(bpy.data.filepath)
-
-# process
-
 process.processPlayer()
 process.processMonster1()
 

@@ -1,0 +1,46 @@
+import { AnimatedSprite } from "pixi.js";
+import { TDirection } from "@root/aspects/actions/types/actions.types";
+import { TCoordinates } from "@root/domains/space/types/coordinates.types";
+import { game } from "@root/domains/game/singletons/game.singletons";
+
+type TOrganismProps = {
+	coordinates: TCoordinates
+	initialAnimatedSprite: AnimatedSprite
+}
+
+export abstract class Organism {
+	constructor(props: TOrganismProps) {
+		this.coordinates = props.coordinates;
+		this.animatedSprite = props.initialAnimatedSprite;
+		game.background.addChild(this.animatedSprite);
+		this.animatedSprite.play();
+	}
+
+	/**
+	 * Sets new coordinates of the organism and updates the sprite accordingly.
+	 * @param newCoordinates 
+	 */
+	setCoordinates = (newCoordinates: TCoordinates) => {
+		this.coordinates = {
+			x: newCoordinates.x,
+			y: newCoordinates.y,
+		};
+
+		this.updateSpriteCoordinates();
+	};
+	/**
+	 * Updates the sprite coordinates according to the current coordinates.
+	 */
+	updateSpriteCoordinates = () => {
+		this.animatedSprite.x = this.coordinates.x - this.animatedSprite.width / 2;
+		this.animatedSprite.y = this.coordinates.y - this.animatedSprite.height / 2;
+	};
+
+	destroySprite = () => {
+		this.animatedSprite.destroy();
+	};
+
+	animatedSprite: AnimatedSprite;
+	direction: TDirection = "down";
+	coordinates: TCoordinates;
+}

@@ -1,0 +1,1 @@
+export const DIAGONAL_MOVEMENT_FACTOR = Math.sqrt(1 / 2);

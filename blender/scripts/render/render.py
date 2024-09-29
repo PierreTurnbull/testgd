@@ -23,7 +23,7 @@ def rotate(object, direction):
 
 def renderArmatureFromDirection(object, name, action, direction, frameEnd):
 	entities.scene.frame_end = frameEnd
-	entities.scene.render.filepath = "./blender/tmp/characters/" + name + "/" + action + "/" + direction + "/"
+	entities.scene.render.filepath = "./blender/tmp/raw/characters." + name + "." + action + "." + direction + "/"
 	bpy.ops.render.render(animation=True)
 
 	object.location.x = 0

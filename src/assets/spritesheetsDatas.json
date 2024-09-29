@@ -1,0 +1,194 @@
+[
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 8,
+        "name": "characters.monster1.rolling.down"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 8,
+        "name": "characters.monster1.rolling.downLeft"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 8,
+        "name": "characters.monster1.rolling.downRight"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 8,
+        "name": "characters.monster1.rolling.left"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 8,
+        "name": "characters.monster1.rolling.right"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 8,
+        "name": "characters.monster1.rolling.up"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 8,
+        "name": "characters.monster1.rolling.upLeft"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 8,
+        "name": "characters.monster1.rolling.upRight"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 8,
+        "name": "characters.player.attacking.down"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 8,
+        "name": "characters.player.attacking.downLeft"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 8,
+        "name": "characters.player.attacking.downRight"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 8,
+        "name": "characters.player.attacking.left"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 8,
+        "name": "characters.player.attacking.right"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 8,
+        "name": "characters.player.attacking.up"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 8,
+        "name": "characters.player.attacking.upLeft"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 8,
+        "name": "characters.player.attacking.upRight"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 24,
+        "name": "characters.player.running.down"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 24,
+        "name": "characters.player.running.downLeft"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 24,
+        "name": "characters.player.running.downRight"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 24,
+        "name": "characters.player.running.left"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 24,
+        "name": "characters.player.running.right"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 24,
+        "name": "characters.player.running.up"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 24,
+        "name": "characters.player.running.upLeft"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 24,
+        "name": "characters.player.running.upRight"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 8,
+        "name": "characters.player.standing.down"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 8,
+        "name": "characters.player.standing.downLeft"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 8,
+        "name": "characters.player.standing.downRight"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 8,
+        "name": "characters.player.standing.left"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 8,
+        "name": "characters.player.standing.right"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 8,
+        "name": "characters.player.standing.up"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 8,
+        "name": "characters.player.standing.upLeft"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 8,
+        "name": "characters.player.standing.upRight"
+    }
+]
