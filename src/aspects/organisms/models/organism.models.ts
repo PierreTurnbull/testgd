@@ -12,7 +12,8 @@ export abstract class Organism {
 	constructor(props: TOrganismProps) {
 		this.coordinates = props.coordinates;
 		this.animatedSprite = props.initialAnimatedSprite;
-		game.background.addChild(this.animatedSprite);
+		this.updateSpriteCoordinates();
+		game.app.stage.addChild(this.animatedSprite);
 		this.animatedSprite.play();
 	}
 
@@ -36,8 +37,17 @@ export abstract class Organism {
 		this.animatedSprite.y = this.coordinates.y - this.animatedSprite.height / 2;
 	};
 
-	destroySprite = () => {
-		this.animatedSprite.destroy();
+	/**
+	 * Replaces the current sprite with a new one, while keeping
+	 * continuity (this.animatedSprite is always valid).
+	 * @param newAnimatedSprite 
+	 */
+	replaceAnimatedSprite = (newAnimatedSprite: AnimatedSprite) => {
+		const obsoleteAnimatedSprite = this.animatedSprite;
+
+		this.animatedSprite = newAnimatedSprite;
+
+		obsoleteAnimatedSprite.removeFromParent();
 	};
 
 	animatedSprite: AnimatedSprite;

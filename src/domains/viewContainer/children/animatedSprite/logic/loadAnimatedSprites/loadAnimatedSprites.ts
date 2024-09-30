@@ -103,7 +103,7 @@ export const getAnimatedSprites = async (spritesheets: TSpritesheets) => {
 };
 
 export const loadAnimatedSprites = async () => {
-	console.time("loadTextures");
+	console.time("loadAnimatedSprites");
 
 	const texturePromises = getTexturePromises();
 	const textures = await getTextures(texturePromises);
@@ -112,5 +112,5 @@ export const loadAnimatedSprites = async () => {
 
 	game.animatedSprites = animatedSprites;
 
-	console.timeEnd("loadTextures");
+	console.timeEnd("loadAnimatedSprites");
 };

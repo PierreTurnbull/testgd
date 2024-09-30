@@ -33,13 +33,14 @@ export abstract class Character extends Organism {
 	replaceAction = (actionKey: Action["key"], direction: TDirection) => {
 		this.direction = direction;
 
-		this.destroySprite();
-
 		const animatedSprite = game.animatedSprites[`characters.player.${actionKey}.${direction}`];
+		this.replaceAnimatedSprite(animatedSprite);
+		game.app.stage.addChild(animatedSprite);
+		this.animatedSprite.play();
+		this.currentAction = actionKey;
 
 		this.updateSpriteCoordinates();
 
-		game.background.addChild(animatedSprite);
 	};
 
 	currentAction: string;
