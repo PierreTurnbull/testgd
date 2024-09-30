@@ -2,28 +2,34 @@ import { Action } from "@root/aspects/actions/models/action.models";
 import { TDirection } from "@root/aspects/actions/types/actions.types";
 import { Organism } from "@root/aspects/organisms/models/organism.models";
 import { game } from "@root/domains/game/singletons/game.singletons";
-import { TPlayerActionKey } from "@root/domains/player/types/action.types";
 import { TCoordinates } from "@root/domains/space/types/coordinates.types";
-import { AnimatedSprite } from "pixi.js";
+import { AnimatedSprite, Ticker } from "pixi.js";
+import { CHARACTER_DIAGONAL_MOVEMENT_FACTOR } from "../constants/movement.constants";
+import { Monster1 } from "@root/domains/monster1/characters/monster1.characters";
 
 type TCharacterProps = {
-	coordinates: TCoordinates
-	speed: number
+	key: string
+	initialCoordinates: TCoordinates
+	movementSpeed: number
 	initialAction: string
+	initialAnimatedSprite: AnimatedSprite
 }
 
 export abstract class Character extends Organism {
 	constructor(props: TCharacterProps) {
 		super({
-			coordinates: props.coordinates,
-			initialAnimatedSprite: game.animatedSprites["characters.player.standing.down"],
+			initialCoordinates: props.initialCoordinates,
+			initialAnimatedSprite: props.initialAnimatedSprite,
 		});
 
-		this.speed = props.speed;
+		this.movementSpeed = props.movementSpeed;
 		this.currentAction = props.initialAction;
+		this.key = props.key;
 
 		this.watchInput();
 	}
+
+	key: string;
 
 	/**
 	 * Replaces the current action with a new one.
@@ -33,7 +39,7 @@ export abstract class Character extends Organism {
 	replaceAction = (actionKey: Action["key"], direction: TDirection) => {
 		this.direction = direction;
 
-		const animatedSprite = game.animatedSprites[`characters.player.${actionKey}.${direction}`];
+		const animatedSprite = game.animatedSprites[`characters.${this.key}.${actionKey}.${direction}`];
 		this.replaceAnimatedSprite(animatedSprite);
 		game.app.stage.addChild(animatedSprite);
 		this.animatedSprite.play();
@@ -54,49 +60,53 @@ export abstract class Character extends Organism {
 	 */
 	abstract watchInput(): void
 
-	speed: number;
+	movementSpeed: number;
 
-	// applyMovement(delta: number, speed: number, direction: TDirection) {
-	// 	if (direction === "upLeft") {
-	// 		this.setCoordinates({
-	// 			x: this.coordinates.x - delta * speed * DIAGONAL_MOVEMENT_FACTOR,
-	// 			y: this.coordinates.y - delta * speed * DIAGONAL_MOVEMENT_FACTOR,
-	// 		});
-	// 	} else if (direction === "downLeft") {
-	// 		this.setCoordinates({
-	// 			x: this.coordinates.x - delta * speed * DIAGONAL_MOVEMENT_FACTOR,
-	// 			y: this.coordinates.y + delta * speed * DIAGONAL_MOVEMENT_FACTOR,
-	// 		});
-	// 	} else if (direction === "upRight") {
-	// 		this.setCoordinates({
-	// 			x: this.coordinates.x + delta * speed * DIAGONAL_MOVEMENT_FACTOR,
-	// 			y: this.coordinates.y - delta * speed * DIAGONAL_MOVEMENT_FACTOR,
-	// 		});
-	// 	} else if (direction === "downRight") {
-	// 		this.setCoordinates({
-	// 			x: this.coordinates.x + delta * speed * DIAGONAL_MOVEMENT_FACTOR,
-	// 			y: this.coordinates.y + delta * speed * DIAGONAL_MOVEMENT_FACTOR,
-	// 		});
-	// 	} else if (direction === "left") {
-	// 		this.setCoordinates({
-	// 			x: this.coordinates.x - delta * speed,
-	// 			y: this.coordinates.y,
-	// 		});
-	// 	} else if (direction === "right") {
-	// 		this.setCoordinates({
-	// 			x: this.coordinates.x + delta * speed,
-	// 			y: this.coordinates.y,
-	// 		});
-	// 	} else if (direction === "up") {
-	// 		this.setCoordinates({
-	// 			x: this.coordinates.x,
-	// 			y: this.coordinates.y - delta * speed,
-	// 		});
-	// 	} else if (direction === "down") {
-	// 		this.setCoordinates({
-	// 			x: this.coordinates.x,
-	// 			y: this.coordinates.y + delta * speed,
-	// 		});
-	// 	}
-	// }
+	/**
+	 * Apply movement to the character by updating its coordinates.
+	 * @param delta 
+	 */
+	applyMovement(delta: Ticker) {
+		if (this.direction === "upLeft") {
+			this.setCoordinates({
+				x: this.coordinates.x - delta.deltaTime * this.movementSpeed * CHARACTER_DIAGONAL_MOVEMENT_FACTOR,
+				y: this.coordinates.y - delta.deltaTime * this.movementSpeed * CHARACTER_DIAGONAL_MOVEMENT_FACTOR,
+			});
+		} else if (this.direction === "downLeft") {
+			this.setCoordinates({
+				x: this.coordinates.x - delta.deltaTime * this.movementSpeed * CHARACTER_DIAGONAL_MOVEMENT_FACTOR,
+				y: this.coordinates.y + delta.deltaTime * this.movementSpeed * CHARACTER_DIAGONAL_MOVEMENT_FACTOR,
+			});
+		} else if (this.direction === "upRight") {
+			this.setCoordinates({
+				x: this.coordinates.x + delta.deltaTime * this.movementSpeed * CHARACTER_DIAGONAL_MOVEMENT_FACTOR,
+				y: this.coordinates.y - delta.deltaTime * this.movementSpeed * CHARACTER_DIAGONAL_MOVEMENT_FACTOR,
+			});
+		} else if (this.direction === "downRight") {
+			this.setCoordinates({
+				x: this.coordinates.x + delta.deltaTime * this.movementSpeed * CHARACTER_DIAGONAL_MOVEMENT_FACTOR,
+				y: this.coordinates.y + delta.deltaTime * this.movementSpeed * CHARACTER_DIAGONAL_MOVEMENT_FACTOR,
+			});
+		} else if (this.direction === "left") {
+			this.setCoordinates({
+				x: this.coordinates.x - delta.deltaTime * this.movementSpeed,
+				y: this.coordinates.y,
+			});
+		} else if (this.direction === "right") {
+			this.setCoordinates({
+				x: this.coordinates.x + delta.deltaTime * this.movementSpeed,
+				y: this.coordinates.y,
+			});
+		} else if (this.direction === "up") {
+			this.setCoordinates({
+				x: this.coordinates.x,
+				y: this.coordinates.y - delta.deltaTime * this.movementSpeed,
+			});
+		} else if (this.direction === "down") {
+			this.setCoordinates({
+				x: this.coordinates.x,
+				y: this.coordinates.y + delta.deltaTime * this.movementSpeed,
+			});
+		}
+	}
 }

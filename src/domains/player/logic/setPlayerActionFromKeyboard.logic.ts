@@ -9,15 +9,15 @@ export const setPlayerActionFromKeyboard = () => {
 	const isAlreadyRunningInSameDirection = game.player.isRunning && requestsSameDirectionAsPreviously;
 
 	// const requestsAttacking = game.player.canStartAttacking && game.player.keyboard.Comma;
-	const requestsRunning = game.player.canStartRunning && !isAlreadyRunningInSameDirection && requestedDirection !== null;
-	const requestsStanding = game.player.canStartStanding && !requestsMovement;
+	const requestsRunning = !isAlreadyRunningInSameDirection && requestedDirection !== null;
+	const requestsStanding = !requestsMovement;
 
 	// if (requestsAttacking) {
 	// 	game.player.replaceAction("attacking", game.player.direction || "down");
 	// }
-	if (requestsRunning) {
+	if (requestsRunning && game.player.canStartRunning) {
 		game.player.startRunning(requestedDirection || "down");
-	} else if (requestsStanding) {
+	} else if (requestsStanding && game.player.canStartStanding) {
 		game.player.startStanding(game.player.direction || "down");
 	}
 };

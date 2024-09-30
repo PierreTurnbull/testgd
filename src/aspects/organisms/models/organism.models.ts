@@ -4,13 +4,13 @@ import { TCoordinates } from "@root/domains/space/types/coordinates.types";
 import { game } from "@root/domains/game/singletons/game.singletons";
 
 type TOrganismProps = {
-	coordinates: TCoordinates
+	initialCoordinates: TCoordinates
 	initialAnimatedSprite: AnimatedSprite
 }
 
 export abstract class Organism {
 	constructor(props: TOrganismProps) {
-		this.coordinates = props.coordinates;
+		this.coordinates = props.initialCoordinates;
 		this.animatedSprite = props.initialAnimatedSprite;
 		this.updateSpriteCoordinates();
 		game.app.stage.addChild(this.animatedSprite);

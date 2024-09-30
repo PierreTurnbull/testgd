@@ -50,6 +50,54 @@
     {
         "width": 64,
         "height": 64,
+        "framesCount": 1,
+        "name": "characters.monster1.standing.down"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 1,
+        "name": "characters.monster1.standing.downLeft"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 1,
+        "name": "characters.monster1.standing.downRight"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 1,
+        "name": "characters.monster1.standing.left"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 1,
+        "name": "characters.monster1.standing.right"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 1,
+        "name": "characters.monster1.standing.up"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 1,
+        "name": "characters.monster1.standing.upLeft"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 1,
+        "name": "characters.monster1.standing.upRight"
+    },
+    {
+        "width": 64,
+        "height": 64,
         "framesCount": 8,
         "name": "characters.player.attacking.down"
     },

@@ -38,15 +38,14 @@ const spritesheetsDatas = []
 const packageSpritesheets = (path) => {
 	const images = readdirSync(path).filter(fileName => fileName.includes(".png"))
 
-	// single images do not need to be converted into spritesheet
-	if (images.length > 1) {
+	if (images.length > 0) {
 		const spritesheetPath = `${baseSpritesheetsPath}/${path.replace(baseRawPath, "")}`
 		writeSpritesheet(path, spritesheetPath)
 
 		const spritesheetDatas = getSpritesheets(path, images)
 		spritesheetsDatas.push(spritesheetDatas)
-	} else if (images.length === 1) {
-		moveImage(path, images)
+	// } else if (images.length === 1) {
+	// 	moveImage(path, images)
 	}
 }
 
