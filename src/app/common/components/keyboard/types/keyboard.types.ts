@@ -1,0 +1,1 @@
+export type TKeyboard = Record<KeyboardEvent["code"], boolean>

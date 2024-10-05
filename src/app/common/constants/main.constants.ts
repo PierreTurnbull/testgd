@@ -1,0 +1,1 @@
+export const DIAGONAL_DISTANCE_FACTOR = Math.sqrt(1 / 2);

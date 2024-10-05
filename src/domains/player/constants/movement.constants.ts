@@ -1,4 +1,4 @@
-import { CHARACTER_DIAGONAL_MOVEMENT_FACTOR } from "@root/aspects/organisms/children/characters/constants/movement.constants";
+import { DIAGONAL_DISTANCE_FACTOR } from "@root/domains/space/constants/distances.constants";
 
-export const PLAYER_MOVING_SPEED = 8;
-export const PLAYER_DIAGONAL_MOVING_SPEED_PER_SECOND = PLAYER_MOVING_SPEED * CHARACTER_DIAGONAL_MOVEMENT_FACTOR;
+export const PLAYER_RUNNING_SPEED = 8;
+export const PLAYER_DIAGONAL_RUNNING_SPEED_PER_SECOND = PLAYER_RUNNING_SPEED * DIAGONAL_DISTANCE_FACTOR;

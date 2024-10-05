@@ -1,5 +1,5 @@
-import { getRequestedDirection } from "@root/aspects/actions/logic/getRequestedDirection.logic";
-import { TDirection } from "@root/aspects/actions/types/actions.types";
+import { getRequestedDirection } from "@root/domains/actions/logic/getRequestedDirection.logic";
+import { TDirection } from "@root/domains/actions/types/actions.types";
 import { Monster1 } from "../characters/monster1.characters";
 
 export const setMonster1ActionFromKeyboard = (monster1: Monster1) => {

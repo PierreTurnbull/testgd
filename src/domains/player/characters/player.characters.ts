@@ -1,86 +1,59 @@
-import { TDirection } from "@root/aspects/actions/types/actions.types";
-import { Character } from "@root/aspects/organisms/children/characters/models/character.models";
-import { TCoordinates } from "@root/domains/space/types/coordinates.types";
-import debounce from "lodash/debounce";
-import { Ticker } from "pixi.js";
-import { PLAYER_MOVING_SPEED } from "../constants/movement.constants";
+import { getRequestedDirection } from "@root/domains/actions/logic/getRequestedDirection.logic";
+import { Attacking } from "@root/domains/actions/models/actions/attacking.models";
+import { Running } from "@root/domains/actions/models/actions/running.models";
+import { Standing } from "@root/domains/actions/models/actions/standing.models";
+import { ActionsManager } from "@root/domains/actions/models/actionsManager.models";
+import { AbstractEntityProcesser } from "@root/domains/entityProcesser/entityProcesser.models";
+import { KeyboardManager } from "@root/domains/keyboardManager/models/keyboardManager.models";
+import { LocationManager } from "@root/domains/locationManager/models/locationManager.models";
+import { MotionManager } from "@root/domains/motionManager/models/motionManager.models";
+import { ViewManager } from "@root/domains/viewManager/models/viewManager.models";
 import { game } from "@root/domains/game/singletons/game.singletons";
+import { TCoordinates } from "@root/domains/space/types/coordinates.types";
+import { Ticker } from "pixi.js";
+import { PLAYER_RUNNING_SPEED } from "../constants/movement.constants";
+import { UserInputManager } from "../models/userInputManager.models";
+import { PlayerEntityProcesser } from "../models/playerEntityProcesser.models";
+import { Entity } from "@root/app/common/entities/entity.models";
 
 type TPlayerProps = {
 	initialCoordinates: TCoordinates
 }
 
-export class Player extends Character { 
+/**
+ * The character controlled by the player.
+ */
+export class Player extends Entity { 
 	constructor(props: TPlayerProps) {
-		super({
-			key: "player",
-			initialCoordinates: props.initialCoordinates,
-			movementSpeed: PLAYER_MOVING_SPEED,
-			initialAction: "standing",
-			initialAnimatedSprite: game.animatedSprites["characters.player.standing.down"],
-		});
-	}
+		super();
 
-	// todo: actions property with sprite, key and other infos ?
-
-	watchInput() {
-		const resetKey = debounce((keyCode: string) => {
-			this.keyboard[keyCode] = false;
-		}, 250);
-
-		window.onkeydown = event => {
-			resetKey(event.code);
-
-			this.keyboard[event.code] = true;
-		};
-
-		window.onkeyup = event => {
-			this.keyboard[event.code] = false;
-		};
-	}
-
-	startStanding = (direction: TDirection) => {
-		this.replaceAction("standing", direction);
-	};
-
-	startRunning = (direction: TDirection) => {
-		this.replaceAction("running", direction);
-	};
-
-	startAttacking = (direction: TDirection) => {
-		this.replaceAction("attacking", direction);
-		this.animatedSprite.onLoop = () => this.replaceAction("standing", this.direction);
-	};
-
-	get canStartStanding() {
-		const canStartStanding = (
-			this.isRunning
+		this.keyboardManager = new KeyboardManager();
+		this.locationManager = new LocationManager(props.initialCoordinates);
+		this.motionManager = new MotionManager();
+		this.userInputManager = new UserInputManager(this.keyboardManager);
+		this.viewManager = new ViewManager(game.animatedSprites["characters.player.standing.down"], props.initialCoordinates);
+		this.actionsManager = new ActionsManager(
+			[
+				Standing,
+				Running,
+				Attacking,
+			],
+			"standing",
+			this.locationManager,
+			this.viewManager,
 		);
-		
-		return canStartStanding;
-	}
-	get canStartRunning() {
-		const canStartRunning = (
-			this.isStanding ||
-			this.isRunning
-		);
-
-		return canStartRunning;
-	}
-	get canStartAttacking() {
-		const canStartAttacking = (
-			this.isRunning ||
-			this.isStanding
-		);
-
-		return canStartAttacking;
+		this.entityProcesser = new PlayerEntityProcesser(this);
 	}
 
-	get isStanding() { return this.currentAction === "standing"; }
-	get isRunning() { return this.currentAction === "running"; }
-	get isAttacking() { return this.currentAction === "attacking"; }
+	keyboardManager: KeyboardManager;
+	locationManager: LocationManager;
+	motionManager: MotionManager;
+	userInputManager: UserInputManager;
+	viewManager: ViewManager;
+	actionsManager: ActionsManager;
+	entityProcesser: AbstractEntityProcesser;
 
-	applyRunning(delta: Ticker) {
-		this.applyMovement(delta);
-	}
+	runningSpeed = PLAYER_RUNNING_SPEED;
+
+
 }
