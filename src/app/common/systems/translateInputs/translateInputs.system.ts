@@ -10,6 +10,7 @@ import { getRequestedDirection } from "./utils/getRequestedDirection";
 const getAttackingIsAllowed = (currentAction: CAction["currentAction"]) => {
 	const attackingIsAllowed = (
 		currentAction === "running" ||
+		currentAction === "rolling" ||
 		currentAction === "standing"
 	);
 
@@ -25,15 +26,33 @@ const getRunningIsAllowed = (
 
 	const runningIsAllowed = (
 		currentAction === "standing" ||
+		(currentAction === "rolling" && !requestsSameDirectionAsPreviously) ||
 		(currentAction === "running" && !requestsSameDirectionAsPreviously)
 	);
 
 	return runningIsAllowed;
 };
 
+const getRollingIsAllowed = (
+	currentAction: CAction["currentAction"],
+	requestedDirection: CDirection["direction"],
+	currentDirection: CDirection["direction"],
+) => {
+	const requestsSameDirectionAsPreviously = requestedDirection === currentDirection;
+
+	const rollingIsAllowed = (
+		currentAction === "standing" ||
+		(currentAction === "running" && !requestsSameDirectionAsPreviously) ||
+		(currentAction === "rolling" && !requestsSameDirectionAsPreviously)
+	);
+
+	return rollingIsAllowed;
+};
+
 const getStandingIsAllowed = (currentAction: CAction["currentAction"]) => {
 	const standingIsAllowed = (
-		currentAction === "running"
+		currentAction === "running" ||
+		currentAction === "rolling"
 	);
 
 	return standingIsAllowed;
@@ -54,16 +73,19 @@ export function translateInputs() {
 		const requestedDirection = getRequestedDirection(keyboardComponent.keyboard);
 		const nextDirection = requestedDirection || directionComponent.direction;
 
-		const requestsAttacking = Boolean(keyboardComponent.keyboard.Comma);
-		const requestsRunning = requestedDirection !== null;
-		const requestsStanding = !requestsRunning && !requestsAttacking;
+		const requestsAttacking = actionComponent.availableActions.includes("attacking") && Boolean(keyboardComponent.keyboard.Comma);
+		const requestsRunning = actionComponent.availableActions.includes("running") && requestedDirection !== null;
+		const requestsRolling = actionComponent.availableActions.includes("rolling") && requestedDirection !== null;
+		const requestsStanding = actionComponent.availableActions.includes("standing") && !requestsRunning && !requestsAttacking;
 
 		const attackingIsAllowed = getAttackingIsAllowed(actionComponent.currentAction);
 		const runningIsAllowed = getRunningIsAllowed(actionComponent.currentAction, nextDirection, directionComponent.direction);
+		const rollingIsAllowed = getRollingIsAllowed(actionComponent.currentAction, nextDirection, directionComponent.direction);
 		const standingIsAllowed = getStandingIsAllowed(actionComponent.currentAction);
 
 		const mustStartAttacking = requestsAttacking && attackingIsAllowed;
 		const mustStartRunning = requestsRunning && runningIsAllowed;
+		const mustStartRolling = requestsRolling && rollingIsAllowed;
 		const mustStartStanding = requestsStanding && standingIsAllowed;
 
 		let nextAction: CAction["currentAction"] | null = null;
@@ -80,6 +102,8 @@ export function translateInputs() {
 			};
 		} else if (mustStartRunning) {
 			nextAction = "running";
+		} else if (mustStartRolling) {
+			nextAction = "rolling";
 		} else if (mustStartStanding) {
 			nextAction = "standing";
 		}

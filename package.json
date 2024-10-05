@@ -12,7 +12,7 @@
 		"render": "npm run render:run && npm run render:spritesheets && npm run render:prepareExport && npm run render:export && npm run render:clean",
 		"render:spritesheets": "node blender/scripts/packageSpritesheets/packageSpritesheets.js",
 		"render:run": "blender -b blender/testgd.blend -P blender/scripts/render/main.py",
-		"render:prepareExport": "rm -rf src/assets/*",
+		"render:prepareExport": "rm -rf src/assets/spritesheets/* src/assets/spritesheetsDatas.json",
 		"render:export": "cp -r blender/tmp/ src/assets",
 		"render:clean": "rm -rf blender/tmp"
 	},

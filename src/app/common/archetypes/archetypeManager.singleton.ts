@@ -1,12 +1,14 @@
 import { Entity } from "../entities/entity.models";
 import { actorArchetype } from "./actor/actor.archetype";
 import { Archetype } from "./archetype.models";
+import { fpsArchetype } from "./fps/fps.archetype";
 import { playerArchetype } from "./player/player.archetype";
 
 class ArchetypeManager {
 	archetypes: Archetype[] = [
 		playerArchetype,
 		actorArchetype,
+		fpsArchetype,
 	];
 
 	getArchetype<TArchetype extends typeof Archetype>(archetypeClass: TArchetype): InstanceType<TArchetype> {

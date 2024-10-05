@@ -30,6 +30,8 @@ const initPlayer = () => {
 		"running": PLAYER_RUNNING_SPEED,
 	};
 	const actionComponent = new CAction();
+	actionComponent.availableActions = ["standing", "running", "attacking"];
+	actionComponent.currentAction = "standing";
 
 	createEntity(
 		[

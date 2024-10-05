@@ -1,0 +1,1 @@
+export const FPS_REFRESH_DELAY = 200;
