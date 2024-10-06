@@ -1,0 +1,1 @@
+export const MUDDYBUDDY_ROLLING_SPEED = 6;

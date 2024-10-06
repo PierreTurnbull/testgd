@@ -37,9 +37,9 @@ class preparePlayer:
 		entities.playerCarriedSword.hide_render = False
 		entities.playerEquipedSword.hide_render = True
 
-class prepareMonster1:
+class prepareMuddyBuddy:
 	@staticmethod
 	def prepareBase():
 		prepareCharacter()
-		showCollection(entities.monster1)
+		showCollection(entities.muddyBuddy)
 		entities.camera.location.z = 1

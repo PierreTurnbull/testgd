@@ -48,10 +48,10 @@ def renderPlayer(action, frameEnd):
 		frameEnd,
 	)
 
-def renderMonster1(action, frameEnd):
+def renderMuddyBuddy(action, frameEnd):
 	renderArmatureFromAllDirections(
-		entities.monster1.all_objects["Monster 1 armature"],
-		"monster1",
+		entities.muddyBuddy.all_objects["MuddyBuddy armature"],
+		"muddyBuddy",
 		action,
 		frameEnd,
 	)

@@ -11,8 +11,8 @@ def processPlayer():
 	prepare.preparePlayer.equipSword()
 	render.renderPlayer("attacking", 7)
 
-def processMonster1():
-	prepare.prepareMonster1.prepareBase()
+def processMuddyBuddy():
+	prepare.prepareMuddyBuddy.prepareBase()
 
-	render.renderMonster1("standing", 0)
-	render.renderMonster1("rolling", 7)
+	render.renderMuddyBuddy("standing", 0)
+	render.renderMuddyBuddy("rolling", 7)

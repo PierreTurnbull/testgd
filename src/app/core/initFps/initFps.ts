@@ -18,7 +18,10 @@ export const initFps = () => {
 	fpsComponent.text.y = 10;
 	appManager.app.stage.addChild(fpsComponent.text);
 
-	createEntity([
-		fpsComponent,
-	]);
+	createEntity(
+		"fps",
+		[
+			fpsComponent,
+		],
+	);
 };

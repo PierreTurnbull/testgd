@@ -1,1 +1,0 @@
-export type TDirection = "up" | "upRight" | "right" | "downRight" | "down" | "downLeft" | "left" | "upLeft"

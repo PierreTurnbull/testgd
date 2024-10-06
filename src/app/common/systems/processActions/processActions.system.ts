@@ -3,7 +3,7 @@ import { AActor } from "../../archetypes/actor/actor.archetype";
 import { archetypeManager } from "../../archetypes/archetypeManager.singleton";
 import { CAction } from "../../components/action/action.component";
 import { CLocation } from "../../components/location/location.component";
-import { applyMotion } from "../common/applyMotion/applyMotion";
+import { applyMotion } from "../../utils/applyMotion/applyMotion";
 import { CDirection } from "../../components/direction/direction.component";
 import { CVelocity } from "../../components/velocity/velocity.component";
 import { CView } from "../../components/view/view.entity";
@@ -18,7 +18,10 @@ export function processActions(delta: Ticker) {
 		const directionComponent = actorEntity.getComponent(CDirection);
 		const velocityComponent = actorEntity.getComponent(CVelocity);
 
-		if (actionComponent.currentAction === "running") {
+		if (
+			actionComponent.currentAction === "running" ||
+			actionComponent.currentAction === "rolling"
+		) {
 			applyMotion(
 				delta,
 				viewComponent,

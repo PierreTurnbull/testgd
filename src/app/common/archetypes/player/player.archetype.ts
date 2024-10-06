@@ -1,4 +1,3 @@
-import { CKeyboard } from "../../components/keyboard/keyboard.component";
 import { CUser } from "../../components/user/user.component";
 import { Archetype } from "../archetype.models";
 
@@ -9,7 +8,6 @@ export class APlayer extends Archetype {
 	constructor() {
 		super([
 			CUser,
-			CKeyboard,
 		]);
 	}
 }

@@ -9,4 +9,4 @@ player = bpy.data.collections["Player"]
 playerEquipedSword = bpy.data.objects["Sword (equiped)"]
 playerCarriedSword = bpy.data.objects["Sword (carried)"]
 
-monster1 = bpy.data.collections["Monster 1"]
+muddyBuddy = bpy.data.collections["MuddyBuddy"]

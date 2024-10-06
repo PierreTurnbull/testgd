@@ -2,11 +2,13 @@ import { Entity } from "../entities/entity.models";
 import { actorArchetype } from "./actor/actor.archetype";
 import { Archetype } from "./archetype.models";
 import { fpsArchetype } from "./fps/fps.archetype";
+import { muddyBuddyArchetype } from "./muddyBuddy/muddyBuddy.archetype";
 import { playerArchetype } from "./player/player.archetype";
 
 class ArchetypeManager {
 	archetypes: Archetype[] = [
 		playerArchetype,
+		muddyBuddyArchetype,
 		actorArchetype,
 		fpsArchetype,
 	];

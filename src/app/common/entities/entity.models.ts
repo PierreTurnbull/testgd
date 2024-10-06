@@ -12,6 +12,8 @@ export class Entity {
 
 	id: number;
 
+	name: string = "unknown";
+
 	addComponent(component: Component) {
 		this.components.push(component);
 

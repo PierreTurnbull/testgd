@@ -11,7 +11,7 @@ sys.path.append("/Users/pierreturnbull/Desktop/games/testgd/blender/scripts/rend
 import process
 
 process.processPlayer()
-process.processMonster1()
+process.processMuddyBuddy()
 
 bpy.context.scene.render.filepath = "//render/test/"
 

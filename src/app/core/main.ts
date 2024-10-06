@@ -1,5 +1,5 @@
 import { Assets } from "pixi.js";
-import { animatedSpritesManager } from "../common/animatedSprites/animatedSpritesManager.singletons";
+import { animatedSpritesManager } from "./animatedSpritesManager/animatedSpritesManager.singletons";
 import { watchInput } from "../domains/player/systems/watchInput/watchInput.system";
 import { initApplication } from "./initApp/initApp";
 import { initCharacters } from "./initCharacters/initCharacters";

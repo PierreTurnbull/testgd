@@ -1,4 +1,4 @@
-import { TCoordinates } from "@root/domains/space/types/coordinates.types";
+import { TCoordinates } from "../../types/coordinates.types";
 import { Component } from "../component.models";
 
 export class CLocation extends Component {

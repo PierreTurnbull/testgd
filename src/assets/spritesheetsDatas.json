@@ -3,97 +3,97 @@
         "width": 64,
         "height": 64,
         "framesCount": 8,
-        "name": "characters.monster1.rolling.down"
+        "name": "characters.muddyBuddy.rolling.down"
     },
     {
         "width": 64,
         "height": 64,
         "framesCount": 8,
-        "name": "characters.monster1.rolling.downLeft"
+        "name": "characters.muddyBuddy.rolling.downLeft"
     },
     {
         "width": 64,
         "height": 64,
         "framesCount": 8,
-        "name": "characters.monster1.rolling.downRight"
+        "name": "characters.muddyBuddy.rolling.downRight"
     },
     {
         "width": 64,
         "height": 64,
         "framesCount": 8,
-        "name": "characters.monster1.rolling.left"
+        "name": "characters.muddyBuddy.rolling.left"
     },
     {
         "width": 64,
         "height": 64,
         "framesCount": 8,
-        "name": "characters.monster1.rolling.right"
+        "name": "characters.muddyBuddy.rolling.right"
     },
     {
         "width": 64,
         "height": 64,
         "framesCount": 8,
-        "name": "characters.monster1.rolling.up"
+        "name": "characters.muddyBuddy.rolling.up"
     },
     {
         "width": 64,
         "height": 64,
         "framesCount": 8,
-        "name": "characters.monster1.rolling.upLeft"
+        "name": "characters.muddyBuddy.rolling.upLeft"
     },
     {
         "width": 64,
         "height": 64,
         "framesCount": 8,
-        "name": "characters.monster1.rolling.upRight"
+        "name": "characters.muddyBuddy.rolling.upRight"
     },
     {
         "width": 64,
         "height": 64,
         "framesCount": 1,
-        "name": "characters.monster1.standing.down"
+        "name": "characters.muddyBuddy.standing.down"
     },
     {
         "width": 64,
         "height": 64,
         "framesCount": 1,
-        "name": "characters.monster1.standing.downLeft"
+        "name": "characters.muddyBuddy.standing.downLeft"
     },
     {
         "width": 64,
         "height": 64,
         "framesCount": 1,
-        "name": "characters.monster1.standing.downRight"
+        "name": "characters.muddyBuddy.standing.downRight"
     },
     {
         "width": 64,
         "height": 64,
         "framesCount": 1,
-        "name": "characters.monster1.standing.left"
+        "name": "characters.muddyBuddy.standing.left"
     },
     {
         "width": 64,
         "height": 64,
         "framesCount": 1,
-        "name": "characters.monster1.standing.right"
+        "name": "characters.muddyBuddy.standing.right"
     },
     {
         "width": 64,
         "height": 64,
         "framesCount": 1,
-        "name": "characters.monster1.standing.up"
+        "name": "characters.muddyBuddy.standing.up"
     },
     {
         "width": 64,
         "height": 64,
         "framesCount": 1,
-        "name": "characters.monster1.standing.upLeft"
+        "name": "characters.muddyBuddy.standing.upLeft"
     },
     {
         "width": 64,
         "height": 64,
         "framesCount": 1,
-        "name": "characters.monster1.standing.upRight"
+        "name": "characters.muddyBuddy.standing.upRight"
     },
     {
         "width": 64,

@@ -4,7 +4,7 @@ import { CAction } from "../../components/action/action.component";
 import { CDirection } from "../../components/direction/direction.component";
 import { CKeyboard } from "../../components/keyboard/keyboard.component";
 import { CVelocity } from "../../components/velocity/velocity.component";
-import { setAction } from "../common/setAction/setAction";
+import { setAction } from "../../utils/setAction/setAction";
 import { getRequestedDirection } from "./utils/getRequestedDirection";
 
 const getAttackingIsAllowed = (currentAction: CAction["currentAction"]) => {
@@ -76,7 +76,7 @@ export function translateInputs() {
 		const requestsAttacking = actionComponent.availableActions.includes("attacking") && Boolean(keyboardComponent.keyboard.Comma);
 		const requestsRunning = actionComponent.availableActions.includes("running") && requestedDirection !== null;
 		const requestsRolling = actionComponent.availableActions.includes("rolling") && requestedDirection !== null;
-		const requestsStanding = actionComponent.availableActions.includes("standing") && !requestsRunning && !requestsAttacking;
+		const requestsStanding = actionComponent.availableActions.includes("standing") && (!requestsRunning && !requestsRolling) && !requestsAttacking;
 
 		const attackingIsAllowed = getAttackingIsAllowed(actionComponent.currentAction);
 		const runningIsAllowed = getRunningIsAllowed(actionComponent.currentAction, nextDirection, directionComponent.direction);
