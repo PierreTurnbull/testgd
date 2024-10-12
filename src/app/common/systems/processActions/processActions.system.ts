@@ -10,6 +10,9 @@ import { CView } from "../../components/view/view.component";
 import { applyCollisions } from "../../hitboxes/utils/applyCollisions";
 import { applyNextCoordinates } from "../../utils/applyNextCoordinates/applyNextCoordinates";
 import { getNextCoordinates } from "../../utils/getNextCoordinates/getNextCoordinates";
+import { CHitbox } from "../../components/hitbox/hitbox.component";
+import { TCoordinates } from "../../types/coordinates.types";
+import { collisionsManager } from "@root/app/core/collisionsManager/collisionsManager.singletons";
 
 export function processActions(delta: Ticker) {
 	const actorEntities = archetypeManager.getEntitiesByArchetype(AActor);
@@ -20,6 +23,7 @@ export function processActions(delta: Ticker) {
 		const viewComponent = actorEntity.getComponent(CView);
 		const directionComponent = actorEntity.getComponent(CDirection);
 		const velocityComponent = actorEntity.getComponent(CVelocity);
+		const hitboxComponent = actorEntity.getComponent(CHitbox);
 		const hitboxViewComponent = actorEntity.getComponent(CHitboxView);
 
 		if (
@@ -33,10 +37,22 @@ export function processActions(delta: Ticker) {
 				velocityComponent.velocity,
 			);
 
-			applyCollisions(
-				actorEntity,
-				nextCoordinates,
-			);
+			// applyCollisions(
+			// 	actorEntity,
+			// 	nextCoordinates,
+			// );
+			const nextHitboxCoordinates: TCoordinates = {
+				x: nextCoordinates.x - hitboxComponent.body.width / 2,
+				y: nextCoordinates.y - hitboxComponent.body.height / 2,
+			};
+			hitboxComponent.body.setPosition(nextHitboxCoordinates.x, nextHitboxCoordinates.y);
+			// console.log(hitboxComponent.body.dirty);
+			// hitboxComponent.body.updateBody();
+			collisionsManager.updateBody(hitboxComponent.body);
+			// console.log(hitboxComponent.body.dirty, hitboxComponent.body.x, nextCoordinates.x);
+
+			collisionsManager.checkOne(hitboxComponent.body, (a) => console.log(a));
+			collisionsManager.separateBody(hitboxComponent.body);
 
 			applyNextCoordinates(
 				nextCoordinates,

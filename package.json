@@ -23,7 +23,6 @@
 		"@types/eslint__js": "^8.42.3",
 		"@types/lodash": "^4.17.9",
 		"@types/node": "^22.7.2",
-		"@types/sat": "^0.0.35",
 		"@typescript-eslint/eslint-plugin": "^8.7.0",
 		"@typescript-eslint/parser": "^8.7.0",
 		"eslint": "^9.12.0",
@@ -36,8 +35,8 @@
 		"vite": "^5.4.8"
 	},
 	"dependencies": {
+		"detect-collisions": "^9.17.0",
 		"lodash": "^4.17.21",
-		"pixi.js": "^8.4.1",
-		"sat": "^0.9.0"
+		"pixi.js": "^8.4.1"
 	}
 }

@@ -2,7 +2,12 @@ import { createMuddyBuddy } from "@root/app/domains/muddyBuddy/utils/createMuddy
 import { createPlayer } from "@root/app/domains/player/utils/createPlayer";
 
 export const initCharacters = () => {
-	createPlayer();
+	createPlayer(
+		{
+			x: 300,
+			y: 300,
+		},
+	);
 	createMuddyBuddy(
 		{
 			x: 200,

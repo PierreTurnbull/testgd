@@ -1,15 +1,15 @@
-import { TDimensions } from "../../types/dimensions.types";
+import { Box } from "detect-collisions";
 import { Component } from "../component.models";
 
 export class CHitbox extends Component {
-	private _dimensions: TDimensions | null = null;
+	private _body: Box | null = null;
 
-	get dimensions() {
-		if (!this._dimensions) throw new Error("Missing dimensions.");
+	get body() {
+		if (!this._body) throw new Error("Missing body.");
 
-		return this._dimensions;
+		return this._body;
 	}
-	set dimensions(value: TDimensions) {
-		this._dimensions = value;
+	set body(value: Box) {
+		this._body = value;
 	}
 }

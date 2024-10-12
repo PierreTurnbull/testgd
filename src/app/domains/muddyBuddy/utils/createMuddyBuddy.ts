@@ -13,6 +13,8 @@ import { CView } from "@root/app/common/components/view/view.component";
 import { createEntity } from "@root/app/common/entities/utils/createEntity";
 import { HITBOX_BOUNDS } from "@root/app/common/hitboxes/constants/hitboxes.constants";
 import { TCoordinates } from "@root/app/common/types/coordinates.types";
+import { TDimensions } from "@root/app/common/types/dimensions.types";
+import { collisionsManager } from "@root/app/core/collisionsManager/collisionsManager.singletons";
 import { configManager } from "@root/app/core/configManager/configManager.singletons";
 import { MUDDYBUDDY_ROLLING_SPEED } from "@root/app/domains/muddyBuddy/constants/muddyBuddy.constants";
 
@@ -30,17 +32,36 @@ export const createMuddyBuddy = (
 	const hitboxViewComponent = new CHitboxView();
 
 	locationComponent.coordinates = initialCoordinates;
-	hitboxComponent.dimensions = HITBOX_BOUNDS["characters.muddyBuddy"];
+
+	const hitboxCoordinates: TCoordinates = {
+		x: initialCoordinates.x - HITBOX_BOUNDS["characters.muddyBuddy"].w / 2,
+		y: initialCoordinates.y - HITBOX_BOUNDS["characters.muddyBuddy"].h / 2,
+	};
+	const hitbox = collisionsManager.createBox(
+		hitboxCoordinates,
+		HITBOX_BOUNDS["characters.muddyBuddy"].w,
+		HITBOX_BOUNDS["characters.muddyBuddy"].h,
+	);
+	hitboxComponent.body = hitbox;
+
 	setAnimatedSprite(viewComponent, "characters.muddyBuddy.standing.down", initialCoordinates);
+
 	if (configManager.config.debug.showsEntityBorders) {
 		setBorder(viewComponent, initialCoordinates);
 	}
+
 	if (configManager.config.debug.showsEntityHitboxes) {
-		setHitboxBorder(hitboxViewComponent, "characters.muddyBuddy", hitboxComponent.dimensions, initialCoordinates);
+		const hitboxDimensions: TDimensions = {
+			w: hitboxComponent.body.width,
+			h: hitboxComponent.body.height,
+		};
+		setHitboxBorder(hitboxViewComponent, "characters.muddyBuddy", hitboxDimensions, initialCoordinates);
 	}
+
 	velocityComponent.actionVelocities = {
 		"rolling": MUDDYBUDDY_ROLLING_SPEED,
 	};
+
 	actionComponent.availableActions = ["standing", "rolling"];
 	actionComponent.currentAction = "standing";
 
