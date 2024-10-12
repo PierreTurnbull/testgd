@@ -1,22 +1,21 @@
-import { AnimatedSprite } from "pixi.js";
-import { CView } from "../../../components/view/view.entity";
+import { CView } from "../../../components/view/view.component";
 import { TCoordinates } from "../../../types/coordinates.types";
 import { setAnimatedSprite } from "./setAnimatedSprite";
 
 /**
  * Frees the previous animated sprite and sets the new one.
  * @param viewComponent 
- * @param newAnimatedSprite 
+ * @param newAnimatedSpriteName
  * @param coordinates 
  */
 export const replaceAnimatedSprite = (
 	viewComponent: CView,
-	newAnimatedSprite: AnimatedSprite,
+	newAnimatedSpriteName: string,
 	coordinates: TCoordinates,
 ) => {
 	const prevAnimatedSprite = viewComponent.animatedSprite;
 
-	setAnimatedSprite(viewComponent, newAnimatedSprite, coordinates);
+	setAnimatedSprite(viewComponent, newAnimatedSpriteName, coordinates);
 
 	prevAnimatedSprite.removeFromParent();
 };

@@ -3,5 +3,10 @@ import { createPlayer } from "@root/app/domains/player/utils/createPlayer";
 
 export const initCharacters = () => {
 	createPlayer();
-	createMuddyBuddy();
+	createMuddyBuddy(
+		{
+			x: 200,
+			y: 200,
+		},
+	);
 };

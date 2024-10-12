@@ -1,6 +1,7 @@
 import { Entity } from "../entities/entity.models";
 import { actorArchetype } from "./actor/actor.archetype";
 import { Archetype } from "./archetype.models";
+import { colliderArchetype } from "./collider/collider.archetype";
 import { fpsArchetype } from "./fps/fps.archetype";
 import { muddyBuddyArchetype } from "./muddyBuddy/muddyBuddy.archetype";
 import { playerArchetype } from "./player/player.archetype";
@@ -11,6 +12,7 @@ class ArchetypeManager {
 		muddyBuddyArchetype,
 		actorArchetype,
 		fpsArchetype,
+		colliderArchetype,
 	];
 
 	getArchetype<TArchetype extends typeof Archetype>(archetypeClass: TArchetype): InstanceType<TArchetype> {

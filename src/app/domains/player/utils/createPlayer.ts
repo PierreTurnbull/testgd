@@ -1,14 +1,17 @@
 import { setAnimatedSprite } from "@root/app/common/animatedSprites/utils/animatedSprite/setAnimatedSprite";
-import { setAnimatedSpriteBorder } from "@root/app/common/animatedSprites/utils/animatedSpriteBorder/setAnimatedSpriteBorder";
+import { setBorder } from "@root/app/common/animatedSprites/utils/border/setBorder";
+import { setHitboxBorder } from "@root/app/common/animatedSprites/utils/hitboxBorder/setHitboxBorder";
 import { CAction } from "@root/app/common/components/action/action.component";
 import { CDirection } from "@root/app/common/components/direction/direction.component";
+import { CHitbox } from "@root/app/common/components/hitbox/hitbox.component";
+import { CHitboxView } from "@root/app/common/components/hitboxView/hitboxView.component";
 import { CKeyboard } from "@root/app/common/components/keyboard/keyboard.component";
 import { CLocation } from "@root/app/common/components/location/location.component";
 import { CUser } from "@root/app/common/components/user/user.component";
 import { CVelocity } from "@root/app/common/components/velocity/velocity.component";
-import { CView } from "@root/app/common/components/view/view.entity";
+import { CView } from "@root/app/common/components/view/view.component";
 import { createEntity } from "@root/app/common/entities/utils/createEntity";
-import { animatedSpritesManager } from "@root/app/core/animatedSpritesManager/animatedSpritesManager.singletons";
+import { HITBOX_BOUNDS } from "@root/app/common/hitboxes/constants/hitboxes.constants";
 import { configManager } from "@root/app/core/configManager/configManager.singletons";
 import { PLAYER_RUNNING_SPEED } from "@root/app/domains/player/constants/player.constants";
 
@@ -20,16 +23,21 @@ export const createPlayer = () => {
 	const viewComponent = new CView();
 	const velocityComponent = new CVelocity();
 	const actionComponent = new CAction();
+	const hitboxComponent = new CHitbox();
+	const hitboxViewComponent = new CHitboxView();
 	
 	const initialCoordinates = {
-		x: 200,
-		y: 200, 
+		x: 300,
+		y: 300, 
 	};
 	locationComponent.coordinates = initialCoordinates;
-	const initialAnimatedSprite = animatedSpritesManager.animatedSprites["characters.player.standing.down"];
-	setAnimatedSprite(viewComponent, initialAnimatedSprite, initialCoordinates);
+	hitboxComponent.dimensions = HITBOX_BOUNDS["characters.player"];
+	setAnimatedSprite(viewComponent, "characters.player.standing.down", initialCoordinates);
 	if (configManager.config.debug.showsEntityBorders) {
-		setAnimatedSpriteBorder(viewComponent, initialCoordinates);
+		setBorder(viewComponent, initialCoordinates);
+	}
+	if (configManager.config.debug.showsEntityHitboxes) {
+		setHitboxBorder(hitboxViewComponent, "characters.player", hitboxComponent.dimensions, initialCoordinates);
 	}
 	velocityComponent.actionVelocities = {
 		"running": PLAYER_RUNNING_SPEED,
@@ -47,6 +55,8 @@ export const createPlayer = () => {
 			viewComponent,
 			velocityComponent,
 			actionComponent,
+			hitboxComponent,
+			hitboxViewComponent,
 		],
 	);
 };

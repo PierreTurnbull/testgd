@@ -1,18 +1,24 @@
 import { setAnimatedSprite } from "@root/app/common/animatedSprites/utils/animatedSprite/setAnimatedSprite";
-import { setAnimatedSpriteBorder } from "@root/app/common/animatedSprites/utils/animatedSpriteBorder/setAnimatedSpriteBorder";
+import { setBorder } from "@root/app/common/animatedSprites/utils/border/setBorder";
+import { setHitboxBorder } from "@root/app/common/animatedSprites/utils/hitboxBorder/setHitboxBorder";
 import { CAction } from "@root/app/common/components/action/action.component";
 import { CDirection } from "@root/app/common/components/direction/direction.component";
+import { CHitbox } from "@root/app/common/components/hitbox/hitbox.component";
+import { CHitboxView } from "@root/app/common/components/hitboxView/hitboxView.component";
 import { CKeyboard } from "@root/app/common/components/keyboard/keyboard.component";
 import { CLocation } from "@root/app/common/components/location/location.component";
 import { CMuddyBuddy } from "@root/app/common/components/muddyBuddy/muddyBuddy.component";
 import { CVelocity } from "@root/app/common/components/velocity/velocity.component";
-import { CView } from "@root/app/common/components/view/view.entity";
+import { CView } from "@root/app/common/components/view/view.component";
 import { createEntity } from "@root/app/common/entities/utils/createEntity";
-import { animatedSpritesManager } from "@root/app/core/animatedSpritesManager/animatedSpritesManager.singletons";
+import { HITBOX_BOUNDS } from "@root/app/common/hitboxes/constants/hitboxes.constants";
+import { TCoordinates } from "@root/app/common/types/coordinates.types";
 import { configManager } from "@root/app/core/configManager/configManager.singletons";
 import { MUDDYBUDDY_ROLLING_SPEED } from "@root/app/domains/muddyBuddy/constants/muddyBuddy.constants";
 
-export const createMuddyBuddy = () => {
+export const createMuddyBuddy = (
+	initialCoordinates: TCoordinates,
+) => {
 	const muddyBuddyComponent = new CMuddyBuddy();
 	const keyboardComponent = new CKeyboard();
 	const locationComponent = new CLocation();
@@ -20,16 +26,17 @@ export const createMuddyBuddy = () => {
 	const viewComponent = new CView();
 	const velocityComponent = new CVelocity();
 	const actionComponent = new CAction();
-	
-	const initialCoordinates = {
-		x: 300,
-		y: 300, 
-	};
+	const hitboxComponent = new CHitbox();
+	const hitboxViewComponent = new CHitboxView();
+
 	locationComponent.coordinates = initialCoordinates;
-	const initialAnimatedSprite = animatedSpritesManager.animatedSprites["characters.muddyBuddy.standing.down"];
-	setAnimatedSprite(viewComponent, initialAnimatedSprite, initialCoordinates);
+	hitboxComponent.dimensions = HITBOX_BOUNDS["characters.muddyBuddy"];
+	setAnimatedSprite(viewComponent, "characters.muddyBuddy.standing.down", initialCoordinates);
 	if (configManager.config.debug.showsEntityBorders) {
-		setAnimatedSpriteBorder(viewComponent, initialCoordinates);
+		setBorder(viewComponent, initialCoordinates);
+	}
+	if (configManager.config.debug.showsEntityHitboxes) {
+		setHitboxBorder(hitboxViewComponent, "characters.muddyBuddy", hitboxComponent.dimensions, initialCoordinates);
 	}
 	velocityComponent.actionVelocities = {
 		"rolling": MUDDYBUDDY_ROLLING_SPEED,
@@ -47,6 +54,8 @@ export const createMuddyBuddy = () => {
 			viewComponent,
 			velocityComponent,
 			actionComponent,
+			hitboxComponent,
+			hitboxViewComponent,
 		],
 	);
 };

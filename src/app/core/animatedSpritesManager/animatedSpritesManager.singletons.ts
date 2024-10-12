@@ -2,6 +2,7 @@ import spritesheetsDatas from "@assets/spritesheetsDatas.json";
 import { TAnimatedSprites, TSpritesheets, TTexturePromises, TTextures } from "@root/app/core/animatedSpritesManager/types/loadAnimatedSprites.types";
 import { AnimatedSprite, Assets, Spritesheet, SpritesheetData, Texture, TextureSource } from "pixi.js";
 import { ANIMATION_SPEEDS } from "./constants/animatedSprites.constants";
+import { trimDirection } from "@root/app/common/utils/trimDirection/trimDirection";
 
 TextureSource.defaultOptions.scaleMode = "nearest";
 
@@ -106,14 +107,14 @@ class AnimatedSpritesManager {
 			const animatedSprite = new AnimatedSprite(animation);
 			animatedSprite.width *= 3;
 			animatedSprite.height *= 3;
-			const allDirectionsName = name.replace(/\.[^\\.]*$/, "");
-			const animationName: keyof typeof ANIMATION_SPEEDS = allDirectionsName;
+			const animationName: keyof typeof ANIMATION_SPEEDS = trimDirection(name);
 			const animationSpeed = ANIMATION_SPEEDS[animationName];
 			if (!animationSpeed) throw new Error(`Missing animation speed for ${animationName}.`);
 			animatedSprite.animationSpeed = animationSpeed;
 			if (name.includes("attacking")) {
 				animatedSprite.loop = false;
 			}
+			animatedSprite.label = name;
 			animatedSprites[name] = animatedSprite;
 		}
 

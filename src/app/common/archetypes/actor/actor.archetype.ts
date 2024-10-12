@@ -1,9 +1,11 @@
 import { CAction } from "../../components/action/action.component";
 import { CDirection } from "../../components/direction/direction.component";
+import { CHitbox } from "../../components/hitbox/hitbox.component";
+import { CHitboxView } from "../../components/hitboxView/hitboxView.component";
 import { CKeyboard } from "../../components/keyboard/keyboard.component";
 import { CLocation } from "../../components/location/location.component";
 import { CVelocity } from "../../components/velocity/velocity.component";
-import { CView } from "../../components/view/view.entity";
+import { CView } from "../../components/view/view.component";
 import { Archetype } from "../archetype.models";
 
 /**
@@ -18,6 +20,8 @@ export class AActor extends Archetype {
 			CLocation,
 			CView,
 			CVelocity,
+			CHitbox,
+			CHitboxView,
 		]);
 	}
 }

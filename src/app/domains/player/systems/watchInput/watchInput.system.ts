@@ -6,6 +6,11 @@ import { CKeyboard } from "@root/app/common/components/keyboard/keyboard.compone
 export const watchInput = () => {
 	const playerEntity = archetypeManager.getEntitiesByArchetype(APlayer)[0];
 
+	if (!playerEntity) {
+		console.warn("No player entity found.");
+		return;
+	}
+
 	const keyboardComponent = playerEntity.getComponent(CKeyboard);
 
 	// const resetKey = debounce((keyCode: string) => {

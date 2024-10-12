@@ -1,7 +1,8 @@
 class ConfigManager {
 	config = {
 		debug: {
-			showsEntityBorders: true,
+			showsEntityBorders: false,
+			showsEntityHitboxes: true,
 		},
 	} as const;
 }
