@@ -14,4 +14,10 @@ export const initCharacters = () => {
 			y: 200,
 		},
 	);
+	createMuddyBuddy(
+		{
+			x: 400,
+			y: 500,
+		},
+	);
 };

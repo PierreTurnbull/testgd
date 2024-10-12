@@ -1,5 +1,5 @@
 import { Assets } from "pixi.js";
-import { animatedSpritesManager } from "./animatedSpritesManager/animatedSpritesManager.singletons";
+import { assetsManager } from "./assetsManager/assetsManager.singletons";
 import { watchInput } from "../domains/player/systems/watchInput/watchInput.system";
 import { initApplication } from "./initApp/initApp";
 import { initCharacters } from "./initCharacters/initCharacters";
@@ -11,7 +11,7 @@ import "./reset.css";
 document.addEventListener("contextmenu", event => event.preventDefault());
 
 await Assets.load("src/assets/fonts/Pixeled/Pixeled.ttf");
-await animatedSpritesManager.loadAnimatedSprites();
+await assetsManager.loadSpritesheets();
 await initApplication();
 initLoop();
 initCharacters();

@@ -1,20 +1,18 @@
 import spritesheetsDatas from "@assets/spritesheetsDatas.json";
-import { TAnimatedSprites, TSpritesheets, TTexturePromises, TTextures } from "@root/app/core/animatedSpritesManager/types/loadAnimatedSprites.types";
-import { AnimatedSprite, Assets, Spritesheet, SpritesheetData, Texture, TextureSource } from "pixi.js";
-import { ANIMATION_SPEEDS } from "./constants/animatedSprites.constants";
-import { trimDirection } from "@root/app/common/utils/trimDirection/trimDirection";
+import { TSpritesheets, TTexturePromises, TTextures } from "@root/app/core/assetsManager/types/assetsManager.types";
+import { Assets, Spritesheet, SpritesheetData, Texture, TextureSource } from "pixi.js";
 
 TextureSource.defaultOptions.scaleMode = "nearest";
 
-class AnimatedSpritesManager {
-	_animatedSprites: TAnimatedSprites | null = null;
+class AssetsManager {
+	_spritesheets: TSpritesheets | null = null;
 
-	get animatedSprites() {
-		if (!this._animatedSprites) throw new Error("Missing animatedSprites.");
-		return this._animatedSprites;
+	get spritesheets() {
+		if (!this._spritesheets) throw new Error("Missing spritesheets.");
+		return this._spritesheets;
 	}
-	set animatedSprites(value: TAnimatedSprites) {
-		this._animatedSprites = value;
+	set spritesheets(value: TSpritesheets) {
+		this._spritesheets = value;
 	}
 
 	/**
@@ -99,43 +97,21 @@ class AnimatedSpritesManager {
 		return spritesheets;
 	};
 
-	private getAnimatedSprites = async (spritesheets: TSpritesheets) => {
-		const animatedSprites: Record<string, AnimatedSprite> = {};
-
-		for (const name in spritesheets) {
-			const animation = spritesheets[name].animations[name];
-			const animatedSprite = new AnimatedSprite(animation);
-			animatedSprite.width *= 3;
-			animatedSprite.height *= 3;
-			const animationName: keyof typeof ANIMATION_SPEEDS = trimDirection(name);
-			const animationSpeed = ANIMATION_SPEEDS[animationName];
-			if (!animationSpeed) throw new Error(`Missing animation speed for ${animationName}.`);
-			animatedSprite.animationSpeed = animationSpeed;
-			if (name.includes("attacking")) {
-				animatedSprite.loop = false;
-			}
-			animatedSprite.label = name;
-			animatedSprites[name] = animatedSprite;
-		}
-
-		return animatedSprites;
-	};
-
 	/**
 	 * Loads animated sprites from spritesheets.
 	 */
-	loadAnimatedSprites = async () => {
-		console.time("loadAnimatedSprites");
+	loadSpritesheets = async () => {
+		console.time("loadSpritesheets");
 
 		const texturePromises = this.getTexturePromises();
 		const textures = await this.getTextures(texturePromises);
 		const spritesheets = await this.getSpritesheets(textures);
-		const animatedSprites = await this.getAnimatedSprites(spritesheets);
+		// const animatedSprites = this.getAnimatedSprites(spritesheets);
 
-		this.animatedSprites = animatedSprites;
+		this.spritesheets = spritesheets;
 
-		console.timeEnd("loadAnimatedSprites");
+		console.timeEnd("loadSpritesheets");
 	};
 }
 
-export const animatedSpritesManager = new AnimatedSpritesManager();
+export const assetsManager = new AssetsManager();

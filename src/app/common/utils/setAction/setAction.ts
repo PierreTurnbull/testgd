@@ -30,6 +30,7 @@ export const setAction = (
 
 	directionComponent.direction = direction;
 	actionComponent.currentAction = action;
+
 	replaceAnimatedSprite(
 		viewComponent,
 		`characters.${actorEntity.name}.${action}.${direction}`,
@@ -46,6 +47,7 @@ export const setAction = (
 			locationComponent.coordinates,
 		);
 	}
+
 	if (viewComponent.animatedSprite && options.onLoop) {
 		viewComponent.animatedSprite.onLoop = options.onLoop;
 	}
