@@ -1,4 +1,5 @@
 import { appManager } from "@root/app/common/app/appManager.singleton";
+import { orderViews } from "@root/app/common/systems/orderViews/orderViews.system";
 import { processActions } from "@root/app/common/systems/processActions/processActions.system";
 import { processAIs } from "@root/app/common/systems/processAIs/processAIs.system";
 import { translateInputs } from "@root/app/common/systems/translateInputs/translateInputs.system";
@@ -10,6 +11,7 @@ export const initLoop = () => {
 		translateInputs();
 		processAIs();
 		processActions(delta);
+		orderViews();
 		updateFps(delta);
 	};
 

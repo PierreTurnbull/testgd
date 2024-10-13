@@ -4,8 +4,8 @@ import { createPlayer } from "@root/app/domains/player/utils/createPlayer";
 export const initCharacters = () => {
 	createPlayer(
 		{
-			x: 393,
-			y: 300,
+			x: 300,
+			y: 250,
 		},
 	);
 	createMuddyBuddy(

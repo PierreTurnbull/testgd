@@ -5,6 +5,7 @@ import { colliderArchetype } from "./collider/collider.archetype";
 import { fpsArchetype } from "./fps/fps.archetype";
 import { muddyBuddyArchetype } from "./muddyBuddy/muddyBuddy.archetype";
 import { playerArchetype } from "./player/player.archetype";
+import { orderableViewArchetype } from "./orderableView/orderableView.archetype";
 
 class ArchetypeManager {
 	archetypes: Archetype[] = [
@@ -13,6 +14,7 @@ class ArchetypeManager {
 		actorArchetype,
 		fpsArchetype,
 		colliderArchetype,
+		orderableViewArchetype,
 	];
 
 	getArchetype<TArchetype extends typeof Archetype>(archetypeClass: TArchetype): InstanceType<TArchetype> {
