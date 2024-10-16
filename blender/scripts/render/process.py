@@ -1,18 +1,28 @@
 import prepare
 import render
 
-def processPlayer():
+def processPlayer(actionsProjection):
 	prepare.preparePlayer.prepareBase()
 
 	prepare.preparePlayer.carrySword()
-	render.renderPlayer("standing", 7)
-	render.renderPlayer("running", 23)
-	
-	prepare.preparePlayer.equipSword()
-	render.renderPlayer("attacking", 7)
 
-def processMuddyBuddy():
+	mustRenderAll = not actionsProjection or "all" in actionsProjection
+
+	if mustRenderAll or "standing" in actionsProjection:
+		render.renderPlayer("standing", 7)
+	if mustRenderAll or "running" in actionsProjection:
+		render.renderPlayer("running", 23)
+
+	prepare.preparePlayer.equipSword()
+	if mustRenderAll or "attacking" in actionsProjection:
+		render.renderPlayer("attacking", 11)
+
+def processMuddyBuddy(actionsProjection):
 	prepare.prepareMuddyBuddy.prepareBase()
 
-	render.renderMuddyBuddy("standing", 0)
-	render.renderMuddyBuddy("rolling", 7)
+	mustRenderAll = not actionsProjection or "all" in actionsProjection
+
+	if mustRenderAll or "standing" in actionsProjection:
+		render.renderMuddyBuddy("standing", 0)
+	if mustRenderAll or "rolling" in actionsProjection:
+		render.renderMuddyBuddy("rolling", 7)

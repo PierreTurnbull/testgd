@@ -17,8 +17,6 @@ class AssetsManager {
 
 	/**
 	 * Returns the spritesheet metadata.
-	 * @param spritesheetDatas 
-	 * @returns 
 	 */
 	private getAtlasData = (spritesheetDatas: (typeof spritesheetsDatas)[number]) => {
 		const frames: SpritesheetData["frames"] = {};
@@ -106,7 +104,6 @@ class AssetsManager {
 		const texturePromises = this.getTexturePromises();
 		const textures = await this.getTextures(texturePromises);
 		const spritesheets = await this.getSpritesheets(textures);
-		// const animatedSprites = this.getAnimatedSprites(spritesheets);
 
 		this.spritesheets = spritesheets;
 

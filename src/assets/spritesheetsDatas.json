@@ -98,49 +98,49 @@
     {
         "width": 64,
         "height": 64,
-        "framesCount": 8,
+        "framesCount": 12,
         "name": "characters.player.attacking.down"
     },
     {
         "width": 64,
         "height": 64,
-        "framesCount": 8,
+        "framesCount": 12,
         "name": "characters.player.attacking.downLeft"
     },
     {
         "width": 64,
         "height": 64,
-        "framesCount": 8,
+        "framesCount": 12,
         "name": "characters.player.attacking.downRight"
     },
     {
         "width": 64,
         "height": 64,
-        "framesCount": 8,
+        "framesCount": 12,
         "name": "characters.player.attacking.left"
     },
     {
         "width": 64,
         "height": 64,
-        "framesCount": 8,
+        "framesCount": 12,
         "name": "characters.player.attacking.right"
     },
     {
         "width": 64,
         "height": 64,
-        "framesCount": 8,
+        "framesCount": 12,
         "name": "characters.player.attacking.up"
     },
     {
         "width": 64,
         "height": 64,
-        "framesCount": 8,
+        "framesCount": 12,
         "name": "characters.player.attacking.upLeft"
     },
     {
         "width": 64,
         "height": 64,
-        "framesCount": 8,
+        "framesCount": 12,
         "name": "characters.player.attacking.upRight"
     },
     {

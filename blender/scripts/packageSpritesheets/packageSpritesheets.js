@@ -16,7 +16,8 @@ const getSpritesheets = (path, images) => {
 	spritesheetDatas.width = dimensions.width,
 	spritesheetDatas.height = dimensions.height,
 	spritesheetDatas.framesCount = images.length,
-	spritesheetDatas.name = path.replace(/\.(up|down|left|right|upLeft|upRight|downLeft|downRight)/, "")
+	spritesheetDatas.name = path
+		.replace(`${baseRawPath}/`, "")
 
 	return spritesheetDatas
 }
