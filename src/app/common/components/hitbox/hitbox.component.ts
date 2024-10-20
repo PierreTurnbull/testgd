@@ -1,15 +1,20 @@
-import { Box } from "detect-collisions";
+import { Polygon } from "detect-collisions";
 import { Component } from "../component.models";
 
 export class CHitbox extends Component {
-	private _body: Box | null = null;
+	constructor(
+		body: Polygon,
+		name: string,
+	) {
+		super();
 
-	get body() {
-		if (!this._body) throw new Error("Missing body.");
+		this.body = body;
+		this.name = name;
+	}
 
-		return this._body;
-	}
-	set body(value: Box) {
-		this._body = value;
-	}
+	/**
+	 * A collider body used for collision detection.
+	 */
+	body: Polygon;
+	name: string;
 }

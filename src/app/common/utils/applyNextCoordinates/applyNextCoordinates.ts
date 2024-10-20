@@ -7,17 +7,27 @@ import { TCoordinates } from "../../types/coordinates.types";
 import { getOffsetCoordinates } from "../getOffsetCoordinates/getOffsetCoordinates";
 import { trimDirection } from "../trimDirection/trimDirection";
 import { updateViewContainerCoordinates } from "../updateViewContainerCoordinates/updateViewContainerCoordinates";
+import { Entity } from "../../entities/entity.models";
+import { CCenterView } from "../../components/centerView/centerView.component";
 
 /**
  * Applies next coordinates.
  */
 export const applyNextCoordinates = (
+	entity: Entity,
 	nextCoordinates: TCoordinates,
-	viewComponent: CView,
-	locationComponent: CLocation,
-	hitboxViewComponent: CHitboxView,
 ) => {
+	const viewComponent = entity.getComponent(CView);
+	const hitboxViewComponent = entity.getComponent(CHitboxView);
+	const locationComponent = entity.getComponent(CLocation);
+	const centerViewComponent = entity.getComponent(CCenterView);
+
+	// update coordinates
+
 	locationComponent.coordinates = nextCoordinates;
+
+	// update views
+
 	const centerOffsets = ENTITIES_CENTER_OFFSETS[trimDirection(viewComponent.animatedSprite.label)];
 	const centeredCoordinates = getOffsetCoordinates(nextCoordinates, centerOffsets);
 
@@ -26,9 +36,13 @@ export const applyNextCoordinates = (
 		updateViewContainerCoordinates(viewComponent.border, centeredCoordinates);
 	}
 
-	if (configManager.config.debug.showsEntityHitboxes) {
+	if (configManager.config.debug.showsEntityHitbox) {
 		const centerOffsets = ENTITIES_CENTER_OFFSETS[trimDirection(hitboxViewComponent.hitboxBorder.label)];
 		const centeredCoordinates = getOffsetCoordinates(nextCoordinates, centerOffsets);
 		updateViewContainerCoordinates(hitboxViewComponent.hitboxBorder, centeredCoordinates);
+	}
+
+	if (configManager.config.debug.showsEntityCenter && centerViewComponent.centerView) {
+		updateViewContainerCoordinates(centerViewComponent.centerView, nextCoordinates);
 	}
 };

@@ -2,9 +2,10 @@ class ConfigManager {
 	config = {
 		debug: {
 			showsEntityBorders: false,
-			showsEntityHitboxes: true,
+			showsEntityHitbox:  true,
+			showsEntityCenter:  false,
 		},
-	} as const;
+	};
 }
 
 export const configManager = new ConfigManager();

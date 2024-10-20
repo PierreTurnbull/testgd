@@ -1,7 +1,9 @@
 import { collisionsManager } from "@root/app/core/collisionsManager/collisionsManager.singletons";
+import { ENTITIES_CENTER_OFFSETS } from "../../animatedSprites/constants/animatedSprites.constants";
 import { CHitbox } from "../../components/hitbox/hitbox.component";
 import { Entity } from "../../entities/entity.models";
 import { TCoordinates } from "../../types/coordinates.types";
+import { getOffsetCoordinates } from "../../utils/getOffsetCoordinates/getOffsetCoordinates";
 import { updateHitboxPosition } from "./updateHitboxPosition";
 
 /**
@@ -13,12 +15,18 @@ export const applyCollisions = (
 ) => {
 	const hitboxComponent = colliderEntity.getComponent(CHitbox);
 
-	updateHitboxPosition(hitboxComponent.body, nextCoordinates);
+	const centerOffsets = ENTITIES_CENTER_OFFSETS[hitboxComponent.name];
+	const centeredCoordinates = getOffsetCoordinates(nextCoordinates, centerOffsets);
 
-	collisionsManager.checkOne(hitboxComponent.body, (response) => {
+	updateHitboxPosition(hitboxComponent, centeredCoordinates);
+
+	collisionsManager.system.checkOne(hitboxComponent.body, (response) => {
+		if (response.a.isTrigger || response.b.isTrigger) {
+			return;
+		}
 		nextCoordinates.x -= response.overlapV.x;
 		nextCoordinates.y -= response.overlapV.y;
-		updateHitboxPosition(hitboxComponent.body, nextCoordinates);
+		updateHitboxPosition(hitboxComponent, centeredCoordinates);
 		response.clear();
 	});
 

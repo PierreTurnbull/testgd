@@ -14,8 +14,8 @@ export const orderViews = () => {
 		const aHitbox = a.getComponent(CHitbox);
 		const bHitbox = b.getComponent(CHitbox);
 
-		if (aHitbox.body.y > bHitbox.body.y) return 1;
-		if (aHitbox.body.y < bHitbox.body.y) return -1;
+		if (aHitbox.body.maxY > bHitbox.body.maxY) return 1;
+		if (aHitbox.body.maxY < bHitbox.body.maxY) return -1;
 		return 0;
 	});
 

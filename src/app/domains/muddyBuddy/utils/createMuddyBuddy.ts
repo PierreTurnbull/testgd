@@ -1,19 +1,22 @@
+import { ENTITIES_CENTER_OFFSETS } from "@root/app/common/animatedSprites/constants/animatedSprites.constants";
 import { setAnimatedSprite } from "@root/app/common/animatedSprites/utils/animatedSprite/setAnimatedSprite";
 import { setBorder } from "@root/app/common/animatedSprites/utils/border/setBorder";
+import { setCenterView } from "@root/app/common/animatedSprites/utils/center/setCenterView";
 import { setHitboxBorder } from "@root/app/common/animatedSprites/utils/hitboxBorder/setHitboxBorder";
 import { CAction } from "@root/app/common/components/action/action.component";
+import { CCenterView } from "@root/app/common/components/centerView/centerView.component";
 import { CDirection } from "@root/app/common/components/direction/direction.component";
 import { CHitbox } from "@root/app/common/components/hitbox/hitbox.component";
 import { CHitboxView } from "@root/app/common/components/hitboxView/hitboxView.component";
+import { CMuddyBuddy } from "@root/app/common/components/identity/muddyBuddy/muddyBuddy.component";
 import { CKeyboard } from "@root/app/common/components/keyboard/keyboard.component";
 import { CLocation } from "@root/app/common/components/location/location.component";
-import { CMuddyBuddy } from "@root/app/common/components/muddyBuddy/muddyBuddy.component";
 import { CVelocity } from "@root/app/common/components/velocity/velocity.component";
 import { CView } from "@root/app/common/components/view/view.component";
 import { createEntity } from "@root/app/common/entities/utils/createEntity";
 import { HITBOX_BOUNDS } from "@root/app/common/hitboxes/constants/hitboxes.constants";
 import { TCoordinates } from "@root/app/common/types/coordinates.types";
-import { TDimensions } from "@root/app/common/types/dimensions.types";
+import { TPoint } from "@root/app/common/types/point.type";
 import { collisionsManager } from "@root/app/core/collisionsManager/collisionsManager.singletons";
 import { configManager } from "@root/app/core/configManager/configManager.singletons";
 import { MUDDYBUDDY_ROLLING_SPEED } from "@root/app/domains/muddyBuddy/constants/muddyBuddy.constants";
@@ -28,21 +31,38 @@ export const createMuddyBuddy = (
 	const viewComponent = new CView();
 	const velocityComponent = new CVelocity();
 	const actionComponent = new CAction();
-	const hitboxComponent = new CHitbox();
 	const hitboxViewComponent = new CHitboxView();
+	const centerViewComponent = new CCenterView();
 
 	locationComponent.coordinates = initialCoordinates;
 
+	const centerOffset = ENTITIES_CENTER_OFFSETS["characters.muddyBuddy.hitboxBorder"];
 	const hitboxCoordinates: TCoordinates = {
-		x: initialCoordinates.x - HITBOX_BOUNDS["characters.muddyBuddy"].w / 2,
-		y: initialCoordinates.y - HITBOX_BOUNDS["characters.muddyBuddy"].h / 2,
+		x: initialCoordinates.x + centerOffset.x,
+		y: initialCoordinates.y + centerOffset.y,
 	};
-	const hitbox = collisionsManager.createBox(
+	const hitboxPoints: TPoint[] = [
+		{
+			x: 0,
+			y: 0,
+		},
+		{
+			x: HITBOX_BOUNDS["characters.muddyBuddy"].w,
+			y: 0,
+		},
+		{
+			x: HITBOX_BOUNDS["characters.muddyBuddy"].w,
+			y: HITBOX_BOUNDS["characters.muddyBuddy"].h,
+		},
+		{
+			x: 0,
+			y: HITBOX_BOUNDS["characters.muddyBuddy"].h,
+		},
+	];
+	const hitboxBody = collisionsManager.system.createPolygon(
 		hitboxCoordinates,
-		HITBOX_BOUNDS["characters.muddyBuddy"].w,
-		HITBOX_BOUNDS["characters.muddyBuddy"].h,
+		hitboxPoints,
 	);
-	hitboxComponent.body = hitbox;
 
 	setAnimatedSprite(viewComponent, "characters.muddyBuddy.standing.down", initialCoordinates);
 
@@ -50,12 +70,12 @@ export const createMuddyBuddy = (
 		setBorder(viewComponent, initialCoordinates);
 	}
 
-	if (configManager.config.debug.showsEntityHitboxes) {
-		const hitboxDimensions: TDimensions = {
-			w: hitboxComponent.body.width,
-			h: hitboxComponent.body.height,
-		};
-		setHitboxBorder(hitboxViewComponent, "characters.muddyBuddy", hitboxDimensions, initialCoordinates);
+	if (configManager.config.debug.showsEntityHitbox) {
+		setHitboxBorder(hitboxViewComponent, "characters.muddyBuddy", hitboxPoints, initialCoordinates);
+	}
+
+	if (configManager.config.debug.showsEntityCenter) {
+		setCenterView(centerViewComponent, "characters.muddyBuddy", initialCoordinates);
 	}
 
 	velocityComponent.actionVelocities = {
@@ -64,6 +84,8 @@ export const createMuddyBuddy = (
 
 	actionComponent.availableActions = ["standing", "rolling"];
 	actionComponent.currentAction = "standing";
+
+	const hitboxComponent = new CHitbox(hitboxBody, "characters.muddyBuddy.hitboxBorder");
 
 	createEntity(
 		"muddyBuddy",
@@ -77,6 +99,7 @@ export const createMuddyBuddy = (
 			actionComponent,
 			hitboxComponent,
 			hitboxViewComponent,
+			centerViewComponent,
 		],
 	);
 };

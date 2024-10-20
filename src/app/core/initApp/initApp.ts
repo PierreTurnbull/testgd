@@ -4,7 +4,7 @@ import { Graphics } from "pixi.js";
 
 export const initApplication = async () => {
 	await appManager.app.init({
-		width: CANVAS_WIDTH,
+		width:  CANVAS_WIDTH,
 		height: CANVAS_HEIGHT,
 	});
 	document.body.appendChild(appManager.app.canvas);

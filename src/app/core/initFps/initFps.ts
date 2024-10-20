@@ -7,11 +7,11 @@ export const initFps = () => {
 	const fpsComponent = new CFps();
 
 	fpsComponent.text = new Text({
-		text: "",
+		text:  "",
 		style: {
 			fontFamily: "Pixeled",
-			fontSize: 10,
-			fill: 0xFFFFFF,
+			fontSize:   10,
+			fill:       0xFFFFFF,
 		},
 	});
 	fpsComponent.text.x = 10;

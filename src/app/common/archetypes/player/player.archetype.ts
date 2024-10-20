@@ -1,4 +1,4 @@
-import { CUser } from "../../components/user/user.component";
+import { CUser } from "../../components/identity/user/user.component";
 import { Archetype } from "../archetype.models";
 
 /**

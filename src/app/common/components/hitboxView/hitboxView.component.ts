@@ -9,7 +9,7 @@ export class CHitboxView extends Component {
 	private _hitboxBorder: Graphics | undefined;
 
 	get hitboxBorder() {
-		if (!configManager.config.debug.showsEntityHitboxes) throw new Error("Cannot access hitboxBorder: the debug option is disabled.");
+		if (!configManager.config.debug.showsEntityHitbox) throw new Error("Cannot access hitboxBorder: the debug option is disabled.");
 		// only try to access this when _hitboxBorder has been initialized with a value
 		if (!this._hitboxBorder) throw new Error("Missing hitboxBorder.");
 

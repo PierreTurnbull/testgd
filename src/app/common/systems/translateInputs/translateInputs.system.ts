@@ -1,8 +1,12 @@
+import { TProjectileSettings } from "@root/app/domains/projectile/types/projectile.types";
+import { createProjectile } from "@root/app/domains/projectile/utils/createProjectile";
+import { AnimatedSprite } from "pixi.js";
 import { AActor } from "../../archetypes/actor/actor.archetype";
 import { archetypeManager } from "../../archetypes/archetypeManager.singleton";
 import { CAction } from "../../components/action/action.component";
 import { CDirection } from "../../components/direction/direction.component";
 import { CKeyboard } from "../../components/keyboard/keyboard.component";
+import { CLocation } from "../../components/location/location.component";
 import { CVelocity } from "../../components/velocity/velocity.component";
 import { setAction } from "../../utils/setAction/setAction";
 import { getRequestedDirection } from "./utils/getRequestedDirection";
@@ -69,6 +73,7 @@ export function translateInputs() {
 		const keyboardComponent = actorEntity.getComponent(CKeyboard);
 		const directionComponent = actorEntity.getComponent(CDirection);
 		const velocityComponent = actorEntity.getComponent(CVelocity);
+		const locationComponent = actorEntity.getComponent(CLocation);
 
 		const requestedDirection = getRequestedDirection(keyboardComponent.keyboard);
 		const nextDirection = requestedDirection || directionComponent.direction;
@@ -89,7 +94,8 @@ export function translateInputs() {
 		const mustStartStanding = requestsStanding && standingIsAllowed;
 
 		let nextAction: CAction["currentAction"] | null = null;
-		let onComplete: (() => void) | null = null;
+		let onComplete: AnimatedSprite["onComplete"] | null = null;
+		let onFrameChange: ((currentFrame: number, clear?: () => void) => void) | null = null;
 
 		if (mustStartAttacking) {
 			nextAction = "attacking";
@@ -99,6 +105,25 @@ export function translateInputs() {
 					"standing",
 					nextDirection,
 				);
+			};
+			onFrameChange = (currentFrame: number, clear?: () => void) => {
+				if (currentFrame === 2) {
+					const projectileSettings: TProjectileSettings = {
+						type:         "slash",
+						size:         40,
+						dimensions:   null,
+						lifeDuration: 1000,
+						velocity:     0,
+						damage:       1,
+						coordinates:  locationComponent.coordinates,
+						direction:    directionComponent.direction,
+					};
+					createProjectile(actorEntity, projectileSettings);
+				} else if (currentFrame === 7) {
+					if (clear) {
+						clear();
+					}
+				}
 			};
 		} else if (mustStartRunning) {
 			nextAction = "running";
@@ -117,7 +142,8 @@ export function translateInputs() {
 			nextAction,
 			nextDirection,
 			{
-				onComplete: onComplete,
+				onComplete:    onComplete,
+				onFrameChange: onFrameChange,
 			},
 		);
 	}

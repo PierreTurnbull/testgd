@@ -1,6 +1,6 @@
 import { Ticker } from "pixi.js";
 import { TDirection } from "../../components/direction/types/direction.types";
-import { DIAGONAL_DISTANCE_FACTOR } from "../../constants/main.constants";
+import { DIAGONAL_DISTANCE_FACTOR } from "../../constants/space.constants";
 import { TCoordinates } from "../../types/coordinates.types";
 
 /**

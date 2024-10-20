@@ -24,6 +24,22 @@ export default tseslint.config(
 				"ExportDeclaration": { "multiline": true }
 			}],
 			"object-curly-spacing": ["error", "always"],
+			"@typescript-eslint/no-unused-vars": [
+				"error",
+				{
+					"args": "all",
+					"argsIgnorePattern": "^_",
+					"varsIgnorePattern": "^_",
+					"caughtErrorsIgnorePattern": "^_"
+				}
+			],
+			"key-spacing": [
+				"error", {
+					"beforeColon": false,
+					"afterColon": true,
+					"align": "value",
+				}
+			],
 		},
 	},
 );

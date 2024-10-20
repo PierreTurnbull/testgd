@@ -8,7 +8,6 @@ export const updateViewContainerCoordinates = (
 	viewContainer: ViewContainer,
 	coordinates: TCoordinates,
 ) => {
-	// console.log("update", viewContainer.label);
 	viewContainer.x = coordinates.x;
 	viewContainer.y = coordinates.y;
 };

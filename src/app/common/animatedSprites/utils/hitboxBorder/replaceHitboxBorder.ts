@@ -1,25 +1,38 @@
-import { TCoordinates } from "@root/app/common/types/coordinates.types";
-import { setHitboxBorder } from "./setHitboxBorder";
 import { CHitboxView } from "@root/app/common/components/hitboxView/hitboxView.component";
-import { CHitbox } from "@root/app/common/components/hitbox/hitbox.component";
-import { TDimensions } from "@root/app/common/types/dimensions.types";
+import { HITBOX_BOUNDS } from "@root/app/common/hitboxes/constants/hitboxes.constants";
+import { TCoordinates } from "@root/app/common/types/coordinates.types";
+import { TPoint } from "@root/app/common/types/point.type";
+import { setHitboxBorder } from "./setHitboxBorder";
 
 /**
  * Frees the previous hitbox border and sets the new one.
  */
 export const replaceHitboxBorder = (
-	hitboxComponent: CHitbox,
 	hitboxViewComponent: CHitboxView,
 	hitboxName: string,
 	coordinates: TCoordinates,
 ) => {
 	const prevHitboxBorder = hitboxViewComponent.hitboxBorder;
 
-	const hitboxDimensions: TDimensions = {
-		w: hitboxComponent.body.width,
-		h: hitboxComponent.body.height,
-	};
-	setHitboxBorder(hitboxViewComponent, hitboxName, hitboxDimensions, coordinates);
+	const hitboxBounds: TPoint[] = [
+		{
+			x: 0,
+			y: 0,
+		},
+		{
+			x: HITBOX_BOUNDS[hitboxName].w,
+			y: 0,
+		},
+		{
+			x: HITBOX_BOUNDS[hitboxName].w,
+			y: HITBOX_BOUNDS[hitboxName].h,
+		},
+		{
+			x: 0,
+			y: HITBOX_BOUNDS[hitboxName].h,
+		},
+	];
+	setHitboxBorder(hitboxViewComponent, hitboxName, hitboxBounds, coordinates);
 
 	prevHitboxBorder.removeFromParent();
 };

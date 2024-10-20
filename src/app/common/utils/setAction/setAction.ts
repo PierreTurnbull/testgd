@@ -4,15 +4,18 @@ import { CAction } from "@root/app/common/components/action/action.component";
 import { CDirection } from "@root/app/common/components/direction/direction.component";
 import { CLocation } from "@root/app/common/components/location/location.component";
 import { CView } from "@root/app/common/components/view/view.component";
+import { configManager } from "@root/app/core/configManager/configManager.singletons";
+import { AnimatedSprite } from "pixi.js";
 import { replaceBorder } from "../../animatedSprites/utils/border/replaceBorder";
 import { replaceHitboxBorder } from "../../animatedSprites/utils/hitboxBorder/replaceHitboxBorder";
 import { CHitboxView } from "../../components/hitboxView/hitboxView.component";
-import { CHitbox } from "../../components/hitbox/hitbox.component";
-import { configManager } from "@root/app/core/configManager/configManager.singletons";
+import { replaceCenterView } from "../../animatedSprites/utils/center/replaceCenterView";
+import { CCenterView } from "../../components/centerView/centerView.component";
 
 type TOptions = {
-	onLoop?: (() => void) | null,
-	onComplete?: (() => void) | null,
+	onLoop?: AnimatedSprite["onLoop"] | null,
+	onComplete?: AnimatedSprite["onComplete"] | null,
+	onFrameChange?: ((currentFrame: number, clear?: () => void) => void) | null,
 }
 
 export const setAction = (
@@ -25,8 +28,8 @@ export const setAction = (
 	const directionComponent = actorEntity.getComponent(CDirection);
 	const locationComponent = actorEntity.getComponent(CLocation);
 	const viewComponent = actorEntity.getComponent(CView);
-	const hitboxComponent = actorEntity.getComponent(CHitbox);
 	const hitboxViewComponent = actorEntity.getComponent(CHitboxView);
+	const centerViewComponent = actorEntity.getComponent(CCenterView);
 
 	directionComponent.direction = direction;
 	actionComponent.currentAction = action;
@@ -39,19 +42,37 @@ export const setAction = (
 	if (configManager.config.debug.showsEntityBorders) {
 		replaceBorder(viewComponent, locationComponent.coordinates);
 	}
-	if (configManager.config.debug.showsEntityHitboxes) {
+	if (configManager.config.debug.showsEntityHitbox) {
 		replaceHitboxBorder(
-			hitboxComponent,
 			hitboxViewComponent,
 			`characters.${actorEntity.name}`,
 			locationComponent.coordinates,
 		);
 	}
+	if (configManager.config.debug.showsEntityCenter) {
+		replaceCenterView(
+			centerViewComponent,
+			`characters.${actorEntity.name}`,
+			locationComponent.coordinates,
+		);
+	}
 
-	if (viewComponent.animatedSprite && options.onLoop) {
+	if (options.onLoop) {
 		viewComponent.animatedSprite.onLoop = options.onLoop;
 	}
-	if (viewComponent.animatedSprite && options.onComplete) {
+	if (options.onComplete) {
 		viewComponent.animatedSprite.onComplete = options.onComplete;
+	}
+	if (options.onFrameChange) {
+		viewComponent.animatedSprite.onFrameChange = (currentFrame: number) => {
+			if (!options.onFrameChange) throw new Error("Options were altered since setting up the action.");
+			const clear = () => {
+				viewComponent.animatedSprite.onFrameChange = undefined;
+			};
+			options.onFrameChange(
+				currentFrame,
+				clear,
+			);
+		};
 	}
 };

@@ -43,10 +43,10 @@ class AssetsManager {
 
 		const atlasData: SpritesheetData = {
 			frames: frames,
-			meta: {
-				image: `src/assets/spritesheets/${spritesheetDatas.name}/spritesheet.png`,
+			meta:   {
+				image:  `src/assets/spritesheets/${spritesheetDatas.name}/spritesheet.png`,
 				format: "RGBA8888",
-				size: {
+				size:   {
 					w: spritesheetDatas.width,
 					h: spritesheetDatas.height * spritesheetDatas.framesCount,
 				},

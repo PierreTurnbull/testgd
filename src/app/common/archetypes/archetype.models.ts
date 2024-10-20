@@ -1,41 +1,31 @@
 import { Component } from "../components/component.models";
 import { Entity } from "../entities/entity.models";
+import { entityManager } from "../entities/entityManager.singleton";
+import { ConstructorOf } from "../types/constructor.types";
 
 export class Archetype {
 	constructor(
-		requiredComponents: (typeof Component)[],
+		requiredComponents: ConstructorOf<Component>[],
 	) {
-		this.requiredComponents = requiredComponents;
+		this._requiredComponents = requiredComponents;
 	}
 
-	requiredComponents: (typeof Component)[];
-	_entities: Record<Entity["id"], Entity> = {};
+	private _requiredComponents: (typeof Component)[];
 
+	/**
+	 * Returns the entities that match the archetype.
+	 */
 	get entities() {
-		return Object.values(this._entities);
-	}
+		const entities = entityManager.entities.filter((entity) => this.entityMatchesArchetype(entity));
 
-	addEntity(entity: Entity) {
-		if (this._entities[entity.id]) {
-			throw new Error(`Entity ${entity.id} already exists.`);
-		}
-
-		this._entities[entity.id] = entity;
-	}
-
-	removeEntity(id: Entity["id"]) {
-		if (!this._entities[id]) {
-			throw new Error(`Entity ${id} does not exist.`);
-		}
-
-		delete this._entities[id];
+		return entities;
 	}
 
 	entityMatchesArchetype(entity: Entity) {
 		const entityComponents = Object.values(entity.components);
 		const entityComponentConstructors = entityComponents.map(a => a.constructor);
 
-		for (const requiredComponent of this.requiredComponents) {
+		for (const requiredComponent of this._requiredComponents) {
 			if (!entityComponentConstructors.includes(requiredComponent)) {
 				return false;
 			}

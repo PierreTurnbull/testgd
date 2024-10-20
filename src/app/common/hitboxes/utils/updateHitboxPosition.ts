@@ -1,6 +1,6 @@
-import { Box } from "detect-collisions";
-import { TCoordinates } from "../../types/coordinates.types";
 import { collisionsManager } from "@root/app/core/collisionsManager/collisionsManager.singletons";
+import { CHitbox } from "../../components/hitbox/hitbox.component";
+import { TCoordinates } from "../../types/coordinates.types";
 
 /**
  * Updates the hitbox position using the provided coordinates.
@@ -8,13 +8,13 @@ import { collisionsManager } from "@root/app/core/collisionsManager/collisionsMa
  * with the next coordinates and half of the dimensions of the hitbox as negative offsets.
  */
 export const updateHitboxPosition = (
-	body: Box,
+	hitboxComponent: CHitbox,
 	nextCoordinates: TCoordinates,
 ) => {
 	const nextHitboxCoordinates: TCoordinates = {
-		x: nextCoordinates.x - body.width / 2,
-		y: nextCoordinates.y - body.height / 2,
+		x: nextCoordinates.x,
+		y: nextCoordinates.y,
 	};
-	body.setPosition(nextHitboxCoordinates.x, nextHitboxCoordinates.y);
-	collisionsManager.updateBody(body);
+	hitboxComponent.body.setPosition(nextHitboxCoordinates.x, nextHitboxCoordinates.y);
+	collisionsManager.system.updateBody(hitboxComponent.body);
 };
