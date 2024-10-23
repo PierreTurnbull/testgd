@@ -20,6 +20,7 @@ import { Polygon } from "detect-collisions";
 import { Graphics } from "pixi.js";
 import { CCollisionCandidates } from "../common/collisionCandidates/collisionCandidates.component";
 import { TProjectileSettings } from "../types/projectile.types";
+import { CDamage } from "@root/app/common/components/damage/damage.component";
 
 export const createProjectile = (
 	parent: Entity,
@@ -66,9 +67,9 @@ export const createProjectile = (
 			new CDirection(),
 			new CLocation(settings.coordinates),
 			new CVelocity({}, settings.velocity || 0),
-			new CTimers(),
 			new CCollisionCandidates([muddyBuddyArchetype]),
 			new CHitbox(hitboxBody, "characters.projectile.hitboxBorder"),
+			settings.damage ? new CDamage(settings.damage || 0) : null,
 
 			// views
 			new CHitboxView(hitboxBorder),
@@ -91,6 +92,6 @@ export const createProjectile = (
 		const id = setTimeout(() => {
 			createdEntity.destroy();
 		}, settings.lifeDuration);
-		timersComponent.timers.push(Number(id));
+		timersComponent.setTimer(id);
 	}
 };

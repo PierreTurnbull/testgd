@@ -31,7 +31,7 @@ class EntityManager {
 		entity: Entity,
 	) => {
 		// destroy view
-	
+
 		if (entity.hasComponent(CView)) {
 			const viewComponent = entity.getComponent(CView);
 	

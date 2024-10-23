@@ -1,3 +1,5 @@
+import { Archetype } from "../archetypes/archetype.models";
+import { archetypeManager } from "../archetypes/archetypeManager.singleton";
 import { Component } from "../components/component.models";
 import { CRelation } from "../relations/components/common/relation.component";
 import { relationsManager } from "../relations/relationsManager.singleton";
@@ -114,9 +116,19 @@ export class Entity {
 	}
 
 	/**
+	 * Returns whether the entity matches the archetype.
+	 */
+	matchesArchetype<TArchetype extends ConstructorOf<Archetype>>(archetype: TArchetype) {
+		return archetypeManager.getArchetype(archetype).entities.includes(this);
+	}
+
+	/**
 	 * Destroys the entity.
 	 */
 	destroy() {
+		if (!(this instanceof Entity)) {
+			throw new Error("Entity has already been destroyed.");
+		}
 		entityManager.destroyEntity(this);
 	}
 

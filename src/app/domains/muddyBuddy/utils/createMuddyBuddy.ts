@@ -2,6 +2,8 @@ import { CAction } from "@root/app/common/components/action/action.component";
 import { CBorderView } from "@root/app/common/components/border/border.component";
 import { CCenterView } from "@root/app/common/components/centerView/centerView.component";
 import { CDirection } from "@root/app/common/components/direction/direction.component";
+import { TDirection } from "@root/app/common/components/direction/types/direction.types";
+import { CHealth } from "@root/app/common/components/health/health.component";
 import { CHitbox } from "@root/app/common/components/hitbox/hitbox.component";
 import { CHitboxView } from "@root/app/common/components/hitboxView/hitboxView.component";
 import { CMuddyBuddy } from "@root/app/common/components/identity/muddyBuddy/muddyBuddy.component";
@@ -25,6 +27,7 @@ import { Graphics } from "pixi.js";
 
 export const createMuddyBuddy = (
 	initialCoordinates: TCoordinates,
+	initialDirection: TDirection = "down",
 ) => {
 	const centerOffset = ENTITIES_CENTER_OFFSETS["characters.muddyBuddy.hitboxBorder"];
 	const hitboxCoordinates: TCoordinates = {
@@ -54,7 +57,7 @@ export const createMuddyBuddy = (
 		hitboxPoints,
 	);
 
-	const animatedSprite = initAnimatedSprite("characters.muddyBuddy.standing.down", initialCoordinates);
+	const animatedSprite = initAnimatedSprite(`characters.muddyBuddy.standing.${initialDirection}`, initialCoordinates);
 
 	let border: Graphics | null = null;
 	let hitboxBorder: Graphics | null = null;
@@ -76,7 +79,7 @@ export const createMuddyBuddy = (
 		"rolling": MUDDYBUDDY_ROLLING_SPEED,
 	};
 
-	const availableActions = ["standing", "rolling"];
+	const availableActions = ["standing", "rolling", "dying", "dead"];
 	const currentAction = "standing";
 
 
@@ -89,10 +92,11 @@ export const createMuddyBuddy = (
 			// misc
 			new CKeyboard(),
 			new CLocation(initialCoordinates),
-			new CDirection(),
+			new CDirection(initialDirection),
 			new CVelocity(actionVelocities),
 			new CAction(currentAction, availableActions),
 			new CHitbox(hitboxBody, "characters.muddyBuddy.hitboxBorder"),
+			new CHealth(1),
 			
 			// views
 			new CView(animatedSprite),

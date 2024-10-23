@@ -28,3 +28,5 @@ def processMuddyBuddy(actionsProjection):
 		render.renderMuddyBuddy("rolling", 7)
 	if mustRenderAll or "dying" in actionsProjection:
 		render.renderMuddyBuddy("dying", 7)
+	if mustRenderAll or "dead" in actionsProjection:
+		render.renderMuddyBuddy("dead", 0)

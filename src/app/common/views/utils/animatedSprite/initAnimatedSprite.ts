@@ -25,11 +25,14 @@ export const initAnimatedSprite = (
 	if (!animationSpeed) throw new Error(`Missing animation speed for ${allDirectionsName}.`);
 	animatedSprite.animationSpeed = animationSpeed;
 	animatedSprite.label = name;
-	if (name.includes("attacking")) {
+	if (name.includes("attacking") || name.includes("dying")) {
 		animatedSprite.loop = false;
 	}
 
 	const centerOffset = ENTITIES_CENTER_OFFSETS[allDirectionsName];
+	if (!centerOffset) {
+		throw new Error(`Missing center offsets for "${allDirectionsName}".`);
+	}
 	animatedSprite.x = coordinates.x + centerOffset.x;
 	animatedSprite.y = coordinates.y + centerOffset.y;
 	appManager.app.stage.addChild(animatedSprite);

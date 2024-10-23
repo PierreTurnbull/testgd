@@ -4,7 +4,9 @@ import { TCoordinates } from "../../types/coordinates.types";
 
 export const ANIMATION_SPEEDS: Record<string, number> = {
 	"characters.muddyBuddy.rolling":  0.4,
-	"characters.muddyBuddy.standing": 0.8,
+	"characters.muddyBuddy.standing": 1,
+	"characters.muddyBuddy.dying":    0.8,
+	"characters.muddyBuddy.dead":     1,
 	"characters.player.attacking":    0.8,
 	"characters.player.running":      0.8,
 	"characters.player.standing":     0.2,
@@ -13,6 +15,8 @@ export const ANIMATION_SPEEDS: Record<string, number> = {
 const ANIMATED_SPRITES_CENTER_OFFSETS: Record<string, TCoordinates> = {
 	"characters.muddyBuddy.rolling":  { x: -32,	y: -40 },
 	"characters.muddyBuddy.standing": { x: -32,	y: -40 },
+	"characters.muddyBuddy.dying":    { x: -32,	y: -40 },
+	"characters.muddyBuddy.dead":     { x: -32,	y: -40 },
 	"characters.player.attacking":    { x: -32,	y: -32 },
 	"characters.player.running":      { x: -32,	y: -32 },
 	"characters.player.standing":     { x: -32,	y: -32 },

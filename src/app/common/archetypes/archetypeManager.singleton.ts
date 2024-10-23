@@ -7,6 +7,8 @@ import { muddyBuddyArchetype } from "./muddyBuddy/muddyBuddy.archetype";
 import { sortableViewArchetype } from "./sortableView/sortableView.archetype";
 import { playerArchetype } from "./player/player.archetype";
 import { projectileArchetype } from "./projectile/projectile.archetype";
+import { mortalArchetype } from "./mortal/mortal.archetype";
+import { damagerArchetype } from "./damager/damager.archetype";
 
 class ArchetypeManager {
 	archetypes: Archetype[] = [
@@ -17,6 +19,8 @@ class ArchetypeManager {
 		colliderArchetype,
 		sortableViewArchetype,
 		projectileArchetype,
+		mortalArchetype,
+		damagerArchetype,
 	];
 
 	getArchetype<TArchetype extends Archetype>(archetypeClass: ConstructorOf<TArchetype>) {
