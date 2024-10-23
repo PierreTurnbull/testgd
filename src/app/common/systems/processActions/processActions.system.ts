@@ -10,7 +10,7 @@ import { applyNextCoordinates } from "../../utils/applyNextCoordinates/applyNext
 import { getNextCoordinates } from "../../utils/getNextCoordinates/getNextCoordinates";
 
 /**
- * Apply effects based on the current actions of actors.
+ * Applies effects based on the current actions of actors.
  */
 export function processActions(delta: Ticker) {
 	const actorEntities = archetypeManager.getEntitiesByArchetype(AActor);

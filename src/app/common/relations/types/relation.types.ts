@@ -16,10 +16,10 @@ export type TRelationValue<T extends TMultiplicity> =
 	never
 
 /**
- * On of the two nodes of a relation. Its value contains one or more entities depending on
+ * One of the two nodes of a relation. Its value is one or more entities depending on
  * its multiplicity, and a key used to identify this value.
- * eg: a value corresponding to an actor could be coupled with "ally" (?-to-one).
- * eg: a value corresponding to multiple actors could be coupled with "allies" (?-to-many).
+ * eg: a value corresponding to an actor could be named "ally" (?-to-one).
+ * eg: a value corresponding to multiple actors could be named "allies" (?-to-many).
  */
 export type TRelationNode<T extends TMultiplicity> = {
 	key: string

@@ -4,6 +4,9 @@ import { CAction } from "../../components/action/action.component";
 import { CDirection } from "../../components/direction/direction.component";
 import { CKeyboard } from "../../components/keyboard/keyboard.component";
 
+/**
+ * Generates NPCs actions.
+ */
 export const processAIs = () => {
 	const muddyBuddyEntities = archetypeManager.getEntitiesByArchetype(AMuddyBuddy);
 

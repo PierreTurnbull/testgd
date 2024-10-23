@@ -1,5 +1,5 @@
 import { archetypeManager } from "../../archetypes/archetypeManager.singleton";
-import { AOrderableView } from "../../archetypes/orderableView/orderableView.archetype";
+import { ASortableView } from "../../archetypes/sortableView/sortableView.archetype";
 import { CHitbox } from "../../components/hitbox/hitbox.component";
 import { CView } from "../../components/view/view.component";
 
@@ -8,9 +8,9 @@ import { CView } from "../../components/view/view.component";
  * This makes items that are "further" appear behind items that are "closer".
  */
 export const orderViews = () => {
-	const orderableViewEntities = archetypeManager.getEntitiesByArchetype(AOrderableView);
+	const sortableViewEntities = archetypeManager.getEntitiesByArchetype(ASortableView);
 
-	const orderedViewEntities = orderableViewEntities.sort((a, b) => {
+	const orderedViewEntities = sortableViewEntities.sort((a, b) => {
 		const aHitbox = a.getComponent(CHitbox);
 		const bHitbox = b.getComponent(CHitbox);
 

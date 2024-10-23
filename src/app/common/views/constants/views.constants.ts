@@ -1,5 +1,3 @@
-/* eslint-disable object-curly-newline,object-property-newline */
-
 import { HITBOX_BOUNDS } from "../../hitboxes/constants/hitboxes.constants";
 import { SCALE_FACTOR } from "../../types/animatedSprites.types";
 import { TCoordinates } from "../../types/coordinates.types";

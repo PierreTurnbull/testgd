@@ -1,5 +1,3 @@
-/* eslint-disable object-curly-newline,object-property-newline */
-
 import { TDimensions } from "../../types/dimensions.types";
 
 /**

@@ -2,6 +2,7 @@ import bpy
 import os
 import time
 import sys
+import json
 from math import *
 
 start0 = time.time()
@@ -13,24 +14,8 @@ import process
 projection: dict[str, list[str]] = {}
 
 if "PROJECTION" in os.environ:
-	projectionStr = os.environ["PROJECTION"].split(",")
-
-	# populate projection
-	for projectionStrItem in projectionStr:
-		path = projectionStrItem.split(".")
-		entityName = path[0]
-		actionName = path[1] if len(path) > 1 else "all"
-
-		if entityName not in projection:
-			projection[entityName] = []
-		projection[entityName].append(actionName)
-
-	# filter out duplicates
-	for key in projection:
-		if next((x for x in projection[key] if x == "all"), None):
-			projection[key] = ["all"]
-
-	print("Projection:", projection)
+	projectionStr = os.environ["PROJECTION"]
+	projection = json.loads(projectionStr)
 
 mustProcessAll = len(projection.keys()) == 0
 

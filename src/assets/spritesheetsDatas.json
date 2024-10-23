@@ -2,102 +2,6 @@
     {
         "width": 64,
         "height": 64,
-        "framesCount": 8,
-        "name": "characters.muddyBuddy.rolling.down"
-    },
-    {
-        "width": 64,
-        "height": 64,
-        "framesCount": 8,
-        "name": "characters.muddyBuddy.rolling.downLeft"
-    },
-    {
-        "width": 64,
-        "height": 64,
-        "framesCount": 8,
-        "name": "characters.muddyBuddy.rolling.downRight"
-    },
-    {
-        "width": 64,
-        "height": 64,
-        "framesCount": 8,
-        "name": "characters.muddyBuddy.rolling.left"
-    },
-    {
-        "width": 64,
-        "height": 64,
-        "framesCount": 8,
-        "name": "characters.muddyBuddy.rolling.right"
-    },
-    {
-        "width": 64,
-        "height": 64,
-        "framesCount": 8,
-        "name": "characters.muddyBuddy.rolling.up"
-    },
-    {
-        "width": 64,
-        "height": 64,
-        "framesCount": 8,
-        "name": "characters.muddyBuddy.rolling.upLeft"
-    },
-    {
-        "width": 64,
-        "height": 64,
-        "framesCount": 8,
-        "name": "characters.muddyBuddy.rolling.upRight"
-    },
-    {
-        "width": 64,
-        "height": 64,
-        "framesCount": 1,
-        "name": "characters.muddyBuddy.standing.down"
-    },
-    {
-        "width": 64,
-        "height": 64,
-        "framesCount": 1,
-        "name": "characters.muddyBuddy.standing.downLeft"
-    },
-    {
-        "width": 64,
-        "height": 64,
-        "framesCount": 1,
-        "name": "characters.muddyBuddy.standing.downRight"
-    },
-    {
-        "width": 64,
-        "height": 64,
-        "framesCount": 1,
-        "name": "characters.muddyBuddy.standing.left"
-    },
-    {
-        "width": 64,
-        "height": 64,
-        "framesCount": 1,
-        "name": "characters.muddyBuddy.standing.right"
-    },
-    {
-        "width": 64,
-        "height": 64,
-        "framesCount": 1,
-        "name": "characters.muddyBuddy.standing.up"
-    },
-    {
-        "width": 64,
-        "height": 64,
-        "framesCount": 1,
-        "name": "characters.muddyBuddy.standing.upLeft"
-    },
-    {
-        "width": 64,
-        "height": 64,
-        "framesCount": 1,
-        "name": "characters.muddyBuddy.standing.upRight"
-    },
-    {
-        "width": 64,
-        "height": 64,
         "framesCount": 12,
         "name": "characters.player.attacking.down"
     },
@@ -238,5 +142,149 @@
         "height": 64,
         "framesCount": 8,
         "name": "characters.player.standing.upRight"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 8,
+        "name": "characters.muddyBuddy.dying.down"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 8,
+        "name": "characters.muddyBuddy.dying.downLeft"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 8,
+        "name": "characters.muddyBuddy.dying.downRight"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 8,
+        "name": "characters.muddyBuddy.dying.left"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 8,
+        "name": "characters.muddyBuddy.dying.right"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 8,
+        "name": "characters.muddyBuddy.dying.up"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 8,
+        "name": "characters.muddyBuddy.dying.upLeft"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 8,
+        "name": "characters.muddyBuddy.dying.upRight"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 8,
+        "name": "characters.muddyBuddy.rolling.down"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 8,
+        "name": "characters.muddyBuddy.rolling.downLeft"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 8,
+        "name": "characters.muddyBuddy.rolling.downRight"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 8,
+        "name": "characters.muddyBuddy.rolling.left"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 8,
+        "name": "characters.muddyBuddy.rolling.right"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 8,
+        "name": "characters.muddyBuddy.rolling.up"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 8,
+        "name": "characters.muddyBuddy.rolling.upLeft"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 8,
+        "name": "characters.muddyBuddy.rolling.upRight"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 1,
+        "name": "characters.muddyBuddy.standing.down"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 1,
+        "name": "characters.muddyBuddy.standing.downLeft"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 1,
+        "name": "characters.muddyBuddy.standing.downRight"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 1,
+        "name": "characters.muddyBuddy.standing.left"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 1,
+        "name": "characters.muddyBuddy.standing.right"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 1,
+        "name": "characters.muddyBuddy.standing.up"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 1,
+        "name": "characters.muddyBuddy.standing.upLeft"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 1,
+        "name": "characters.muddyBuddy.standing.upRight"
     }
 ]

@@ -57,3 +57,5 @@ for (const imagesDir of imagesDirs) {
 
 writeFileSync(`${basePath}/spritesheetsDatas.json`, JSON.stringify(spritesheetsDatas, null, 4))
 rmSync(baseRawPath, { recursive: true })
+
+console.info("Packaged spritesheets.")

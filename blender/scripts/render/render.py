@@ -1,6 +1,31 @@
 import bpy
+import sys
+import os
 import entities
+import contextlib
 from math import *
+
+@contextlib.contextmanager
+def silence():
+	"""
+	Executes the code silently.
+	"""
+
+	stdout_fd = os.dup(1)
+	stderr_fd = os.dup(2)
+	devnull = open(os.devnull, "w")
+	os.dup2(devnull.fileno(), 1)
+	os.dup2(devnull.fileno(), 2)
+
+	yield
+
+	os.dup2(stdout_fd, 1)  # Restore stdout
+	os.dup2(stderr_fd, 2)  # Restore stderr
+
+	# Close the duplicated file descriptors
+	os.close(stdout_fd)
+	os.close(stderr_fd)
+	devnull.close()
 
 # tool
 
@@ -24,7 +49,11 @@ def rotate(object, direction):
 def renderArmatureFromDirection(object, name, action, direction, frameEnd):
 	entities.scene.frame_end = frameEnd
 	entities.scene.render.filepath = "./blender/tmp/raw/characters." + name + "." + action + "." + direction + "/"
-	bpy.ops.render.render(animation=True)
+
+	with silence():
+		bpy.ops.render.render(animation=True)
+
+	print("Rendered " + name + "." + action + "." + direction)
 
 	object.location.x = 0
 	object.location.y = 0

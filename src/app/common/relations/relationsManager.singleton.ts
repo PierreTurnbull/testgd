@@ -93,7 +93,7 @@ class RelationsManager {
 	}
 
 	/**
-	 * Remove an entity from all the relations that reference it.
+	 * Removes an entity from all the relations that reference it.
 	 */
 	removeFromRelations(entity: Entity) {
 		const getIsList = (value: TRelationValue<TMultiplicity>): value is TRelationValue<"many"> => {
@@ -110,10 +110,10 @@ class RelationsManager {
 			const valueAIsList = getIsList(valueA);
 			const valueBIsList = getIsList(valueB);
 
-			// remove subscriptions of the entity to the relation
+			// delete subscriptions of the entity to the relation
 
 			/**
-			 * Remove an entity from a list of entities.
+			 * Removes an entity from a list of entities.
 			 */
 			const removeFromList = (entity: Entity, value: Entity[]) => {
 				const index = value.indexOf(entity);
@@ -129,7 +129,7 @@ class RelationsManager {
 				removeFromList(entity, valueB);
 			}
 
-			// remove the relation if needed
+			// delete the relation if needed
 
 			if (
 				(valueAIsList && valueA.length === 0) ||

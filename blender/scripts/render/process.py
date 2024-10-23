@@ -6,7 +6,7 @@ def processPlayer(actionsProjection):
 
 	prepare.preparePlayer.carrySword()
 
-	mustRenderAll = not actionsProjection or "all" in actionsProjection
+	mustRenderAll = actionsProjection == True or not actionsProjection
 
 	if mustRenderAll or "standing" in actionsProjection:
 		render.renderPlayer("standing", 7)
@@ -20,9 +20,11 @@ def processPlayer(actionsProjection):
 def processMuddyBuddy(actionsProjection):
 	prepare.prepareMuddyBuddy.prepareBase()
 
-	mustRenderAll = not actionsProjection or "all" in actionsProjection
+	mustRenderAll = actionsProjection == True or not actionsProjection
 
 	if mustRenderAll or "standing" in actionsProjection:
 		render.renderMuddyBuddy("standing", 0)
 	if mustRenderAll or "rolling" in actionsProjection:
 		render.renderMuddyBuddy("rolling", 7)
+	if mustRenderAll or "dying" in actionsProjection:
+		render.renderMuddyBuddy("dying", 7)

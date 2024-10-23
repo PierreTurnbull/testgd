@@ -5,6 +5,9 @@ import { AProjectile } from "../../archetypes/projectile/projectile.archetype";
 import { CHitbox } from "../../components/hitbox/hitbox.component";
 import { entityManager } from "../../entities/entityManager.singleton";
 
+/**
+ * Applies damage to entities that collide with projectiles.
+ */
 export const applyProjectileDamages = () => {
 	const projectileEntities = archetypeManager.getEntitiesByArchetype(AProjectile);
 

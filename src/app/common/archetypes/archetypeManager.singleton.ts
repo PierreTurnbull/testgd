@@ -4,7 +4,7 @@ import { Archetype } from "./archetype.models";
 import { colliderArchetype } from "./collider/collider.archetype";
 import { fpsArchetype } from "./fps/fps.archetype";
 import { muddyBuddyArchetype } from "./muddyBuddy/muddyBuddy.archetype";
-import { orderableViewArchetype } from "./orderableView/orderableView.archetype";
+import { sortableViewArchetype } from "./sortableView/sortableView.archetype";
 import { playerArchetype } from "./player/player.archetype";
 import { projectileArchetype } from "./projectile/projectile.archetype";
 
@@ -15,7 +15,7 @@ class ArchetypeManager {
 		actorArchetype,
 		fpsArchetype,
 		colliderArchetype,
-		orderableViewArchetype,
+		sortableViewArchetype,
 		projectileArchetype,
 	];
 
@@ -27,6 +27,9 @@ class ArchetypeManager {
 		return archetype;
 	};
 
+	/**
+	 * Returns the entities that match the archetype.
+	 */
 	getEntitiesByArchetype<TArchetype extends Archetype>(archetypeClass: ConstructorOf<TArchetype>) {
 		const archetype = this.getArchetype(archetypeClass);
 		return archetype.entities;

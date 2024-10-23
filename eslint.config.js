@@ -13,16 +13,6 @@ export default tseslint.config(
 			"quotes": ["error", "double"],
 			"comma-dangle": ["error", "always-multiline"],
 			"prefer-const": "error",
-			"object-property-newline": ["error"],
-			"object-curly-newline": ["error", {
-				"ObjectExpression": {
-					"multiline": true,
-					"minProperties": 1,
-				},
-				"ObjectPattern": { "multiline": true },
-				"ImportDeclaration": "never",
-				"ExportDeclaration": { "multiline": true }
-			}],
 			"object-curly-spacing": ["error", "always"],
 			"@typescript-eslint/no-unused-vars": [
 				"error",

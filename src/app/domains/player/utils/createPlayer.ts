@@ -84,7 +84,7 @@ export const createPlayer = (
 		[
 			// identity
 			new CUser(),
-		
+
 			// misc
 			new CKeyboard(),
 			new CLocation(initialCoordinates),
@@ -92,7 +92,7 @@ export const createPlayer = (
 			new CVelocity(actionVelocities),
 			new CAction(currentAction, availableActions),
 			new CHitbox(hitboxBody, "characters.player.hitboxBorder"),
-		
+
 			// views
 			new CView(animatedSprite),
 			new CBorderView(border),
