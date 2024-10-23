@@ -2,15 +2,25 @@ import { Graphics } from "pixi.js";
 import { Component } from "../component.models";
 import { configManager } from "@root/app/core/configManager/configManager.singletons";
 
+/**
+ * The view of a hitbox, represented by a border. Used for debugging.
+ */
 export class CHitboxView extends Component {
+	constructor(
+		hitboxBorder: Graphics | null,
+	) {
+		super();
+
+		this._hitboxBorder = hitboxBorder;
+	}
+
 	/**
 	 * The borders of the hitbox. Used for debugging.
 	 */
-	private _hitboxBorder: Graphics | undefined;
+	private _hitboxBorder: Graphics | null;
 
 	get hitboxBorder() {
 		if (!configManager.config.debug.showsEntityHitbox) throw new Error("Cannot access hitboxBorder: the debug option is disabled.");
-		// only try to access this when _hitboxBorder has been initialized with a value
 		if (!this._hitboxBorder) throw new Error("Missing hitboxBorder.");
 
 		return this._hitboxBorder;

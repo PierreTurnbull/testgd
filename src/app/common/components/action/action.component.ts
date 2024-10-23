@@ -1,12 +1,20 @@
 import { Component } from "../component.models";
 
 export class CAction extends Component {
+	constructor(
+		initialAction: string,
+		availableActions: string[],
+	) {
+		super();
+
+		this._currentAction = initialAction;
+		this.availableActions = availableActions;
+	}
+
 	availableActions: string[] = [];
 
-	private _currentAction: string | null = null;
+	private _currentAction: string;
 	get currentAction() {
-		if (!this._currentAction) throw new Error("Missing currentAction.");
-		
 		return this._currentAction;
 	}
 	set currentAction(value) {

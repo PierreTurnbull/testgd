@@ -1,12 +1,10 @@
-import { appManager } from "@root/app/common/app/appManager.singleton";
-import { CHitboxView } from "@root/app/common/components/hitboxView/hitboxView.component";
+import { appManager } from "@root/app/domains/app/appManager.singleton";
 import { TCoordinates } from "@root/app/common/types/coordinates.types";
 import { TPoint } from "@root/app/common/types/point.type";
 import { Graphics } from "pixi.js";
-import { ENTITIES_CENTER_OFFSETS } from "../../constants/animatedSprites.constants";
+import { ENTITIES_CENTER_OFFSETS } from "../../constants/views.constants";
 
-export const setHitboxBorder = (
-	viewComponent: CHitboxView,
+export const initHitboxBorder = (
 	hitboxName: string,
 	bounds: TPoint[],
 	coordinates: TCoordinates,
@@ -29,5 +27,6 @@ export const setHitboxBorder = (
 	hitboxBorder.x = coordinates.x + centerOffset.x;
 	hitboxBorder.y = coordinates.y + centerOffset.y;
 	appManager.app.stage.addChild(hitboxBorder);
-	viewComponent.hitboxBorder = hitboxBorder;
+
+	return hitboxBorder;
 };

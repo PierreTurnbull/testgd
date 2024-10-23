@@ -1,4 +1,4 @@
-import { appManager } from "@root/app/common/app/appManager.singleton";
+import { appManager } from "@root/app/domains/app/appManager.singleton";
 import { createEntity } from "@root/app/common/entities/utils/createEntity";
 import { CFps } from "@root/app/domains/fps/components/fps/fps.component";
 import { Text } from "pixi.js";

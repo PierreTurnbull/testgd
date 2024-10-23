@@ -1,4 +1,4 @@
-import { replaceAnimatedSprite } from "@root/app/common/animatedSprites/utils/animatedSprite/replaceAnimatedSprite";
+import { replaceAnimatedSprite } from "@root/app/common/views/utils/animatedSprite/replaceAnimatedSprite";
 import { AActor } from "@root/app/common/archetypes/actor/actor.archetype";
 import { CAction } from "@root/app/common/components/action/action.component";
 import { CDirection } from "@root/app/common/components/direction/direction.component";
@@ -6,11 +6,12 @@ import { CLocation } from "@root/app/common/components/location/location.compone
 import { CView } from "@root/app/common/components/view/view.component";
 import { configManager } from "@root/app/core/configManager/configManager.singletons";
 import { AnimatedSprite } from "pixi.js";
-import { replaceBorder } from "../../animatedSprites/utils/border/replaceBorder";
-import { replaceHitboxBorder } from "../../animatedSprites/utils/hitboxBorder/replaceHitboxBorder";
+import { replaceBorder } from "../../views/utils/border/replaceBorder";
+import { replaceHitboxBorder } from "../../views/utils/hitboxBorder/replaceHitboxBorder";
 import { CHitboxView } from "../../components/hitboxView/hitboxView.component";
-import { replaceCenterView } from "../../animatedSprites/utils/center/replaceCenterView";
+import { replaceCenterView } from "../../views/utils/center/replaceCenter";
 import { CCenterView } from "../../components/centerView/centerView.component";
+import { CBorderView } from "../../components/border/border.component";
 
 type TOptions = {
 	onLoop?: AnimatedSprite["onLoop"] | null,
@@ -28,6 +29,7 @@ export const setAction = (
 	const directionComponent = actorEntity.getComponent(CDirection);
 	const locationComponent = actorEntity.getComponent(CLocation);
 	const viewComponent = actorEntity.getComponent(CView);
+	const borderViewComponent = actorEntity.getComponent(CBorderView);
 	const hitboxViewComponent = actorEntity.getComponent(CHitboxView);
 	const centerViewComponent = actorEntity.getComponent(CCenterView);
 
@@ -40,7 +42,7 @@ export const setAction = (
 		locationComponent.coordinates,
 	);
 	if (configManager.config.debug.showsEntityBorders) {
-		replaceBorder(viewComponent, locationComponent.coordinates);
+		replaceBorder(viewComponent, borderViewComponent, locationComponent.coordinates);
 	}
 	if (configManager.config.debug.showsEntityHitbox) {
 		replaceHitboxBorder(

@@ -1,4 +1,6 @@
 import { CAction } from "../../components/action/action.component";
+import { CBorderView } from "../../components/border/border.component";
+import { CCenterView } from "../../components/centerView/centerView.component";
 import { CDirection } from "../../components/direction/direction.component";
 import { CHitbox } from "../../components/hitbox/hitbox.component";
 import { CHitboxView } from "../../components/hitboxView/hitboxView.component";
@@ -18,10 +20,12 @@ export class AActor extends Archetype {
 			CKeyboard,
 			CDirection,
 			CLocation,
-			CView,
 			CVelocity,
 			CHitbox,
+			CView,
+			CBorderView,
 			CHitboxView,
+			CCenterView,
 		]);
 	}
 }

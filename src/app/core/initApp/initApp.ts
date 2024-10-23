@@ -1,4 +1,4 @@
-import { appManager } from "@root/app/common/app/appManager.singleton";
+import { appManager } from "@root/app/domains/app/appManager.singleton";
 import { CANVAS_HEIGHT, CANVAS_WIDTH } from "../constants/app.constants";
 import { Graphics } from "pixi.js";
 

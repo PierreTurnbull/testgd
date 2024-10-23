@@ -1,6 +1,6 @@
 import { CView } from "../../../components/view/view.component";
 import { TCoordinates } from "../../../types/coordinates.types";
-import { setAnimatedSprite } from "./setAnimatedSprite";
+import { initAnimatedSprite } from "./initAnimatedSprite";
 
 /**
  * Frees the previous animated sprite and sets the new one.
@@ -15,7 +15,7 @@ export const replaceAnimatedSprite = (
 ) => {
 	const prevAnimatedSprite = viewComponent.animatedSprite;
 
-	setAnimatedSprite(viewComponent, newAnimatedSpriteName, coordinates);
+	viewComponent.animatedSprite = initAnimatedSprite(newAnimatedSpriteName, coordinates);
 
 	prevAnimatedSprite.removeFromParent();
 };

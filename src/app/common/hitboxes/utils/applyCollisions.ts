@@ -1,5 +1,5 @@
 import { collisionsManager } from "@root/app/core/collisionsManager/collisionsManager.singletons";
-import { ENTITIES_CENTER_OFFSETS } from "../../animatedSprites/constants/animatedSprites.constants";
+import { ENTITIES_CENTER_OFFSETS } from "../../views/constants/views.constants";
 import { CHitbox } from "../../components/hitbox/hitbox.component";
 import { Entity } from "../../entities/entity.models";
 import { TCoordinates } from "../../types/coordinates.types";

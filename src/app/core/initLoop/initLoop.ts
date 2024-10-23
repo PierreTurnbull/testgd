@@ -1,4 +1,4 @@
-import { appManager } from "@root/app/common/app/appManager.singleton";
+import { appManager } from "@root/app/domains/app/appManager.singleton";
 import { applyProjectileDamages } from "@root/app/common/systems/applyProjectileDamages/applyProjectileDamages.system";
 import { orderViews } from "@root/app/common/systems/orderViews/orderViews.system";
 import { processActions } from "@root/app/common/systems/processActions/processActions.system";

@@ -1,9 +1,9 @@
 class ConfigManager {
 	config = {
 		debug: {
-			showsEntityBorders: false,
+			showsEntityBorders: true,
 			showsEntityHitbox:  true,
-			showsEntityCenter:  false,
+			showsEntityCenter:  true,
 		},
 	};
 }

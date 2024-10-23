@@ -1,4 +1,3 @@
-import { setHitboxBorder } from "@root/app/common/animatedSprites/utils/hitboxBorder/setHitboxBorder";
 import { muddyBuddyArchetype } from "@root/app/common/archetypes/muddyBuddy/muddyBuddy.archetype";
 import { CDirection } from "@root/app/common/components/direction/direction.component";
 import { CHitbox } from "@root/app/common/components/hitbox/hitbox.component";
@@ -14,9 +13,11 @@ import { TCoordinates } from "@root/app/common/types/coordinates.types";
 import { TPoint } from "@root/app/common/types/point.type";
 import { getAngleInterval } from "@root/app/common/utils/getAngleInterval/getAngleInterval";
 import { getCirclePoint } from "@root/app/common/utils/getCirclePoint/getCirclePoint";
+import { initHitboxBorder } from "@root/app/common/views/utils/hitboxBorder/initHitboxBorder";
 import { collisionsManager } from "@root/app/core/collisionsManager/collisionsManager.singletons";
 import { configManager } from "@root/app/core/configManager/configManager.singletons";
 import { Polygon } from "detect-collisions";
+import { Graphics } from "pixi.js";
 import { CCollisionCandidates } from "../common/collisionCandidates/collisionCandidates.component";
 import { TProjectileSettings } from "../types/projectile.types";
 
@@ -24,20 +25,6 @@ export const createProjectile = (
 	parent: Entity,
 	settings: TProjectileSettings,
 ) => {
-	const projectileComponent = new CProjectile();
-	const directionComponent = new CDirection();
-	const locationComponent = new CLocation();
-	const velocityComponent = new CVelocity();
-	const hitboxViewComponent = new CHitboxView();
-	const timersComponent = new CTimers();
-	const collisionCandidates = new CCollisionCandidates([muddyBuddyArchetype]);
-
-	directionComponent.direction = settings.direction;
-
-	locationComponent.coordinates = settings.coordinates;
-
-	velocityComponent.velocity = settings.velocity || 0;
-
 	const circleOrigin: TCoordinates = {
 		x: 0,
 		y: 0, 
@@ -63,38 +50,44 @@ export const createProjectile = (
 		},
 	);
 
-	if (configManager.config.debug.showsEntityHitbox) {
-		setHitboxBorder(hitboxViewComponent, "projectiles.sword", hitboxPoints, settings.coordinates);
-	}
+	let hitboxBorder: Graphics | null = null;
 
-	const hitboxComponent = new CHitbox(hitboxBody, "characters.projectile.hitboxBorder");
+	if (configManager.config.debug.showsEntityHitbox) {
+		hitboxBorder = initHitboxBorder("projectiles.sword", hitboxPoints, settings.coordinates);
+	}
 
 	const createdEntity = createEntity(
 		"projectile",
 		[
-			projectileComponent,
-			directionComponent,
-			locationComponent,
-			velocityComponent,
-			hitboxComponent,
-			hitboxViewComponent,
-			collisionCandidates,
-			timersComponent,
+			// identity
+			new CProjectile(),
+
+			// misc
+			new CDirection(),
+			new CLocation(settings.coordinates),
+			new CVelocity({}, settings.velocity || 0),
+			new CTimers(),
+			new CCollisionCandidates([muddyBuddyArchetype]),
+			new CHitbox(hitboxBody, "characters.projectile.hitboxBorder"),
+
+			// views
+			new CHitboxView(hitboxBorder),
 		],
 	);
 
 	relationsManager.createRelation({
 		a: {
 			key:   "shooter",
-			value: parent,
+			value: parent, 
 		},
 		b: {
 			key:   "projectile",
-			value: createdEntity,
+			value: createdEntity, 
 		},
 	});
 
 	if (settings.lifeDuration) {
+		const timersComponent = createdEntity.getComponent(CTimers);
 		const id = setTimeout(() => {
 			createdEntity.destroy();
 		}, settings.lifeDuration);

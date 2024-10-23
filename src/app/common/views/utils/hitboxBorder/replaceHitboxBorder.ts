@@ -2,7 +2,7 @@ import { CHitboxView } from "@root/app/common/components/hitboxView/hitboxView.c
 import { HITBOX_BOUNDS } from "@root/app/common/hitboxes/constants/hitboxes.constants";
 import { TCoordinates } from "@root/app/common/types/coordinates.types";
 import { TPoint } from "@root/app/common/types/point.type";
-import { setHitboxBorder } from "./setHitboxBorder";
+import { initHitboxBorder } from "./initHitboxBorder";
 
 /**
  * Frees the previous hitbox border and sets the new one.
@@ -32,7 +32,7 @@ export const replaceHitboxBorder = (
 			y: HITBOX_BOUNDS[hitboxName].h,
 		},
 	];
-	setHitboxBorder(hitboxViewComponent, hitboxName, hitboxBounds, coordinates);
+	hitboxViewComponent.hitboxBorder = initHitboxBorder(hitboxName, hitboxBounds, coordinates);
 
 	prevHitboxBorder.removeFromParent();
 };

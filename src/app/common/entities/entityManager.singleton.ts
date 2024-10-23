@@ -6,6 +6,8 @@ import { CTimers } from "../components/timers/timers.component";
 import { CView } from "../components/view/view.component";
 import { relationsManager } from "../relations/relationsManager.singleton";
 import { Entity } from "./entity.models";
+import { CBorderView } from "../components/border/border.component";
+import { CCenterView } from "../components/centerView/centerView.component";
 
 class EntityManager {
 	__brand = "entityManager";
@@ -36,16 +38,22 @@ class EntityManager {
 			viewComponent.animatedSprite.destroy();
 		}
 	
-		if (configManager.config.debug.showsEntityBorders && entity.hasComponent(CView)) {
-			const viewComponent = entity.getComponent(CView);
+		if (configManager.config.debug.showsEntityBorders && entity.hasComponent(CBorderView)) {
+			const borderViewComponent = entity.getComponent(CBorderView);
 	
-			viewComponent.border.destroy();
+			borderViewComponent.border.destroy();
 		}
-	
+
 		if (configManager.config.debug.showsEntityHitbox && entity.hasComponent(CHitboxView)) {
 			const hitboxViewComponent = entity.getComponent(CHitboxView);
 	
 			hitboxViewComponent.hitboxBorder.destroy();
+		}
+
+		if (configManager.config.debug.showsEntityCenter && entity.hasComponent(CCenterView)) {
+			const centerViewComponent = entity.getComponent(CCenterView);
+	
+			centerViewComponent.center.destroy();
 		}
 
 		if (entity.hasComponent(CHitbox)) {
