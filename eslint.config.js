@@ -1,10 +1,14 @@
 import eslint from "@eslint/js";
 import tseslint from "typescript-eslint";
+import stylisticTs from "@stylistic/eslint-plugin-ts"
 
 export default tseslint.config(
 	eslint.configs.recommended,
 	...tseslint.configs.recommended,
 	{
+		plugins: {
+			"@stylistic/ts": stylisticTs, 
+		},
 		ignores: ["dist"],
 		files: ["**/*.ts"],
 		rules: {
@@ -23,7 +27,7 @@ export default tseslint.config(
 					"caughtErrorsIgnorePattern": "^_"
 				}
 			],
-			"key-spacing": [
+			"@stylistic/ts/key-spacing": [
 				"error", {
 					"beforeColon": false,
 					"afterColon": true,

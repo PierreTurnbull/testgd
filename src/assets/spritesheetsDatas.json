@@ -334,5 +334,101 @@
         "height": 64,
         "framesCount": 1,
         "name": "characters.muddyBuddy.dead.upRight"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 1,
+        "name": "characters.player.dead.down"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 1,
+        "name": "characters.player.dead.downLeft"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 1,
+        "name": "characters.player.dead.downRight"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 1,
+        "name": "characters.player.dead.left"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 1,
+        "name": "characters.player.dead.right"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 1,
+        "name": "characters.player.dead.up"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 1,
+        "name": "characters.player.dead.upLeft"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 1,
+        "name": "characters.player.dead.upRight"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 24,
+        "name": "characters.player.dying.down"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 24,
+        "name": "characters.player.dying.downLeft"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 24,
+        "name": "characters.player.dying.downRight"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 24,
+        "name": "characters.player.dying.left"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 24,
+        "name": "characters.player.dying.right"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 24,
+        "name": "characters.player.dying.up"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 24,
+        "name": "characters.player.dying.upLeft"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 24,
+        "name": "characters.player.dying.upRight"
     }
 ]

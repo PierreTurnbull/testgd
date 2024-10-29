@@ -2,7 +2,7 @@ import { CDamage } from "../../components/damage/damage.component";
 import { Archetype } from "../archetype.models";
 
 /**
- * Any entity that can die.
+ * Any entity that can deal some damage.
  */
 export class ADamager extends Archetype {
 	constructor() {

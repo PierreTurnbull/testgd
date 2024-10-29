@@ -22,7 +22,7 @@ export type TRelationValue<T extends TMultiplicity> =
  * eg: a value corresponding to multiple actors could be named "allies" (?-to-many).
  */
 export type TRelationNode<T extends TMultiplicity> = {
-	key: string
+	key:   string
 	value: TRelationValue<T>
 }
 

@@ -13,14 +13,7 @@ export const watchInput = () => {
 
 	const keyboardComponent = playerEntity.getComponent(CKeyboard);
 
-	// const resetKey = debounce((keyCode: string) => {
-	// 	keyboardComponent.keyboard[keyCode] = false;
-	// }, 250);
-
 	window.onkeydown = event => {
-		// // todo : check if resetKey needed.
-		// resetKey(event.code);
-
 		keyboardComponent.keyboard[event.code] = true;
 	};
 

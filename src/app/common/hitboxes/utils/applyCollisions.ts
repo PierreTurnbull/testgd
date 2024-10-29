@@ -24,9 +24,14 @@ export const applyCollisions = (
 		if (response.a.isTrigger || response.b.isTrigger) {
 			return;
 		}
+
+		// constrain next coordinates
 		nextCoordinates.x -= response.overlapV.x;
 		nextCoordinates.y -= response.overlapV.y;
-		updateHitboxPosition(hitboxComponent, centeredCoordinates);
+
+		// constrain hitbox coordinates
+		hitboxComponent.body.x -= response.overlapV.x;
+		hitboxComponent.body.y -= response.overlapV.y;
 		response.clear();
 	});
 

@@ -10,6 +10,7 @@ import { CLocation } from "../../components/location/location.component";
 import { CVelocity } from "../../components/velocity/velocity.component";
 import { setAction } from "../../utils/setAction/setAction";
 import { getRequestedDirection } from "./utils/getRequestedDirection";
+import { CProjectileIsActive } from "@root/app/domains/projectile/components/projectileIsActive/projectileIsActive.component";
 
 const getAttackingIsAllowed = (currentAction: CAction["currentAction"]) => {
 	const attackingIsAllowed = (
@@ -75,6 +76,12 @@ export function translateInputs() {
 		const velocityComponent = actorEntity.getComponent(CVelocity);
 		const locationComponent = actorEntity.getComponent(CLocation);
 
+		const currentAction = actionComponent.currentAction;
+
+		if (currentAction === "dying" || currentAction === "dead") {
+			continue;
+		}
+
 		const requestedDirection = getRequestedDirection(keyboardComponent.keyboard);
 		const nextDirection = requestedDirection || directionComponent.direction;
 
@@ -109,14 +116,16 @@ export function translateInputs() {
 			onFrameChange = (currentFrame: number, clear?: () => void) => {
 				if (currentFrame === 2) {
 					const projectileSettings: TProjectileSettings = {
-						type:         "slash",
-						size:         40,
-						dimensions:   null,
-						lifeDuration: 1000,
-						velocity:     0,
-						damage:       1,
-						coordinates:  locationComponent.coordinates,
-						direction:    directionComponent.direction,
+						type:                       "slash",
+						size:                       40,
+						dimensions:                 null,
+						lifeDuration:               100,
+						velocity:                   0,
+						damage:                     1,
+						coordinates:                locationComponent.coordinates,
+						direction:                  directionComponent.direction,
+						mustBeDestroyedOnCollision: true,
+						isActive:                   true,
 					};
 					createProjectile(actorEntity, projectileSettings);
 				} else if (currentFrame === 7) {
@@ -136,6 +145,12 @@ export function translateInputs() {
 		if (!nextAction) continue;
 
 		velocityComponent.velocity = velocityComponent.actionVelocities[nextAction] || 0;
+
+		if (actorEntity.name === "muddyBuddy") {
+			const projectileIsActiveComponent = actorEntity.getComponent(CProjectileIsActive);
+
+			projectileIsActiveComponent.projectileIsActive = nextAction === "rolling";
+		}
 
 		setAction(
 			actorEntity,

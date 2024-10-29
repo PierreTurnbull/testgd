@@ -8,13 +8,16 @@ export const initCharacters = () => {
 	// createMuddyBuddy({ x: 200, y: 200 }, "down");
 	// createMuddyBuddy({ x: 300, y: 150 }, "downRight");
 	// createMuddyBuddy({ x: 490, y: 150 }, "upLeft");
-	// createMuddyBuddy({ x: 490, y: 350 }, "left");
-	createMuddyBuddy({ x: Math.random() * CANVAS_WIDTH, y: Math.random() * CANVAS_HEIGHT }, DIRECTIONS[Math.floor(Math.random() * 8)]);
-	createMuddyBuddy({ x: Math.random() * CANVAS_WIDTH, y: Math.random() * CANVAS_HEIGHT }, DIRECTIONS[Math.floor(Math.random() * 8)]);
-	createMuddyBuddy({ x: Math.random() * CANVAS_WIDTH, y: Math.random() * CANVAS_HEIGHT }, DIRECTIONS[Math.floor(Math.random() * 8)]);
+	// createMuddyBuddy({ x: 540, y: 190 }, "upLeft");
+	createMuddyBuddy({ x: 490, y: 350 }, "left");
+	
+	// createMuddyBuddy({ x: Math.random() * CANVAS_WIDTH, y: Math.random() * CANVAS_HEIGHT }, DIRECTIONS[Math.floor(Math.random() * 8)]);
+	// createMuddyBuddy({ x: Math.random() * CANVAS_WIDTH, y: Math.random() * CANVAS_HEIGHT }, DIRECTIONS[Math.floor(Math.random() * 8)]);
+	// createMuddyBuddy({ x: Math.random() * CANVAS_WIDTH, y: Math.random() * CANVAS_HEIGHT }, DIRECTIONS[Math.floor(Math.random() * 8)]);
+
 	// setInterval(() => {
 	// 	createMuddyBuddy({ x: Math.random() * CANVAS_WIDTH, y: Math.random() * CANVAS_HEIGHT }, DIRECTIONS[Math.floor(Math.random() * 8)]);
-	// }, 2000);
+	// }, 1000);
 	// createMuddyBuddy(
 	// 	{
 	// 		x: 400,

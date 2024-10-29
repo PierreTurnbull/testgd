@@ -1,14 +1,16 @@
+import { playerArchetype } from "@root/app/common/archetypes/player/player.archetype";
 import { CAction } from "@root/app/common/components/action/action.component";
 import { CBorderView } from "@root/app/common/components/border/border.component";
 import { CCenterView } from "@root/app/common/components/centerView/centerView.component";
+import { CDamage } from "@root/app/common/components/damage/damage.component";
 import { CDirection } from "@root/app/common/components/direction/direction.component";
 import { TDirection } from "@root/app/common/components/direction/types/direction.types";
 import { CHealth } from "@root/app/common/components/health/health.component";
 import { CHitbox } from "@root/app/common/components/hitbox/hitbox.component";
 import { CHitboxView } from "@root/app/common/components/hitboxView/hitboxView.component";
 import { CMuddyBuddy } from "@root/app/common/components/identity/muddyBuddy/muddyBuddy.component";
+import { CProjectile } from "@root/app/common/components/identity/projectile/projectile.component";
 import { CKeyboard } from "@root/app/common/components/keyboard/keyboard.component";
-import { CLocation } from "@root/app/common/components/location/location.component";
 import { CVelocity } from "@root/app/common/components/velocity/velocity.component";
 import { CView } from "@root/app/common/components/view/view.component";
 import { createEntity } from "@root/app/common/entities/utils/createEntity";
@@ -24,6 +26,10 @@ import { collisionsManager } from "@root/app/core/collisionsManager/collisionsMa
 import { configManager } from "@root/app/core/configManager/configManager.singletons";
 import { MUDDYBUDDY_ROLLING_SPEED } from "@root/app/domains/muddyBuddy/constants/muddyBuddy.constants";
 import { Graphics } from "pixi.js";
+import { CCollisionCandidates } from "../../projectile/components/collisionCandidates/collisionCandidates.component";
+import { CLocation } from "@root/app/common/components/location/location.component";
+import { CMustBeDestroyedOnCollision } from "../../projectile/components/mustBeDestroyedOnCollision/mustBeDestroyedOnCollision.component";
+import { CProjectileIsActive } from "../../projectile/components/projectileIsActive/projectileIsActive.component";
 
 export const createMuddyBuddy = (
 	initialCoordinates: TCoordinates,
@@ -88,6 +94,7 @@ export const createMuddyBuddy = (
 		[
 			// identity
 			new CMuddyBuddy(),
+			new CProjectile(),
 
 			// misc
 			new CKeyboard(),
@@ -97,6 +104,10 @@ export const createMuddyBuddy = (
 			new CAction(currentAction, availableActions),
 			new CHitbox(hitboxBody, "characters.muddyBuddy.hitboxBorder"),
 			new CHealth(1),
+			new CCollisionCandidates([playerArchetype]),
+			new CMustBeDestroyedOnCollision(false),
+			new CProjectileIsActive(false),
+			new CDamage(1),
 			
 			// views
 			new CView(animatedSprite),

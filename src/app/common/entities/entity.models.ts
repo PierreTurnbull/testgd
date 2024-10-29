@@ -70,7 +70,7 @@ export class Entity {
 	 * Finds a relation node among all the relations of the entity.
 	 * @param entityName the key of the related entities specified in the relation.
 	 */
-	getRelatedNode(entityName: string) {
+	private getRelatedNode(entityName: string) {
 		const relationComponents = this.relations.map(relation => relation.getComponent(CRelation));
 		const relationNodes = relationComponents.map(relationComponent => [relationComponent.relation.a, relationComponent.relation.b]).flat();
 		const relationNode = relationNodes.find(relationNode => relationNode.key === entityName);
@@ -79,6 +79,18 @@ export class Entity {
 		}
 
 		return relationNode;
+	}
+
+	/**
+	 * Returns whether the relation node exists.
+	 * @param entityName the key of the related entities specified in the relation.
+	 */
+	private getHasRelatedNode(entityName: string) {
+		const relationComponents = this.relations.map(relation => relation.getComponent(CRelation));
+		const relationNodes = relationComponents.map(relationComponent => [relationComponent.relation.a, relationComponent.relation.b]).flat();
+		const relationNode = relationNodes.find(relationNode => relationNode.key === entityName);
+
+		return Boolean(relationNode);
 	}
 
 	/**
@@ -113,6 +125,14 @@ export class Entity {
 		}
 
 		return value;
+	}
+
+	/**
+	 * Returns whether the entity has a relation.
+	 * @param entityName the key of the related entity specified in the relation.
+	 */
+	hasRelatedEntity(entityName: string) {
+		return this.getHasRelatedNode(entityName);
 	}
 
 	/**

@@ -7,6 +7,10 @@ export class CAction extends Component {
 	) {
 		super();
 
+		if (availableActions.length === 0) {
+			throw new Error("List of available actions is empty.");
+		}
+
 		this._currentAction = initialAction;
 		this.availableActions = availableActions;
 	}

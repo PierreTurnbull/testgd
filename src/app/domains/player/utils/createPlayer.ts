@@ -2,6 +2,7 @@ import { CAction } from "@root/app/common/components/action/action.component";
 import { CBorderView } from "@root/app/common/components/border/border.component";
 import { CCenterView } from "@root/app/common/components/centerView/centerView.component";
 import { CDirection } from "@root/app/common/components/direction/direction.component";
+import { CHealth } from "@root/app/common/components/health/health.component";
 import { CHitbox } from "@root/app/common/components/hitbox/hitbox.component";
 import { CHitboxView } from "@root/app/common/components/hitboxView/hitboxView.component";
 import { CUser } from "@root/app/common/components/identity/user/user.component";
@@ -9,6 +10,7 @@ import { CKeyboard } from "@root/app/common/components/keyboard/keyboard.compone
 import { CLocation } from "@root/app/common/components/location/location.component";
 import { CVelocity } from "@root/app/common/components/velocity/velocity.component";
 import { CView } from "@root/app/common/components/view/view.component";
+import { AVAILABLE_ACTIONS } from "@root/app/common/constants/availableActions.constants";
 import { createEntity } from "@root/app/common/entities/utils/createEntity";
 import { HITBOX_BOUNDS } from "@root/app/common/hitboxes/constants/hitboxes.constants";
 import { TCoordinates } from "@root/app/common/types/coordinates.types";
@@ -76,7 +78,7 @@ export const createPlayer = (
 		"running": PLAYER_RUNNING_SPEED,
 	};
 
-	const availableActions = ["standing", "running", "attacking"];
+	const availableActions = AVAILABLE_ACTIONS.player;
 	const currentAction = "standing";
 
 	createEntity(
@@ -92,6 +94,7 @@ export const createPlayer = (
 			new CVelocity(actionVelocities),
 			new CAction(currentAction, availableActions),
 			new CHitbox(hitboxBody, "characters.player.hitboxBorder"),
+			new CHealth(1),
 
 			// views
 			new CView(animatedSprite),

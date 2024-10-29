@@ -12,6 +12,10 @@ def processPlayer(actionsProjection):
 		render.renderPlayer("standing", 7)
 	if mustRenderAll or "running" in actionsProjection:
 		render.renderPlayer("running", 23)
+	if mustRenderAll or "dying" in actionsProjection:
+		render.renderPlayer("dying", 23)
+	if mustRenderAll or "dead" in actionsProjection:
+		render.renderPlayer("dead", 0)
 
 	prepare.preparePlayer.equipSword()
 	if mustRenderAll or "attacking" in actionsProjection:

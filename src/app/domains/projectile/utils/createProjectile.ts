@@ -18,9 +18,11 @@ import { collisionsManager } from "@root/app/core/collisionsManager/collisionsMa
 import { configManager } from "@root/app/core/configManager/configManager.singletons";
 import { Polygon } from "detect-collisions";
 import { Graphics } from "pixi.js";
-import { CCollisionCandidates } from "../common/collisionCandidates/collisionCandidates.component";
+import { CCollisionCandidates } from "../components/collisionCandidates/collisionCandidates.component";
 import { TProjectileSettings } from "../types/projectile.types";
 import { CDamage } from "@root/app/common/components/damage/damage.component";
+import { CMustBeDestroyedOnCollision } from "../components/mustBeDestroyedOnCollision/mustBeDestroyedOnCollision.component";
+import { CProjectileIsActive } from "../components/projectileIsActive/projectileIsActive.component";
 
 export const createProjectile = (
 	parent: Entity,
@@ -67,9 +69,11 @@ export const createProjectile = (
 			new CDirection(),
 			new CLocation(settings.coordinates),
 			new CVelocity({}, settings.velocity || 0),
-			new CCollisionCandidates([muddyBuddyArchetype]),
 			new CHitbox(hitboxBody, "characters.projectile.hitboxBorder"),
 			settings.damage ? new CDamage(settings.damage || 0) : null,
+			new CCollisionCandidates([muddyBuddyArchetype]),
+			new CMustBeDestroyedOnCollision(settings.mustBeDestroyedOnCollision),
+			new CProjectileIsActive(settings.isActive),
 
 			// views
 			new CHitboxView(hitboxBorder),

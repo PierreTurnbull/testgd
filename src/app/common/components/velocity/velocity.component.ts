@@ -15,5 +15,5 @@ export class CVelocity extends Component {
 	 * The velocity of each action available to the entity.
 	 */
 	actionVelocities: Record<string, number>;
-	velocity: number = 0;
+	velocity:         number = 0;
 }

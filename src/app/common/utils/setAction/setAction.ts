@@ -14,8 +14,8 @@ import { CCenterView } from "../../components/centerView/centerView.component";
 import { CBorderView } from "../../components/border/border.component";
 
 type TOptions = {
-	onLoop?: AnimatedSprite["onLoop"] | null,
-	onComplete?: AnimatedSprite["onComplete"] | null,
+	onLoop?:        AnimatedSprite["onLoop"] | null,
+	onComplete?:    AnimatedSprite["onComplete"] | null,
 	onFrameChange?: ((currentFrame: number, clear?: () => void) => void) | null,
 }
 

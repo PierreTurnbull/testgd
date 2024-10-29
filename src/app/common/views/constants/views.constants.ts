@@ -10,6 +10,8 @@ export const ANIMATION_SPEEDS: Record<string, number> = {
 	"characters.player.attacking":    0.8,
 	"characters.player.running":      0.8,
 	"characters.player.standing":     0.2,
+	"characters.player.dying":        0.4,
+	"characters.player.dead":         1,
 };
 
 const ANIMATED_SPRITES_CENTER_OFFSETS: Record<string, TCoordinates> = {
@@ -20,6 +22,8 @@ const ANIMATED_SPRITES_CENTER_OFFSETS: Record<string, TCoordinates> = {
 	"characters.player.attacking":    { x: -32,	y: -32 },
 	"characters.player.running":      { x: -32,	y: -32 },
 	"characters.player.standing":     { x: -32,	y: -32 },
+	"characters.player.dying":        { x: -32,	y: -32 },
+	"characters.player.dead":         { x: -32,	y: -32 },
 };
 
 const BORDERS_CENTER_OFFSETS = Object.fromEntries(
