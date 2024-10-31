@@ -1,4 +1,4 @@
-import { HITBOX_BOUNDS } from "../../hitboxes/constants/hitboxes.constants";
+import { HITBOX_BOUNDS } from "../../../domains/hitbox/constants/hitboxes.constants";
 import { SCALE_FACTOR } from "../../types/animatedSprites.types";
 import { TCoordinates } from "../../types/coordinates.types";
 

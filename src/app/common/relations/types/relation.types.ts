@@ -26,28 +26,32 @@ export type TRelationNode<T extends TMultiplicity> = {
 	value: TRelationValue<T>
 }
 
+export type TRelationBase = {
+	mustCascadeDelete: boolean
+}
+
 /**
  * A relation between two entities.
  */
-export type TOneToOneRelation = {
-	a: TRelationNode<"one">,
-	b: TRelationNode<"one">,
+export type TOneToOneRelation = TRelationBase & {
+	a: TRelationNode<"one">
+	b: TRelationNode<"one">
 }
 
 /**
  * A relation between an entity and a list of entities.
  */
-export type TOneToManyRelation = {
-	a: TRelationNode<"one">,
-	b: TRelationNode<"many">,
+export type TOneToManyRelation = TRelationBase & {
+	a: TRelationNode<"one">
+	b: TRelationNode<"many">
 }
 
 /**
  * A relation between two lists of entities.
  */
-export type TManyToManyRelation = {
-	a: TRelationNode<"many">,
-	b: TRelationNode<"many">,
+export type TManyToManyRelation = TRelationBase & {
+	a: TRelationNode<"many">
+	b: TRelationNode<"many">
 }
 
 export type TRelation<T extends TCardinality> = (

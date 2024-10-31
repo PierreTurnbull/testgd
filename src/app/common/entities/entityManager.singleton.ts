@@ -1,13 +1,4 @@
-import { collisionsManager } from "@root/app/core/collisionsManager/collisionsManager.singletons";
-import { configManager } from "@root/app/core/configManager/configManager.singletons";
-import { CHitbox } from "../components/hitbox/hitbox.component";
-import { CHitboxView } from "../components/hitboxView/hitboxView.component";
-import { CTimers } from "../components/timers/timers.component";
-import { CView } from "../components/view/view.component";
-import { relationsManager } from "../relations/relationsManager.singleton";
 import { Entity } from "./entity.models";
-import { CBorderView } from "../components/border/border.component";
-import { CCenterView } from "../components/centerView/centerView.component";
 
 class EntityManager {
 	__brand = "entityManager";
@@ -24,58 +15,11 @@ class EntityManager {
 	};
 
 	/**
-	 * Removes the entity from the list of entities and puts an end to everything
-	 * related to it (relations, timers, views, etc...).
+	 * Removes the entity from the list of entities.
 	 */
-	destroyEntity = (
+	removeEntity = (
 		entity: Entity,
 	) => {
-		// destroy view
-
-		if (entity.hasComponent(CView)) {
-			const viewComponent = entity.getComponent(CView);
-	
-			viewComponent.animatedSprite.destroy();
-		}
-	
-		if (configManager.config.debug.showsEntityBorders && entity.hasComponent(CBorderView)) {
-			const borderViewComponent = entity.getComponent(CBorderView);
-	
-			borderViewComponent.border.destroy();
-		}
-
-		if (configManager.config.debug.showsEntityHitbox && entity.hasComponent(CHitboxView)) {
-			const hitboxViewComponent = entity.getComponent(CHitboxView);
-	
-			hitboxViewComponent.hitboxBorder.destroy();
-		}
-
-		if (configManager.config.debug.showsEntityCenter && entity.hasComponent(CCenterView)) {
-			const centerViewComponent = entity.getComponent(CCenterView);
-	
-			centerViewComponent.center.destroy();
-		}
-
-		if (entity.hasComponent(CHitbox)) {
-			const hitboxComponent = entity.getComponent(CHitbox);
-
-			collisionsManager.system.remove(hitboxComponent.body);
-		}
-
-		// remove from relations
-
-		relationsManager.removeFromRelations(entity);
-
-		// clear timers
-
-		if (entity.hasComponent(CTimers)) {
-			const timersComponent = entity.getComponent(CTimers);
-
-			timersComponent.timers.forEach(clearTimeout);
-		}
-
-		// remove from entities list
-
 		const index = this.entities.indexOf(entity);
 		this.entities.splice(index, 1);
 	};

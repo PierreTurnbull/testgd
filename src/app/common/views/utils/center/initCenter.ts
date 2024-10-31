@@ -10,28 +10,16 @@ export const initCenter = (
 	const center = new Graphics();
 
 	center.poly([
-		{
-			x: -1,
-			y: -1,
-		},
-		{
-			x: 1,
-			y: -1,
-		},
-		{
-			x: 1,
-			y: 1,
-		},
-		{
-			x: -1,
-			y: 1,
-		},
+		{ x: -1, y: -1 },
+		{ x: 1, y: -1 },
+		{ x: 1, y: 1 },
+		{ x: -1, y: 1 },
 	]);
 
 	center
 		.stroke({
 			width:     1,
-			color:     0xfe7777,
+			color:     0xffffff,
 			alignment: 1,
 		});
 

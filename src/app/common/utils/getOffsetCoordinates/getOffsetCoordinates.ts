@@ -1,12 +1,12 @@
 import { TCoordinates } from "../../types/coordinates.types";
-import { TOffsets } from "../../types/offsets.types";
+import { TOffset } from "../../types/offset.types";
 
 /**
  * Applies an offset to coordinates and returns the result.
  */
 export const getOffsetCoordinates = (
 	coordinates: TCoordinates,
-	offset: TOffsets,
+	offset: TOffset,
 ) => {
 	const offsetCoordinates = {
 		x: coordinates.x + offset.x,

@@ -1,12 +1,11 @@
+import { CHitboxIsActive } from "@root/app/domains/hitbox/components/hitboxIsActive/hitboxIsActive.component";
 import { MUDDY_BUDDY_DESTROY_DELAY } from "@root/app/domains/muddyBuddy/types/muddyBuddy.types";
-import { CProjectileIsActive } from "@root/app/domains/projectile/components/projectileIsActive/projectileIsActive.component";
+import { CHitbox } from "../../../domains/hitbox/components/hitbox/hitbox.component";
 import { AActor } from "../../archetypes/actor/actor.archetype";
 import { ADamager } from "../../archetypes/damager/damager.archetype";
 import { AMortal } from "../../archetypes/mortal/mortal.archetype";
-import { AProjectile } from "../../archetypes/projectile/projectile.archetype";
 import { CAction } from "../../components/action/action.component";
 import { CDirection } from "../../components/direction/direction.component";
-import { CHitbox } from "../../components/hitbox/hitbox.component";
 import { CTimers } from "../../components/timers/timers.component";
 import { Entity } from "../../entities/entity.models";
 import { setAction } from "../setAction/setAction";
@@ -39,18 +38,23 @@ export const applyDamage = (
 	const toEntityActionComponent = toEntity.getComponent(CAction);
 	const toEntityDirectionComponent = toEntity.getComponent(CDirection);
 	const toEntityTimersComponent = toEntity.getComponent(CTimers);
-	const toEntityHitboxComponent = toEntity.getComponent(CHitbox);
+
+	const toEntityHitboxEntities = toEntity.getRelatedEntities("hitboxes");
 
 	const hasDyingAction = toEntityActionComponent.availableActions.includes("dying");
 
 	if (hasDyingAction) {
-		toEntityHitboxComponent.body.isTrigger = true;
+		toEntityHitboxEntities.forEach(hitboxEntity => {
+			const hitboxComponent = hitboxEntity.getComponent(CHitbox);
 
-		if (toEntity.matchesArchetype(AProjectile)) {
-			const projectileIsActiveComponent = toEntity.getComponent(CProjectileIsActive);
+			hitboxComponent.body.isTrigger = true;
 
-			projectileIsActiveComponent.projectileIsActive = false;
-		}
+			if (hitboxEntity.hasComponent(CHitboxIsActive)) {
+				const hitboxIsActiveComponent = hitboxEntity.getComponent(CHitboxIsActive);
+
+				hitboxIsActiveComponent.hitboxIsActive = false;
+			}
+		});
 
 		setAction(
 			toEntity,

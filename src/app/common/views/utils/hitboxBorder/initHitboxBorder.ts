@@ -1,31 +1,50 @@
-import { appManager } from "@root/app/domains/app/appManager.singleton";
 import { TCoordinates } from "@root/app/common/types/coordinates.types";
+import { TOffset } from "@root/app/common/types/offset.types";
 import { TPoint } from "@root/app/common/types/point.type";
+import { appManager } from "@root/app/domains/app/appManager.singleton";
+import { THitboxType } from "@root/app/domains/hitbox/types/hitbox.types";
 import { Graphics } from "pixi.js";
-import { ENTITIES_CENTER_OFFSETS } from "../../constants/views.constants";
 
+/**
+ * Initializes a hitbox border.
+ */
 export const initHitboxBorder = (
-	hitboxName: string,
-	bounds: TPoint[],
+	name: string,
+	type: THitboxType,
 	coordinates: TCoordinates,
+	offset: TOffset,
+	bounds: TPoint[],
 ) => {
+
 	const hitboxBorder = new Graphics();
 
 	hitboxBorder.poly(bounds);
 
+	let color: number | null = null;
+
+	if (type === "damage") {
+		color = 0xff0000;
+	} else if (type === "motion") {
+		color = 0xffff00;
+	}
+
+	if (!color) {
+		throw new Error(`Missing color for type "${type}".`);
+	}
+
 	hitboxBorder
 		.stroke({
 			width:     2,
-			color:     0xfe7777,
+			color:     color,
 			alignment: 1,
 		});
 
-	const label = `${hitboxName}.hitboxBorder`;
+	const label = `${name}.hitboxBorder`;
 	hitboxBorder.label = label;
 	
-	const centerOffset = ENTITIES_CENTER_OFFSETS[label];
-	hitboxBorder.x = coordinates.x + centerOffset.x;
-	hitboxBorder.y = coordinates.y + centerOffset.y;
+	hitboxBorder.x = coordinates.x + offset.x;
+	hitboxBorder.y = coordinates.y + offset.y;
+
 	appManager.app.stage.addChild(hitboxBorder);
 
 	return hitboxBorder;

@@ -3,9 +3,10 @@ import { Entity } from "../entities/entity.models";
 import { entityManager } from "../entities/entityManager.singleton";
 import { createEntity } from "../entities/utils/createEntity";
 import { CRelation } from "./components/common/relation.component";
-import { CManyToMany } from "./components/manyToMany.component";
-import { COneToMany } from "./components/oneToMany.component";
-import { COneToOne } from "./components/oneToOne.component";
+import { CManyToMany } from "./components/manyToMany/manyToMany.component";
+import { CMustCascadeDelete } from "./components/mustCascadeDelete/mustCascadeDelete.component";
+import { COneToMany } from "./components/oneToMany/oneToMany.component";
+import { COneToOne } from "./components/oneToOne/oneToOne.component";
 import { TAnyRelation, TManyToManyRelation, TMultiplicity, TOneToManyRelation, TOneToOneRelation, TRelationValue } from "./types/relation.types";
 
 class RelationsManager {
@@ -56,6 +57,7 @@ class RelationsManager {
 			"relation",
 			[
 				relationComponent,
+				new CMustCascadeDelete(relation.mustCascadeDelete),
 			],
 		);
 	}
@@ -100,9 +102,12 @@ class RelationsManager {
 			return (value as TRelationValue<"many">).length !== undefined;
 		};
 
-		for (let i = 0; i < this.relations.length; i++) {
-			const relation = this.relations[i];
+		const relationsOfEntity = this.getRelationsOfEntity(entity);
+
+		for (let i = 0; i < relationsOfEntity.length; i++) {
+			const relation = relationsOfEntity[i];
 			const relationComponent = relation.getComponent(CRelation);
+			const mustCascadeDeleteComponent = relation.getComponent(CMustCascadeDelete);
 
 			const valueA = relationComponent.relation.a.value;
 			const valueB = relationComponent.relation.b.value;
@@ -111,6 +116,30 @@ class RelationsManager {
 			const valueBIsList = getIsList(valueB);
 
 			// delete subscriptions of the entity to the relation
+
+			/**
+			 * Returns whether the entity is in the relation value.
+			 */
+			const getEntityIsInValue = (
+				entity: Entity,
+				value: Entity | Entity[],
+			) => {
+				const isList = getIsList(value);
+				let entityIsInValue = false;
+
+				if (isList) {
+					const index = value.indexOf(entity);
+					if (index > -1) {
+						entityIsInValue = true;
+					}
+				} else if (value === entity) {
+					entityIsInValue = true;
+				}
+
+				return entityIsInValue;
+			};
+
+			const entityIsParent = getEntityIsInValue(entity, valueA);
 
 			/**
 			 * Removes an entity from a list of entities.
@@ -139,6 +168,16 @@ class RelationsManager {
 			) {
 				const index = entityManager.entities.indexOf(relation);
 				entityManager.entities.splice(index, 1);
+			}
+
+			// cascade delete
+
+			if (entityIsParent && mustCascadeDeleteComponent.mustCascadeDelete) {
+				if (valueBIsList) {
+					valueB.forEach(item => item.destroy());
+				} else {
+					valueB.destroy();
+				}
 			}
 		}
 	}

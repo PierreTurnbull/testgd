@@ -1,4 +1,4 @@
-import { playerArchetype } from "@root/app/common/archetypes/player/player.archetype";
+import { actorArchetype } from "@root/app/common/archetypes/actor/actor.archetype";
 import { CAction } from "@root/app/common/components/action/action.component";
 import { CBorderView } from "@root/app/common/components/border/border.component";
 import { CCenterView } from "@root/app/common/components/centerView/centerView.component";
@@ -6,75 +6,38 @@ import { CDamage } from "@root/app/common/components/damage/damage.component";
 import { CDirection } from "@root/app/common/components/direction/direction.component";
 import { TDirection } from "@root/app/common/components/direction/types/direction.types";
 import { CHealth } from "@root/app/common/components/health/health.component";
-import { CHitbox } from "@root/app/common/components/hitbox/hitbox.component";
-import { CHitboxView } from "@root/app/common/components/hitboxView/hitboxView.component";
 import { CMuddyBuddy } from "@root/app/common/components/identity/muddyBuddy/muddyBuddy.component";
 import { CProjectile } from "@root/app/common/components/identity/projectile/projectile.component";
 import { CKeyboard } from "@root/app/common/components/keyboard/keyboard.component";
+import { CLocation } from "@root/app/common/components/location/location.component";
 import { CVelocity } from "@root/app/common/components/velocity/velocity.component";
 import { CView } from "@root/app/common/components/view/view.component";
 import { createEntity } from "@root/app/common/entities/utils/createEntity";
-import { HITBOX_BOUNDS } from "@root/app/common/hitboxes/constants/hitboxes.constants";
+import { relationsManager } from "@root/app/common/relations/relationsManager.singleton";
 import { TCoordinates } from "@root/app/common/types/coordinates.types";
-import { TPoint } from "@root/app/common/types/point.type";
 import { ENTITIES_CENTER_OFFSETS } from "@root/app/common/views/constants/views.constants";
 import { initAnimatedSprite } from "@root/app/common/views/utils/animatedSprite/initAnimatedSprite";
 import { initBorder } from "@root/app/common/views/utils/border/initBorder";
 import { initCenter } from "@root/app/common/views/utils/center/initCenter";
-import { initHitboxBorder } from "@root/app/common/views/utils/hitboxBorder/initHitboxBorder";
-import { collisionsManager } from "@root/app/core/collisionsManager/collisionsManager.singletons";
 import { configManager } from "@root/app/core/configManager/configManager.singletons";
 import { MUDDYBUDDY_ROLLING_SPEED } from "@root/app/domains/muddyBuddy/constants/muddyBuddy.constants";
 import { Graphics } from "pixi.js";
-import { CCollisionCandidates } from "../../projectile/components/collisionCandidates/collisionCandidates.component";
-import { CLocation } from "@root/app/common/components/location/location.component";
+import { TRectangleHitboxSettings } from "../../hitbox/types/hitbox.types";
+import { createHitbox } from "../../hitbox/utils/createHitbox";
 import { CMustBeDestroyedOnCollision } from "../../projectile/components/mustBeDestroyedOnCollision/mustBeDestroyedOnCollision.component";
-import { CProjectileIsActive } from "../../projectile/components/projectileIsActive/projectileIsActive.component";
+import { playerArchetype } from "@root/app/common/archetypes/player/player.archetype";
 
 export const createMuddyBuddy = (
 	initialCoordinates: TCoordinates,
 	initialDirection: TDirection = "down",
 ) => {
-	const centerOffset = ENTITIES_CENTER_OFFSETS["characters.muddyBuddy.hitboxBorder"];
-	const hitboxCoordinates: TCoordinates = {
-		x: initialCoordinates.x + centerOffset.x,
-		y: initialCoordinates.y + centerOffset.y,
-	};
-	const hitboxPoints: TPoint[] = [
-		{
-			x: 0,
-			y: 0,
-		},
-		{
-			x: HITBOX_BOUNDS["characters.muddyBuddy"].w,
-			y: 0,
-		},
-		{
-			x: HITBOX_BOUNDS["characters.muddyBuddy"].w,
-			y: HITBOX_BOUNDS["characters.muddyBuddy"].h,
-		},
-		{
-			x: 0,
-			y: HITBOX_BOUNDS["characters.muddyBuddy"].h,
-		},
-	];
-	const hitboxBody = collisionsManager.system.createPolygon(
-		hitboxCoordinates,
-		hitboxPoints,
-	);
-
 	const animatedSprite = initAnimatedSprite(`characters.muddyBuddy.standing.${initialDirection}`, initialCoordinates);
 
 	let border: Graphics | null = null;
-	let hitboxBorder: Graphics | null = null;
 	let center: Graphics | null = null;
 
 	if (configManager.config.debug.showsEntityBorders) {
 		border = initBorder(animatedSprite, initialCoordinates);
-	}
-
-	if (configManager.config.debug.showsEntityHitbox) {
-		hitboxBorder = initHitboxBorder("characters.muddyBuddy", hitboxPoints, initialCoordinates);
 	}
 
 	if (configManager.config.debug.showsEntityCenter) {
@@ -89,7 +52,7 @@ export const createMuddyBuddy = (
 	const currentAction = "standing";
 
 
-	createEntity(
+	const muddyBuddyEntity = createEntity(
 		"muddyBuddy",
 		[
 			// identity
@@ -102,18 +65,72 @@ export const createMuddyBuddy = (
 			new CDirection(initialDirection),
 			new CVelocity(actionVelocities),
 			new CAction(currentAction, availableActions),
-			new CHitbox(hitboxBody, "characters.muddyBuddy.hitboxBorder"),
 			new CHealth(1),
-			new CCollisionCandidates([playerArchetype]),
 			new CMustBeDestroyedOnCollision(false),
-			new CProjectileIsActive(false),
 			new CDamage(1),
 			
 			// views
 			new CView(animatedSprite),
 			new CBorderView(border),
-			new CHitboxView(hitboxBorder),
 			new CCenterView(center),
 		],
+	);
+
+	relationsManager.createRelation({
+		a: {
+			key:   "parent",
+			value: muddyBuddyEntity, 
+		},
+		b: {
+			key:   "hitboxes",
+			value: [], 
+		},
+		mustCascadeDelete: true,
+	});
+
+	const damageHitboxCenterOffset = ENTITIES_CENTER_OFFSETS["characters.muddyBuddy.damage.hitboxBorder"];
+	if (!damageHitboxCenterOffset) {
+		throw new Error("Missing center offset for muddyBuddy.");
+	}
+
+	const motionHitboxCenterOffset = ENTITIES_CENTER_OFFSETS["characters.muddyBuddy.motion.hitboxBorder"];
+	if (!motionHitboxCenterOffset) {
+		throw new Error("Missing center offset for muddyBuddy.");
+	}
+
+	const baseHitboxSettings: Pick<TRectangleHitboxSettings, "shape"> = {
+		shape: "rectangle",
+	};
+
+	const motionHitboxSettings: TRectangleHitboxSettings = {
+		...baseHitboxSettings,
+		name:                "characters.muddyBuddy.motion",
+		type:                "motion",
+		collisionCandidates: [actorArchetype],
+		isActive:            true,
+		initialCoordinates:  initialCoordinates,
+		offset:              damageHitboxCenterOffset,
+	};
+
+	const damageHitboxSettings: TRectangleHitboxSettings = {
+		...baseHitboxSettings,
+		name:                "characters.muddyBuddy.damage",
+		type:                "damage",
+		collisionCandidates: [playerArchetype],
+		isActive:            false,
+		initialCoordinates:  initialCoordinates,
+		offset:              motionHitboxCenterOffset,
+	};
+
+	// motion hitbox
+	createHitbox(
+		muddyBuddyEntity,
+		motionHitboxSettings,
+	);
+
+	// damage hitbox
+	createHitbox(
+		muddyBuddyEntity,
+		damageHitboxSettings,
 	);
 };

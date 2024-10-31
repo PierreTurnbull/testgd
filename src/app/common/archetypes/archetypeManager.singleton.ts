@@ -9,6 +9,7 @@ import { playerArchetype } from "./player/player.archetype";
 import { projectileArchetype } from "./projectile/projectile.archetype";
 import { mortalArchetype } from "./mortal/mortal.archetype";
 import { damagerArchetype } from "./damager/damager.archetype";
+import { hitboxArchetype } from "./hitbox/hitbox.archetype";
 
 class ArchetypeManager {
 	archetypes: Archetype[] = [
@@ -21,6 +22,7 @@ class ArchetypeManager {
 		projectileArchetype,
 		mortalArchetype,
 		damagerArchetype,
+		hitboxArchetype,
 	];
 
 	getArchetype<TArchetype extends Archetype>(archetypeClass: ConstructorOf<TArchetype>) {

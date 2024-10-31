@@ -9,7 +9,8 @@ export const initCharacters = () => {
 	// createMuddyBuddy({ x: 300, y: 150 }, "downRight");
 	// createMuddyBuddy({ x: 490, y: 150 }, "upLeft");
 	// createMuddyBuddy({ x: 540, y: 190 }, "upLeft");
-	createMuddyBuddy({ x: 490, y: 350 }, "left");
+	createMuddyBuddy({ x: 310, y: 220 }, "left");
+	// createMuddyBuddy({ x: 350, y: 350 }, "left");
 	
 	// createMuddyBuddy({ x: Math.random() * CANVAS_WIDTH, y: Math.random() * CANVAS_HEIGHT }, DIRECTIONS[Math.floor(Math.random() * 8)]);
 	// createMuddyBuddy({ x: Math.random() * CANVAS_WIDTH, y: Math.random() * CANVAS_HEIGHT }, DIRECTIONS[Math.floor(Math.random() * 8)]);

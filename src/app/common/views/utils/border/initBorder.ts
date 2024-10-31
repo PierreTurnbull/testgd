@@ -15,7 +15,7 @@ export const initBorder = (
 		.rect(0, 0, animatedSprite.width, animatedSprite.height)
 		.stroke({
 			width:     2,
-			color:     0xfeeb77,
+			color:     0xaaaaaa,
 			alignment: 1,
 		});
 	const label = `${animatedSprite.label}.border`;
