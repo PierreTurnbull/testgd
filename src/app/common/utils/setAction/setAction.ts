@@ -5,16 +5,16 @@ import { CLocation } from "@root/app/common/components/location/location.compone
 import { CView } from "@root/app/common/components/view/view.component";
 import { replaceAnimatedSprite } from "@root/app/common/views/utils/animatedSprite/replaceAnimatedSprite";
 import { configManager } from "@root/app/core/configManager/configManager.singletons";
+import { CHitbox } from "@root/app/domains/hitbox/components/hitbox/hitbox.component";
+import { HITBOX_BOUNDS } from "@root/app/domains/hitbox/constants/hitboxes.constants";
 import { AnimatedSprite } from "pixi.js";
 import { CBorderView } from "../../components/border/border.component";
 import { CCenterView } from "../../components/centerView/centerView.component";
+import { TPoint } from "../../types/point.type";
 import { replaceBorder } from "../../views/utils/border/replaceBorder";
 import { replaceCenterView } from "../../views/utils/center/replaceCenter";
 import { replaceHitboxBorder } from "../../views/utils/hitboxBorder/replaceHitboxBorder";
-import { CHitboxView } from "@root/app/domains/hitbox/components/hitboxView/hitboxView.component";
-import { CHitbox } from "@root/app/domains/hitbox/components/hitbox/hitbox.component";
-import { HITBOX_BOUNDS } from "@root/app/domains/hitbox/constants/hitboxes.constants";
-import { TPoint } from "../../types/point.type";
+import { CHitboxIsActive } from "@root/app/domains/hitbox/components/hitboxIsActive/hitboxIsActive.component";
 
 type TOptions = {
 	onLoop?:        AnimatedSprite["onLoop"] | null,
@@ -92,6 +92,24 @@ export const setAction = (
 					bounds,
 				);
 			});
+	}
+
+	if (actorEntity.name === "muddyBuddy") {
+		const hitboxEntities = actorEntity.getRelatedEntities("hitboxes");
+
+		const damageHitboxEntity = hitboxEntities.find(hitboxEntity => {
+			const hitboxComponent = hitboxEntity.getComponent(CHitbox);
+
+			return hitboxComponent.type === "damage";
+		});
+
+		if (!damageHitboxEntity) {
+			throw new Error("Missing damage hitbox.");
+		}
+
+		const hitboxIsActiveComponent = damageHitboxEntity.getComponent(CHitboxIsActive);
+
+		hitboxIsActiveComponent.hitboxIsActive = action === "rolling";
 	}
 
 	if (options.onLoop) {

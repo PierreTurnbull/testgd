@@ -23,7 +23,7 @@ export class CAction extends Component {
 	}
 	set currentAction(value) {
 		if (!this.availableActions.includes(value)) throw new Error(`Action ${value} not available.`);
-		
+
 		this._currentAction = value;
 		this._updatedAt = new Date().getTime();
 	}

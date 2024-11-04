@@ -98,4 +98,6 @@ export const createPlayer = (
 		playerEntity,
 		hitboxSettings,
 	);
+
+	return playerEntity;
 };

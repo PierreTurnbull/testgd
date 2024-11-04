@@ -15,7 +15,9 @@
 		"render:spritesheets": "node blender/scripts/packageSpritesheets/packageSpritesheets.js",
 		"render:run": "blender -b blender/testgd.blend -P blender/scripts/render/main.py",
 		"render:export": "node blender/scripts/exportAssets/exportAssets.js",
-		"render:clean": "rm -rf blender/tmp"
+		"render:clean": "rm -rf blender/tmp",
+		"test": "vitest",
+		"test:cov": "vitest --coverage"
 	},
 	"devDependencies": {
 		"@eslint/js": "^9.12.0",
@@ -25,14 +27,17 @@
 		"@types/node": "^22.7.2",
 		"@typescript-eslint/eslint-plugin": "^8.7.0",
 		"@typescript-eslint/parser": "^8.7.0",
+		"@vitest/coverage-v8": "^2.1.4",
 		"eslint": "^9.12.0",
 		"image-size": "^1.1.1",
+		"jsdom": "^25.0.1",
 		"nodemon": "^3.1.7",
 		"ts-node": "^10.9.2",
 		"tslib": "^2.7.0",
 		"typescript": "^5.6.2",
 		"typescript-eslint": "^8.7.0",
-		"vite": "^5.4.8"
+		"vite": "^5.4.8",
+		"vitest": "^2.1.4"
 	},
 	"dependencies": {
 		"detect-collisions": "^9.17.0",

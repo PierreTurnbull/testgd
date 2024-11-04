@@ -133,4 +133,6 @@ export const createMuddyBuddy = (
 		muddyBuddyEntity,
 		damageHitboxSettings,
 	);
+
+	return muddyBuddyEntity;
 };

@@ -10,6 +10,8 @@ import { AMortal } from "../../../common/archetypes/mortal/mortal.archetype";
 import { CAction } from "../../../common/components/action/action.component";
 import { applyDamage } from "../../../common/utils/applyDamage/applyDamage";
 import { CHitbox } from "../../../domains/hitbox/components/hitbox/hitbox.component";
+import { getEntityFromCollider } from "./utils/getEntityFromCollider/getEntityFromCollider";
+import { hasParentEntity } from "./utils/hasParentEntity/hasParentEntity";
 
 /**
  * Finds the entity from which the damage originates.
@@ -42,14 +44,14 @@ export const applyDamageCollisions = () => {
 
 		collisionsManager.system.checkOne(hitboxComponent.body, (response) => {
 			// prevent processing the hitbox if it was destroyed during a previous loop turn
-			if (!collisionsManager.hasParentEntity(response.a)) {
+			if (!hasParentEntity(response.a)) {
 				return;
 			}
 
 			// get the damager and victim hitbox entities
 
-			const damagerHitboxEntity = collisionsManager.getEntityFromCollider(response.a);
-			const victimHitboxEntity = collisionsManager.getEntityFromCollider(response.b);
+			const damagerHitboxEntity = getEntityFromCollider(response.a);
+			const victimHitboxEntity = getEntityFromCollider(response.b);
 
 			// reset the collision response
 

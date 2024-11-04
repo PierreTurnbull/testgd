@@ -1,4 +1,4 @@
-import { muddyBuddyArchetype } from "@root/app/common/archetypes/muddyBuddy/muddyBuddy.archetype";
+import { PROJECTILE_DEFAULT_SETTINGS } from "@root/app/domains/projectile/constants/projectile.constants";
 import { TProjectileSettings } from "@root/app/domains/projectile/types/projectile.types";
 import { createProjectile } from "@root/app/domains/projectile/utils/createProjectile";
 import { AnimatedSprite } from "pixi.js";
@@ -11,9 +11,6 @@ import { CLocation } from "../../../common/components/location/location.componen
 import { CVelocity } from "../../../common/components/velocity/velocity.component";
 import { setAction } from "../../../common/utils/setAction/setAction";
 import { getRequestedDirection } from "./utils/getRequestedDirection";
-import { PROJECTILE_DEFAULT_SETTINGS } from "@root/app/domains/projectile/constants/projectile.constants";
-import { CHitbox } from "@root/app/domains/hitbox/components/hitbox/hitbox.component";
-import { CHitboxIsActive } from "@root/app/domains/hitbox/components/hitboxIsActive/hitboxIsActive.component";
 
 const getAttackingIsAllowed = (currentAction: CAction["currentAction"]) => {
 	const attackingIsAllowed = (
@@ -141,24 +138,6 @@ export function translateInputs() {
 		if (!nextAction) continue;
 
 		velocityComponent.velocity = velocityComponent.actionVelocities[nextAction] || 0;
-
-		if (actorEntity.name === "muddyBuddy") {
-			const hitboxEntities = actorEntity.getRelatedEntities("hitboxes");
-
-			const damageHitboxEntity = hitboxEntities.find(hitboxEntity => {
-				const hitboxComponent = hitboxEntity.getComponent(CHitbox);
-
-				return hitboxComponent.type === "damage";
-			});
-
-			if (!damageHitboxEntity) {
-				throw new Error("Missing damage hitbox.");
-			}
-
-			const hitboxIsActiveComponent = damageHitboxEntity.getComponent(CHitboxIsActive);
-
-			hitboxIsActiveComponent.hitboxIsActive = nextAction === "rolling";
-		}
 
 		setAction(
 			actorEntity,
