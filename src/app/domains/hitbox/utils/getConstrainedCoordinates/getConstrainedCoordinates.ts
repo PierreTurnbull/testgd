@@ -1,10 +1,10 @@
 import { collisionsManager } from "@root/app/core/collisionsManager/collisionsManager.singletons";
-import { Entity } from "../../../common/entities/entity.models";
-import { TCoordinates } from "../../../common/types/coordinates.types";
-import { getOffsetCoordinates } from "../../../common/utils/getOffsetCoordinates/getOffsetCoordinates";
-import { CHitbox } from "../components/hitbox/hitbox.component";
-import { CHitboxOffset } from "../components/hitboxOffset/hitboxOffset.component";
-import { updateHitboxPosition } from "./updateHitboxPosition";
+import { Entity } from "../../../../common/entities/entity.models";
+import { TCoordinates } from "../../../../common/types/coordinates.types";
+import { getOffsetCoordinates } from "../../../../common/utils/getOffsetCoordinates/getOffsetCoordinates";
+import { CHitbox } from "../../components/hitbox/hitbox.component";
+import { CHitboxOffset } from "../../components/hitboxOffset/hitboxOffset.component";
+import { updateHitboxPosition } from "../updateHitboxPosition";
 
 /**
  * Returns constrained coordinates. Coordinates are constrained based on the hitboxes of other entities.
@@ -18,16 +18,16 @@ export const getConstrainedCoordinates = (
 		x: nextCoordinates.x,
 		y: nextCoordinates.y,
 	};
-
+	
 	hitboxEntities.forEach(hitboxEntity => {
 		const hitboxComponent = hitboxEntity.getComponent(CHitbox);
 		const hitboxOffsetComponent = hitboxEntity.getComponent(CHitboxOffset);
-
+		
 		const prevCoordinates: TCoordinates = {
 			x: hitboxComponent.body.x,
 			y: hitboxComponent.body.y,
 		};
-
+		
 		const centeredCoordinates = getOffsetCoordinates(constrainedNextCoordinates, hitboxOffsetComponent.offset);
 
 		updateHitboxPosition(hitboxComponent, centeredCoordinates);

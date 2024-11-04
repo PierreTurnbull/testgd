@@ -24,6 +24,7 @@ export const initBorder = (
 	const centerOffset = ENTITIES_CENTER_OFFSETS[trimDirection(label)];
 	border.x = coordinates.x + centerOffset.x;
 	border.y = coordinates.y + centerOffset.y;
+
 	appManager.app.stage.addChild(border);
 
 	return border;

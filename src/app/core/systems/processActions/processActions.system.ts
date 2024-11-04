@@ -5,7 +5,7 @@ import { CAction } from "../../../common/components/action/action.component";
 import { CDirection } from "../../../common/components/direction/direction.component";
 import { CLocation } from "../../../common/components/location/location.component";
 import { CVelocity } from "../../../common/components/velocity/velocity.component";
-import { getConstrainedCoordinates } from "../../../domains/hitbox/utils/getConstrainedCoordinates";
+import { getConstrainedCoordinates } from "../../../domains/hitbox/utils/getConstrainedCoordinates/getConstrainedCoordinates";
 import { applyNextCoordinates } from "../../../common/utils/applyNextCoordinates/applyNextCoordinates";
 import { getNextCoordinates } from "../../../common/utils/getNextCoordinates/getNextCoordinates";
 

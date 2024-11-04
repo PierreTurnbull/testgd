@@ -7,14 +7,10 @@ import { assetsManager } from "@root/app/core/assetsManager/assetsManager.single
 import { translateInputs } from "@root/app/core/systems/translateInputs/translateInputs.system";
 import { createMuddyBuddy } from "@root/app/domains/muddyBuddy/utils/createMuddyBuddy";
 import { createPlayer } from "@root/app/domains/player/utils/createPlayer";
-import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
+import { afterEach, beforeEach, describe, expect, test } from "vitest";
 
 describe("translateInputs", async () => {
 	await assetsManager.loadSpritesheets();
-
-	beforeEach(async () => {
-		vi.resetAllMocks();
-	});
 
 	const a = Object.entries({
 		player:     createPlayer,
