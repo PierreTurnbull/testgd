@@ -96,7 +96,7 @@ export const applyDamageCollisions = () => {
 			if (victimOriginEntity.hasComponent(CAction)) {
 				const victimActionComponent = victimOriginEntity.getComponent(CAction);
 
-				if (victimActionComponent.currentAction === "dead" || victimActionComponent.currentAction === "dying") {
+				if (victimActionComponent.currentAction === "beingDead" || victimActionComponent.currentAction === "dying") {
 					return;
 				}
 			}

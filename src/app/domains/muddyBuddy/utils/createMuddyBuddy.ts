@@ -48,7 +48,7 @@ export const createMuddyBuddy = (
 		"rolling": MUDDYBUDDY_ROLLING_SPEED,
 	};
 
-	const availableActions = ["standing", "rolling", "dying", "dead"];
+	const availableActions = ["standing", "rolling", "dying", "beingDead"];
 	const currentAction = "standing";
 
 

@@ -78,7 +78,7 @@ export function translateInputs() {
 
 		const currentAction = actionComponent.currentAction;
 
-		if (currentAction === "dying" || currentAction === "dead") {
+		if (currentAction === "dying" || currentAction === "beingDead") {
 			continue;
 		}
 

@@ -62,7 +62,7 @@ export const applyDamage = (
 			toEntityDirectionComponent.direction,
 			{
 				onComplete: () => {
-					setAction(toEntity, "dead", toEntityDirectionComponent.direction);
+					setAction(toEntity, "beingDead", toEntityDirectionComponent.direction);
 					const id = setTimeout(() => {
 						toEntity.destroy();
 					}, MUDDY_BUDDY_DESTROY_DELAY);

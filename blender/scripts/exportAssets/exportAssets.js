@@ -15,6 +15,10 @@ const exportAssets = () => {
 		const name = keys[1]
 		const action = keys[2]
 
+		if (!projection) {
+			return true
+		}
+
 		if (
 			projection[name] !== undefined &&
 			(
@@ -22,14 +26,14 @@ const exportAssets = () => {
 				projection[name].includes(action)
 			)
 		) {
-			return false
+			return true
 		}
 
-		return true
+		return false
 	}
 
 	const spritesheetsDatasToKeep = existingSpritesheetsDatas
-		.filter(getWillBeReplaced)
+		.filter(item => !getWillBeReplaced(item))
 
 	const spritesheetsDatas = spritesheetsDatasToKeep
 		.concat(newSpritesheetsDatas)

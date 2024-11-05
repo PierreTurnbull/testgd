@@ -85,11 +85,11 @@ describe("translateInputs", async () => {
 					});
 				}
 
-				if (AVAILABLE_ACTIONS[entityName].includes("dead")) {
-					test("Initial action: dead. The character do not start standing", () => {
-						actionComponent.currentAction = "dead";
+				if (AVAILABLE_ACTIONS[entityName].includes("beingDead")) {
+					test("Initial action: beingDead. The character do not start standing", () => {
+						actionComponent.currentAction = "beingDead";
 						translateInputs();
-						expect(actionComponent.currentAction).toBe("dead");
+						expect(actionComponent.currentAction).toBe("beingDead");
 						expect(directionComponent.direction).toBe("down");
 					});
 				}
@@ -146,11 +146,11 @@ describe("translateInputs", async () => {
 					});
 				}
 
-				if (AVAILABLE_ACTIONS[entityName].includes("dead")) {
-					test("Initial action: dead. The character do not start running", () => {
-						actionComponent.currentAction = "dead";
+				if (AVAILABLE_ACTIONS[entityName].includes("beingDead")) {
+					test("Initial action: beingDead. The character do not start running", () => {
+						actionComponent.currentAction = "beingDead";
 						translateInputs();
-						expect(actionComponent.currentAction).toBe("dead");
+						expect(actionComponent.currentAction).toBe("beingDead");
 						expect(directionComponent.direction).toBe("down");
 					});
 				}
@@ -207,11 +207,11 @@ describe("translateInputs", async () => {
 					});
 				}
 
-				if (AVAILABLE_ACTIONS[entityName].includes("dead")) {
-					test("Initial action: dead. The character do not start rolling", () => {
-						actionComponent.currentAction = "dead";
+				if (AVAILABLE_ACTIONS[entityName].includes("beingDead")) {
+					test("Initial action: beingDead. The character do not start rolling", () => {
+						actionComponent.currentAction = "beingDead";
 						translateInputs();
-						expect(actionComponent.currentAction).toBe("dead");
+						expect(actionComponent.currentAction).toBe("beingDead");
 						expect(directionComponent.direction).toBe("down");
 					});
 				}
@@ -292,11 +292,11 @@ describe("translateInputs", async () => {
 					});
 				}
 
-				if (AVAILABLE_ACTIONS[entityName].includes("dead")) {
-					test("Initial action: dead. The character do not start attacking", () => {
-						actionComponent.currentAction = "dead";
+				if (AVAILABLE_ACTIONS[entityName].includes("beingDead")) {
+					test("Initial action: beingDead. The character do not start attacking", () => {
+						actionComponent.currentAction = "beingDead";
 						translateInputs();
-						expect(actionComponent.currentAction).toBe("dead");
+						expect(actionComponent.currentAction).toBe("beingDead");
 						expect(directionComponent.direction).toBe("down");
 					});
 				}
