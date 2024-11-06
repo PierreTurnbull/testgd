@@ -1,6 +1,6 @@
-import { appManager } from "@root/app/domains/app/appManager.singleton";
 import { TCoordinates } from "@root/app/common/types/coordinates.types";
 import { trimDirection } from "@root/app/common/utils/trimDirection/trimDirection";
+import { worldManager } from "@root/app/core/worldManager/worldManager.singletons";
 import { AnimatedSprite, Graphics } from "pixi.js";
 import { ENTITIES_CENTER_OFFSETS } from "../../constants/views.constants";
 
@@ -25,7 +25,7 @@ export const initBorder = (
 	border.x = coordinates.x + centerOffset.x;
 	border.y = coordinates.y + centerOffset.y;
 
-	appManager.app.stage.addChild(border);
+	worldManager.world.addChild(border);
 
 	return border;
 };

@@ -1,6 +1,6 @@
-import { appManager } from "@root/app/domains/app/appManager.singleton";
 import { TCoordinates } from "@root/app/common/types/coordinates.types";
 import { updateViewContainerCoordinates } from "@root/app/common/utils/updateViewContainerCoordinates/updateViewContainerCoordinates";
+import { worldManager } from "@root/app/core/worldManager/worldManager.singletons";
 import { Graphics } from "pixi.js";
 
 export const initCenter = (
@@ -26,7 +26,7 @@ export const initCenter = (
 	const label = `${name}.center`;
 	center.label = label;
 	updateViewContainerCoordinates(center, coordinates);
-	appManager.app.stage.addChild(center);
+	worldManager.world.addChild(center);
 
 	return center;
 };

@@ -1,8 +1,8 @@
-import { appManager } from "@root/app/domains/app/appManager.singleton";
 import { SCALE_FACTOR } from "@root/app/common/types/animatedSprites.types";
 import { TCoordinates } from "@root/app/common/types/coordinates.types";
 import { trimDirection } from "@root/app/common/utils/trimDirection/trimDirection";
 import { assetsManager } from "@root/app/core/assetsManager/assetsManager.singletons";
+import { worldManager } from "@root/app/core/worldManager/worldManager.singletons";
 import { AnimatedSprite } from "pixi.js";
 import { ANIMATION_SPEEDS, ENTITIES_CENTER_OFFSETS } from "../../constants/views.constants";
 
@@ -40,7 +40,7 @@ export const initAnimatedSprite = (
 	}
 	animatedSprite.x = coordinates.x + centerOffset.x;
 	animatedSprite.y = coordinates.y + centerOffset.y;
-	appManager.app.stage.addChild(animatedSprite);
+	worldManager.world.addChild(animatedSprite);
 
 	return animatedSprite;
 };

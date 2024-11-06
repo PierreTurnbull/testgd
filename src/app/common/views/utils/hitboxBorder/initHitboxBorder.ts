@@ -1,7 +1,7 @@
 import { TCoordinates } from "@root/app/common/types/coordinates.types";
 import { TOffset } from "@root/app/common/types/offset.types";
 import { TPoint } from "@root/app/common/types/point.type";
-import { appManager } from "@root/app/domains/app/appManager.singleton";
+import { worldManager } from "@root/app/core/worldManager/worldManager.singletons";
 import { THitboxType } from "@root/app/domains/hitbox/types/hitbox.types";
 import { Graphics } from "pixi.js";
 
@@ -45,7 +45,7 @@ export const initHitboxBorder = (
 	hitboxBorder.x = coordinates.x + offset.x;
 	hitboxBorder.y = coordinates.y + offset.y;
 
-	appManager.app.stage.addChild(hitboxBorder);
+	worldManager.world.addChild(hitboxBorder);
 
 	return hitboxBorder;
 };

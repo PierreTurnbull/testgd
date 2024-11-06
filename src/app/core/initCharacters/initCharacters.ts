@@ -4,12 +4,12 @@ import { CANVAS_HEIGHT, CANVAS_WIDTH } from "../constants/app.constants";
 import { DIRECTIONS } from "@root/app/common/constants/space.constants";
 
 export const initCharacters = () => {
-	createPlayer({ x: 400, y: 300 });
+	createPlayer({ x: 0, y: 0 });
 	// createMuddyBuddy({ x: 200, y: 200 }, "down");
 	// createMuddyBuddy({ x: 300, y: 150 }, "downRight");
 	// createMuddyBuddy({ x: 490, y: 150 }, "upLeft");
 	// createMuddyBuddy({ x: 540, y: 190 }, "upLeft");
-	createMuddyBuddy({ x: 310, y: 220 }, "left");
+	createMuddyBuddy({ x: 100, y: 100 }, "left");
 	// createMuddyBuddy({ x: 350, y: 350 }, "left");
 	
 	// createMuddyBuddy({ x: Math.random() * CANVAS_WIDTH, y: Math.random() * CANVAS_HEIGHT }, DIRECTIONS[Math.floor(Math.random() * 8)]);
