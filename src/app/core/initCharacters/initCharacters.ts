@@ -4,7 +4,7 @@ import { CANVAS_HEIGHT, CANVAS_WIDTH } from "../constants/app.constants";
 import { DIRECTIONS } from "@root/app/common/constants/space.constants";
 
 export const initCharacters = () => {
-	createPlayer({ x: 300, y: 300 });
+	createPlayer({ x: 400, y: 300 });
 	// createMuddyBuddy({ x: 200, y: 200 }, "down");
 	// createMuddyBuddy({ x: 300, y: 150 }, "downRight");
 	// createMuddyBuddy({ x: 490, y: 150 }, "upLeft");

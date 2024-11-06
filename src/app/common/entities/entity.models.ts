@@ -44,17 +44,14 @@ export class Entity {
 
 	/**
 	 * Removes a component based on its class.
-	 * @param componentClass 
 	 */
-	removeComponent(componentClass: typeof Component) {
+	removeComponent<TComponent extends Component>(componentClass: ConstructorOf<TComponent>) {
 		const index = this.components.findIndex(component => component instanceof componentClass);
 		this.components.splice(index, 1);
 	}
 
 	/**
 	 * Returns the component of the specified type.
-	 * @param componentClass 
-	 * @returns 
 	 */
 	getComponent<TComponent extends Component>(componentClass: ConstructorOf<TComponent>): TComponent {
 		const component = this.components.find(component => component instanceof componentClass);

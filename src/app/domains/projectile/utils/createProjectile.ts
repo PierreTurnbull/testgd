@@ -12,6 +12,7 @@ import { createHitbox } from "../../hitbox/utils/createHitbox";
 import { CMustBeDestroyedOnCollision } from "../components/mustBeDestroyedOnCollision/mustBeDestroyedOnCollision.component";
 import { TProjectileSettings } from "../types/projectile.types";
 import { ENTITIES_CENTER_OFFSETS } from "@root/app/common/views/constants/views.constants";
+import { CRelation } from "@root/app/common/relations/components/common/relation.component";
 
 export const createProjectile = (
 	parent: Entity,
@@ -21,7 +22,7 @@ export const createProjectile = (
 		"projectile",
 		[
 			// identity
-			new CProjectile(),
+			new CProjectile(settings.type),
 
 			// misc
 			new CDirection(),
@@ -32,17 +33,24 @@ export const createProjectile = (
 		],
 	);
 
-	relationsManager.createRelation({
-		a: {
-			key:   "shooter",
-			value: parent, 
-		},
-		b: {
-			key:   "projectile",
-			value: projectileEntity, 
-		},
-		mustCascadeDelete: false,
-	});
+	if (parent.hasRelation("projectiles")) {
+		const projectilesRelation = parent.getRelation("projectiles");
+		const relationComponent = projectilesRelation.getComponent(CRelation);
+
+		(relationComponent.relation.b.value as Entity[]).push(projectileEntity);
+	} else {
+		relationsManager.createRelation({
+			a: {
+				key:   "shooter",
+				value: parent, 
+			},
+			b: {
+				key:   "projectiles",
+				value: [projectileEntity], 
+			},
+			mustCascadeDelete: false,
+		});
+	}
 
 	relationsManager.createRelation({
 		a: {
@@ -83,6 +91,6 @@ export const createProjectile = (
 		const id = setTimeout(() => {
 			projectileEntity.destroy();
 		}, settings.lifeDuration);
-		timersComponent.setTimer(id);
+		timersComponent.addTimer(id);
 	}
 };

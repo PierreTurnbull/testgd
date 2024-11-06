@@ -25,7 +25,12 @@ export const initAnimatedSprite = (
 	if (!animationSpeed) throw new Error(`Missing animation speed for ${allDirectionsName}.`);
 	animatedSprite.animationSpeed = animationSpeed;
 	animatedSprite.label = name;
-	if (name.includes("attacking") || name.includes("dying") || name.includes("beingDead")) {
+	if (
+		name.includes("attacking") ||
+		name.includes("dying") ||
+		name.includes("beingDead") ||
+		name.includes("beingHit")
+	) {
 		animatedSprite.loop = false;
 	}
 

@@ -8,6 +8,9 @@ import { CVelocity } from "../../../common/components/velocity/velocity.componen
 import { getConstrainedCoordinates } from "../../../domains/hitbox/utils/getConstrainedCoordinates/getConstrainedCoordinates";
 import { applyNextCoordinates } from "../../../common/utils/applyNextCoordinates/applyNextCoordinates";
 import { getNextCoordinates } from "../../../common/utils/getNextCoordinates/getNextCoordinates";
+import { OPPOSITE_DIRECTIONS } from "@root/app/common/constants/space.constants";
+import { KNOCKBACK_SPEED } from "@root/app/common/constants/damage.constants";
+import { CKnockbackDirection } from "@root/app/common/components/knockbackDirection/knockbackDirection.component";
 
 /**
  * Applies effects based on the current actions of actors.
@@ -30,6 +33,26 @@ export function processActions(delta: Ticker) {
 				locationComponent.coordinates,
 				directionComponent.direction,
 				velocityComponent.velocity,
+			);
+
+			const constrainedNextCoordinates = getConstrainedCoordinates(
+				actorEntity,
+				nextCoordinates,
+			);
+
+			applyNextCoordinates(
+				actorEntity,
+				constrainedNextCoordinates,
+			);
+		} else if (actionComponent.currentAction === "beingHit") {
+			const knockbackDirectionComponent = actorEntity.getComponent(CKnockbackDirection);
+			const velocity = KNOCKBACK_SPEED * delta.deltaTime;
+
+			const nextCoordinates = getNextCoordinates(
+				delta,
+				locationComponent.coordinates,
+				knockbackDirectionComponent.direction,
+				velocity,
 			);
 
 			const constrainedNextCoordinates = getConstrainedCoordinates(

@@ -6,6 +6,7 @@ import { CHealth } from "@root/app/common/components/health/health.component";
 import { CUser } from "@root/app/common/components/identity/user/user.component";
 import { CKeyboard } from "@root/app/common/components/keyboard/keyboard.component";
 import { CLocation } from "@root/app/common/components/location/location.component";
+import { CPostHitInvincibility } from "@root/app/common/components/postHitInvincibility/postHitInvincibility.component";
 import { CVelocity } from "@root/app/common/components/velocity/velocity.component";
 import { CView } from "@root/app/common/components/view/view.component";
 import { AVAILABLE_ACTIONS } from "@root/app/common/constants/availableActions.constants";
@@ -21,7 +22,6 @@ import { PLAYER_RUNNING_SPEED } from "@root/app/domains/player/constants/player.
 import { Graphics } from "pixi.js";
 import { TRectangleHitboxSettings } from "../../hitbox/types/hitbox.types";
 import { createHitbox } from "../../hitbox/utils/createHitbox";
-import { actorArchetype } from "@root/app/common/archetypes/actor/actor.archetype";
 
 export const createPlayer = (
 	initialCoordinates: TCoordinates,
@@ -58,7 +58,8 @@ export const createPlayer = (
 			new CDirection(),
 			new CVelocity(actionVelocities),
 			new CAction(currentAction, availableActions),
-			new CHealth(1),
+			new CHealth(3),
+			new CPostHitInvincibility(),
 
 			// views
 			new CView(animatedSprite),
@@ -89,7 +90,7 @@ export const createPlayer = (
 		shape:               "rectangle",
 		initialCoordinates:  initialCoordinates,
 		name:                "characters.player.motion",
-		collisionCandidates: [actorArchetype],
+		collisionCandidates: [],
 		isActive:            true,
 		offset:              hitboxCenterOffset,
 	};

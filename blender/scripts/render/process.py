@@ -16,6 +16,8 @@ def processPlayer(actionsProjection):
 		render.renderPlayer("dying", 23)
 	if mustRenderAll or "beingDead" in actionsProjection:
 		render.renderPlayer("beingDead", 0)
+	if mustRenderAll or "beingHit" in actionsProjection:
+		render.renderPlayer("beingHit", 0)
 
 	prepare.preparePlayer.equipSword()
 	if mustRenderAll or "attacking" in actionsProjection:
@@ -34,3 +36,5 @@ def processMuddyBuddy(actionsProjection):
 		render.renderMuddyBuddy("dying", 7)
 	if mustRenderAll or "beingDead" in actionsProjection:
 		render.renderMuddyBuddy("beingDead", 0)
+	if mustRenderAll or "beingHit" in actionsProjection:
+		render.renderMuddyBuddy("beingHit", 0)

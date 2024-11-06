@@ -3,7 +3,7 @@ import { TDirection } from "@root/app/common/components/direction/types/directio
 import { TCoordinates } from "@root/app/common/types/coordinates.types";
 import { TDimensions } from "@root/app/common/types/dimensions.types";
 
-export type TProjectileType = "slash";
+export type TProjectileType = "slash" | "ram";
 
 export type TProjectileSettings = {
 	type:                       TProjectileType, // used to know the shape. slash -> quarter circle

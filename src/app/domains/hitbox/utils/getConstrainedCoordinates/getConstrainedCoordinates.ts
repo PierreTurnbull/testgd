@@ -5,6 +5,9 @@ import { getOffsetCoordinates } from "../../../../common/utils/getOffsetCoordina
 import { CHitbox } from "../../components/hitbox/hitbox.component";
 import { CHitboxOffset } from "../../components/hitboxOffset/hitboxOffset.component";
 import { updateHitboxPosition } from "../updateHitboxPosition";
+import { CCollisionCandidates } from "../../components/collisionCandidates/collisionCandidates.component";
+import { getEntityFromCollider } from "@root/app/core/systems/applyDamageCollisions/utils/getEntityFromCollider/getEntityFromCollider";
+import { findOriginEntity } from "@root/app/common/utils/findOriginEntity/findOriginEntity";
 
 /**
  * Returns constrained coordinates. Coordinates are constrained based on the hitboxes of other entities.
@@ -22,7 +25,8 @@ export const getConstrainedCoordinates = (
 	hitboxEntities.forEach(hitboxEntity => {
 		const hitboxComponent = hitboxEntity.getComponent(CHitbox);
 		const hitboxOffsetComponent = hitboxEntity.getComponent(CHitboxOffset);
-		
+		const collisionCandidatesComponent = hitboxEntity.getComponent(CCollisionCandidates);
+
 		const prevCoordinates: TCoordinates = {
 			x: hitboxComponent.body.x,
 			y: hitboxComponent.body.y,
@@ -33,6 +37,18 @@ export const getConstrainedCoordinates = (
 		updateHitboxPosition(hitboxComponent, centeredCoordinates);
 
 		collisionsManager.system.checkOne(hitboxComponent.body, (response) => {
+			const targetEntity = getEntityFromCollider(response.b);
+
+			const targetOriginEntity = findOriginEntity(targetEntity);
+
+			const targetIsCandidate = collisionCandidatesComponent.collisionCandidates.some(collisionCandidate => {
+				return collisionCandidate.entityMatchesArchetype(targetOriginEntity);
+			});
+
+			if (!targetIsCandidate) {
+				return;
+			}
+
 			if (response.a.isTrigger || response.b.isTrigger) {
 				return;
 			}

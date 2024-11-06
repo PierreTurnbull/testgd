@@ -26,6 +26,8 @@ import { TRectangleHitboxSettings } from "../../hitbox/types/hitbox.types";
 import { createHitbox } from "../../hitbox/utils/createHitbox";
 import { CMustBeDestroyedOnCollision } from "../../projectile/components/mustBeDestroyedOnCollision/mustBeDestroyedOnCollision.component";
 import { playerArchetype } from "@root/app/common/archetypes/player/player.archetype";
+import { CPostHitInvincibility } from "@root/app/common/components/postHitInvincibility/postHitInvincibility.component";
+import { AVAILABLE_ACTIONS } from "@root/app/common/constants/availableActions.constants";
 
 export const createMuddyBuddy = (
 	initialCoordinates: TCoordinates,
@@ -48,7 +50,7 @@ export const createMuddyBuddy = (
 		"rolling": MUDDYBUDDY_ROLLING_SPEED,
 	};
 
-	const availableActions = ["standing", "rolling", "dying", "beingDead"];
+	const availableActions = AVAILABLE_ACTIONS.muddyBuddy;
 	const currentAction = "standing";
 
 
@@ -57,7 +59,7 @@ export const createMuddyBuddy = (
 		[
 			// identity
 			new CMuddyBuddy(),
-			new CProjectile(),
+			new CProjectile("ram"),
 
 			// misc
 			new CKeyboard(),
@@ -65,9 +67,10 @@ export const createMuddyBuddy = (
 			new CDirection(initialDirection),
 			new CVelocity(actionVelocities),
 			new CAction(currentAction, availableActions),
-			new CHealth(1),
+			new CHealth(3),
 			new CMustBeDestroyedOnCollision(false),
 			new CDamage(1),
+			new CPostHitInvincibility(),
 			
 			// views
 			new CView(animatedSprite),
@@ -106,7 +109,7 @@ export const createMuddyBuddy = (
 		...baseHitboxSettings,
 		name:                "characters.muddyBuddy.motion",
 		type:                "motion",
-		collisionCandidates: [actorArchetype],
+		collisionCandidates: [],
 		isActive:            true,
 		initialCoordinates:  initialCoordinates,
 		offset:              damageHitboxCenterOffset,

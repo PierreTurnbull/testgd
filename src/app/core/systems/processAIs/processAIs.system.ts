@@ -29,11 +29,13 @@ export const processAIs = () => {
 			// }
 
 			if (directionComponent.direction === "down") {
-				// keyboardComponent.keyboard["KeyS"] = false;
-				// keyboardComponent.keyboard["KeyW"] = true;
-			} else {
-				keyboardComponent.keyboard["KeyS"] = true;
-				keyboardComponent.keyboard["KeyW"] = false;
+				keyboardComponent.keyboard = { KeyD: true };
+			} else if (directionComponent.direction === "right") {
+				keyboardComponent.keyboard = { KeyW: true };
+			} else if (directionComponent.direction === "left") {
+				keyboardComponent.keyboard = { KeyS: true };
+			} else if (directionComponent.direction === "up") {
+				keyboardComponent.keyboard = { KeyA: true };
 			}
 
 			// keyboardComponent.keyboard["KeyW"] = new Date().getTime() * muddyBuddyEntity.id % 2 === 0;

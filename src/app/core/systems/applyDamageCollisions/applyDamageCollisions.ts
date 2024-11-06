@@ -1,5 +1,5 @@
 import { AHitbox } from "@root/app/common/archetypes/hitbox/hitbox.archetype";
-import { Entity } from "@root/app/common/entities/entity.models";
+import { findOriginEntity } from "@root/app/common/utils/findOriginEntity/findOriginEntity";
 import { collisionsManager } from "@root/app/core/collisionsManager/collisionsManager.singletons";
 import { CCollisionCandidates } from "@root/app/domains/hitbox/components/collisionCandidates/collisionCandidates.component";
 import { CHitboxIsActive } from "@root/app/domains/hitbox/components/hitboxIsActive/hitboxIsActive.component";
@@ -12,22 +12,6 @@ import { applyDamage } from "../../../common/utils/applyDamage/applyDamage";
 import { CHitbox } from "../../../domains/hitbox/components/hitbox/hitbox.component";
 import { getEntityFromCollider } from "./utils/getEntityFromCollider/getEntityFromCollider";
 import { hasParentEntity } from "./utils/hasParentEntity/hasParentEntity";
-
-/**
- * Finds the entity from which the damage originates.
- */
-const findOrigin = (entity: Entity) => {
-	const hitboxParentEntity = entity.getRelatedEntity("parent");
-	let parentEntity: Entity | null = null;
-
-	if (hitboxParentEntity.name === "projectile") {
-		parentEntity = hitboxParentEntity.getRelatedEntity("shooter");
-	} else {
-		parentEntity = hitboxParentEntity;
-	}
-
-	return parentEntity;
-};
 
 /**
  * Applies collisions between projectiles and colliders.
@@ -66,8 +50,8 @@ export const applyDamageCollisions = () => {
 			// get the entities from which the damage originates.
 			// eg: if a player shoots a projectile and that projectile has a damage hitbox, the player is the origin.
 
-			const damagerOriginEntity = findOrigin(damagerHitboxEntity);
-			const victimOriginEntity = findOrigin(victimHitboxEntity);
+			const damagerOriginEntity = findOriginEntity(damagerHitboxEntity);
+			const victimOriginEntity = findOriginEntity(victimHitboxEntity);
 
 			// ensure the victim is a mortal entity
 

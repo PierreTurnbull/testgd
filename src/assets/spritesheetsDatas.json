@@ -290,6 +290,54 @@
     {
         "width": 64,
         "height": 64,
+        "framesCount": 1,
+        "name": "characters.player.beingHit.down"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 1,
+        "name": "characters.player.beingHit.downLeft"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 1,
+        "name": "characters.player.beingHit.downRight"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 1,
+        "name": "characters.player.beingHit.left"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 1,
+        "name": "characters.player.beingHit.right"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 1,
+        "name": "characters.player.beingHit.up"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 1,
+        "name": "characters.player.beingHit.upLeft"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 1,
+        "name": "characters.player.beingHit.upRight"
+    },
+    {
+        "width": 64,
+        "height": 64,
         "framesCount": 24,
         "name": "characters.player.dying.down"
     },
@@ -430,5 +478,53 @@
         "height": 64,
         "framesCount": 8,
         "name": "characters.player.standing.upRight"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 1,
+        "name": "characters.muddyBuddy.beingHit.down"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 1,
+        "name": "characters.muddyBuddy.beingHit.downLeft"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 1,
+        "name": "characters.muddyBuddy.beingHit.downRight"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 1,
+        "name": "characters.muddyBuddy.beingHit.left"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 1,
+        "name": "characters.muddyBuddy.beingHit.right"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 1,
+        "name": "characters.muddyBuddy.beingHit.up"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 1,
+        "name": "characters.muddyBuddy.beingHit.upLeft"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 1,
+        "name": "characters.muddyBuddy.beingHit.upRight"
     }
 ]

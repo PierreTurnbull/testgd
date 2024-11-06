@@ -7,7 +7,7 @@ export class CTimers extends Component {
 		return this._timers;
 	}
 	
-	setTimer(value: NodeJS.Timeout) {
+	addTimer(value: NodeJS.Timeout) {
 		this._timers.push(Number(value));
 	}
 }

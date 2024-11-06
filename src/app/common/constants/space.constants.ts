@@ -23,6 +23,20 @@ export const MAIN_ANGLES = Array(ANGLES_COUNT).fill(null).map((_, key: number) =
 export const DIRECTIONS: TDirection[] = ["right", "downRight", "down", "downLeft", "left", "upLeft", "up", "upRight"];
 
 /**
+ * The opposite direction of each direction.
+ */
+export const OPPOSITE_DIRECTIONS: Record<TDirection, TDirection> = {
+	right:     "left",
+	downRight: "upLeft",
+	down:      "up",
+	downLeft:  "upRight",
+	left:      "right",
+	upLeft:    "downRight",
+	up:        "down",
+	upRight:   "downLeft",
+};
+
+/**
  * The 8 available directions' angles.
  */
 export const DIRECTION_ANGLES = Object.fromEntries(DIRECTIONS.map((direction, key) => {
