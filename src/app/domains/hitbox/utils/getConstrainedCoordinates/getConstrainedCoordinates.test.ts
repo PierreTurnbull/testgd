@@ -1,24 +1,23 @@
 import { CLocation } from "@root/app/common/components/location/location.component";
 import { Entity } from "@root/app/common/entities/entity.models";
 import { assetsManager } from "@root/app/core/assetsManager/assetsManager.singletons";
-import { collisionsManager } from "@root/app/core/collisionsManager/collisionsManager.singletons";
 import { createPlayer } from "@root/app/domains/player/utils/createPlayer";
+import { createWall } from "@root/app/domains/wall/utils/createWall";
 import { afterEach, beforeEach, describe, expect, test } from "vitest";
 import { CHitbox } from "../../components/hitbox/hitbox.component";
 import { getConstrainedCoordinates } from "./getConstrainedCoordinates";
+import { HITBOX_BOUNDS } from "../../constants/hitboxes.constants";
 
 describe("translateInputs", async () => {
-	await assetsManager.loadSpritesheets();
+	await assetsManager.loadAssets();
 
 	let entity: Entity;
 	let locationComponent: CLocation;
-	let hitboxComponent: CHitbox;
 	const initialCoordinates = { x: 0, y: 0 };
 
 	beforeEach(async () => {
 		entity = createPlayer(initialCoordinates);
 		locationComponent = entity.getComponent(CLocation);
-		hitboxComponent = entity.getRelatedEntities("hitboxes")[0].getComponent(CHitbox);
 	});
 
 	afterEach(() => {
@@ -33,10 +32,22 @@ describe("translateInputs", async () => {
 
 	test("Next coordinates are constrained when there is an obstacle", () => {
 		const nextCoordinates = { x: 1, y: 0 };
-		const box = collisionsManager.system.createBox({ x: hitboxComponent.body.maxX + 0.5, y: hitboxComponent.body.minY }, 1, 1);
+		const wallCoordinates = {
+			x: HITBOX_BOUNDS["characters.player.motion"].w / 2 + 1,
+			y: 0,
+		};
+		const wallPoints = [
+			{ x: 0, y: 0 },
+			{ x: 1, y: 0 },
+			{ x: 1, y: 1 },
+			{ x: 0, y: 1 },
+		];
+		createWall(
+			wallCoordinates,
+			wallPoints,
+		);
 		const constrainedNextCoordinates = getConstrainedCoordinates(entity, nextCoordinates);
 		expect(constrainedNextCoordinates).toEqual({ x: 0.5, y: 0 });
-		collisionsManager.system.remove(box);
 	});
 
 	test("The inputs are not altered", () => {

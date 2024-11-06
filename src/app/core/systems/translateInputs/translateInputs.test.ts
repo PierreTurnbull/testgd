@@ -10,7 +10,7 @@ import { createPlayer } from "@root/app/domains/player/utils/createPlayer";
 import { afterEach, beforeEach, describe, expect, test } from "vitest";
 
 describe("translateInputs", async () => {
-	await assetsManager.loadSpritesheets();
+	await assetsManager.loadAssets();
 
 	const a = Object.entries({
 		player:     createPlayer,

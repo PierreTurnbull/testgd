@@ -28,6 +28,7 @@ import { CMustBeDestroyedOnCollision } from "../../projectile/components/mustBeD
 import { playerArchetype } from "@root/app/common/archetypes/player/player.archetype";
 import { CPostHitInvincibility } from "@root/app/common/components/postHitInvincibility/postHitInvincibility.component";
 import { AVAILABLE_ACTIONS } from "@root/app/common/constants/availableActions.constants";
+import { wallArchetype } from "@root/app/common/archetypes/wall/wall.archetype";
 
 export const createMuddyBuddy = (
 	initialCoordinates: TCoordinates,
@@ -109,7 +110,7 @@ export const createMuddyBuddy = (
 		...baseHitboxSettings,
 		name:                "characters.muddyBuddy.motion",
 		type:                "motion",
-		collisionCandidates: [],
+		collisionCandidates: [wallArchetype],
 		isActive:            true,
 		initialCoordinates:  initialCoordinates,
 		offset:              damageHitboxCenterOffset,

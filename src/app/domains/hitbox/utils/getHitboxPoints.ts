@@ -4,7 +4,7 @@ import { getAngleInterval } from "@root/app/common/utils/getAngleInterval/getAng
 import { getCirclePoint } from "@root/app/common/utils/getCirclePoint/getCirclePoint";
 import { HITBOX_BOUNDS } from "../constants/hitboxes.constants";
 import { THitboxSettings } from "../types/hitbox.types";
-import { isConeSettings, isRectangleSettings } from "./typeGuards";
+import { isConeSettings, isPolygonSettings, isRectangleSettings } from "./typeGuards";
 
 export const getHitboxPoints = (
 	settings: THitboxSettings,
@@ -48,6 +48,8 @@ export const getHitboxPoints = (
 				y: HITBOX_BOUNDS[settings.name].h,
 			},
 		];
+	} else if (isPolygonSettings(settings)) {
+		hitboxPoints = settings.points;
 	}
 
 	if (!hitboxPoints) {

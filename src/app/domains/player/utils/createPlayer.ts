@@ -22,6 +22,7 @@ import { PLAYER_RUNNING_SPEED } from "@root/app/domains/player/constants/player.
 import { Graphics } from "pixi.js";
 import { TRectangleHitboxSettings } from "../../hitbox/types/hitbox.types";
 import { createHitbox } from "../../hitbox/utils/createHitbox";
+import { wallArchetype } from "@root/app/common/archetypes/wall/wall.archetype";
 
 export const createPlayer = (
 	initialCoordinates: TCoordinates,
@@ -90,7 +91,7 @@ export const createPlayer = (
 		shape:               "rectangle",
 		initialCoordinates:  initialCoordinates,
 		name:                "characters.player.motion",
-		collisionCandidates: [],
+		collisionCandidates: [wallArchetype],
 		isActive:            true,
 		offset:              hitboxCenterOffset,
 	};

@@ -21,7 +21,7 @@ export const getConstrainedCoordinates = (
 		x: nextCoordinates.x,
 		y: nextCoordinates.y,
 	};
-	
+
 	hitboxEntities.forEach(hitboxEntity => {
 		const hitboxComponent = hitboxEntity.getComponent(CHitbox);
 		const hitboxOffsetComponent = hitboxEntity.getComponent(CHitboxOffset);
@@ -38,7 +38,7 @@ export const getConstrainedCoordinates = (
 
 		collisionsManager.system.checkOne(hitboxComponent.body, (response) => {
 			const targetEntity = getEntityFromCollider(response.b);
-
+			
 			const targetOriginEntity = findOriginEntity(targetEntity);
 
 			const targetIsCandidate = collisionCandidatesComponent.collisionCandidates.some(collisionCandidate => {
