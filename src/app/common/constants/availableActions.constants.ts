@@ -1,4 +1,4 @@
-import spritesheetsDatas from "@assets/spritesheetsDatas.json";
+import spritesheetsDatas from "@assets/spritesheets/spritesheetsDatas.json";
 
 export const AVAILABLE_ACTIONS: Record<string, string[]> = {};
 

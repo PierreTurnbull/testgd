@@ -1,7 +1,7 @@
 /**
  * The duration of the invincibility effect after a character is hit.
  */
-export const POST_HIT_INVINCIBILITY_TIME = 500;
+export const POST_HIT_INVINCIBILITY_TIME = 300;
 
 /**
  * The speed of the knockback effect when a character is hit.

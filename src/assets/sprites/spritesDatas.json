@@ -1,0 +1,52 @@
+[
+    {
+        "width": 256,
+        "height": 256,
+        "name": "environment.dirt.0"
+    },
+    {
+        "width": 256,
+        "height": 256,
+        "name": "environment.dirt.1"
+    },
+    {
+        "width": 256,
+        "height": 256,
+        "name": "environment.dirt.2"
+    },
+    {
+        "width": 256,
+        "height": 256,
+        "name": "environment.dirt.3"
+    },
+    {
+        "width": 256,
+        "height": 256,
+        "name": "environment.dirt.4"
+    },
+    {
+        "width": 256,
+        "height": 256,
+        "name": "environment.dirt.5"
+    },
+    {
+        "width": 256,
+        "height": 256,
+        "name": "environment.dirt.6"
+    },
+    {
+        "width": 256,
+        "height": 256,
+        "name": "environment.dirt.7"
+    },
+    {
+        "width": 256,
+        "height": 256,
+        "name": "environment.dirt.8"
+    },
+    {
+        "width": 256,
+        "height": 256,
+        "name": "environment.dirt.9"
+    }
+]

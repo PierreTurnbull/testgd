@@ -3,6 +3,7 @@ import sys
 import os
 import entities
 import contextlib
+import constants
 from math import *
 
 @contextlib.contextmanager
@@ -48,7 +49,7 @@ def rotate(object, direction):
 
 def renderArmatureFromDirection(object, name, action, direction, frameEnd):
 	entities.scene.frame_end = frameEnd
-	entities.scene.render.filepath = "./blender/tmp/raw/characters." + name + "." + action + "." + direction + "/"
+	entities.scene.render.filepath = "./blender/tmp/raw/animations/characters." + name + "." + action + "." + direction + "/"
 
 	with silence():
 		bpy.ops.render.render(animation=True)
@@ -84,3 +85,14 @@ def renderMuddyBuddy(action, frameEnd):
 		action,
 		frameEnd,
 	)
+
+def renderDirt():
+	entities.scene.frame_end = 0
+
+	for i in range(0, 10):
+		entities.scene.render.filepath = "./blender/tmp/raw/images/environment.dirt." + str(i) + "/"
+		entities.dirt.objects[0].location[0] = i * 10
+		with silence():
+			bpy.ops.render.render(animation=True)
+
+	print("Rendered dirt")

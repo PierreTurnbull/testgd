@@ -38,3 +38,8 @@ def processMuddyBuddy(actionsProjection):
 		render.renderMuddyBuddy("beingDead", 0)
 	if mustRenderAll or "beingHit" in actionsProjection:
 		render.renderMuddyBuddy("beingHit", 0)
+
+def processDirt():
+	prepare.prepareDirt.prepareBase()
+
+	render.renderDirt()

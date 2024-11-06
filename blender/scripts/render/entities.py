@@ -10,3 +10,5 @@ playerEquipedSword = bpy.data.objects["Sword (equiped)"]
 playerCarriedSword = bpy.data.objects["Sword (carried)"]
 
 muddyBuddy = bpy.data.collections["MuddyBuddy"]
+
+dirt = bpy.data.collections["Dirt"]

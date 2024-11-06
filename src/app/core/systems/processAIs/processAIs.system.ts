@@ -28,15 +28,15 @@ export const processAIs = () => {
 			// 	keyboardComponent.keyboard["KeyA"] = true;
 			// }
 
-			// if (directionComponent.direction === "down") {
-			// 	keyboardComponent.keyboard = { KeyD: true };
-			// } else if (directionComponent.direction === "right") {
-			// 	keyboardComponent.keyboard = { KeyW: true };
-			// } else if (directionComponent.direction === "left") {
-			// 	keyboardComponent.keyboard = { KeyS: true };
-			// } else if (directionComponent.direction === "up") {
-			// 	keyboardComponent.keyboard = { KeyA: true };
-			// }
+			if (directionComponent.direction === "down") {
+				keyboardComponent.keyboard = { KeyD: true };
+			} else if (directionComponent.direction === "right") {
+				keyboardComponent.keyboard = { KeyW: true };
+			} else if (directionComponent.direction === "left") {
+				keyboardComponent.keyboard = { KeyS: true };
+			} else if (directionComponent.direction === "up") {
+				keyboardComponent.keyboard = { KeyA: true };
+			}
 
 			// keyboardComponent.keyboard["KeyW"] = new Date().getTime() * muddyBuddyEntity.id % 2 === 0;
 			// keyboardComponent.keyboard["KeyD"] = Math.round(new Date().getTime() * muddyBuddyEntity.id / 10) % 2 === 0;

@@ -1,0 +1,530 @@
+[
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 1,
+        "name": "characters.muddyBuddy.beingDead.down"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 1,
+        "name": "characters.muddyBuddy.beingDead.downLeft"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 1,
+        "name": "characters.muddyBuddy.beingDead.downRight"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 1,
+        "name": "characters.muddyBuddy.beingDead.left"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 1,
+        "name": "characters.muddyBuddy.beingDead.right"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 1,
+        "name": "characters.muddyBuddy.beingDead.up"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 1,
+        "name": "characters.muddyBuddy.beingDead.upLeft"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 1,
+        "name": "characters.muddyBuddy.beingDead.upRight"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 1,
+        "name": "characters.muddyBuddy.beingHit.down"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 1,
+        "name": "characters.muddyBuddy.beingHit.downLeft"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 1,
+        "name": "characters.muddyBuddy.beingHit.downRight"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 1,
+        "name": "characters.muddyBuddy.beingHit.left"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 1,
+        "name": "characters.muddyBuddy.beingHit.right"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 1,
+        "name": "characters.muddyBuddy.beingHit.up"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 1,
+        "name": "characters.muddyBuddy.beingHit.upLeft"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 1,
+        "name": "characters.muddyBuddy.beingHit.upRight"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 8,
+        "name": "characters.muddyBuddy.dying.down"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 8,
+        "name": "characters.muddyBuddy.dying.downLeft"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 8,
+        "name": "characters.muddyBuddy.dying.downRight"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 8,
+        "name": "characters.muddyBuddy.dying.left"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 8,
+        "name": "characters.muddyBuddy.dying.right"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 8,
+        "name": "characters.muddyBuddy.dying.up"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 8,
+        "name": "characters.muddyBuddy.dying.upLeft"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 8,
+        "name": "characters.muddyBuddy.dying.upRight"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 8,
+        "name": "characters.muddyBuddy.rolling.down"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 8,
+        "name": "characters.muddyBuddy.rolling.downLeft"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 8,
+        "name": "characters.muddyBuddy.rolling.downRight"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 8,
+        "name": "characters.muddyBuddy.rolling.left"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 8,
+        "name": "characters.muddyBuddy.rolling.right"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 8,
+        "name": "characters.muddyBuddy.rolling.up"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 8,
+        "name": "characters.muddyBuddy.rolling.upLeft"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 8,
+        "name": "characters.muddyBuddy.rolling.upRight"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 1,
+        "name": "characters.muddyBuddy.standing.down"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 1,
+        "name": "characters.muddyBuddy.standing.downLeft"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 1,
+        "name": "characters.muddyBuddy.standing.downRight"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 1,
+        "name": "characters.muddyBuddy.standing.left"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 1,
+        "name": "characters.muddyBuddy.standing.right"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 1,
+        "name": "characters.muddyBuddy.standing.up"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 1,
+        "name": "characters.muddyBuddy.standing.upLeft"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 1,
+        "name": "characters.muddyBuddy.standing.upRight"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 12,
+        "name": "characters.player.attacking.down"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 12,
+        "name": "characters.player.attacking.downLeft"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 12,
+        "name": "characters.player.attacking.downRight"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 12,
+        "name": "characters.player.attacking.left"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 12,
+        "name": "characters.player.attacking.right"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 12,
+        "name": "characters.player.attacking.up"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 12,
+        "name": "characters.player.attacking.upLeft"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 12,
+        "name": "characters.player.attacking.upRight"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 1,
+        "name": "characters.player.beingDead.down"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 1,
+        "name": "characters.player.beingDead.downLeft"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 1,
+        "name": "characters.player.beingDead.downRight"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 1,
+        "name": "characters.player.beingDead.left"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 1,
+        "name": "characters.player.beingDead.right"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 1,
+        "name": "characters.player.beingDead.up"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 1,
+        "name": "characters.player.beingDead.upLeft"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 1,
+        "name": "characters.player.beingDead.upRight"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 1,
+        "name": "characters.player.beingHit.down"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 1,
+        "name": "characters.player.beingHit.downLeft"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 1,
+        "name": "characters.player.beingHit.downRight"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 1,
+        "name": "characters.player.beingHit.left"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 1,
+        "name": "characters.player.beingHit.right"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 1,
+        "name": "characters.player.beingHit.up"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 1,
+        "name": "characters.player.beingHit.upLeft"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 1,
+        "name": "characters.player.beingHit.upRight"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 24,
+        "name": "characters.player.dying.down"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 24,
+        "name": "characters.player.dying.downLeft"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 24,
+        "name": "characters.player.dying.downRight"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 24,
+        "name": "characters.player.dying.left"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 24,
+        "name": "characters.player.dying.right"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 24,
+        "name": "characters.player.dying.up"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 24,
+        "name": "characters.player.dying.upLeft"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 24,
+        "name": "characters.player.dying.upRight"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 24,
+        "name": "characters.player.running.down"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 24,
+        "name": "characters.player.running.downLeft"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 24,
+        "name": "characters.player.running.downRight"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 24,
+        "name": "characters.player.running.left"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 24,
+        "name": "characters.player.running.right"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 24,
+        "name": "characters.player.running.up"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 24,
+        "name": "characters.player.running.upLeft"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 24,
+        "name": "characters.player.running.upRight"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 8,
+        "name": "characters.player.standing.down"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 8,
+        "name": "characters.player.standing.downLeft"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 8,
+        "name": "characters.player.standing.downRight"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 8,
+        "name": "characters.player.standing.left"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 8,
+        "name": "characters.player.standing.right"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 8,
+        "name": "characters.player.standing.up"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 8,
+        "name": "characters.player.standing.upLeft"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 8,
+        "name": "characters.player.standing.upRight"
+    }
+]

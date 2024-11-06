@@ -6,14 +6,16 @@ import { initCharacters } from "./initCharacters/initCharacters";
 import { initLoop } from "./initLoop/initLoop";
 import { initFps } from "./initFps/initFps";
 import "./reset.css";
+import { initEnvironment } from "./initEnvironment/initEnvironment";
 
 // prevent default browser behaviour when left clicking
 document.addEventListener("contextmenu", event => event.preventDefault());
 
 await Assets.load("src/assets/fonts/Pixeled/Pixeled.ttf");
-await assetsManager.loadSpritesheets();
+await assetsManager.loadAssets();
 await initApplication();
 initLoop();
+initEnvironment();
 initCharacters();
 initFps();
 watchInput();

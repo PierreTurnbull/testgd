@@ -31,12 +31,12 @@ To generate images from Blender:
 npm run render:run
 ```
 
-To generate spritesheets from images:
+To generate assets from images:
 ```
-npm run render:spritesheets
+npm run render:package
 ```
 
-To export spritesheets and spritesheetsDatas into the app:
+To export spritesheets, sprites, spritesheetsDatas and spritesDatas into the app:
 ```
 npm run render:export
 ```

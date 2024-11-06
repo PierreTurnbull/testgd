@@ -1,18 +1,34 @@
-import spritesheetsDatas from "@assets/spritesheetsDatas.json";
-import { TSpritesheets, TTexturePromises, TTextures } from "@root/app/core/assetsManager/types/assetsManager.types";
+import spritesDatas from "@assets/sprites/spritesDatas.json";
+import spritesheetsDatas from "@assets/spritesheets/spritesheetsDatas.json";
+import { TAssetCategory, TSpritesheets, TTexturePromises, TTexturePromisesByCategory, TTextures, TTexturesByCategory } from "@root/app/core/assetsManager/types/assetsManager.types";
 import { Assets, Spritesheet, SpritesheetData, Texture, TextureSource } from "pixi.js";
 
 TextureSource.defaultOptions.scaleMode = "nearest";
 
 class AssetsManager {
-	_spritesheets: TSpritesheets | null = null;
+	private _spritesheets: TSpritesheets | null = null;
+	private _textures:     TTextures | null = null;
 
+	/**
+	 * Textures used to create animated sprites.
+	 */
 	get spritesheets() {
 		if (!this._spritesheets) throw new Error("Missing spritesheets.");
 		return this._spritesheets;
 	}
 	set spritesheets(value: TSpritesheets) {
 		this._spritesheets = value;
+	}
+
+	/**
+	 * Textures used to create sprites.
+	 */
+	get textures() {
+		if (!this._textures) throw new Error("Missing textures.");
+		return this._textures;
+	}
+	set textures(value: TTextures) {
+		this._textures = value;
 	}
 
 	/**
@@ -61,20 +77,38 @@ class AssetsManager {
 	};
 
 	private getTexturePromises = () => {
-		const texturePromises: TTexturePromises = {};
+		const texturePromises: TTexturePromisesByCategory = {
+			spritesheets: {},
+			sprites:      {},
+		};
 
 		for (const spritesheetDatas of spritesheetsDatas) {
-			texturePromises[spritesheetDatas.name] = Assets.load<Texture>(`src/assets/spritesheets/${spritesheetDatas.name}/spritesheet.png`);
+			texturePromises.spritesheets[spritesheetDatas.name] = Assets.load<Texture>(`src/assets/spritesheets/${spritesheetDatas.name}/spritesheet.png`);
+		}
+		for (const spriteDatas of spritesDatas) {
+			texturePromises.sprites[spriteDatas.name] = Assets.load<Texture>(`src/assets/sprites/${spriteDatas.name}/0000.png`);
 		}
 
 		return texturePromises;
 	};
 
-	private getTextures = async (texturePromises: TTexturePromises) => {
-		const textures: TTextures = {};
+	private getTextures = async (texturePromises: TTexturePromisesByCategory) => {
+		const textures: TTexturesByCategory = {
+			spritesheets: {},
+			sprites:      {},
+		};
 
-		for (const name in texturePromises) {
-			textures[name] = await texturePromises[name];
+		const entries = Object.entries(texturePromises);
+		
+		for (let i = 0; i < entries.length; i++) {
+			const entry = entries[i];
+
+			const category = entry[0] as TAssetCategory;
+			const promises = entry[1] as TTexturePromises;
+
+			for (const name in promises) {
+				textures[category][name] = await promises[name];
+			}
 		}
 
 		return textures;
@@ -98,16 +132,17 @@ class AssetsManager {
 	/**
 	 * Loads animated sprites from spritesheets.
 	 */
-	loadSpritesheets = async () => {
-		console.time("loadSpritesheets");
+	loadAssets = async () => {
+		console.time("loadAssets");
 
 		const texturePromises = this.getTexturePromises();
 		const textures = await this.getTextures(texturePromises);
-		const spritesheets = await this.getSpritesheets(textures);
+		const spritesheets = await this.getSpritesheets(textures.spritesheets);
 
 		this.spritesheets = spritesheets;
+		this.textures = textures.sprites;
 
-		console.timeEnd("loadSpritesheets");
+		console.timeEnd("loadAssets");
 	};
 }
 
