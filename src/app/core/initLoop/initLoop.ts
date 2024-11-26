@@ -10,7 +10,7 @@ import { logDebug } from "../logDebug/logDebug";
 import { applyDamageCollisions } from "../systems/applyDamageCollisions/applyDamageCollisions";
 
 export const initLoop = () => {
-	const loop = (delta: Ticker) => {
+	const loop = async (delta: Ticker) => {
 		translateInputs();
 		processAIs();
 		processActions(delta);

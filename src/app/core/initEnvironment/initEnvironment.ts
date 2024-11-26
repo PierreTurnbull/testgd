@@ -94,11 +94,11 @@ export const initEnvironment = () => {
 	// 	{ x: 0, y: 50 },
 	// ]);
 
-	createWall({ x: 0, y: 0 }, [
-		{ x: 0, y: 0 },
-		{ x: 200, y: 50 },
-		{ x: 100, y: 40 },
-	]);
+	// createWall({ x: 0, y: 0 }, [
+	// 	{ x: 0, y: 0 },
+	// 	{ x: 200, y: 50 },
+	// 	{ x: 100, y: 40 },
+	// ]);
 	// createWall({ x: 0, y: 0 }, [
 	// 	{ x: 0, y: 0 },
 	// 	{ x: 200, y: 50 },

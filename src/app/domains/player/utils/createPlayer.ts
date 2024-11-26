@@ -63,7 +63,7 @@ export const createPlayer = (
 			new CDirection(initialDirection),
 			new CVelocity(actionVelocities),
 			new CAction(currentAction, availableActions),
-			new CHealth(1),
+			new CHealth(3),
 			new CPostHitInvincibility(),
 			new CVisibilityGraph(),
 

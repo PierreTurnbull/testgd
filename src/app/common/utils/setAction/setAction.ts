@@ -42,6 +42,9 @@ export const setAction = (
 	actionComponent.currentAction = action;
 
 	if (viewMustBeUpdated) {
+		// prevent the current animation from continuing after being changed, triggering events such as onComplete or onFrameChange
+		viewComponent.animatedSprite.stop();
+
 		replaceAnimatedSprite(
 			viewComponent,
 			`characters.${actorEntity.name}.${action}.${directionComponent.direction8}`,
