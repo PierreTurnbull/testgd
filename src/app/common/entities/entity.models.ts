@@ -175,7 +175,7 @@ export class Entity {
 		if (this.hasComponent(CView)) {
 			const viewComponent = this.getComponent(CView);
 	
-			viewComponent.animatedSprite.destroy();
+			viewComponent.view.destroy();
 		}
 	
 		if (configManager.config.debug.showsEntityBorders && this.hasComponent(CBorderView)) {

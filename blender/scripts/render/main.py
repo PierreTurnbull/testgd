@@ -25,6 +25,8 @@ if mustProcessAll or "muddyBuddy" in projection:
 	process.processMuddyBuddy(projection.get("muddyBuddy"))
 if mustProcessAll or "dirt" in projection:
 	process.processDirt()
+if mustProcessAll or "rock" in projection:
+	process.processRock()
 
 bpy.context.scene.render.filepath = "//render/test/"
 

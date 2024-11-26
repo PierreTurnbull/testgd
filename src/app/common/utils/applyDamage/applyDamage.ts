@@ -8,7 +8,6 @@ import { mortalArchetype } from "../../archetypes/mortal/mortal.archetype";
 import { CDamage } from "../../components/damage/damage.component";
 import { CDirection } from "../../components/direction/direction.component";
 import { CHealth } from "../../components/health/health.component";
-import { CProjectile } from "../../components/identity/projectile/projectile.component";
 import { CKnockbackDirection } from "../../components/knockbackDirection/knockbackDirection.component";
 import { CLocation } from "../../components/location/location.component";
 import { CPostHitInvincibility } from "../../components/postHitInvincibility/postHitInvincibility.component";
@@ -20,6 +19,7 @@ import { getAngleFromPoints } from "../getAngleFromPoints/getAngleFromPoints";
 import { setAction } from "../setAction/setAction";
 import { playerArchetype } from "../../archetypes/player/player.archetype";
 import { CMemory } from "../../memory/components/memory/memory.component";
+import { CProjectile } from "@root/app/domains/projectile/components/projectile/projectile.component";
 
 /**
  * Applies damage of the damager to the victim
@@ -126,12 +126,12 @@ export const applyDamage = (
 
 	// set flash effect
 	const colorMatrix = new ColorMatrixFilter();
-	toEntityViewComponent.animatedSprite.filters = [colorMatrix];
+	toEntityViewComponent.view.filters = [colorMatrix];
 	colorMatrix.brightness(Infinity, false);
 
 	const timersComponent = toEntity.getComponent(CTimers);
 	const id = setTimeout(() => {
-		toEntityViewComponent.animatedSprite.filters = [];
+		toEntityViewComponent.view.filters = [];
 	}, FLASH_DURATION);
 	timersComponent.addTimer(id);
 

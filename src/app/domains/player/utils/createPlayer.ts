@@ -4,7 +4,6 @@ import { CBorderView } from "@root/app/common/components/border/border.component
 import { CCenterView } from "@root/app/common/components/centerView/centerView.component";
 import { CDirection } from "@root/app/common/components/direction/direction.component";
 import { CHealth } from "@root/app/common/components/health/health.component";
-import { CUser } from "@root/app/common/components/identity/user/user.component";
 import { CKeyboard } from "@root/app/common/components/keyboard/keyboard.component";
 import { CLocation } from "@root/app/common/components/location/location.component";
 import { CPostHitInvincibility } from "@root/app/common/components/postHitInvincibility/postHitInvincibility.component";
@@ -26,6 +25,8 @@ import { createHitbox } from "../../hitbox/utils/createHitbox";
 import { CVisibilityGraph } from "../../pathfinding/components/visibilityGraph/visibilityGraph.component";
 import { TDirection } from "@root/app/common/components/direction/types/direction.types";
 import { ANGLE_NAMES } from "@root/app/common/constants/space.constants";
+import { CPlayer } from "../components/user/user.component";
+import { rockArchetype } from "@root/app/common/archetypes/rock/rock.archetype";
 
 export const createPlayer = (
 	initialCoordinates: TCoordinates,
@@ -55,7 +56,7 @@ export const createPlayer = (
 		"player",
 		[
 			// identity
-			new CUser(),
+			new CPlayer(),
 
 			// misc
 			new CKeyboard(),
@@ -96,9 +97,12 @@ export const createPlayer = (
 		shape:                     "rectangle",
 		initialCoordinates:        initialCoordinates,
 		name:                      "characters.player.motion",
-		motionCollisionCandidates: [wallArchetype],
-		isActive:                  true,
-		offset:                    hitboxCenterOffset,
+		motionCollisionCandidates: [
+			wallArchetype,
+			rockArchetype,
+		],
+		isActive: true,
+		offset:   hitboxCenterOffset,
 	};
 
 	createHitbox(

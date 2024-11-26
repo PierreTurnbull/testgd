@@ -32,10 +32,10 @@ export const applyNextCoordinates = (
 
 	// update views
 
-	const centerOffsets = ENTITIES_CENTER_OFFSETS[trimDirection(viewComponent.animatedSprite.label)];
+	const centerOffsets = ENTITIES_CENTER_OFFSETS[trimDirection(viewComponent.view.label)];
 	const offsetCoordinates = getOffsetCoordinates(nextCoordinates, centerOffsets);
 
-	updateViewContainerCoordinates(viewComponent.animatedSprite, offsetCoordinates);
+	updateViewContainerCoordinates(viewComponent.view, offsetCoordinates);
 
 	if (configManager.config.debug.showsEntityBorders) {
 		updateViewContainerCoordinates(borderViewComponent.border, offsetCoordinates);

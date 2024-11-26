@@ -26,14 +26,27 @@ def prepareCharacter():
 	entities.camera.rotation_euler[1] = 0 * (pi / 180.0)
 	entities.camera.rotation_euler[2] = 0 * (pi / 180.0)
 
-def prepareEnvironment():
-	entities.scene.render.resolution_x = int(constants.environmentDimensionX)
-	entities.scene.render.resolution_y = int(constants.environmentDimensionY)
-	entities.camera.data.ortho_scale = constants.environmentSize
+def prepareGround():
+	showCollection(entities.dirt)
+	entities.scene.render.resolution_x = int(constants.groundDimensionX)
+	entities.scene.render.resolution_y = int(constants.groundDimensionY)
+	entities.camera.data.ortho_scale = constants.groundSize
 	entities.camera.location.x = 0
 	entities.camera.location.y = 0
 	entities.camera.location.z = 13
 	entities.camera.rotation_euler[0] = 0 * (pi / 180.0)
+	entities.camera.rotation_euler[1] = 0 * (pi / 180.0)
+	entities.camera.rotation_euler[2] = 0 * (pi / 180.0)
+
+def prepareRock():
+	showCollection(entities.rock)
+	entities.scene.render.resolution_x = int(constants.rockDimensionX)
+	entities.scene.render.resolution_y = int(constants.rockDimensionY)
+	entities.camera.data.ortho_scale = constants.rockSize
+	entities.camera.location.x = 0
+	entities.camera.location.y = -10
+	entities.camera.location.z = 5
+	entities.camera.rotation_euler[0] = 70 * (pi / 180.0)
 	entities.camera.rotation_euler[1] = 0 * (pi / 180.0)
 	entities.camera.rotation_euler[2] = 0 * (pi / 180.0)
 
@@ -59,9 +72,3 @@ class prepareMuddyBuddy:
 		prepareCharacter()
 		showCollection(entities.muddyBuddy)
 		entities.camera.location.z = 1
-
-class prepareDirt:
-	@staticmethod
-	def prepareBase():
-		prepareEnvironment()
-		showCollection(entities.dirt)

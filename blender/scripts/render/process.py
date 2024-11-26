@@ -40,6 +40,11 @@ def processMuddyBuddy(actionsProjection):
 		render.renderMuddyBuddy("beingHit", 0)
 
 def processDirt():
-	prepare.prepareDirt.prepareBase()
+	prepare.prepareGround()
 
 	render.renderDirt()
+
+def processRock():
+	prepare.prepareRock()
+
+	render.renderRock()

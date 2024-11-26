@@ -8,4 +8,5 @@ export const HITBOX_BOUNDS: Record<string, TDimensions> = {
 	"characters.muddyBuddy.damage": { w: 40, h: 20 },
 	"characters.player.motion":     { w: 40, h: 20 },
 	"projectiles.slash.damage":     { w: 0, h: 0 },
+	"environment.rock.0":           { w: 115, h: 40 },
 };

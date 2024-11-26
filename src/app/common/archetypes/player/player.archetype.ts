@@ -1,4 +1,4 @@
-import { CUser } from "../../components/identity/user/user.component";
+import { CPlayer } from "@root/app/domains/player/components/user/user.component";
 import { Archetype } from "../archetype.models";
 
 /**
@@ -7,7 +7,7 @@ import { Archetype } from "../archetype.models";
 export class APlayer extends Archetype {
 	constructor() {
 		super([
-			CUser,
+			CPlayer,
 		]);
 	}
 }

@@ -16,7 +16,7 @@ export const ANIMATION_SPEEDS: Record<string, number> = {
 	"characters.player.beingHit":      0.05,
 };
 
-const ANIMATED_SPRITES_CENTER_OFFSETS: Record<string, TCoordinates> = {
+const SPRITES_CENTER_OFFSETS: Record<string, TCoordinates> = {
 	"characters.muddyBuddy.rolling":   { x: -32,	y: -40 },
 	"characters.muddyBuddy.standing":  { x: -32,	y: -40 },
 	"characters.muddyBuddy.dying":     { x: -32,	y: -40 },
@@ -28,10 +28,21 @@ const ANIMATED_SPRITES_CENTER_OFFSETS: Record<string, TCoordinates> = {
 	"characters.player.dying":         { x: -32,	y: -32 },
 	"characters.player.beingDead":     { x: -32,	y: -32 },
 	"characters.player.beingHit":      { x: -32,	y: -32 },
+	"environment.rock.0":              { x: -32,	y: -44 },
+	"environment.dirt.0":              { x: -128,	y: -128 },
+	"environment.dirt.1":              { x: -128,	y: -128 },
+	"environment.dirt.2":              { x: -128,	y: -128 },
+	"environment.dirt.3":              { x: -128,	y: -128 },
+	"environment.dirt.4":              { x: -128,	y: -128 },
+	"environment.dirt.5":              { x: -128,	y: -128 },
+	"environment.dirt.6":              { x: -128,	y: -128 },
+	"environment.dirt.7":              { x: -128,	y: -128 },
+	"environment.dirt.8":              { x: -128,	y: -128 },
+	"environment.dirt.9":              { x: -128,	y: -128 },
 };
 
 const BORDERS_CENTER_OFFSETS = Object.fromEntries(
-	Object.entries(ANIMATED_SPRITES_CENTER_OFFSETS)
+	Object.entries(SPRITES_CENTER_OFFSETS)
 		.map(entry => {
 			const name = `${entry[0]}.border`;
 			const borderOffsets = {
@@ -61,7 +72,7 @@ const HITBOXES_CENTER_OFFSETS: Record<string, TCoordinates> = Object.fromEntries
  */
 const SCALED_VIEWS_CENTER_OFFSETS: Record<string, TCoordinates> = Object.fromEntries(
 	[
-		...Object.entries(ANIMATED_SPRITES_CENTER_OFFSETS),
+		...Object.entries(SPRITES_CENTER_OFFSETS),
 		...Object.entries(BORDERS_CENTER_OFFSETS),
 	]
 		.map(entry => {

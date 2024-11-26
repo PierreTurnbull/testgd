@@ -1,6 +1,6 @@
-import { CMustBeDestroyedOnCollision } from "../../../domains/projectile/components/mustBeDestroyedOnCollision/mustBeDestroyedOnCollision.component";
+import { CMustBeDestroyedOnCollision } from "@root/app/domains/projectile/components/mustBeDestroyedOnCollision/mustBeDestroyedOnCollision.component";
+import { CProjectile } from "@root/app/domains/projectile/components/projectile/projectile.component";
 import { CDirection } from "../../components/direction/direction.component";
-import { CProjectile } from "../../components/identity/projectile/projectile.component";
 import { CLocation } from "../../components/location/location.component";
 import { CVelocity } from "../../components/velocity/velocity.component";
 import { Archetype } from "../archetype.models";

@@ -13,7 +13,7 @@ export const replaceBorder = (
 ) => {
 	const prevBorder = borderViewComponent.border;
 
-	borderViewComponent.border = initBorder(viewComponent.animatedSprite, coordinates);
+	borderViewComponent.border = initBorder(viewComponent.view, coordinates);
 
 	prevBorder.removeFromParent();
 };

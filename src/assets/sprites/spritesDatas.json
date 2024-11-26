@@ -48,5 +48,10 @@
         "width": 256,
         "height": 256,
         "name": "environment.dirt.9"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "name": "environment.rock.0"
     }
 ]

@@ -1,3 +1,4 @@
+import { muddyBuddyArchetype } from "@root/app/common/archetypes/muddyBuddy/muddyBuddy.archetype";
 import { playerArchetype } from "@root/app/common/archetypes/player/player.archetype";
 import { wallArchetype } from "@root/app/common/archetypes/wall/wall.archetype";
 import { CAction } from "@root/app/common/components/action/action.component";
@@ -7,14 +8,15 @@ import { CDamage } from "@root/app/common/components/damage/damage.component";
 import { CDirection } from "@root/app/common/components/direction/direction.component";
 import { TDirection } from "@root/app/common/components/direction/types/direction.types";
 import { CHealth } from "@root/app/common/components/health/health.component";
-import { CMuddyBuddy } from "@root/app/common/components/identity/muddyBuddy/muddyBuddy.component";
-import { CProjectile } from "@root/app/common/components/identity/projectile/projectile.component";
 import { CKeyboard } from "@root/app/common/components/keyboard/keyboard.component";
 import { CLocation } from "@root/app/common/components/location/location.component";
 import { CPostHitInvincibility } from "@root/app/common/components/postHitInvincibility/postHitInvincibility.component";
 import { CVelocity } from "@root/app/common/components/velocity/velocity.component";
 import { CView } from "@root/app/common/components/view/view.component";
 import { AVAILABLE_ACTIONS } from "@root/app/common/constants/availableActions.constants";
+import { ANGLE_NAMES, DIRECTION8_ANGLES } from "@root/app/common/constants/space.constants";
+import { entityManager } from "@root/app/common/entities/entityManager.singleton";
+import { CMemory } from "@root/app/common/memory/components/memory/memory.component";
 import { relationsManager } from "@root/app/common/relations/relationsManager.singleton";
 import { TCoordinates } from "@root/app/common/types/coordinates.types";
 import { ENTITIES_CENTER_OFFSETS } from "@root/app/common/views/constants/views.constants";
@@ -26,13 +28,12 @@ import { MUDDYBUDDY_ROLLING_SPEED } from "@root/app/domains/muddyBuddy/constants
 import { Graphics } from "pixi.js";
 import { TRectangleHitboxSettings } from "../../hitbox/types/hitbox.types";
 import { createHitbox } from "../../hitbox/utils/createHitbox";
-import { CMustBeDestroyedOnCollision } from "../../projectile/components/mustBeDestroyedOnCollision/mustBeDestroyedOnCollision.component";
-import { entityManager } from "@root/app/common/entities/entityManager.singleton";
-import { ANGLE_NAMES, DIRECTION8_ANGLES } from "@root/app/common/constants/space.constants";
-import { createVisibilityGraph } from "../../pathfinding/utils/createVisibilityGraph/createVisibilityGraph";
 import { CVisibilityGraph } from "../../pathfinding/components/visibilityGraph/visibilityGraph.component";
-import { CMemory } from "@root/app/common/memory/components/memory/memory.component";
-import { muddyBuddyArchetype } from "@root/app/common/archetypes/muddyBuddy/muddyBuddy.archetype";
+import { createVisibilityGraph } from "../../pathfinding/utils/createVisibilityGraph/createVisibilityGraph";
+import { CMustBeDestroyedOnCollision } from "../../projectile/components/mustBeDestroyedOnCollision/mustBeDestroyedOnCollision.component";
+import { CProjectile } from "../../projectile/components/projectile/projectile.component";
+import { CMuddyBuddy } from "../components/muddyBuddy/muddyBuddy.component";
+import { rockArchetype } from "@root/app/common/archetypes/rock/rock.archetype";
 
 export const createMuddyBuddy = (
 	initialCoordinates: TCoordinates,
@@ -114,13 +115,20 @@ export const createMuddyBuddy = (
 
 	const motionHitboxSettings: TRectangleHitboxSettings = {
 		...baseHitboxSettings,
-		name:                           "characters.muddyBuddy.motion",
-		type:                           "motion",
-		motionCollisionCandidates:      [wallArchetype, muddyBuddyArchetype],
-		pathfindingCollisionCandidates: [wallArchetype],
-		isActive:                       true,
-		initialCoordinates:             initialCoordinates,
-		offset:                         damageHitboxCenterOffset,
+		name:                      "characters.muddyBuddy.motion",
+		type:                      "motion",
+		motionCollisionCandidates: [
+			wallArchetype,
+			muddyBuddyArchetype,
+			rockArchetype,
+		],
+		pathfindingCollisionCandidates: [
+			wallArchetype,
+			rockArchetype,
+		],
+		isActive:           true,
+		initialCoordinates: initialCoordinates,
+		offset:             motionHitboxCenterOffset,
 	};
 
 	const damageHitboxSettings: TRectangleHitboxSettings = {
@@ -130,7 +138,7 @@ export const createMuddyBuddy = (
 		damageCollisionCandidates: [playerArchetype],
 		isActive:                  false,
 		initialCoordinates:        initialCoordinates,
-		offset:                    motionHitboxCenterOffset,
+		offset:                    damageHitboxCenterOffset,
 	};
 
 	// motion hitbox

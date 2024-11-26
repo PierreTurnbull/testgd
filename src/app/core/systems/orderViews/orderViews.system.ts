@@ -24,7 +24,7 @@ export const orderViews = () => {
 	});
 
 	orderedViewEntities.forEach((orderedViewEntity, key) => {
-		orderedViewEntity.getComponent(CView).animatedSprite.zIndex = key;
+		orderedViewEntity.getComponent(CView).view.zIndex = key;
 
 		if (orderedViewEntity.hasComponent(CBorderView) && configManager.config.debug.showsEntityBorders) {
 			const borderViewComponent = orderedViewEntity.getComponent(CBorderView);

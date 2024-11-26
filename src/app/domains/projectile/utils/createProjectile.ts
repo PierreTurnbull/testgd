@@ -1,6 +1,5 @@
 import { CDamage } from "@root/app/common/components/damage/damage.component";
 import { CDirection } from "@root/app/common/components/direction/direction.component";
-import { CProjectile } from "@root/app/common/components/identity/projectile/projectile.component";
 import { CLocation } from "@root/app/common/components/location/location.component";
 import { CTimers } from "@root/app/common/components/timers/timers.component";
 import { CVelocity } from "@root/app/common/components/velocity/velocity.component";
@@ -13,6 +12,7 @@ import { TProjectileSettings } from "../types/projectile.types";
 import { ENTITIES_CENTER_OFFSETS } from "@root/app/common/views/constants/views.constants";
 import { CRelation } from "@root/app/common/relations/components/common/relation.component";
 import { entityManager } from "@root/app/common/entities/entityManager.singleton";
+import { CProjectile } from "../components/projectile/projectile.component";
 
 export const createProjectile = (
 	parent: Entity,

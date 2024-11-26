@@ -1,14 +1,14 @@
 import { TCoordinates } from "@root/app/common/types/coordinates.types";
 import { trimDirection } from "@root/app/common/utils/trimDirection/trimDirection";
 import { worldManager } from "@root/app/core/worldManager/worldManager.singletons";
-import { AnimatedSprite, Graphics } from "pixi.js";
+import { Graphics, Sprite } from "pixi.js";
 import { ENTITIES_CENTER_OFFSETS } from "../../constants/views.constants";
 
 /**
  * Initializes a border 
  */
 export const initBorder = (
-	animatedSprite: AnimatedSprite,
+	animatedSprite: Sprite,
 	coordinates: TCoordinates,
 ) => {
 	const border = new Graphics()

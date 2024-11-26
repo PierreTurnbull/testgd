@@ -1,9 +1,12 @@
 import math
 
 characterSize = 64
-environmentSize = 256
+groundSize = 256
+rockSize = 64
 
-characterDimensionX = math.floor(characterSize)
-characterDimensionY = math.floor(characterSize)
-environmentDimensionX = math.floor(environmentSize)
-environmentDimensionY = math.floor(environmentSize)
+characterDimensionX = characterSize
+characterDimensionY = characterSize
+groundDimensionX = groundSize
+groundDimensionY = groundSize
+rockDimensionX = rockSize
+rockDimensionY = rockSize

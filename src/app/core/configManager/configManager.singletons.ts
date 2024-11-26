@@ -8,27 +8,27 @@ class ConfigManager {
 			/**
 			 * Hitboxes of entities.
 			 */
-			showsEntityHitboxes:              true,
+			showsEntityHitboxes:              false,
 			/**
 			 * Centers of entities, which means their location.
 			 */
-			showsEntityCenters:               true,
+			showsEntityCenters:               false,
 			/**
 			 * Bigger version of hitboxes. They are used for creating visibility graphs, in the context of pathfinding.
 			 */
-			showsExtendedHitboxes:            true,
+			showsExtendedHitboxes:            false,
 			/**
 			 * Nodes of visibility graphs, in the context of pathfinding.
 			 */
-			showsVisibilityGraphNodes:        true,
+			showsVisibilityGraphNodes:        false,
 			/**
 			 * Available paths in a visibility graph, in the context of pathfinding.
 			 */
-			showsVisibilityGraphNodeLinks:    true,
+			showsVisibilityGraphNodeLinks:    false,
 			/**
 			 * The best path of a visibility graph, using a pathfinding algorithm.
 			 */
-			showsVisibilityGraphBestPath:     true,
+			showsVisibilityGraphBestPath:     false,
 			/**
 			 * Logs the performance of updating visiblity graphs.
 			 */

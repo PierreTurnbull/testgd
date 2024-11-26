@@ -1,10 +1,10 @@
 import { actorArchetype } from "@root/app/common/archetypes/actor/actor.archetype";
-import { CWall } from "@root/app/common/components/identity/wall.component";
 import { entityManager } from "@root/app/common/entities/entityManager.singleton";
 import { relationsManager } from "@root/app/common/relations/relationsManager.singleton";
 import { TCoordinates } from "@root/app/common/types/coordinates.types";
 import { TPoint } from "@root/app/common/types/point.type";
 import { createHitbox } from "../../hitbox/utils/createHitbox";
+import { CWall } from "../components/wall/wall.component";
 
 export const createWall = (
 	initialCoordinates: TCoordinates,

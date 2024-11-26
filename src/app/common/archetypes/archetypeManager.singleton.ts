@@ -1,16 +1,17 @@
+import { Entity } from "../entities/entity.models";
 import { ConstructorOf } from "../types/constructor.types";
 import { actorArchetype } from "./actor/actor.archetype";
 import { Archetype } from "./archetype.models";
 import { colliderArchetype } from "./collider/collider.archetype";
+import { damagerArchetype } from "./damager/damager.archetype";
 import { fpsArchetype } from "./fps/fps.archetype";
+import { hitboxArchetype } from "./hitbox/hitbox.archetype";
+import { mortalArchetype } from "./mortal/mortal.archetype";
 import { muddyBuddyArchetype } from "./muddyBuddy/muddyBuddy.archetype";
-import { sortableViewArchetype } from "./sortableView/sortableView.archetype";
 import { playerArchetype } from "./player/player.archetype";
 import { projectileArchetype } from "./projectile/projectile.archetype";
-import { mortalArchetype } from "./mortal/mortal.archetype";
-import { damagerArchetype } from "./damager/damager.archetype";
-import { hitboxArchetype } from "./hitbox/hitbox.archetype";
-import { Entity } from "../entities/entity.models";
+import { rockArchetype } from "./rock/rock.archetype";
+import { sortableViewArchetype } from "./sortableView/sortableView.archetype";
 import { wallArchetype } from "./wall/wall.archetype";
 
 class ArchetypeManager {
@@ -34,6 +35,7 @@ class ArchetypeManager {
 		damagerArchetype,
 		hitboxArchetype,
 		wallArchetype,
+		rockArchetype,
 	];
 	archetypesByName = new Map<string, Archetype>();
 

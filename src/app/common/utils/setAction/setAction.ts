@@ -43,7 +43,7 @@ export const setAction = (
 
 	if (viewMustBeUpdated) {
 		// prevent the current animation from continuing after being changed, triggering events such as onComplete or onFrameChange
-		viewComponent.animatedSprite.stop();
+		viewComponent.view.stop();
 
 		replaceAnimatedSprite(
 			viewComponent,
@@ -121,16 +121,16 @@ export const setAction = (
 	}
 
 	if (options.onLoop) {
-		viewComponent.animatedSprite.onLoop = options.onLoop;
+		viewComponent.view.onLoop = options.onLoop;
 	}
 	if (options.onComplete) {
-		viewComponent.animatedSprite.onComplete = options.onComplete;
+		viewComponent.view.onComplete = options.onComplete;
 	}
 	if (options.onFrameChange) {
-		viewComponent.animatedSprite.onFrameChange = (currentFrame: number) => {
+		viewComponent.view.onFrameChange = (currentFrame: number) => {
 			if (!options.onFrameChange) throw new Error("Options were altered since setting up the action.");
 			const clear = () => {
-				viewComponent.animatedSprite.onFrameChange = undefined;
+				viewComponent.view.onFrameChange = undefined;
 			};
 			options.onFrameChange(
 				currentFrame,

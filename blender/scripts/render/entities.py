@@ -12,3 +12,5 @@ playerCarriedSword = bpy.data.objects["Sword (carried)"]
 muddyBuddy = bpy.data.collections["MuddyBuddy"]
 
 dirt = bpy.data.collections["Dirt"]
+
+rock = bpy.data.collections["Rock"]

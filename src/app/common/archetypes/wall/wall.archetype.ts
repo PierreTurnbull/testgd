@@ -1,4 +1,4 @@
-import { CWall } from "../../components/identity/wall.component";
+import { CWall } from "@root/app/domains/wall/components/wall/wall.component";
 import { Archetype } from "../archetype.models";
 
 export class AWall extends Archetype {

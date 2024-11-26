@@ -13,9 +13,9 @@ export const replaceAnimatedSprite = (
 	newAnimatedSpriteName: string,
 	coordinates: TCoordinates,
 ) => {
-	const prevAnimatedSprite = viewComponent.animatedSprite;
+	const prevAnimatedSprite = viewComponent.view;
 
-	viewComponent.animatedSprite = initAnimatedSprite(newAnimatedSpriteName, coordinates);
+	viewComponent.view = initAnimatedSprite(newAnimatedSpriteName, coordinates);
 
 	prevAnimatedSprite.removeFromParent();
 };

@@ -1,17 +1,17 @@
-import { AnimatedSprite } from "pixi.js";
+import { AnimatedSprite, Sprite, ViewContainer } from "pixi.js";
 import { Component } from "../component.models";
 
 /**
- * A view is the visual representation of an entity.
+ * An animated sprite is the dynamic representation of an entity.
  */
 export class CView extends Component {
 	constructor(
-		initialAnimatedSprite: AnimatedSprite,
+		initialView: Sprite | AnimatedSprite,
 	) {
 		super();
 
-		this.animatedSprite = initialAnimatedSprite;
+		this.view = initialView;
 	}
 
-	animatedSprite: AnimatedSprite;
+	view: ViewContainer;
 }

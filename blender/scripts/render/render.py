@@ -96,3 +96,12 @@ def renderDirt():
 			bpy.ops.render.render(animation=True)
 
 	print("Rendered dirt")
+
+def renderRock():
+	entities.scene.frame_end = 0
+
+	entities.scene.render.filepath = "./blender/tmp/raw/images/environment.rock.0/"
+	with silence():
+		bpy.ops.render.render(animation=True)
+
+	print("Rendered rock")
