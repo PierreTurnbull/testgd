@@ -2,7 +2,7 @@ import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
 import { createVisibilityGraph } from "./createVisibilityGraph";
 import { Entity } from "@root/app/common/entities/entity.models";
 import { entityManager } from "@root/app/common/entities/entityManager.singleton";
-import { CVisibilityGraph } from "../../components/visibilityGraph.component";
+import { CVisibilityGraph } from "../../components/visibilityGraph/visibilityGraph.component";
 import { createHitbox } from "@root/app/domains/hitbox/utils/createHitbox";
 import { wallArchetype } from "@root/app/common/archetypes/wall/wall.archetype";
 import { relationsManager } from "@root/app/common/relations/relationsManager.singleton";
@@ -37,13 +37,14 @@ describe("createVisibilityGraph", async () => {
 			mustCascadeDelete: false,
 		});
 		createHitbox(entity, {
-			collisionCandidates: [wallArchetype],
-			shape:               "rectangle",
-			initialCoordinates:  { x: 0, y: 0 },
-			offset:              { x: 0, y: 0 },
-			type:                "motion",
-			name:                "characters.test.motion",
-			isActive:            true,
+			motionCollisionCandidates:      [wallArchetype],
+			pathfindingCollisionCandidates: [wallArchetype],
+			shape:                          "rectangle",
+			initialCoordinates:             { x: 0, y: 0 },
+			offset:                         { x: 0, y: 0 },
+			type:                           "motion",
+			name:                           "characters.test.motion",
+			isActive:                       true,
 		});
 
 		visibilityGraphComponent = entity.getComponent(CVisibilityGraph);

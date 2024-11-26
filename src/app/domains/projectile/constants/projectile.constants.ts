@@ -11,6 +11,6 @@ export const PROJECTILE_DEFAULT_SETTINGS: TDefaultProjectileSettings = {
 		damage:                     1,
 		mustBeDestroyedOnCollision: true,
 		isActive:                   true,
-		collisionCandidates:        [muddyBuddyArchetype],
+		damageCollisionCandidates:  [muddyBuddyArchetype],
 	},
 };

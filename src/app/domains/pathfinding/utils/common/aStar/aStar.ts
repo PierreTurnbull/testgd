@@ -2,7 +2,7 @@ import { TPoint } from "@root/app/common/types/point.type";
 import { getDistance } from "@root/app/common/utils/getDistance/getDistance";
 import { MinHeap } from "@root/app/common/utils/minHeap/minHeap";
 import { TGraphNode } from "../../../types/pathfinding.types";
-import { CVisibilityGraph } from "../../../components/visibilityGraph.component";
+import { CVisibilityGraph } from "../../../components/visibilityGraph/visibilityGraph.component";
 
 const getLinkedNodes = (
 	currentNode: TGraphNode,

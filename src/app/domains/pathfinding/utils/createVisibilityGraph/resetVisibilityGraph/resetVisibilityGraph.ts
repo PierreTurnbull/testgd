@@ -1,4 +1,4 @@
-import { CVisibilityGraph } from "../../../components/visibilityGraph.component";
+import { CVisibilityGraph } from "../../../components/visibilityGraph/visibilityGraph.component";
 
 /**
  * Resets a visibility graph so it can be created again with new obstacles.

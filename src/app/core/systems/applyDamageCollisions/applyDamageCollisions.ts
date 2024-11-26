@@ -1,7 +1,7 @@
 import { hitboxArchetype } from "@root/app/common/archetypes/hitbox/hitbox.archetype";
 import { findOriginEntity } from "@root/app/common/utils/findOriginEntity/findOriginEntity";
 import { collisionsManager } from "@root/app/core/collisionsManager/collisionsManager.singletons";
-import { CCollisionCandidates } from "@root/app/domains/hitbox/components/collisionCandidates/collisionCandidates.component";
+import { CDamageCollisionCandidates } from "@root/app/domains/hitbox/components/damageCollisionCandidates/damageCollisionCandidates.component";
 import { CHitboxIsActive } from "@root/app/domains/hitbox/components/hitboxIsActive/hitboxIsActive.component";
 import { CMustBeDestroyedOnCollision } from "@root/app/domains/projectile/components/mustBeDestroyedOnCollision/mustBeDestroyedOnCollision.component";
 import { damagerArchetype } from "../../../common/archetypes/damager/damager.archetype";
@@ -16,7 +16,7 @@ import { hasParentEntity } from "./utils/hasParentEntity/hasParentEntity";
  * Applies collisions between projectiles and colliders.
  */
 export const applyDamageCollisions = () => {
-	const hitboxEntities = [...hitboxArchetype.entities]
+	const damageHitboxEntities = [...hitboxArchetype.entities]
 		.filter(hitboxEntity => {
 			return (
 				hitboxEntity.getComponent(CHitbox).type === "damage" &&
@@ -25,9 +25,9 @@ export const applyDamageCollisions = () => {
 			);
 		});
 
-	hitboxEntities.forEach(hitboxEntity => {
-		const hitboxComponent = hitboxEntity.getComponent(CHitbox);
-		const collisionCandidatesComponent = hitboxEntity.getComponent(CCollisionCandidates);
+	damageHitboxEntities.forEach(damageHitboxEntity => {
+		const hitboxComponent = damageHitboxEntity.getComponent(CHitbox);
+		const damageCollisionCandidatesComponent = damageHitboxEntity.getComponent(CDamageCollisionCandidates);
 
 		collisionsManager.system.checkOne(hitboxComponent.body, (response) => {
 			// prevent processing the hitbox if it was destroyed during a previous loop turn
@@ -90,8 +90,8 @@ export const applyDamageCollisions = () => {
 
 			// ensure the victim is among the list of collision candidates of the damager
 
-			const victimIsCandidate = collisionCandidatesComponent.collisionCandidates.some(collisionCandidate => {
-				return collisionCandidate.entityMatchesArchetype(victimOriginEntity);
+			const victimIsCandidate = damageCollisionCandidatesComponent.damageCollisionCandidates.some(damageCollisionCandidate => {
+				return damageCollisionCandidate.entityMatchesArchetype(victimOriginEntity);
 			});
 
 			if (!victimIsCandidate) {

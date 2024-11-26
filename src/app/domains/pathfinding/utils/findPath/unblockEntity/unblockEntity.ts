@@ -1,7 +1,7 @@
 import { CLocation } from "@root/app/common/components/location/location.component";
 import { Entity } from "@root/app/common/entities/entity.models";
 import { applyMotion } from "@root/app/common/utils/applyMotion/applyMotion";
-import { CVisibilityGraph } from "../../../components/visibilityGraph.component";
+import { CVisibilityGraph } from "../../../components/visibilityGraph/visibilityGraph.component";
 
 /**
  * Unblocks an entity that is stuck inside a shape.

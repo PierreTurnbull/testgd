@@ -3,13 +3,13 @@ import { TPoint } from "@root/app/common/types/point.type";
 import { TSegment } from "@root/app/common/types/segment.types";
 import { getAngleFromPoints } from "@root/app/common/utils/getAngleFromPoints/getAngleFromPoints";
 import { ENTITIES_CENTER_OFFSETS } from "@root/app/common/views/constants/views.constants";
-import { CCollisionCandidates } from "@root/app/domains/hitbox/components/collisionCandidates/collisionCandidates.component";
 import { CHitbox } from "@root/app/domains/hitbox/components/hitbox/hitbox.component";
+import { CPathfindingCollisionCandidates } from "@root/app/domains/hitbox/components/pathfindingCollisionCandidates/pathfindingCollisionCandidates.component";
 import { System } from "detect-collisions";
-import { CVisibilityGraph } from "../../../components/visibilityGraph.component";
+import { CVisibilityGraph } from "../../../components/visibilityGraph/visibilityGraph.component";
 import { getShapeSegments } from "../createShapesSegments/createShapesSegments";
 
-const getColliders = (entity: Entity) => {
+const getPathfindingColliders = (entity: Entity) => {
 	const hitboxEntity = entity.getRelatedEntities("hitboxes").find(hitboxEntity => {
 		return hitboxEntity.getComponent(CHitbox).type === "motion";
 	});
@@ -18,11 +18,11 @@ const getColliders = (entity: Entity) => {
 		throw new Error("Entity has no motion hitbox.");
 	}
 
-	const collisionCandidateArchetypes = hitboxEntity.getComponent(CCollisionCandidates).collisionCandidates;
+	const pathfindingCollisionCandidateArchetypes = hitboxEntity.getComponent(CPathfindingCollisionCandidates).pathfindingCollisionCandidates;
 	const colliders: Entity[] = [];
 
-	collisionCandidateArchetypes.forEach(collisionCandidateArchetype => {
-		colliders.push(...collisionCandidateArchetype.entities);
+	pathfindingCollisionCandidateArchetypes.forEach(pathfindingCollisionCandidateArchetype => {
+		colliders.push(...pathfindingCollisionCandidateArchetype.entities);
 	});
 
 	return colliders;
@@ -189,7 +189,7 @@ const createSystem = (visibilityGraphComponent: CVisibilityGraph) => {
 export const createExtendedHitboxesPoints = (entity: Entity) => {
 	const visibilityGraphComponent = entity.getComponent(CVisibilityGraph);
 
-	const colliders = getColliders(entity);
+	const colliders = getPathfindingColliders(entity);
 
 	const extendedHitboxesPoints = getExtendedHitboxesPoints(entity, colliders);
 

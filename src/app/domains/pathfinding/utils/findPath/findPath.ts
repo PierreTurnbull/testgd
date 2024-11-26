@@ -2,7 +2,7 @@ import { Entity } from "@root/app/common/entities/entity.models";
 import { CMemory } from "@root/app/common/memory/components/memory/memory.component";
 import { TCoordinates } from "@root/app/common/types/coordinates.types";
 import { aStar } from "../common/aStar/aStar";
-import { CVisibilityGraph } from "../../components/visibilityGraph.component";
+import { CVisibilityGraph } from "../../components/visibilityGraph/visibilityGraph.component";
 import { addStartAndEndPointsToVisibilityGraph } from "./addStartAndEndPointsToVisibilityGraph/addStartAndEndPointsToVisibilityGraph";
 import { createSolutionViews } from "./createSolutionViews/createSolutionViews";
 import { unblockEntity } from "./unblockEntity/unblockEntity";

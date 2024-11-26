@@ -1,7 +1,7 @@
 import { CLocation } from "@root/app/common/components/location/location.component";
 import { Entity } from "@root/app/common/entities/entity.models";
 import { TCoordinates } from "@root/app/common/types/coordinates.types";
-import { CVisibilityGraph } from "../../../components/visibilityGraph.component";
+import { CVisibilityGraph } from "../../../components/visibilityGraph/visibilityGraph.component";
 import { TVisibilityGraphNode } from "../../../types/visibilityGraph.types";
 import { getNodesKey } from "../../common/getNodesKey";
 import { getPointKey } from "../../common/getPointKey";

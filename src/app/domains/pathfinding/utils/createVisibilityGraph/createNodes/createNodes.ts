@@ -1,4 +1,4 @@
-import { CVisibilityGraph } from "../../../components/visibilityGraph.component";
+import { CVisibilityGraph } from "../../../components/visibilityGraph/visibilityGraph.component";
 import { TVisibilityGraphNode } from "../../../types/visibilityGraph.types";
 import { getPointKey } from "../../common/getPointKey";
 

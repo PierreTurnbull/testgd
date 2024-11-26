@@ -23,7 +23,7 @@ import { PLAYER_RUNNING_SPEED } from "@root/app/domains/player/constants/player.
 import { Graphics } from "pixi.js";
 import { TRectangleHitboxSettings } from "../../hitbox/types/hitbox.types";
 import { createHitbox } from "../../hitbox/utils/createHitbox";
-import { CVisibilityGraph } from "../../pathfinding/components/visibilityGraph.component";
+import { CVisibilityGraph } from "../../pathfinding/components/visibilityGraph/visibilityGraph.component";
 import { TDirection } from "@root/app/common/components/direction/types/direction.types";
 import { ANGLE_NAMES } from "@root/app/common/constants/space.constants";
 
@@ -92,13 +92,13 @@ export const createPlayer = (
 	}
 
 	const hitboxSettings: TRectangleHitboxSettings = {
-		type:                "motion",
-		shape:               "rectangle",
-		initialCoordinates:  initialCoordinates,
-		name:                "characters.player.motion",
-		collisionCandidates: [wallArchetype],
-		isActive:            true,
-		offset:              hitboxCenterOffset,
+		type:                      "motion",
+		shape:                     "rectangle",
+		initialCoordinates:        initialCoordinates,
+		name:                      "characters.player.motion",
+		motionCollisionCandidates: [wallArchetype],
+		isActive:                  true,
+		offset:                    hitboxCenterOffset,
 	};
 
 	createHitbox(

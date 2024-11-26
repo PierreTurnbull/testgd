@@ -9,13 +9,15 @@ export type THitboxType = "motion" | "damage";
 export type THitboxShape = "cone" | "rectangle" | "polygon";
 
 export type TBaseHitboxSettings = {
-	type:                THitboxType,
-	shape:               THitboxShape,
-	initialCoordinates:  TCoordinates,
-	offset:              TOffset,
-	name:                string,
-	collisionCandidates: Archetype[],
-	isActive:            boolean,
+	type:                            THitboxType,
+	shape:                           THitboxShape,
+	initialCoordinates:              TCoordinates,
+	offset:                          TOffset,
+	name:                            string,
+	motionCollisionCandidates?:      Archetype[],
+	damageCollisionCandidates?:      Archetype[],
+	pathfindingCollisionCandidates?: Archetype[],
+	isActive:                        boolean,
 }
 
 export type TConeHitboxSettings = TBaseHitboxSettings & {

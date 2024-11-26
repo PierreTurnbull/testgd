@@ -2,7 +2,7 @@ import { collisionsManager } from "@root/app/core/collisionsManager/collisionsMa
 import { configManager } from "@root/app/core/configManager/configManager.singletons";
 import { CHitbox } from "@root/app/domains/hitbox/components/hitbox/hitbox.component";
 import { CHitboxView } from "@root/app/domains/hitbox/components/hitboxView/hitboxView.component";
-import { CVisibilityGraph } from "@root/app/domains/pathfinding/components/visibilityGraph.component";
+import { CVisibilityGraph } from "@root/app/domains/pathfinding/components/visibilityGraph/visibilityGraph.component";
 import { resetVisibilityGraph } from "@root/app/domains/pathfinding/utils/createVisibilityGraph/resetVisibilityGraph/resetVisibilityGraph";
 import { Archetype } from "../archetypes/archetype.models";
 import { archetypeManager } from "../archetypes/archetypeManager.singleton";

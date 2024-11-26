@@ -6,17 +6,19 @@ import { TDimensions } from "@root/app/common/types/dimensions.types";
 export type TProjectileType = "slash" | "ram";
 
 export type TProjectileSettings = {
-	type:                       TProjectileType, // used to know the shape. slash -> quarter circle
-	size?:                      number | null, // use size, or dimensions
-	dimensions?:                TDimensions | null,
-	lifeDuration:               number | null, // life duration in ms
-	velocity:                   number | null,
-	damage:                     number | null,
-	coordinates:                TCoordinates,
-	direction:                  TDirection,
-	mustBeDestroyedOnCollision: boolean,
-	collisionCandidates:        Archetype[],
-	isActive:                   boolean,
+	type:                            TProjectileType, // used to know the shape. slash -> quarter circle
+	size?:                           number | null, // use size, or dimensions
+	dimensions?:                     TDimensions | null,
+	lifeDuration:                    number | null, // life duration in ms
+	velocity:                        number | null,
+	damage:                          number | null,
+	coordinates:                     TCoordinates,
+	direction:                       TDirection,
+	mustBeDestroyedOnCollision:      boolean,
+	motionCollisionCandidates?:      Archetype[],
+	damageCollisionCandidates?:      Archetype[],
+	pathfindingCollisionCandidates?: Archetype[],
+	isActive:                        boolean,
 }
 
 export type TDefaultProjectileSettings = Record<

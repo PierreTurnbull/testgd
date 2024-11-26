@@ -71,15 +71,15 @@ export const createProjectile = (
 	}
 
 	const hitboxSettings: TConeHitboxSettings = {
-		type:                "damage",
-		shape:               "cone",
-		initialCoordinates:  settings.coordinates,
-		direction:           settings.direction,
-		name:                "projectiles.slash.damage",
-		size:                settings.size || 0,
-		collisionCandidates: settings.collisionCandidates,
-		isActive:            settings.isActive,
-		offset:              hitboxCenterOffset,
+		type:                      "damage",
+		shape:                     "cone",
+		initialCoordinates:        settings.coordinates,
+		direction:                 settings.direction,
+		name:                      "projectiles.slash.damage",
+		size:                      settings.size || 0,
+		damageCollisionCandidates: settings.damageCollisionCandidates,
+		isActive:                  settings.isActive,
+		offset:                    hitboxCenterOffset,
 	};
 
 	createHitbox(

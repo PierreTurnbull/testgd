@@ -3,7 +3,7 @@ import { TSquareBounds } from "@root/app/common/types/squareBounds.types";
 import { getPointIsInSquare } from "@root/app/common/utils/getPointIsInSquare/getPointIsInSquare";
 import { getPointIsOnSegment } from "@root/app/common/utils/getPointIsOnSegment/getPointIsOnSegment";
 import { getSegmentsIntersect } from "../../../../../common/utils/getSegmentsIntersect/getSegmentsIntersect";
-import { CVisibilityGraph } from "../../../components/visibilityGraph.component";
+import { CVisibilityGraph } from "../../../components/visibilityGraph/visibilityGraph.component";
 import { TRules } from "../../../types/rules.types";
 import { TVisibilityGraphNode } from "../../../types/visibilityGraph.types";
 import { getNodesKey } from "../../common/getNodesKey";

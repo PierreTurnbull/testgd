@@ -12,7 +12,8 @@ export const initCharacters = () => {
 	// createMuddyBuddy({ x: 100, y: 100 }, "left");
 	// createMuddyBuddy({ x: 100, y: 50 }, 180);
 	
-	createMuddyBuddy({ x: -50, y: 50 }, 180);
+	createMuddyBuddy({ x: -500, y: 50 }, 180);
+	createMuddyBuddy({ x: -500, y: 50 }, 180);
 	// createMuddyBuddy({ x: -50, y: 50 }, 180);
 	// createMuddyBuddy({ x: -50, y: 50 }, 180);
 	// createMuddyBuddy({ x: -50, y: 50 }, 180);

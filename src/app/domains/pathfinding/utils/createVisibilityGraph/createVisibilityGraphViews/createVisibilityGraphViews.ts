@@ -1,4 +1,4 @@
-import { CVisibilityGraph } from "../../../components/visibilityGraph.component";
+import { CVisibilityGraph } from "../../../components/visibilityGraph/visibilityGraph.component";
 import { createExtendedHitboxViews } from "./createExtendedHitboxViews/createExtendedHitboxViews";
 import { createNodeLinkViews } from "./createNodeLinkViews/createNodeLinkViews";
 import { createNodeViews } from "./createNodeViews/createNodeViews";

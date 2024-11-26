@@ -1,5 +1,5 @@
 import { Entity } from "@root/app/common/entities/entity.models";
-import { CVisibilityGraph } from "../../../components/visibilityGraph.component";
+import { CVisibilityGraph } from "../../../components/visibilityGraph/visibilityGraph.component";
 import { TPoint } from "@root/app/common/types/point.type";
 import { Graphics } from "pixi.js";
 import { worldManager } from "@root/app/core/worldManager/worldManager.singletons";

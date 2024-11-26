@@ -4,7 +4,7 @@ import { getEntityFromCollider } from "@root/app/core/systems/applyDamageCollisi
 import { Entity } from "../../../../common/entities/entity.models";
 import { TCoordinates } from "../../../../common/types/coordinates.types";
 import { getOffsetCoordinates } from "../../../../common/utils/getOffsetCoordinates/getOffsetCoordinates";
-import { CCollisionCandidates } from "../../components/collisionCandidates/collisionCandidates.component";
+import { CMotionCollisionCandidates } from "../../components/motionCollisionCandidates/motionCollisionCandidates.component";
 import { CHitbox } from "../../components/hitbox/hitbox.component";
 import { CHitboxOffset } from "../../components/hitboxOffset/hitboxOffset.component";
 import { updateHitboxPosition } from "../updateHitboxPosition";
@@ -24,8 +24,13 @@ export const getConstrainedCoordinates = (
 
 	hitboxEntities.forEach(hitboxEntity => {
 		const hitboxComponent = hitboxEntity.getComponent(CHitbox);
+
+		if (hitboxComponent.type !== "motion") {
+			return;
+		}
+
 		const hitboxOffsetComponent = hitboxEntity.getComponent(CHitboxOffset);
-		const collisionCandidatesComponent = hitboxEntity.getComponent(CCollisionCandidates);
+		const motionCollisionCandidatesComponent = hitboxEntity.getComponent(CMotionCollisionCandidates);
 
 		const prevCoordinates: TCoordinates = {
 			x: hitboxComponent.body.x,
@@ -41,8 +46,8 @@ export const getConstrainedCoordinates = (
 			
 			const targetOriginEntity = findOriginEntity(targetEntity);
 
-			const targetIsCandidate = collisionCandidatesComponent.collisionCandidates.some(collisionCandidate => {
-				return collisionCandidate.entitiesById.has(targetOriginEntity.id);
+			const targetIsCandidate = motionCollisionCandidatesComponent.motionCollisionCandidates.some(motionCollisionCandidate => {
+				return motionCollisionCandidate.entitiesById.has(targetOriginEntity.id);
 			});
 
 			if (!targetIsCandidate) {

@@ -5,7 +5,7 @@ import { CMemory } from "@root/app/common/memory/components/memory/memory.compon
 import { TPoint } from "@root/app/common/types/point.type";
 import { getAngleFromPoints } from "@root/app/common/utils/getAngleFromPoints/getAngleFromPoints";
 import { getDistance } from "@root/app/common/utils/getDistance/getDistance";
-import { CVisibilityGraph } from "@root/app/domains/pathfinding/components/visibilityGraph.component";
+import { CVisibilityGraph } from "@root/app/domains/pathfinding/components/visibilityGraph/visibilityGraph.component";
 import { getExtendedHitboxesPoints } from "@root/app/domains/pathfinding/utils/createVisibilityGraph/createExtendedHitboxesPoints/createExtendedHitboxesPoints";
 import { getShapeSegments } from "@root/app/domains/pathfinding/utils/createVisibilityGraph/createShapesSegments/createShapesSegments";
 import { findPath } from "@root/app/domains/pathfinding/utils/findPath/findPath";

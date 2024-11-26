@@ -1,5 +1,5 @@
 import { describe, expect, test } from "vitest";
-import { CVisibilityGraph } from "../../../components/visibilityGraph.component";
+import { CVisibilityGraph } from "../../../components/visibilityGraph/visibilityGraph.component";
 import { aStar } from "./aStar";
 import { TVisibilityGraphNode } from "../../../types/visibilityGraph.types";
 

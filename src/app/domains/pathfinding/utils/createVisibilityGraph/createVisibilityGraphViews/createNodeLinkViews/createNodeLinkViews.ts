@@ -1,5 +1,5 @@
 import { configManager } from "@root/app/core/configManager/configManager.singletons";
-import { CVisibilityGraph } from "../../../../components/visibilityGraph.component";
+import { CVisibilityGraph } from "../../../../components/visibilityGraph/visibilityGraph.component";
 import { worldManager } from "@root/app/core/worldManager/worldManager.singletons";
 import { TVisibilityGraphNode } from "../../../../types/visibilityGraph.types";
 import { Graphics } from "pixi.js";

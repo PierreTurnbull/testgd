@@ -1,5 +1,5 @@
 import { TPoint } from "@root/app/common/types/point.type";
-import { CVisibilityGraph } from "../../../components/visibilityGraph.component";
+import { CVisibilityGraph } from "../../../components/visibilityGraph/visibilityGraph.component";
 
 /**
  * Returns pairs of nodes that are siblings.

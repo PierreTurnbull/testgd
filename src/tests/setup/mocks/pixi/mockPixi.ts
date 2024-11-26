@@ -17,6 +17,7 @@ export const mockPixi = async (importOriginal: () => Promise<typeof TPixi>) => {
 		},
 		AnimatedSprite: class AnimatedSprite {
 			play() {}
+			stop() {}
 			emit() {}
 			depthOfChildModified() {}
 			destroy() {}

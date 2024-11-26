@@ -30,8 +30,9 @@ import { CMustBeDestroyedOnCollision } from "../../projectile/components/mustBeD
 import { entityManager } from "@root/app/common/entities/entityManager.singleton";
 import { ANGLE_NAMES, DIRECTION8_ANGLES } from "@root/app/common/constants/space.constants";
 import { createVisibilityGraph } from "../../pathfinding/utils/createVisibilityGraph/createVisibilityGraph";
-import { CVisibilityGraph } from "../../pathfinding/components/visibilityGraph.component";
+import { CVisibilityGraph } from "../../pathfinding/components/visibilityGraph/visibilityGraph.component";
 import { CMemory } from "@root/app/common/memory/components/memory/memory.component";
+import { muddyBuddyArchetype } from "@root/app/common/archetypes/muddyBuddy/muddyBuddy.archetype";
 
 export const createMuddyBuddy = (
 	initialCoordinates: TCoordinates,
@@ -113,22 +114,23 @@ export const createMuddyBuddy = (
 
 	const motionHitboxSettings: TRectangleHitboxSettings = {
 		...baseHitboxSettings,
-		name:                "characters.muddyBuddy.motion",
-		type:                "motion",
-		collisionCandidates: [wallArchetype],
-		isActive:            true,
-		initialCoordinates:  initialCoordinates,
-		offset:              damageHitboxCenterOffset,
+		name:                           "characters.muddyBuddy.motion",
+		type:                           "motion",
+		motionCollisionCandidates:      [wallArchetype, muddyBuddyArchetype],
+		pathfindingCollisionCandidates: [wallArchetype],
+		isActive:                       true,
+		initialCoordinates:             initialCoordinates,
+		offset:                         damageHitboxCenterOffset,
 	};
 
 	const damageHitboxSettings: TRectangleHitboxSettings = {
 		...baseHitboxSettings,
-		name:                "characters.muddyBuddy.damage",
-		type:                "damage",
-		collisionCandidates: [playerArchetype],
-		isActive:            false,
-		initialCoordinates:  initialCoordinates,
-		offset:              motionHitboxCenterOffset,
+		name:                      "characters.muddyBuddy.damage",
+		type:                      "damage",
+		damageCollisionCandidates: [playerArchetype],
+		isActive:                  false,
+		initialCoordinates:        initialCoordinates,
+		offset:                    motionHitboxCenterOffset,
 	};
 
 	// motion hitbox

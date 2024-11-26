@@ -41,14 +41,14 @@ export const createWall = (
 	};
 
 	createHitbox(entity, {
-		type:                "motion",
-		collisionCandidates: [actorArchetype],
-		isActive:            true,
-		initialCoordinates:  initialCoordinates,
-		offset:              offset,
-		name:                "environment.wall",
-		shape:               "polygon",
-		points:              points,
+		type:                      "motion",
+		motionCollisionCandidates: [actorArchetype],
+		isActive:                  true,
+		initialCoordinates:        initialCoordinates,
+		offset:                    offset,
+		name:                      "environment.wall",
+		shape:                     "polygon",
+		points:                    points,
 	});
 
 	return entity;

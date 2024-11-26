@@ -1,9 +1,9 @@
+import { Component } from "@root/app/common/components/component.models";
+import { TPoint } from "@root/app/common/types/point.type";
 import { TSegment } from "@root/app/common/types/segment.types";
 import { System } from "detect-collisions";
 import { Graphics } from "pixi.js";
-import { Component } from "../../../common/components/component.models";
-import { TPoint } from "../../../common/types/point.type";
-import { TVisibilityGraphNode } from "../types/visibilityGraph.types";
+import { TVisibilityGraphNode } from "../../types/visibilityGraph.types";
 
 export class CVisibilityGraph extends Component {
 	/**
