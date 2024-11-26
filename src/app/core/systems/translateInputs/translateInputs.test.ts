@@ -2,6 +2,7 @@ import { CAction } from "@root/app/common/components/action/action.component";
 import { CDirection } from "@root/app/common/components/direction/direction.component";
 import { CKeyboard } from "@root/app/common/components/keyboard/keyboard.component";
 import { AVAILABLE_ACTIONS } from "@root/app/common/constants/availableActions.constants";
+import { DIRECTION8_ANGLES } from "@root/app/common/constants/space.constants";
 import { Entity } from "@root/app/common/entities/entity.models";
 import { assetsManager } from "@root/app/core/assetsManager/assetsManager.singletons";
 import { translateInputs } from "@root/app/core/systems/translateInputs/translateInputs.system";
@@ -32,7 +33,7 @@ describe("translateInputs", async () => {
 			keyboardComponent = entity.getComponent(CKeyboard);
 
 			actionComponent.currentAction = "standing";
-			directionComponent.direction = "down";
+			directionComponent.direction = 90;
 		});
 
 		afterEach(() => {
@@ -46,7 +47,7 @@ describe("translateInputs", async () => {
 				test("Initial action: standing. The character keeps standing", () => {
 					translateInputs();
 					expect(actionComponent.currentAction).toBe("standing");
-					expect(directionComponent.direction).toBe("down");
+					expect(directionComponent.direction).toBe(DIRECTION8_ANGLES.down);
 				});
 
 				if (AVAILABLE_ACTIONS[entityName].includes("running")) {
@@ -54,7 +55,7 @@ describe("translateInputs", async () => {
 						actionComponent.currentAction = "running";
 						translateInputs();
 						expect(actionComponent.currentAction).toBe("standing");
-						expect(directionComponent.direction).toBe("down");
+						expect(directionComponent.direction).toBe(DIRECTION8_ANGLES.down);
 					});
 				}
 
@@ -63,7 +64,7 @@ describe("translateInputs", async () => {
 						actionComponent.currentAction = "rolling";
 						translateInputs();
 						expect(actionComponent.currentAction).toBe("standing");
-						expect(directionComponent.direction).toBe("down");
+						expect(directionComponent.direction).toBe(DIRECTION8_ANGLES.down);
 					});
 				}
 
@@ -72,7 +73,7 @@ describe("translateInputs", async () => {
 						actionComponent.currentAction = "attacking";
 						translateInputs();
 						expect(actionComponent.currentAction).toBe("attacking");
-						expect(directionComponent.direction).toBe("down");
+						expect(directionComponent.direction).toBe(DIRECTION8_ANGLES.down);
 					});
 				}
 
@@ -81,7 +82,7 @@ describe("translateInputs", async () => {
 						actionComponent.currentAction = "dying";
 						translateInputs();
 						expect(actionComponent.currentAction).toBe("dying");
-						expect(directionComponent.direction).toBe("down");
+						expect(directionComponent.direction).toBe(DIRECTION8_ANGLES.down);
 					});
 				}
 
@@ -90,7 +91,7 @@ describe("translateInputs", async () => {
 						actionComponent.currentAction = "beingDead";
 						translateInputs();
 						expect(actionComponent.currentAction).toBe("beingDead");
-						expect(directionComponent.direction).toBe("down");
+						expect(directionComponent.direction).toBe(DIRECTION8_ANGLES.down);
 					});
 				}
 			});
@@ -107,7 +108,7 @@ describe("translateInputs", async () => {
 				test("Initial action: standing. The character starts running", () => {
 					translateInputs();
 					expect(actionComponent.currentAction).toBe("running");
-					expect(directionComponent.direction).toBe("up");
+					expect(directionComponent.direction).toBe(DIRECTION8_ANGLES.up);
 				});
 
 				if (AVAILABLE_ACTIONS[entityName].includes("running")) {
@@ -115,7 +116,7 @@ describe("translateInputs", async () => {
 						actionComponent.currentAction = "running";
 						translateInputs();
 						expect(actionComponent.currentAction).toBe("running");
-						expect(directionComponent.direction).toBe("up");
+						expect(directionComponent.direction).toBe(DIRECTION8_ANGLES.up);
 					});
 				}
 
@@ -124,7 +125,7 @@ describe("translateInputs", async () => {
 						actionComponent.currentAction = "rolling";
 						translateInputs();
 						expect(actionComponent.currentAction).toBe("running");
-						expect(directionComponent.direction).toBe("up");
+						expect(directionComponent.direction).toBe(DIRECTION8_ANGLES.up);
 					});
 				}
 
@@ -133,7 +134,7 @@ describe("translateInputs", async () => {
 						actionComponent.currentAction = "attacking";
 						translateInputs();
 						expect(actionComponent.currentAction).toBe("attacking");
-						expect(directionComponent.direction).toBe("down");
+						expect(directionComponent.direction).toBe(DIRECTION8_ANGLES.down);
 					});
 				}
 
@@ -142,7 +143,7 @@ describe("translateInputs", async () => {
 						actionComponent.currentAction = "dying";
 						translateInputs();
 						expect(actionComponent.currentAction).toBe("dying");
-						expect(directionComponent.direction).toBe("down");
+						expect(directionComponent.direction).toBe(DIRECTION8_ANGLES.down);
 					});
 				}
 
@@ -151,7 +152,7 @@ describe("translateInputs", async () => {
 						actionComponent.currentAction = "beingDead";
 						translateInputs();
 						expect(actionComponent.currentAction).toBe("beingDead");
-						expect(directionComponent.direction).toBe("down");
+						expect(directionComponent.direction).toBe(DIRECTION8_ANGLES.down);
 					});
 				}
 			});
@@ -168,7 +169,7 @@ describe("translateInputs", async () => {
 				test("Initial action: standing. The character starts rolling", () => {
 					translateInputs();
 					expect(actionComponent.currentAction).toBe("rolling");
-					expect(directionComponent.direction).toBe("up");
+					expect(directionComponent.direction).toBe(DIRECTION8_ANGLES.up);
 				});
 
 				if (AVAILABLE_ACTIONS[entityName].includes("running")) {
@@ -176,7 +177,7 @@ describe("translateInputs", async () => {
 						actionComponent.currentAction = "running";
 						translateInputs();
 						expect(actionComponent.currentAction).toBe("rolling");
-						expect(directionComponent.direction).toBe("up");
+						expect(directionComponent.direction).toBe(DIRECTION8_ANGLES.up);
 					});
 				}
 
@@ -185,7 +186,7 @@ describe("translateInputs", async () => {
 						actionComponent.currentAction = "rolling";
 						translateInputs();
 						expect(actionComponent.currentAction).toBe("rolling");
-						expect(directionComponent.direction).toBe("up");
+						expect(directionComponent.direction).toBe(DIRECTION8_ANGLES.up);
 					});
 				}
 
@@ -194,7 +195,7 @@ describe("translateInputs", async () => {
 						actionComponent.currentAction = "attacking";
 						translateInputs();
 						expect(actionComponent.currentAction).toBe("attacking");
-						expect(directionComponent.direction).toBe("down");
+						expect(directionComponent.direction).toBe(DIRECTION8_ANGLES.down);
 					});
 				}
 
@@ -203,7 +204,7 @@ describe("translateInputs", async () => {
 						actionComponent.currentAction = "dying";
 						translateInputs();
 						expect(actionComponent.currentAction).toBe("dying");
-						expect(directionComponent.direction).toBe("down");
+						expect(directionComponent.direction).toBe(DIRECTION8_ANGLES.down);
 					});
 				}
 
@@ -212,7 +213,7 @@ describe("translateInputs", async () => {
 						actionComponent.currentAction = "beingDead";
 						translateInputs();
 						expect(actionComponent.currentAction).toBe("beingDead");
-						expect(directionComponent.direction).toBe("down");
+						expect(directionComponent.direction).toBe(DIRECTION8_ANGLES.down);
 					});
 				}
 			});
@@ -229,7 +230,7 @@ describe("translateInputs", async () => {
 				test("Initial action: standing. The character starts attacking", () => {
 					translateInputs();
 					expect(actionComponent.currentAction).toBe("attacking");
-					expect(directionComponent.direction).toBe("down");
+					expect(directionComponent.direction).toBe(DIRECTION8_ANGLES.down);
 				});
 
 				if (AVAILABLE_ACTIONS[entityName].includes("running")) {
@@ -237,7 +238,7 @@ describe("translateInputs", async () => {
 						actionComponent.currentAction = "running";
 						translateInputs();
 						expect(actionComponent.currentAction).toBe("attacking");
-						expect(directionComponent.direction).toBe("down");
+						expect(directionComponent.direction).toBe(DIRECTION8_ANGLES.down);
 					});
 
 					test("Initial action: running. The character starts attacking, in a different direction", () => {
@@ -245,7 +246,7 @@ describe("translateInputs", async () => {
 						keyboardComponent.keyboard.KeyW = true;
 						translateInputs();
 						expect(actionComponent.currentAction).toBe("attacking");
-						expect(directionComponent.direction).toBe("up");
+						expect(directionComponent.direction).toBe(DIRECTION8_ANGLES.up);
 					});
 				}
 
@@ -254,7 +255,7 @@ describe("translateInputs", async () => {
 						actionComponent.currentAction = "rolling";
 						translateInputs();
 						expect(actionComponent.currentAction).toBe("attacking");
-						expect(directionComponent.direction).toBe("down");
+						expect(directionComponent.direction).toBe(DIRECTION8_ANGLES.down);
 					});
 
 					test("Initial action: rolling. The character starts attacking, in a different direction", () => {
@@ -262,7 +263,7 @@ describe("translateInputs", async () => {
 						keyboardComponent.keyboard.KeyW = true;
 						translateInputs();
 						expect(actionComponent.currentAction).toBe("attacking");
-						expect(directionComponent.direction).toBe("up");
+						expect(directionComponent.direction).toBe(DIRECTION8_ANGLES.up);
 					});
 				}
 
@@ -271,7 +272,7 @@ describe("translateInputs", async () => {
 						actionComponent.currentAction = "attacking";
 						translateInputs();
 						expect(actionComponent.currentAction).toBe("attacking");
-						expect(directionComponent.direction).toBe("down");
+						expect(directionComponent.direction).toBe(DIRECTION8_ANGLES.down);
 					});
 
 					test("Initial action: attacking. The character keeps attacking, in the same direction", () => {
@@ -279,7 +280,7 @@ describe("translateInputs", async () => {
 						keyboardComponent.keyboard.KeyW = true;
 						translateInputs();
 						expect(actionComponent.currentAction).toBe("attacking");
-						expect(directionComponent.direction).toBe("down");
+						expect(directionComponent.direction).toBe(DIRECTION8_ANGLES.down);
 					});
 				}
 
@@ -288,7 +289,7 @@ describe("translateInputs", async () => {
 						actionComponent.currentAction = "dying";
 						translateInputs();
 						expect(actionComponent.currentAction).toBe("dying");
-						expect(directionComponent.direction).toBe("down");
+						expect(directionComponent.direction).toBe(DIRECTION8_ANGLES.down);
 					});
 				}
 
@@ -297,7 +298,7 @@ describe("translateInputs", async () => {
 						actionComponent.currentAction = "beingDead";
 						translateInputs();
 						expect(actionComponent.currentAction).toBe("beingDead");
-						expect(directionComponent.direction).toBe("down");
+						expect(directionComponent.direction).toBe(DIRECTION8_ANGLES.down);
 					});
 				}
 			});

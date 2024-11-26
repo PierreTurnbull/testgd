@@ -50,14 +50,14 @@ export const applyNextCoordinates = (
 
 		updateHitboxPosition(hitboxComponent, offsetCoordinates);
 
-		if (configManager.config.debug.showsEntityHitbox) {
+		if (configManager.config.debug.showsEntityHitboxes) {
 			const hitboxViewComponent = hitboxEntity.getComponent(CHitboxView);
 
 			updateViewContainerCoordinates(hitboxViewComponent.hitboxBorder, offsetCoordinates);
 		}
 	});
 
-	if (configManager.config.debug.showsEntityCenter && centerViewComponent.center) {
+	if (configManager.config.debug.showsEntityCenters && centerViewComponent.center) {
 		updateViewContainerCoordinates(centerViewComponent.center, nextCoordinates);
 	}
 };

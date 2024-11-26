@@ -16,7 +16,7 @@ export const initBorder = (
 		.stroke({
 			width:     2,
 			color:     0xaaaaaa,
-			alignment: 1,
+			alignment: 0.5,
 		});
 	const label = `${animatedSprite.label}.border`;
 	border.label = label;

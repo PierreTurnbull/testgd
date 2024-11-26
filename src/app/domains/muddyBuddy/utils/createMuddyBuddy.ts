@@ -1,4 +1,5 @@
-import { actorArchetype } from "@root/app/common/archetypes/actor/actor.archetype";
+import { playerArchetype } from "@root/app/common/archetypes/player/player.archetype";
+import { wallArchetype } from "@root/app/common/archetypes/wall/wall.archetype";
 import { CAction } from "@root/app/common/components/action/action.component";
 import { CBorderView } from "@root/app/common/components/border/border.component";
 import { CCenterView } from "@root/app/common/components/centerView/centerView.component";
@@ -10,9 +11,10 @@ import { CMuddyBuddy } from "@root/app/common/components/identity/muddyBuddy/mud
 import { CProjectile } from "@root/app/common/components/identity/projectile/projectile.component";
 import { CKeyboard } from "@root/app/common/components/keyboard/keyboard.component";
 import { CLocation } from "@root/app/common/components/location/location.component";
+import { CPostHitInvincibility } from "@root/app/common/components/postHitInvincibility/postHitInvincibility.component";
 import { CVelocity } from "@root/app/common/components/velocity/velocity.component";
 import { CView } from "@root/app/common/components/view/view.component";
-import { createEntity } from "@root/app/common/entities/utils/createEntity";
+import { AVAILABLE_ACTIONS } from "@root/app/common/constants/availableActions.constants";
 import { relationsManager } from "@root/app/common/relations/relationsManager.singleton";
 import { TCoordinates } from "@root/app/common/types/coordinates.types";
 import { ENTITIES_CENTER_OFFSETS } from "@root/app/common/views/constants/views.constants";
@@ -25,16 +27,17 @@ import { Graphics } from "pixi.js";
 import { TRectangleHitboxSettings } from "../../hitbox/types/hitbox.types";
 import { createHitbox } from "../../hitbox/utils/createHitbox";
 import { CMustBeDestroyedOnCollision } from "../../projectile/components/mustBeDestroyedOnCollision/mustBeDestroyedOnCollision.component";
-import { playerArchetype } from "@root/app/common/archetypes/player/player.archetype";
-import { CPostHitInvincibility } from "@root/app/common/components/postHitInvincibility/postHitInvincibility.component";
-import { AVAILABLE_ACTIONS } from "@root/app/common/constants/availableActions.constants";
-import { wallArchetype } from "@root/app/common/archetypes/wall/wall.archetype";
+import { entityManager } from "@root/app/common/entities/entityManager.singleton";
+import { ANGLE_NAMES, DIRECTION8_ANGLES } from "@root/app/common/constants/space.constants";
+import { createVisibilityGraph } from "../../pathfinding/utils/createVisibilityGraph/createVisibilityGraph";
+import { CVisibilityGraph } from "../../pathfinding/components/visibilityGraph.component";
+import { CMemory } from "@root/app/common/memory/components/memory/memory.component";
 
 export const createMuddyBuddy = (
 	initialCoordinates: TCoordinates,
-	initialDirection: TDirection = "down",
+	initialDirection: TDirection = DIRECTION8_ANGLES.down,
 ) => {
-	const animatedSprite = initAnimatedSprite(`characters.muddyBuddy.standing.${initialDirection}`, initialCoordinates);
+	const animatedSprite = initAnimatedSprite(`characters.muddyBuddy.standing.${ANGLE_NAMES.get(initialDirection)}`, initialCoordinates);
 
 	let border: Graphics | null = null;
 	let center: Graphics | null = null;
@@ -43,7 +46,7 @@ export const createMuddyBuddy = (
 		border = initBorder(animatedSprite, initialCoordinates);
 	}
 
-	if (configManager.config.debug.showsEntityCenter) {
+	if (configManager.config.debug.showsEntityCenters) {
 		center = initCenter("characters.muddyBuddy", initialCoordinates);
 	}
 
@@ -55,7 +58,7 @@ export const createMuddyBuddy = (
 	const currentAction = "standing";
 
 
-	const muddyBuddyEntity = createEntity(
+	const muddyBuddyEntity = entityManager.createEntity(
 		"muddyBuddy",
 		[
 			// identity
@@ -68,10 +71,12 @@ export const createMuddyBuddy = (
 			new CDirection(initialDirection),
 			new CVelocity(actionVelocities),
 			new CAction(currentAction, availableActions),
-			new CHealth(3),
+			new CHealth(1),
 			new CMustBeDestroyedOnCollision(false),
 			new CDamage(1),
 			new CPostHitInvincibility(),
+			new CVisibilityGraph(),
+			new CMemory(),
 			
 			// views
 			new CView(animatedSprite),
@@ -137,6 +142,8 @@ export const createMuddyBuddy = (
 		muddyBuddyEntity,
 		damageHitboxSettings,
 	);
+
+	createVisibilityGraph(muddyBuddyEntity);
 
 	return muddyBuddyEntity;
 };

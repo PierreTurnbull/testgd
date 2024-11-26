@@ -1,5 +1,5 @@
+import { entityManager } from "@root/app/common/entities/entityManager.singleton";
 import { appManager } from "@root/app/domains/app/appManager.singleton";
-import { createEntity } from "@root/app/common/entities/utils/createEntity";
 import { CFps } from "@root/app/domains/fps/components/fps/fps.component";
 import { Text } from "pixi.js";
 
@@ -18,7 +18,7 @@ export const initFps = () => {
 	fpsComponent.text.y = 10;
 	appManager.app.stage.addChild(fpsComponent.text);
 
-	createEntity(
+	entityManager.createEntity(
 		"fps",
 		[
 			fpsComponent,

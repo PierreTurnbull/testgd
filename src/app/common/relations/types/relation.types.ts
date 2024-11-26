@@ -8,7 +8,7 @@ export type TMultiplicity = "one" | "many";
 /**
  * The cardinality of a relation.
  */
-export type TCardinality = "one-to-one" | "one-to-many" | "many-to-many";
+export type TCardinality = "one-to-one" | "one-to-many" | "many-to-one" | "many-to-many";
 
 export type TRelationValue<T extends TMultiplicity> =
 	T extends "one" ? Entity :
@@ -47,6 +47,14 @@ export type TOneToManyRelation = TRelationBase & {
 }
 
 /**
+ * A relation between a list of entities and an entity.
+ */
+export type TManyToOneRelation = TRelationBase & {
+	a: TRelationNode<"many">
+	b: TRelationNode<"one">
+}
+
+/**
  * A relation between two lists of entities.
  */
 export type TManyToManyRelation = TRelationBase & {
@@ -57,8 +65,9 @@ export type TManyToManyRelation = TRelationBase & {
 export type TRelation<T extends TCardinality> = (
 	T extends "one-to-one" ? TOneToOneRelation :
 	T extends "one-to-many" ? TOneToManyRelation :
+	T extends "many-to-one" ? TManyToOneRelation :
 	T extends "many-to-many" ? TManyToManyRelation :
 	never
 );
 
-export type TAnyRelation = TOneToOneRelation | TOneToManyRelation | TManyToManyRelation
+export type TAnyRelation = TOneToOneRelation | TOneToManyRelation | TManyToOneRelation | TManyToManyRelation

@@ -1,11 +1,10 @@
-import { archetypeManager } from "@root/app/common/archetypes/archetypeManager.singleton";
-import { AFps } from "@root/app/common/archetypes/fps/fps.archetype";
-import { CFps } from "../../components/fps/fps.component";
+import { fpsArchetype } from "@root/app/common/archetypes/fps/fps.archetype";
 import { Ticker } from "pixi.js";
+import { CFps } from "../../components/fps/fps.component";
 import { FPS_REFRESH_DELAY } from "../../constants/fps.constants";
 
 export const updateFps = (delta: Ticker) => {
-	const fpsEntity = archetypeManager.getEntitiesByArchetype(AFps)[0];
+	const fpsEntity = [...fpsArchetype.entities][0];
 	const fpsComponent = fpsEntity.getComponent(CFps);
 
 	if (new Date().getTime() - fpsComponent.timeSinceLastUpdate < FPS_REFRESH_DELAY) return;

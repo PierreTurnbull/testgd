@@ -1,5 +1,6 @@
 import { describe, expect, test } from "vitest";
 import { getRequestedDirection } from "./getRequestedDirection";
+import { DIRECTION8_ANGLES } from "@root/app/common/constants/space.constants";
 
 describe("getRequestedDirection", () => {
 	test("No input", () => {
@@ -7,17 +8,17 @@ describe("getRequestedDirection", () => {
 	});
 
 	test("Main axis", () => {
-		expect(getRequestedDirection({ KeyW: true })).toBe("up");
-		expect(getRequestedDirection({ KeyS: true })).toBe("down");
-		expect(getRequestedDirection({ KeyA: true })).toBe("left");
-		expect(getRequestedDirection({ KeyD: true })).toBe("right");
+		expect(getRequestedDirection({ KeyW: true })).toBe(DIRECTION8_ANGLES.up);
+		expect(getRequestedDirection({ KeyS: true })).toBe(DIRECTION8_ANGLES.down);
+		expect(getRequestedDirection({ KeyA: true })).toBe(DIRECTION8_ANGLES.left);
+		expect(getRequestedDirection({ KeyD: true })).toBe(DIRECTION8_ANGLES.right);
 	});
 
 	test("Diagonals", () => {
-		expect(getRequestedDirection({ KeyW: true, KeyD: true })).toBe("upRight");
-		expect(getRequestedDirection({ KeyW: true, KeyA: true })).toBe("upLeft");
-		expect(getRequestedDirection({ KeyS: true, KeyD: true })).toBe("downRight");
-		expect(getRequestedDirection({ KeyS: true, KeyA: true })).toBe("downLeft");
+		expect(getRequestedDirection({ KeyW: true, KeyD: true })).toBe(DIRECTION8_ANGLES.upRight);
+		expect(getRequestedDirection({ KeyW: true, KeyA: true })).toBe(DIRECTION8_ANGLES.upLeft);
+		expect(getRequestedDirection({ KeyS: true, KeyD: true })).toBe(DIRECTION8_ANGLES.downRight);
+		expect(getRequestedDirection({ KeyS: true, KeyA: true })).toBe(DIRECTION8_ANGLES.downLeft);
 	});
 
 	test("Conflicting axis prevent movement on them", () => {
@@ -26,9 +27,9 @@ describe("getRequestedDirection", () => {
 	});
 
 	test("Conflicting axis do not prevent movement on the other axis", () => {
-		expect(getRequestedDirection({ KeyA: true, KeyD: true, KeyW: true })).toBe("up");
-		expect(getRequestedDirection({ KeyA: true, KeyD: true, KeyS: true })).toBe("down");
-		expect(getRequestedDirection({ KeyW: true, KeyS: true, KeyA: true })).toBe("left");
-		expect(getRequestedDirection({ KeyW: true, KeyS: true, KeyD: true })).toBe("right");
+		expect(getRequestedDirection({ KeyA: true, KeyD: true, KeyW: true })).toBe(DIRECTION8_ANGLES.up);
+		expect(getRequestedDirection({ KeyA: true, KeyD: true, KeyS: true })).toBe(DIRECTION8_ANGLES.down);
+		expect(getRequestedDirection({ KeyW: true, KeyS: true, KeyA: true })).toBe(DIRECTION8_ANGLES.left);
+		expect(getRequestedDirection({ KeyW: true, KeyS: true, KeyD: true })).toBe(DIRECTION8_ANGLES.right);
 	});
 });

@@ -1,4 +1,4 @@
-import { POST_HIT_INVINCIBILITY_TIME } from "../../constants/damage.constants";
+import { POST_HIT_INVINCIBILITY_DURATION } from "../../constants/damage.constants";
 import { Component } from "../component.models";
 
 /**
@@ -21,7 +21,7 @@ export class CPostHitInvincibility extends Component {
 
 		const id = setTimeout(() => {
 			this._timer = null;
-		}, POST_HIT_INVINCIBILITY_TIME);
+		}, POST_HIT_INVINCIBILITY_DURATION);
 
 		this._timer = Number(id);
 	}

@@ -2,8 +2,7 @@ import { PROJECTILE_DEFAULT_SETTINGS } from "@root/app/domains/projectile/consta
 import { TProjectileSettings } from "@root/app/domains/projectile/types/projectile.types";
 import { createProjectile } from "@root/app/domains/projectile/utils/createProjectile";
 import { AnimatedSprite } from "pixi.js";
-import { AActor } from "../../../common/archetypes/actor/actor.archetype";
-import { archetypeManager } from "../../../common/archetypes/archetypeManager.singleton";
+import { actorArchetype } from "../../../common/archetypes/actor/actor.archetype";
 import { CAction } from "../../../common/components/action/action.component";
 import { CDirection } from "../../../common/components/direction/direction.component";
 import { CKeyboard } from "../../../common/components/keyboard/keyboard.component";
@@ -67,7 +66,7 @@ const getStandingIsAllowed = (currentAction: CAction["currentAction"]) => {
  * Translates inputs into actions.
  */
 export function translateInputs() {
-	const actorEntities = archetypeManager.getEntitiesByArchetype(AActor);
+	const actorEntities = actorArchetype.entities;
 
 	for (const actorEntity of actorEntities) {
 		const actionComponent = actorEntity.getComponent(CAction);
@@ -82,8 +81,8 @@ export function translateInputs() {
 			continue;
 		}
 
-		const requestedDirection = getRequestedDirection(keyboardComponent.keyboard);
-		const nextDirection = requestedDirection || directionComponent.direction;
+		const requestedDirection = getRequestedDirection(keyboardComponent.keyboard, keyboardComponent.joystickAngle);
+		const nextDirection = requestedDirection !== null ? requestedDirection : directionComponent.direction;
 
 		const requestsAttacking = actionComponent.availableActions.includes("attacking") && Boolean(keyboardComponent.keyboard.Comma);
 		const requestsRunning = actionComponent.availableActions.includes("running") && requestedDirection !== null;

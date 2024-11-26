@@ -10,8 +10,18 @@ import { projectileArchetype } from "./projectile/projectile.archetype";
 import { mortalArchetype } from "./mortal/mortal.archetype";
 import { damagerArchetype } from "./damager/damager.archetype";
 import { hitboxArchetype } from "./hitbox/hitbox.archetype";
+import { Entity } from "../entities/entity.models";
+import { wallArchetype } from "./wall/wall.archetype";
 
 class ArchetypeManager {
+	constructor() {
+		this.archetypes.forEach(archetype => {
+			const constructorName = archetype.constructor.name;
+
+			this.archetypesByName.set(constructorName, archetype);
+		});
+	}
+
 	archetypes: Archetype[] = [
 		playerArchetype,
 		muddyBuddyArchetype,
@@ -23,10 +33,12 @@ class ArchetypeManager {
 		mortalArchetype,
 		damagerArchetype,
 		hitboxArchetype,
+		wallArchetype,
 	];
+	archetypesByName = new Map<string, Archetype>();
 
 	getArchetype<TArchetype extends Archetype>(archetypeClass: ConstructorOf<TArchetype>) {
-		const archetype = this.archetypes.find(archetype => archetype instanceof archetypeClass);
+		const archetype = this.archetypesByName.get(archetypeClass.name);
 		if (!archetype) throw new Error(`Archetype ${archetypeClass.name} not found.`);
 		const instanceMatchesClass =  ((archetype: Archetype): archetype is TArchetype => archetype instanceof archetypeClass)(archetype);
 		if (!instanceMatchesClass) throw new Error(`Archetype ${archetype.constructor.name} does match class ${archetypeClass.name}.`);
@@ -34,12 +46,36 @@ class ArchetypeManager {
 	};
 
 	/**
-	 * Returns the entities that match the archetype.
+	 * Registers the entity in the relevant archetypes.
 	 */
-	getEntitiesByArchetype<TArchetype extends Archetype>(archetypeClass: ConstructorOf<TArchetype>) {
-		const archetype = this.getArchetype(archetypeClass);
-		return archetype.entities;
-	}
+	registerEntity = (entity: Entity) => {
+		this.archetypes.forEach(archetype => {
+			const missingComponent = archetype.requiredComponents.find(requiredComponent => {
+				const component = entity.componentsByClass[requiredComponent.name];
+
+				if (!component) {
+					return requiredComponent;
+				}
+			});
+
+			if (missingComponent) {
+				return;
+			}
+
+			archetype.entities.add(entity);
+			archetype.entitiesById.set(entity.id, entity);
+		});
+	};
+
+	/**
+	 * Removes the entity from the archetypes that reference it.
+	 */
+	removeEntityFromArchetypes = (entity: Entity) => {
+		this.archetypes.forEach(archetype => {
+			archetype.entities.delete(entity);
+			archetype.entitiesById.delete(entity.id);
+		});
+	};
 }
 
 export const archetypeManager = new ArchetypeManager();

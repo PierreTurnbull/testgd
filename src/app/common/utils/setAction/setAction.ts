@@ -1,4 +1,3 @@
-import { AActor } from "@root/app/common/archetypes/actor/actor.archetype";
 import { CAction } from "@root/app/common/components/action/action.component";
 import { CDirection } from "@root/app/common/components/direction/direction.component";
 import { CLocation } from "@root/app/common/components/location/location.component";
@@ -6,15 +5,17 @@ import { CView } from "@root/app/common/components/view/view.component";
 import { replaceAnimatedSprite } from "@root/app/common/views/utils/animatedSprite/replaceAnimatedSprite";
 import { configManager } from "@root/app/core/configManager/configManager.singletons";
 import { CHitbox } from "@root/app/domains/hitbox/components/hitbox/hitbox.component";
+import { CHitboxIsActive } from "@root/app/domains/hitbox/components/hitboxIsActive/hitboxIsActive.component";
 import { HITBOX_BOUNDS } from "@root/app/domains/hitbox/constants/hitboxes.constants";
 import { AnimatedSprite } from "pixi.js";
 import { CBorderView } from "../../components/border/border.component";
 import { CCenterView } from "../../components/centerView/centerView.component";
+import { ANGLE_NAMES } from "../../constants/space.constants";
+import { Entity } from "../../entities/entity.models";
 import { TPoint } from "../../types/point.type";
 import { replaceBorder } from "../../views/utils/border/replaceBorder";
 import { replaceCenterView } from "../../views/utils/center/replaceCenter";
 import { replaceHitboxBorder } from "../../views/utils/hitboxBorder/replaceHitboxBorder";
-import { CHitboxIsActive } from "@root/app/domains/hitbox/components/hitboxIsActive/hitboxIsActive.component";
 
 type TOptions = {
 	onLoop?:        AnimatedSprite["onLoop"] | null,
@@ -23,7 +24,7 @@ type TOptions = {
 }
 
 export const setAction = (
-	actorEntity: AActor["entities"][number],
+	actorEntity: Entity,
 	action: CAction["currentAction"],
 	direction: CDirection["direction"],
 	options: TOptions = {},
@@ -35,81 +36,85 @@ export const setAction = (
 	const borderViewComponent = actorEntity.getComponent(CBorderView);
 	const centerViewComponent = actorEntity.getComponent(CCenterView);
 
+	const viewMustBeUpdated = actionComponent.currentAction !== action || directionComponent.direction8 !== ANGLE_NAMES.get(direction);
+
 	directionComponent.direction = direction;
 	actionComponent.currentAction = action;
 
-	replaceAnimatedSprite(
-		viewComponent,
-		`characters.${actorEntity.name}.${action}.${direction}`,
-		locationComponent.coordinates,
-	);
-	if (configManager.config.debug.showsEntityBorders) {
-		replaceBorder(viewComponent, borderViewComponent, locationComponent.coordinates);
-	}
-	if (configManager.config.debug.showsEntityCenter) {
-		replaceCenterView(
-			centerViewComponent,
-			`characters.${actorEntity.name}`,
+	if (viewMustBeUpdated) {
+		replaceAnimatedSprite(
+			viewComponent,
+			`characters.${actorEntity.name}.${action}.${directionComponent.direction8}`,
 			locationComponent.coordinates,
 		);
-	}
-
-	if (configManager.config.debug.showsEntityHitbox && actorEntity.hasRelation("hitboxes")) {
-		const hitboxEntities = actorEntity.getRelatedEntities("hitboxes");
-
-		hitboxEntities
-			.filter(hitboxEntity => hitboxEntity.getComponent(CHitbox).type === "motion")
-			.forEach((hitboxEntity) => {
-				const hitboxComponent = hitboxEntity.getComponent(CHitbox);
-
-				const hitboxBounds = HITBOX_BOUNDS[hitboxComponent.name];
-				if (!hitboxBounds) {
-					throw new Error(`Missing bounds for hitbox "${hitboxComponent.name}".`);
-				}
-
-				const bounds: TPoint[] = [
-					{
-						x: 0,
-						y: 0,
-					},
-					{
-						x: hitboxBounds.w,
-						y: 0,
-					},
-					{
-						x: hitboxBounds.w,
-						y: hitboxBounds.h,
-					},
-					{
-						x: 0,
-						y: hitboxBounds.h,
-					},
-				];
-
-				replaceHitboxBorder(
-					hitboxEntity,
-					locationComponent.coordinates,
-					bounds,
-				);
-			});
-	}
-
-	if (actorEntity.name === "muddyBuddy") {
-		const hitboxEntities = actorEntity.getRelatedEntities("hitboxes");
-
-		const damageHitboxEntity = hitboxEntities.find(hitboxEntity => {
-			const hitboxComponent = hitboxEntity.getComponent(CHitbox);
-
-			return hitboxComponent.type === "damage";
-		});
-
-		if (!damageHitboxEntity) {
-			throw new Error("Missing damage hitbox.");
+		if (configManager.config.debug.showsEntityBorders) {
+			replaceBorder(viewComponent, borderViewComponent, locationComponent.coordinates);
+		}
+		if (configManager.config.debug.showsEntityCenters) {
+			replaceCenterView(
+				centerViewComponent,
+				`characters.${actorEntity.name}`,
+				locationComponent.coordinates,
+			);
 		}
 
-		const hitboxIsActiveComponent = damageHitboxEntity.getComponent(CHitboxIsActive);
+		if (configManager.config.debug.showsEntityHitboxes && actorEntity.relations.has("hitboxes")) {
+			const hitboxEntities = actorEntity.getRelatedEntities("hitboxes");
 
-		hitboxIsActiveComponent.hitboxIsActive = action === "rolling";
+			hitboxEntities
+				.filter(hitboxEntity => hitboxEntity.getComponent(CHitbox).type === "motion")
+				.forEach((hitboxEntity) => {
+					const hitboxComponent = hitboxEntity.getComponent(CHitbox);
+
+					const hitboxBounds = HITBOX_BOUNDS[hitboxComponent.name];
+					if (!hitboxBounds) {
+						throw new Error(`Missing bounds for hitbox "${hitboxComponent.name}".`);
+					}
+
+					const bounds: TPoint[] = [
+						{
+							x: 0,
+							y: 0,
+						},
+						{
+							x: hitboxBounds.w,
+							y: 0,
+						},
+						{
+							x: hitboxBounds.w,
+							y: hitboxBounds.h,
+						},
+						{
+							x: 0,
+							y: hitboxBounds.h,
+						},
+					];
+
+					replaceHitboxBorder(
+						hitboxEntity,
+						locationComponent.coordinates,
+						bounds,
+					);
+				});
+		}
+
+		if (actorEntity.name === "muddyBuddy") {
+			const hitboxEntities = actorEntity.getRelatedEntities("hitboxes");
+
+			const damageHitboxEntity = hitboxEntities.find(hitboxEntity => {
+				const hitboxComponent = hitboxEntity.getComponent(CHitbox);
+
+				return hitboxComponent.type === "damage";
+			});
+
+			if (!damageHitboxEntity) {
+				throw new Error("Missing damage hitbox.");
+			}
+
+			const hitboxIsActiveComponent = damageHitboxEntity.getComponent(CHitboxIsActive);
+
+			hitboxIsActiveComponent.hitboxIsActive = action === "rolling";
+		}
 	}
 
 	if (options.onLoop) {

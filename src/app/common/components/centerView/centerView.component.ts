@@ -20,7 +20,7 @@ export class CCenterView extends Component {
 	private _center: Graphics | null = null;
 
 	get center() {
-		if (!configManager.config.debug.showsEntityCenter) throw new Error("Cannot access center: the debug option is disabled.");
+		if (!configManager.config.debug.showsEntityCenters) throw new Error("Cannot access center: the debug option is disabled.");
 		if (!this._center) throw new Error("Missing center.");
 
 		return this._center;

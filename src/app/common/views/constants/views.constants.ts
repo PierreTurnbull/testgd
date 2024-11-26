@@ -5,7 +5,7 @@ import { TCoordinates } from "../../types/coordinates.types";
 export const ANIMATION_SPEEDS: Record<string, number> = {
 	"characters.muddyBuddy.rolling":   0.4,
 	"characters.muddyBuddy.standing":  1,
-	"characters.muddyBuddy.dying":     0.8,
+	"characters.muddyBuddy.dying":     0.4,
 	"characters.muddyBuddy.beingDead": 1,
 	"characters.muddyBuddy.beingHit":  0.05,
 	"characters.player.attacking":     0.8,

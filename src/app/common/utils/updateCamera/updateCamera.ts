@@ -1,11 +1,10 @@
-import { APlayer } from "../../archetypes/player/player.archetype";
-import { entityManager } from "../../entities/entityManager.singleton";
-import { CLocation } from "../../components/location/location.component";
 import { CANVAS_HEIGHT, CANVAS_WIDTH } from "@root/app/core/constants/app.constants";
 import { worldManager } from "@root/app/core/worldManager/worldManager.singletons";
+import { playerArchetype } from "../../archetypes/player/player.archetype";
+import { CLocation } from "../../components/location/location.component";
 
 export const updateCamera = () => {
-	const playerEntity = entityManager.entities.find(entity => entity.matchesArchetype(APlayer));
+	const playerEntity = [...playerArchetype.entities][0];
 
 	if (!playerEntity) {
 		return;

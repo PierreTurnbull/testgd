@@ -4,9 +4,8 @@ import { assetsManager } from "@root/app/core/assetsManager/assetsManager.single
 import { createPlayer } from "@root/app/domains/player/utils/createPlayer";
 import { createWall } from "@root/app/domains/wall/utils/createWall";
 import { afterEach, beforeEach, describe, expect, test } from "vitest";
-import { CHitbox } from "../../components/hitbox/hitbox.component";
-import { getConstrainedCoordinates } from "./getConstrainedCoordinates";
 import { HITBOX_BOUNDS } from "../../constants/hitboxes.constants";
+import { getConstrainedCoordinates } from "./getConstrainedCoordinates";
 
 describe("translateInputs", async () => {
 	await assetsManager.loadAssets();

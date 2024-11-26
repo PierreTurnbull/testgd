@@ -1,5 +1,4 @@
-import { archetypeManager } from "@root/app/common/archetypes/archetypeManager.singleton";
-import { AHitbox } from "@root/app/common/archetypes/hitbox/hitbox.archetype";
+import { hitboxArchetype } from "@root/app/common/archetypes/hitbox/hitbox.archetype";
 import { Entity } from "@root/app/common/entities/entity.models";
 import { CHitbox } from "@root/app/domains/hitbox/components/hitbox/hitbox.component";
 import { Box, Circle, Polygon } from "detect-collisions";
@@ -8,7 +7,7 @@ import { Box, Circle, Polygon } from "detect-collisions";
  * Returns the entity to which the body belongs.
  */
 export const getEntityFromCollider = (body: Box | Polygon | Circle): Entity => {
-	const matchingEntity = archetypeManager.getEntitiesByArchetype(AHitbox)
+	const matchingEntity = [...hitboxArchetype.entities]
 		.find(entity => {
 			const hitboxComponent = entity.getComponent(CHitbox);
 
@@ -16,6 +15,7 @@ export const getEntityFromCollider = (body: Box | Polygon | Circle): Entity => {
 		});
 
 	if (!matchingEntity) {
+		console.error(body, hitboxArchetype.entities);
 		throw new Error("Collider does not belong to any entity.");
 	}
 

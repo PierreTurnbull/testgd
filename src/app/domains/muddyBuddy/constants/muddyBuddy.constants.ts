@@ -1,1 +1,1 @@
-export const MUDDYBUDDY_ROLLING_SPEED = 4;
+export const MUDDYBUDDY_ROLLING_SPEED = 2;

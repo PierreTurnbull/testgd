@@ -5,7 +5,6 @@ import { CLocation } from "@root/app/common/components/location/location.compone
 import { CTimers } from "@root/app/common/components/timers/timers.component";
 import { CVelocity } from "@root/app/common/components/velocity/velocity.component";
 import { Entity } from "@root/app/common/entities/entity.models";
-import { createEntity } from "@root/app/common/entities/utils/createEntity";
 import { relationsManager } from "@root/app/common/relations/relationsManager.singleton";
 import { TConeHitboxSettings } from "../../hitbox/types/hitbox.types";
 import { createHitbox } from "../../hitbox/utils/createHitbox";
@@ -13,19 +12,20 @@ import { CMustBeDestroyedOnCollision } from "../components/mustBeDestroyedOnColl
 import { TProjectileSettings } from "../types/projectile.types";
 import { ENTITIES_CENTER_OFFSETS } from "@root/app/common/views/constants/views.constants";
 import { CRelation } from "@root/app/common/relations/components/common/relation.component";
+import { entityManager } from "@root/app/common/entities/entityManager.singleton";
 
 export const createProjectile = (
 	parent: Entity,
 	settings: TProjectileSettings,
 ) => {
-	const projectileEntity = createEntity(
+	const projectileEntity = entityManager.createEntity(
 		"projectile",
 		[
 			// identity
 			new CProjectile(settings.type),
 
 			// misc
-			new CDirection(),
+			new CDirection(settings.direction),
 			new CLocation(settings.coordinates),
 			new CVelocity({}, settings.velocity || 0),
 			settings.damage ? new CDamage(settings.damage || 0) : null,
@@ -33,11 +33,12 @@ export const createProjectile = (
 		],
 	);
 
-	if (parent.hasRelation("projectiles")) {
+	if (parent.relations.has("projectiles")) {
 		const projectilesRelation = parent.getRelation("projectiles");
 		const relationComponent = projectilesRelation.getComponent(CRelation);
 
 		(relationComponent.relation.b.value as Entity[]).push(projectileEntity);
+		projectileEntity.relations.set("shooter", parent.getRelation("projectiles"));
 	} else {
 		relationsManager.createRelation({
 			a: {

@@ -1,17 +1,21 @@
+import { archetypeManager } from "../archetypes/archetypeManager.singleton";
+import { Component } from "../components/component.models";
+import { CTimers } from "../components/timers/timers.component";
+import { CRelation } from "../relations/components/common/relation.component";
+import { relationsManager } from "../relations/relationsManager.singleton";
 import { Entity } from "./entity.models";
+import { TEntitySettings } from "./types/entity.types";
 
 class EntityManager {
 	__brand = "entityManager";
 
-	entities: Entity[] = [];
+	entities = new Set<Entity>();
 
 	/**
 	 * Returns whether the entity is registered in the entity manager.
 	 */
 	getIsRegistered = (entity: Entity) => {
-		const index = this.entities.indexOf(entity);
-
-		return index > -1;
+		return this.entities.has(entity);
 	};
 
 	/**
@@ -20,8 +24,34 @@ class EntityManager {
 	removeEntity = (
 		entity: Entity,
 	) => {
-		const index = this.entities.indexOf(entity);
-		this.entities.splice(index, 1);
+		this.entities.delete(entity);
+		archetypeManager.removeEntityFromArchetypes(entity);
+	};
+
+	createEntity = (
+		name: string,
+		components: (Component | null | undefined)[],
+		settings?: TEntitySettings,
+	) => {
+		const entity = new Entity(
+			settings,
+		);
+		entity.name = name;
+		const filteredComponents = components.filter(component => component !== null && component !== undefined);
+		entity.addComponents([
+			...filteredComponents,
+			new CTimers(),
+		]);
+		this.entities.add(entity);
+
+		// register relations
+		if (entity.hasComponent(CRelation)) {
+			relationsManager.relations.add(entity);
+		}
+	
+		archetypeManager.registerEntity(entity);
+
+		return entity;
 	};
 }
 

@@ -1,17 +1,16 @@
-import { CWall } from "@root/app/common/components/identity/wall.component";
-import { createEntity } from "@root/app/common/entities/utils/createEntity";
-import { relationsManager } from "@root/app/common/relations/relationsManager.singleton";
-import { createHitbox } from "../../hitbox/utils/createHitbox";
 import { actorArchetype } from "@root/app/common/archetypes/actor/actor.archetype";
-import { ENTITIES_CENTER_OFFSETS } from "@root/app/common/views/constants/views.constants";
+import { CWall } from "@root/app/common/components/identity/wall.component";
+import { entityManager } from "@root/app/common/entities/entityManager.singleton";
+import { relationsManager } from "@root/app/common/relations/relationsManager.singleton";
 import { TCoordinates } from "@root/app/common/types/coordinates.types";
 import { TPoint } from "@root/app/common/types/point.type";
+import { createHitbox } from "../../hitbox/utils/createHitbox";
 
 export const createWall = (
 	initialCoordinates: TCoordinates,
 	points: TPoint[],
 ) => {
-	const entity = createEntity("wall", [
+	const entity = entityManager.createEntity("wall", [
 		new CWall(),
 	]);
 	relationsManager.createRelation({

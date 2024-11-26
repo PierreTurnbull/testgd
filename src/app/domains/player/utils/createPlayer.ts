@@ -1,3 +1,4 @@
+import { wallArchetype } from "@root/app/common/archetypes/wall/wall.archetype";
 import { CAction } from "@root/app/common/components/action/action.component";
 import { CBorderView } from "@root/app/common/components/border/border.component";
 import { CCenterView } from "@root/app/common/components/centerView/centerView.component";
@@ -10,7 +11,7 @@ import { CPostHitInvincibility } from "@root/app/common/components/postHitInvinc
 import { CVelocity } from "@root/app/common/components/velocity/velocity.component";
 import { CView } from "@root/app/common/components/view/view.component";
 import { AVAILABLE_ACTIONS } from "@root/app/common/constants/availableActions.constants";
-import { createEntity } from "@root/app/common/entities/utils/createEntity";
+import { entityManager } from "@root/app/common/entities/entityManager.singleton";
 import { relationsManager } from "@root/app/common/relations/relationsManager.singleton";
 import { TCoordinates } from "@root/app/common/types/coordinates.types";
 import { ENTITIES_CENTER_OFFSETS } from "@root/app/common/views/constants/views.constants";
@@ -22,12 +23,15 @@ import { PLAYER_RUNNING_SPEED } from "@root/app/domains/player/constants/player.
 import { Graphics } from "pixi.js";
 import { TRectangleHitboxSettings } from "../../hitbox/types/hitbox.types";
 import { createHitbox } from "../../hitbox/utils/createHitbox";
-import { wallArchetype } from "@root/app/common/archetypes/wall/wall.archetype";
+import { CVisibilityGraph } from "../../pathfinding/components/visibilityGraph.component";
+import { TDirection } from "@root/app/common/components/direction/types/direction.types";
+import { ANGLE_NAMES } from "@root/app/common/constants/space.constants";
 
 export const createPlayer = (
 	initialCoordinates: TCoordinates,
+	initialDirection: TDirection = 90,
 ) => {
-	const animatedSprite = initAnimatedSprite("characters.player.standing.down", initialCoordinates);
+	const animatedSprite = initAnimatedSprite(`characters.player.standing.${ANGLE_NAMES.get(initialDirection)}`, initialCoordinates);
 
 	let border: Graphics | null = null;
 	let center: Graphics | null = null;
@@ -36,7 +40,7 @@ export const createPlayer = (
 		border = initBorder(animatedSprite, initialCoordinates);
 	}
 
-	if (configManager.config.debug.showsEntityCenter) {
+	if (configManager.config.debug.showsEntityCenters) {
 		center = initCenter("characters.player", initialCoordinates);
 	}
 
@@ -47,7 +51,7 @@ export const createPlayer = (
 	const availableActions = AVAILABLE_ACTIONS.player;
 	const currentAction = "standing";
 
-	const playerEntity = createEntity(
+	const playerEntity = entityManager.createEntity(
 		"player",
 		[
 			// identity
@@ -56,11 +60,12 @@ export const createPlayer = (
 			// misc
 			new CKeyboard(),
 			new CLocation(initialCoordinates),
-			new CDirection(),
+			new CDirection(initialDirection),
 			new CVelocity(actionVelocities),
 			new CAction(currentAction, availableActions),
-			new CHealth(3),
+			new CHealth(1),
 			new CPostHitInvincibility(),
+			new CVisibilityGraph(),
 
 			// views
 			new CView(animatedSprite),

@@ -36,7 +36,7 @@ export const initHitboxBorder = (
 		.stroke({
 			width:     2,
 			color:     color,
-			alignment: 1,
+			alignment: 0.5,
 		});
 
 	const label = `${name}.hitboxBorder`;

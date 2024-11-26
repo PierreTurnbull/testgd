@@ -1,45 +1,31 @@
 import { Component } from "../components/component.models";
 import { Entity } from "../entities/entity.models";
 import { entityManager } from "../entities/entityManager.singleton";
-import { createEntity } from "../entities/utils/createEntity";
 import { CRelation } from "./components/common/relation.component";
 import { CManyToMany } from "./components/manyToMany/manyToMany.component";
+import { CManyToOne } from "./components/manyToOne/manyToOne.component";
 import { CMustCascadeDelete } from "./components/mustCascadeDelete/mustCascadeDelete.component";
 import { COneToMany } from "./components/oneToMany/oneToMany.component";
 import { COneToOne } from "./components/oneToOne/oneToOne.component";
-import { TAnyRelation, TManyToManyRelation, TMultiplicity, TOneToManyRelation, TOneToOneRelation, TRelationValue } from "./types/relation.types";
+import { TAnyRelation, TMultiplicity, TRelationNode, TRelationValue } from "./types/relation.types";
+import { getIsManyToMany, getIsManyToOne, getIsOneToMany, getIsOneToOne } from "./utils/cardinalityTypeguards";
+import { getIsMany } from "./utils/multiplicityTypeguards";
 
 class RelationsManager {
 	/**
-	 * Gets relations. Entities are related using special entities named "relation".
+	 * Entities are related using special entities named "relation".
 	 * A relation is a special entity with the CRelation component.
 	 */
-	get relations() {
-		return entityManager.entities.filter(entity => entity.hasComponent(CRelation));
-	}
+	relations = new Set<Entity>();
 
 	/**
 	 * Create a relation between entities.
 	 */
 	createRelation(relation: TAnyRelation) {
-		const isOneToOne = ((relation: TAnyRelation): relation is TOneToOneRelation => {
-			return (
-				(relation.a.value as Entity[]).length === undefined ||
-				(relation.b.value as Entity[]).length === undefined
-			);
-		})(relation);
-		const isOneToMany = ((relation: TAnyRelation): relation is TOneToManyRelation => {
-			return (
-				(relation.a.value as Entity[]).length === undefined ||
-				(relation.b.value as Entity[]).length !== undefined
-			);
-		})(relation);
-		const isManyToMany = ((relation: TAnyRelation): relation is TManyToManyRelation => {
-			return (
-				(relation.a.value as Entity[]).length !== undefined ||
-				(relation.b.value as Entity[]).length !== undefined
-			);
-		})(relation);
+		const isOneToOne = getIsOneToOne(relation);
+		const isOneToMany = getIsOneToMany(relation);
+		const isManyToOne = getIsManyToOne(relation);
+		const isManyToMany = getIsManyToMany(relation);
 
 		let relationComponent: Component;
 
@@ -47,19 +33,36 @@ class RelationsManager {
 			relationComponent = new COneToOne(relation);
 		} else if (isOneToMany) {
 			relationComponent = new COneToMany(relation);
+		} else if (isManyToOne) {
+			relationComponent = new CManyToOne(relation);
 		} else if (isManyToMany) {
 			relationComponent = new CManyToMany(relation);
 		} else {
 			throw new Error("Invalid relation.");
 		}
 	
-		createEntity(
+		const relationEntity = entityManager.createEntity(
 			"relation",
 			[
 				relationComponent,
 				new CMustCascadeDelete(relation.mustCascadeDelete),
 			],
 		);
+
+		// add the relation to the entities
+
+		if (isOneToOne || isOneToMany) {
+			relation.a.value.relations.set(relation.b.key, relationEntity);
+		}
+		if (isManyToMany || isManyToOne) {
+			relation.a.value.forEach(entity => entity.relations.set(relation.a.key, relationEntity));
+		}
+		if (isOneToOne || isManyToOne) {
+			relation.b.value.relations.set(relation.a.key, relationEntity);
+		}
+		if (isOneToMany || isManyToMany) {
+			relation.b.value.forEach(entity => entity.relations.set(relation.a.key, relationEntity));
+		}
 	}
 
 	/**
@@ -153,21 +156,30 @@ class RelationsManager {
 
 			if (valueAIsList) {
 				removeFromList(entity, valueA);
+				entity.relations.delete(relationComponent.relation.b.key);
 			}
 			if (valueBIsList) {
 				removeFromList(entity, valueB);
+				entity.relations.delete(relationComponent.relation.a.key);
 			}
 
-			// delete the relation if needed
+			// delete the relation if it is not referenced by any entity
 
-			if (
+			const valueAIsEmpty = (
 				(valueAIsList && valueA.length === 0) ||
+				(!valueAIsList && valueA === entity)
+			);
+			const valueBIsEmpty = (
 				(valueBIsList && valueB.length === 0) ||
-				(!valueAIsList && valueA === entity) ||
 				(!valueBIsList && valueB === entity)
-			) {
-				const index = entityManager.entities.indexOf(relation);
-				entityManager.entities.splice(index, 1);
+			);
+
+			if (valueAIsEmpty && valueBIsEmpty) {
+				// remove from entitiesManager
+				entityManager.entities.delete(relation);
+
+				// remove from relationsManager
+				this.relations.delete(relation);
 			}
 
 			// cascade delete
@@ -180,6 +192,46 @@ class RelationsManager {
 				}
 			}
 		}
+	}
+
+	/**
+	 * Appends an entity to a list of entities in a relation.
+	 */
+	appendToRelation(
+		/**
+		 * The relation in which the entity will be added.
+		 */
+		relationEntity: Entity,
+		/**
+		 * The entity to add to the relation.
+		 */
+		entity: Entity,
+		/**
+		 * The name of the relation node that will contain the provided entity.
+		 */
+		relationName: string,
+	) {
+		const relation = relationEntity.getComponent(CRelation).relation;
+
+		let relationNode: TRelationNode<"many"> | TRelationNode<"one">;
+		let oppositeRelationNode: TRelationNode<"many"> | TRelationNode<"one">;
+		if (relation.a.key === relationName) {
+			relationNode = relation.a;
+			oppositeRelationNode = relation.b;
+		} else {
+			relationNode = relation.b;
+			oppositeRelationNode = relation.a;
+		}
+
+		if (!getIsMany(relationNode)) {
+			throw new Error(`Cannot add entity "${entity.name}" to relation node "${relationName}". The multiplicity of the relation node must be "many", but it is "one".`);
+		}
+
+		relationNode.value.push(entity);
+
+		// save the relation in the entity
+
+		entity.relations.set(oppositeRelationNode.key, relationEntity);
 	}
 }
 

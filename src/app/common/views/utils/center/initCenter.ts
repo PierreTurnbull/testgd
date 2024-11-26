@@ -20,7 +20,7 @@ export const initCenter = (
 		.stroke({
 			width:     1,
 			color:     0xffffff,
-			alignment: 1,
+			alignment: 0.5,
 		});
 
 	const label = `${name}.center`;

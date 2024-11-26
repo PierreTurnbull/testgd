@@ -1,10 +1,8 @@
-import { archetypeManager } from "@root/app/common/archetypes/archetypeManager.singleton";
-import { APlayer } from "@root/app/common/archetypes/player/player.archetype";
+import { playerArchetype } from "@root/app/common/archetypes/player/player.archetype";
 import { CKeyboard } from "@root/app/common/components/keyboard/keyboard.component";
-// import debounce from "lodash/debounce";
 
 export const watchInput = () => {
-	const playerEntity = archetypeManager.getEntitiesByArchetype(APlayer)[0];
+	const playerEntity = [...playerArchetype.entities][0];
 
 	if (!playerEntity) {
 		console.warn("No player entity found.");

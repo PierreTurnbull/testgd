@@ -2,23 +2,24 @@ import { CHitboxIsActive } from "@root/app/domains/hitbox/components/hitboxIsAct
 import { MUDDY_BUDDY_DESTROY_DELAY } from "@root/app/domains/muddyBuddy/types/muddyBuddy.types";
 import { ColorMatrixFilter } from "pixi.js";
 import { CHitbox } from "../../../domains/hitbox/components/hitbox/hitbox.component";
-import { AActor } from "../../archetypes/actor/actor.archetype";
-import { ADamager } from "../../archetypes/damager/damager.archetype";
-import { AMortal } from "../../archetypes/mortal/mortal.archetype";
+import { actorArchetype } from "../../archetypes/actor/actor.archetype";
+import { damagerArchetype } from "../../archetypes/damager/damager.archetype";
+import { mortalArchetype } from "../../archetypes/mortal/mortal.archetype";
 import { CDamage } from "../../components/damage/damage.component";
 import { CDirection } from "../../components/direction/direction.component";
 import { CHealth } from "../../components/health/health.component";
+import { CProjectile } from "../../components/identity/projectile/projectile.component";
 import { CKnockbackDirection } from "../../components/knockbackDirection/knockbackDirection.component";
 import { CLocation } from "../../components/location/location.component";
 import { CPostHitInvincibility } from "../../components/postHitInvincibility/postHitInvincibility.component";
 import { CTimers } from "../../components/timers/timers.component";
 import { CView } from "../../components/view/view.component";
-import { ANGLES_RANGE, DIRECTIONS, MAIN_ANGLES } from "../../constants/space.constants";
+import { FLASH_DURATION } from "../../constants/damage.constants";
 import { Entity } from "../../entities/entity.models";
 import { getAngleFromPoints } from "../getAngleFromPoints/getAngleFromPoints";
 import { setAction } from "../setAction/setAction";
-import { FLASH_DURATION } from "../../constants/damage.constants";
-import { CProjectile } from "../../components/identity/projectile/projectile.component";
+import { playerArchetype } from "../../archetypes/player/player.archetype";
+import { CMemory } from "../../memory/components/memory/memory.component";
 
 /**
  * Applies damage of the damager to the victim
@@ -27,8 +28,9 @@ export const applyDamage = (
 	fromEntity: Entity,
 	toEntity: Entity,
 ) => {
-	const fromEntityIsDamager = fromEntity.matchesArchetype(ADamager);
-	const toEntityIsMortal = toEntity.matchesArchetype(AMortal);
+	const fromEntityIsDamager = damagerArchetype.entityMatchesArchetype(fromEntity);
+	const toEntityIsMortal = mortalArchetype.entityMatchesArchetype(toEntity);
+	const toEntityIsPlayer = playerArchetype.entityMatchesArchetype(toEntity);
 
 	if (!fromEntityIsDamager || !toEntityIsMortal) {
 		if (!fromEntityIsDamager) {
@@ -39,7 +41,7 @@ export const applyDamage = (
 		}
 	}
 
-	const toEntityIsActor = toEntity.matchesArchetype(AActor);
+	const toEntityIsActor = actorArchetype.entityMatchesArchetype(toEntity);
 
 	if (!toEntityIsActor) {
 		throw new Error("toEntity must be an actor.");
@@ -83,6 +85,9 @@ export const applyDamage = (
 			{
 				onComplete: () => {
 					setAction(toEntity, "beingDead", toEntityDirectionComponent.direction);
+
+					if (toEntityIsPlayer) return;
+
 					const id = setTimeout(() => {
 						toEntity.destroy();
 					}, MUDDY_BUDDY_DESTROY_DELAY);
@@ -95,10 +100,7 @@ export const applyDamage = (
 		const fromCenterComponent = fromEntity.getComponent(CLocation);
 		const toCenterComponent = toEntity.getComponent(CLocation);
 		const angle = getAngleFromPoints(fromCenterComponent.coordinates, toCenterComponent.coordinates);
-		const closestAngle = Math.round(angle / ANGLES_RANGE) * ANGLES_RANGE;
-		const angleKey = MAIN_ANGLES.indexOf(closestAngle === 360 ? 0 : closestAngle);
-		const direction = DIRECTIONS[angleKey];
-		toEntity.addComponent(new CKnockbackDirection(direction));
+		toEntity.addComponent(new CKnockbackDirection(angle));
 
 		// set action
 		setAction(toEntity, "beingHit", toEntityDirectionComponent.direction, {
@@ -112,7 +114,7 @@ export const applyDamage = (
 		toEntityPostHitInvincibilityComponent.setInvincibility();
 
 		// remove the victim's slash projectiles
-		if (toEntity.hasRelation("projectiles")) {
+		if (toEntity.relations.has("projectiles")) {
 			const projectileEntities = toEntity.getRelatedEntities("projectiles");
 			projectileEntities
 				.filter(projectileEntity => projectileEntity.getComponent(CProjectile).type === "slash")
@@ -132,4 +134,15 @@ export const applyDamage = (
 		toEntityViewComponent.animatedSprite.filters = [];
 	}, FLASH_DURATION);
 	timersComponent.addTimer(id);
+
+	// udpate damager's memory
+
+	if (fromEntity.hasComponent(CMemory)) {
+		const memoryComponent = fromEntity.getComponent(CMemory);
+
+		memoryComponent.addMemoryItem({
+			type:   "didHit",
+			victim: toEntity,
+		});
+	}
 };

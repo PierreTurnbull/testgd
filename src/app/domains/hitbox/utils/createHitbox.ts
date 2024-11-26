@@ -1,6 +1,6 @@
 import { Entity } from "@root/app/common/entities/entity.models";
-import { createEntity } from "@root/app/common/entities/utils/createEntity";
-import { TRelationNode } from "@root/app/common/relations/types/relation.types";
+import { entityManager } from "@root/app/common/entities/entityManager.singleton";
+import { relationsManager } from "@root/app/common/relations/relationsManager.singleton";
 import { initHitboxBorder } from "@root/app/common/views/utils/hitboxBorder/initHitboxBorder";
 import { configManager } from "@root/app/core/configManager/configManager.singletons";
 import { Graphics } from "pixi.js";
@@ -10,9 +10,8 @@ import { CHitboxIsActive } from "../components/hitboxIsActive/hitboxIsActive.com
 import { CHitboxOffset } from "../components/hitboxOffset/hitboxOffset.component";
 import { CHitboxView } from "../components/hitboxView/hitboxView.component";
 import { THitboxSettings } from "../types/hitbox.types";
-import { getHitboxPoints } from "./getHitboxPoints";
-import { CRelation } from "@root/app/common/relations/components/common/relation.component";
 import { getHitboxBody } from "./getHitboxBody";
+import { getHitboxPoints } from "./getHitboxPoints";
 
 /**
  * Create a hitbox related to the parent entity.
@@ -26,11 +25,11 @@ export const createHitbox = (
 
 	let hitboxBorder: Graphics | null = null;
 
-	if (configManager.config.debug.showsEntityHitbox) {
+	if (configManager.config.debug.showsEntityHitboxes) {
 		hitboxBorder = initHitboxBorder(settings.name, settings.type, settings.initialCoordinates, settings.offset, hitboxPoints);
 	}
 
-	const hitboxEntity = createEntity(
+	const hitboxEntity = entityManager.createEntity(
 		"hitbox",
 		[
 			new CHitbox(hitboxBody, settings.type, settings.name),
@@ -44,18 +43,6 @@ export const createHitbox = (
 	// register the hitbox as a child of the parent
 
 	const relation = parent.getRelation("hitboxes");
-	const relationComponent = relation.getComponent(CRelation);
-	let relationNode: TRelationNode<"many"> | TRelationNode<"one">;
-	if (relationComponent.relation.a.key === "hitboxes") {
-		relationNode = relationComponent.relation.a;
-	} else {
-		relationNode = relationComponent.relation.b;
-	}
-	const isMany = (relationNode: TRelationNode<"many"> | TRelationNode<"one">): relationNode is TRelationNode<"many"> => {
-		return typeof (relationNode as TRelationNode<"many">).value === "object";
-	};
-	if (!isMany(relationNode)) {
-		throw new Error("Invalid hitboxes relation.");
-	}
-	relationNode.value.push(hitboxEntity);
+
+	relationsManager.appendToRelation(relation, hitboxEntity, "hitboxes");
 };

@@ -1,15 +1,10 @@
 import { Ticker } from "pixi.js";
 import { TDirection } from "../../components/direction/types/direction.types";
-import { DIAGONAL_DISTANCE_FACTOR } from "../../constants/space.constants";
 import { TCoordinates } from "../../types/coordinates.types";
+import { TOffset } from "../../types/offset.types";
 
 /**
  * Returns new coordinates after applying a motion
- * @param delta 
- * @param locationComponent 
- * @param direction 
- * @param velocity 
- * @returns 
  */
 export const getNextCoordinates = (
 	delta: Ticker,
@@ -17,58 +12,18 @@ export const getNextCoordinates = (
 	direction: TDirection,
 	velocity: number,
 ) => {
-	let newCoordinates: TCoordinates;
+	const totalDistance = delta.deltaTime * velocity;
 
-	switch (direction) {
-	case "upLeft":
-		newCoordinates = {
-			x: coordinates.x - delta.deltaTime * velocity * DIAGONAL_DISTANCE_FACTOR,
-			y: coordinates.y - delta.deltaTime * velocity * DIAGONAL_DISTANCE_FACTOR,
-		};
-		break;
-	case "downLeft":
-		newCoordinates = {
-			x: coordinates.x - delta.deltaTime * velocity * DIAGONAL_DISTANCE_FACTOR,
-			y: coordinates.y + delta.deltaTime * velocity * DIAGONAL_DISTANCE_FACTOR,
-		};
-		break;
-	case "upRight":
-		newCoordinates = {
-			x: coordinates.x + delta.deltaTime * velocity * DIAGONAL_DISTANCE_FACTOR,
-			y: coordinates.y - delta.deltaTime * velocity * DIAGONAL_DISTANCE_FACTOR,
-		};
-		break;
-	case "downRight":
-		newCoordinates = {
-			x: coordinates.x + delta.deltaTime * velocity * DIAGONAL_DISTANCE_FACTOR,
-			y: coordinates.y + delta.deltaTime * velocity * DIAGONAL_DISTANCE_FACTOR,
-		};
-		break;
-	case "left":
-		newCoordinates = {
-			x: coordinates.x - delta.deltaTime * velocity,
-			y: coordinates.y,
-		};
-		break;
-	case "right":
-		newCoordinates = {
-			x: coordinates.x + delta.deltaTime * velocity,
-			y: coordinates.y,
-		};
-		break;
-	case "up":
-		newCoordinates = {
-			x: coordinates.x,
-			y: coordinates.y - delta.deltaTime * velocity,
-		};
-		break;
-	case "down":
-		newCoordinates = {
-			x: coordinates.x,
-			y: coordinates.y + delta.deltaTime * velocity,
-		};
-		break;
-	}
+	const directionRadianForX = Math.cos(direction * Math.PI / 180);
+	const directionRadianForY = Math.sin(direction * Math.PI / 180);
 
-	return newCoordinates;
+	const distanceOnX = totalDistance * directionRadianForX;
+	const distanceOnY = totalDistance * directionRadianForY;
+
+	const nextCoordinates: TOffset = {
+		x: coordinates.x + distanceOnX,
+		y: coordinates.y + distanceOnY,
+	};
+
+	return nextCoordinates;
 };
