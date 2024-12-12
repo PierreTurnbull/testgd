@@ -2,11 +2,14 @@ import math
 
 characterSize = 64
 groundSize = 256
-rockSize = 64
+rockMDSize = 64
+rockLGSize = 128
 
 characterDimensionX = characterSize
 characterDimensionY = characterSize
 groundDimensionX = groundSize
 groundDimensionY = groundSize
-rockDimensionX = rockSize
-rockDimensionY = rockSize
+rockMDDimensionX = rockMDSize
+rockMDDimensionY = rockMDSize
+rockLGDimensionX = rockLGSize
+rockLGDimensionY = rockLGSize

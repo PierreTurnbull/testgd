@@ -8,7 +8,7 @@ export const getOffsetCoordinates = (
 	coordinates: TCoordinates,
 	offset: TOffset,
 ) => {
-	const offsetCoordinates = {
+	const offsetCoordinates: TCoordinates = {
 		x: coordinates.x + offset.x,
 		y: coordinates.y + offset.y,
 	};

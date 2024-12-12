@@ -1,5 +1,6 @@
+import { CViewSortingCurve } from "@root/app/domains/viewSortingCurve/components/viewSortingCurve/viewSortingCurve.component";
 import { CAction } from "../../components/action/action.component";
-import { CBorderView } from "../../components/border/border.component";
+import { CBorderView } from "../../components/borderView/borderView.component";
 import { CCenterView } from "../../components/centerView/centerView.component";
 import { CDirection } from "../../components/direction/direction.component";
 import { CKeyboard } from "../../components/keyboard/keyboard.component";
@@ -7,6 +8,7 @@ import { CLocation } from "../../components/location/location.component";
 import { CVelocity } from "../../components/velocity/velocity.component";
 import { CView } from "../../components/view/view.component";
 import { Archetype } from "../archetype.models";
+import { CViewSortingCurveOffset } from "@root/app/domains/viewSortingCurve/components/viewSortingCurveOffset/viewSortingCurveOffset.component";
 
 /**
  * Any entity that can perform some actions.
@@ -22,6 +24,8 @@ export class AActor extends Archetype {
 			CView,
 			CBorderView,
 			CCenterView,
+			CViewSortingCurve,
+			CViewSortingCurveOffset,
 		]);
 	}
 }

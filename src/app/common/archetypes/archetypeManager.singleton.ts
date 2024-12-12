@@ -10,7 +10,8 @@ import { mortalArchetype } from "./mortal/mortal.archetype";
 import { muddyBuddyArchetype } from "./muddyBuddy/muddyBuddy.archetype";
 import { playerArchetype } from "./player/player.archetype";
 import { projectileArchetype } from "./projectile/projectile.archetype";
-import { rockArchetype } from "./rock/rock.archetype";
+import { rockLGArchetype } from "./rockLG/rockLG.archetype";
+import { rockMDArchetype } from "./rockMD/rockMD.archetype";
 import { sortableViewArchetype } from "./sortableView/sortableView.archetype";
 import { wallArchetype } from "./wall/wall.archetype";
 
@@ -35,7 +36,8 @@ class ArchetypeManager {
 		damagerArchetype,
 		hitboxArchetype,
 		wallArchetype,
-		rockArchetype,
+		rockMDArchetype,
+		rockLGArchetype,
 	];
 	archetypesByName = new Map<string, Archetype>();
 

@@ -7,25 +7,25 @@ import { configManager } from "@root/app/core/configManager/configManager.single
  */
 export class CCenterView extends Component {
 	constructor (
-		center: Graphics | null,
+		centerView: Graphics | null,
 	) {
 		super();
 
-		this._center = center;
+		this._centerView = centerView;
 	}
 
 	/**
-	 * The center of an entity. Used for debugging.
+	 * The view of the center of an entity. Used for debugging.
 	 */
-	private _center: Graphics | null = null;
+	private _centerView: Graphics | null = null;
 
-	get center() {
+	get centerView() {
 		if (!configManager.config.debug.showsEntityCenters) throw new Error("Cannot access center: the debug option is disabled.");
-		if (!this._center) throw new Error("Missing center.");
+		if (!this._centerView) throw new Error("Missing center.");
 
-		return this._center;
+		return this._centerView;
 	}
-	set center(value: Graphics) {
-		this._center = value;
+	set centerView(value: Graphics) {
+		this._centerView = value;
 	}
 }

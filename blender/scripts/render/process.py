@@ -44,7 +44,12 @@ def processDirt():
 
 	render.renderDirt()
 
-def processRock():
-	prepare.prepareRock()
+def processRockMD():
+	prepare.prepareRockMD()
 
-	render.renderRock()
+	render.renderRockMD()
+
+def processRockLG():
+	prepare.prepareRockLG()
+
+	render.renderRockLG()

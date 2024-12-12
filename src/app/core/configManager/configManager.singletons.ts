@@ -4,19 +4,23 @@ class ConfigManager {
 			/**
 			 * Borders of images that are used to display entities.
 			 */
-			showsEntityBorders:               false,
+			showsEntityBorders:               true,
 			/**
 			 * Hitboxes of entities.
 			 */
-			showsEntityHitboxes:              false,
+			showsEntityHitboxes:              true,
 			/**
 			 * Centers of entities, which means their location.
 			 */
-			showsEntityCenters:               false,
+			showsEntityCenters:               true,
+			/**
+			 * Sorting curves, used for displaying entities in the right order from a visual perspective.
+			 */
+			showsViewSortingCurves:           true,
 			/**
 			 * Bigger version of hitboxes. They are used for creating visibility graphs, in the context of pathfinding.
 			 */
-			showsExtendedHitboxes:            false,
+			showsExtendedHitboxes:            true,
 			/**
 			 * Nodes of visibility graphs, in the context of pathfinding.
 			 */
@@ -29,6 +33,10 @@ class ConfigManager {
 			 * The best path of a visibility graph, using a pathfinding algorithm.
 			 */
 			showsVisibilityGraphBestPath:     false,
+			/**
+			 * The coordinates of the mouse, displayed on top of the mouse.
+			 */
+			showsMouseCoordinates:            true,
 			/**
 			 * Logs the performance of updating visiblity graphs.
 			 */

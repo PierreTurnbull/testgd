@@ -6,7 +6,7 @@ import { CVisibilityGraph } from "@root/app/domains/pathfinding/components/visib
 import { resetVisibilityGraph } from "@root/app/domains/pathfinding/utils/createVisibilityGraph/resetVisibilityGraph/resetVisibilityGraph";
 import { Archetype } from "../archetypes/archetype.models";
 import { archetypeManager } from "../archetypes/archetypeManager.singleton";
-import { CBorderView } from "../components/border/border.component";
+import { CBorderView } from "../components/borderView/borderView.component";
 import { CCenterView } from "../components/centerView/centerView.component";
 import { Component } from "../components/component.models";
 import { CTimers } from "../components/timers/timers.component";
@@ -181,13 +181,13 @@ export class Entity {
 		if (configManager.config.debug.showsEntityBorders && this.hasComponent(CBorderView)) {
 			const borderViewComponent = this.getComponent(CBorderView);
 	
-			borderViewComponent.border.destroy();
+			borderViewComponent.borderView.destroy();
 		}
 
 		if (configManager.config.debug.showsEntityCenters && this.hasComponent(CCenterView)) {
 			const centerViewComponent = this.getComponent(CCenterView);
 	
-			centerViewComponent.center.destroy();
+			centerViewComponent.centerView.destroy();
 		}
 
 		// destroy hitboxes
@@ -203,7 +203,7 @@ export class Entity {
 				if (configManager.config.debug.showsEntityHitboxes && hitboxEntity.hasComponent(CHitboxView)) {
 					const hitboxViewComponent = hitboxEntity.getComponent(CHitboxView);
 			
-					hitboxViewComponent.hitboxBorder.destroy();
+					hitboxViewComponent.hitboxBorderView.destroy();
 				}
 			});
 		}

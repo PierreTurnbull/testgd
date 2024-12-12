@@ -58,12 +58,12 @@ export const moveTowardsTarget = (
 
 		findPath(muddyBuddyEntity, playerLocationComponent.coordinates, playerPreciseExtendedPoints);
 
-		if (visibilityGraphComponent.nextStep) {
-			const angle = getAngleFromPoints(locationComponent.coordinates, visibilityGraphComponent.nextStep);
+		// if (visibilityGraphComponent.nextStep) {
+		// 	const angle = getAngleFromPoints(locationComponent.coordinates, visibilityGraphComponent.nextStep);
 
-			keyboardComponent.joystickAngle = angle;
-		} else {
-			keyboardComponent.joystickAngle = null;
-		}
+		// 	keyboardComponent.joystickAngle = angle;
+		// } else {
+		// 	keyboardComponent.joystickAngle = null;
+		// }
 	}
 };

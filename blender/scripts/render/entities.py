@@ -13,4 +13,5 @@ muddyBuddy = bpy.data.collections["MuddyBuddy"]
 
 dirt = bpy.data.collections["Dirt"]
 
-rock = bpy.data.collections["Rock"]
+rockMD = bpy.data.collections["Rock MD"]
+rockLG = bpy.data.collections["Rock LG"]

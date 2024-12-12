@@ -7,25 +7,22 @@ import { configManager } from "@root/app/core/configManager/configManager.single
  */
 export class CHitboxView extends Component {
 	constructor(
-		hitboxBorder: Graphics | null,
+		hitboxBorderView: Graphics | null,
 	) {
 		super();
 
-		this._hitboxBorder = hitboxBorder;
+		this._hitboxBorderView = hitboxBorderView;
 	}
 
-	/**
-	 * The borders of the hitbox. Used for debugging.
-	 */
-	private _hitboxBorder: Graphics | null;
+	private _hitboxBorderView: Graphics | null;
 
-	get hitboxBorder() {
-		if (!configManager.config.debug.showsEntityHitboxes) throw new Error("Cannot access hitboxBorder: the debug option is disabled.");
-		if (!this._hitboxBorder) throw new Error("Missing hitboxBorder.");
+	get hitboxBorderView() {
+		if (!configManager.config.debug.showsEntityHitboxes) throw new Error("Cannot access hitboxBorderView: the debug option is disabled.");
+		if (!this._hitboxBorderView) throw new Error("Missing hitboxBorderView.");
 
-		return this._hitboxBorder;
+		return this._hitboxBorderView;
 	}
-	set hitboxBorder(value: Graphics) {
-		this._hitboxBorder = value;
+	set hitboxBorderView(value: Graphics) {
+		this._hitboxBorderView = value;
 	}
 }

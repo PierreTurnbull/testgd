@@ -12,6 +12,9 @@ def showCollection(collection):
 
 # prepare
 
+def prepareBase():
+	entities.world.node_tree.nodes["Background"].inputs["Strength"].default_value = 0.5
+
 def prepareCharacter():
 	entities.scene.render.resolution_x = int(constants.characterDimensionX)
 	entities.scene.render.resolution_y = int(constants.characterDimensionY)
@@ -20,7 +23,6 @@ def prepareCharacter():
 	entities.camera.location.x = 0
 	entities.camera.location.y = -10
 	entities.camera.location.z = 0
-	entities.world.node_tree.nodes["Background"].inputs["Strength"].default_value = 0.2
 	entities.camera.hide_render = False
 	entities.camera.rotation_euler[0] = 90 * (pi / 180.0)
 	entities.camera.rotation_euler[1] = 0 * (pi / 180.0)
@@ -38,14 +40,26 @@ def prepareGround():
 	entities.camera.rotation_euler[1] = 0 * (pi / 180.0)
 	entities.camera.rotation_euler[2] = 0 * (pi / 180.0)
 
-def prepareRock():
-	showCollection(entities.rock)
-	entities.scene.render.resolution_x = int(constants.rockDimensionX)
-	entities.scene.render.resolution_y = int(constants.rockDimensionY)
-	entities.camera.data.ortho_scale = constants.rockSize
+def prepareRockMD():
+	showCollection(entities.rockMD)
+	entities.scene.render.resolution_x = int(constants.rockMDDimensionX)
+	entities.scene.render.resolution_y = int(constants.rockMDDimensionY)
+	entities.camera.data.ortho_scale = constants.rockMDSize
 	entities.camera.location.x = 0
 	entities.camera.location.y = -10
 	entities.camera.location.z = 5
+	entities.camera.rotation_euler[0] = 70 * (pi / 180.0)
+	entities.camera.rotation_euler[1] = 0 * (pi / 180.0)
+	entities.camera.rotation_euler[2] = 0 * (pi / 180.0)
+
+def prepareRockLG():
+	showCollection(entities.rockLG)
+	entities.scene.render.resolution_x = int(constants.rockLGDimensionX)
+	entities.scene.render.resolution_y = int(constants.rockLGDimensionY)
+	entities.camera.data.ortho_scale = constants.rockLGSize
+	entities.camera.location.x = 0
+	entities.camera.location.y = -35
+	entities.camera.location.z = 15
 	entities.camera.rotation_euler[0] = 70 * (pi / 180.0)
 	entities.camera.rotation_euler[1] = 0 * (pi / 180.0)
 	entities.camera.rotation_euler[2] = 0 * (pi / 180.0)

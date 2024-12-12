@@ -7,6 +7,7 @@ import { initLoop } from "./initLoop/initLoop";
 import { initFps } from "./initFps/initFps";
 import "./reset.css";
 import { initEnvironment } from "./initEnvironment/initEnvironment";
+import { initMouse } from "./initMouse/initMouse";
 
 // prevent default browser behaviour when left clicking
 document.addEventListener("contextmenu", event => event.preventDefault());
@@ -16,6 +17,13 @@ await assetsManager.loadAssets();
 await initApplication();
 initEnvironment();
 initCharacters();
+initMouse();
 initFps();
 initLoop();
 watchInput();
+
+window.addEventListener("keydown", event => {
+	if (event.code === "KeyQ") {
+		document.body.style.display = document.body.style.display === "none" ? "block" : "none";
+	}
+});

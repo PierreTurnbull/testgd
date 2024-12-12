@@ -34,7 +34,7 @@ export const initAnimatedSprite = (
 		animatedSprite.loop = false;
 	}
 
-	const centerOffset = ENTITIES_CENTER_OFFSETS[allDirectionsName];
+	const centerOffset = ENTITIES_CENTER_OFFSETS[name];
 	if (!centerOffset) {
 		throw new Error(`Missing center offsets for "${allDirectionsName}".`);
 	}

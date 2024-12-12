@@ -146,6 +146,54 @@
     {
         "width": 64,
         "height": 64,
+        "framesCount": 8,
+        "name": "characters.muddyBuddy.rolling.down"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 8,
+        "name": "characters.muddyBuddy.rolling.downLeft"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 8,
+        "name": "characters.muddyBuddy.rolling.downRight"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 8,
+        "name": "characters.muddyBuddy.rolling.left"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 8,
+        "name": "characters.muddyBuddy.rolling.right"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 8,
+        "name": "characters.muddyBuddy.rolling.up"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 8,
+        "name": "characters.muddyBuddy.rolling.upLeft"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "framesCount": 8,
+        "name": "characters.muddyBuddy.rolling.upRight"
+    },
+    {
+        "width": 64,
+        "height": 64,
         "framesCount": 1,
         "name": "characters.muddyBuddy.standing.down"
     },
@@ -478,53 +526,5 @@
         "height": 64,
         "framesCount": 8,
         "name": "characters.player.standing.upRight"
-    },
-    {
-        "width": 64,
-        "height": 64,
-        "framesCount": 8,
-        "name": "characters.muddyBuddy.rolling.down"
-    },
-    {
-        "width": 64,
-        "height": 64,
-        "framesCount": 8,
-        "name": "characters.muddyBuddy.rolling.downLeft"
-    },
-    {
-        "width": 64,
-        "height": 64,
-        "framesCount": 8,
-        "name": "characters.muddyBuddy.rolling.downRight"
-    },
-    {
-        "width": 64,
-        "height": 64,
-        "framesCount": 8,
-        "name": "characters.muddyBuddy.rolling.left"
-    },
-    {
-        "width": 64,
-        "height": 64,
-        "framesCount": 8,
-        "name": "characters.muddyBuddy.rolling.right"
-    },
-    {
-        "width": 64,
-        "height": 64,
-        "framesCount": 8,
-        "name": "characters.muddyBuddy.rolling.up"
-    },
-    {
-        "width": 64,
-        "height": 64,
-        "framesCount": 8,
-        "name": "characters.muddyBuddy.rolling.upLeft"
-    },
-    {
-        "width": 64,
-        "height": 64,
-        "framesCount": 8,
-        "name": "characters.muddyBuddy.rolling.upRight"
     }
 ]

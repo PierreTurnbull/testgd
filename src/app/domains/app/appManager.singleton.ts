@@ -1,7 +1,12 @@
 import { Application } from "pixi.js";
 
 class AppManager {
-	app = new Application();
+	constructor() {
+		this.app = new Application();
+
+	}
+
+	app: Application;
 }
 
 export const appManager = new AppManager();

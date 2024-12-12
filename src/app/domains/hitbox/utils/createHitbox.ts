@@ -1,7 +1,7 @@
 import { Entity } from "@root/app/common/entities/entity.models";
 import { entityManager } from "@root/app/common/entities/entityManager.singleton";
 import { relationsManager } from "@root/app/common/relations/relationsManager.singleton";
-import { initHitboxBorder } from "@root/app/common/views/utils/hitboxBorder/initHitboxBorder";
+import { initHitboxBorderView } from "@root/app/common/views/utils/hitboxBorderView/initHitboxBorderView";
 import { configManager } from "@root/app/core/configManager/configManager.singletons";
 import { Graphics } from "pixi.js";
 import { CMotionCollisionCandidates } from "../components/motionCollisionCandidates/motionCollisionCandidates.component";
@@ -28,7 +28,7 @@ export const createHitbox = (
 	let hitboxBorder: Graphics | null = null;
 
 	if (configManager.config.debug.showsEntityHitboxes) {
-		hitboxBorder = initHitboxBorder(settings.name, settings.type, settings.initialCoordinates, settings.offset, hitboxPoints);
+		hitboxBorder = initHitboxBorderView(settings.name, settings.type, settings.initialCoordinates, settings.offset, hitboxPoints);
 	}
 
 	const hitboxEntity = entityManager.createEntity(

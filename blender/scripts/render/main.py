@@ -10,6 +10,7 @@ start0 = time.time()
 sys.path.append("/Users/pierreturnbull/Desktop/games/testgd/blender/scripts/render")
 
 import process
+import prepare
 
 projection: dict[str, list[str]] = {}
 
@@ -19,14 +20,18 @@ if "PROJECTION" in os.environ:
 
 mustProcessAll = len(projection.keys()) == 0
 
+prepare.prepareBase()
+
 if mustProcessAll or "player" in projection:
 	process.processPlayer(projection.get("player"))
 if mustProcessAll or "muddyBuddy" in projection:
 	process.processMuddyBuddy(projection.get("muddyBuddy"))
 if mustProcessAll or "dirt" in projection:
 	process.processDirt()
-if mustProcessAll or "rock" in projection:
-	process.processRock()
+if mustProcessAll or "rockMD" in projection:
+	process.processRockMD()
+if mustProcessAll or "rockLG" in projection:
+	process.processRockLG()
 
 bpy.context.scene.render.filepath = "//render/test/"
 

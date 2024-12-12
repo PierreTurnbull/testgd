@@ -1,6 +1,6 @@
-import { CLocation } from "../../components/location/location.component";
-import { CView } from "../../components/view/view.component";
+import { CViewSortingCurve } from "@root/app/domains/viewSortingCurve/components/viewSortingCurve/viewSortingCurve.component";
 import { Archetype } from "../archetype.models";
+import { CViewSortingCurveOffset } from "@root/app/domains/viewSortingCurve/components/viewSortingCurveOffset/viewSortingCurveOffset.component";
 
 /**
  * Any entity that has a visual representation.
@@ -10,8 +10,8 @@ import { Archetype } from "../archetype.models";
 export class ASortableView extends Archetype {
 	constructor() {
 		super([
-			CLocation,
-			CView,
+			CViewSortingCurve,
+			CViewSortingCurveOffset,
 		]);
 	}
 }

@@ -1,5 +1,6 @@
 import { hitboxArchetype } from "@root/app/common/archetypes/hitbox/hitbox.archetype";
 import { Entity } from "@root/app/common/entities/entity.models";
+import { aaa } from "@root/app/core/initLoop/initLoop";
 import { CHitbox } from "@root/app/domains/hitbox/components/hitbox/hitbox.component";
 import { Box, Circle, Polygon } from "detect-collisions";
 
@@ -15,7 +16,7 @@ export const getEntityFromCollider = (body: Box | Polygon | Circle): Entity => {
 		});
 
 	if (!matchingEntity) {
-		console.error(body, hitboxArchetype.entities);
+		console.error(body, hitboxArchetype.entities, aaa);
 		throw new Error("Collider does not belong to any entity.");
 	}
 

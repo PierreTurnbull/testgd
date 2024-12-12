@@ -56,9 +56,6 @@ def renderArmatureFromDirection(object, name, action, direction, frameEnd):
 
 	print("Rendered " + name + "." + action + "." + direction)
 
-	object.location.x = 0
-	object.location.y = 0
-
 def renderArmatureFromAllDirections(armature, name, action, frameEnd):
 	armature.animation_data_create()
 	armature.animation_data.action = bpy.data.actions[name + " - " + action]
@@ -67,6 +64,22 @@ def renderArmatureFromAllDirections(armature, name, action, frameEnd):
 	for direction in directions:
 		rotate(armature, direction)
 		renderArmatureFromDirection(armature, name, action, direction, frameEnd)
+
+# render environment
+
+def renderEnvironmentFromDirection(object, name, direction):
+	entities.scene.render.filepath = "./blender/tmp/raw/images/environment." + name + "." + direction + "/"
+
+	with silence():
+		bpy.ops.render.render(animation=True)
+
+	print("Rendered " + name + "." + direction)
+
+def renderEnvironmentFromAllDirections(environment, name):
+	directions = ["down", "downRight", "right", "upRight", "up", "upLeft", "left", "downLeft"]
+	for direction in directions:
+		rotate(environment, direction)
+		renderEnvironmentFromDirection(environment, name, direction)
 
 # render
 
@@ -95,13 +108,24 @@ def renderDirt():
 		with silence():
 			bpy.ops.render.render(animation=True)
 
-	print("Rendered dirt")
+		print("Rendered dirt." + str(i))
 
-def renderRock():
+def renderRockMD():
 	entities.scene.frame_end = 0
 
-	entities.scene.render.filepath = "./blender/tmp/raw/images/environment.rock.0/"
-	with silence():
-		bpy.ops.render.render(animation=True)
+	for i in range(0, 4):
+		entities.scene.render.filepath = "./blender/tmp/raw/images/environment.rockMD." + str(i) + "/"
+		entities.rockMD.all_objects[0].rotation_euler[2] = i * 90 * (pi / 180.0)
 
-	print("Rendered rock")
+		with silence():
+			bpy.ops.render.render(animation=True)
+
+		print("Rendered rockMD." + str(i))
+
+def renderRockLG():
+	entities.scene.frame_end = 0
+
+	for i in range(0, 4):
+		entities.scene.render.filepath = "./blender/tmp/raw/images/environment.rockLG." + str(i) + "/"
+		entities.rockLG.all_objects[0].rotation_euler[0] = i * 90 * (pi / 180.0)
+		renderEnvironmentFromAllDirections(entities.rockLG.all_objects[0], "rockLG." + str(i))

@@ -8,14 +8,15 @@ import { CHitbox } from "@root/app/domains/hitbox/components/hitbox/hitbox.compo
 import { CHitboxIsActive } from "@root/app/domains/hitbox/components/hitboxIsActive/hitboxIsActive.component";
 import { HITBOX_BOUNDS } from "@root/app/domains/hitbox/constants/hitboxes.constants";
 import { AnimatedSprite } from "pixi.js";
-import { CBorderView } from "../../components/border/border.component";
+import { CBorderView } from "../../components/borderView/borderView.component";
 import { CCenterView } from "../../components/centerView/centerView.component";
 import { ANGLE_NAMES } from "../../constants/space.constants";
 import { Entity } from "../../entities/entity.models";
 import { TPoint } from "../../types/point.type";
-import { replaceBorder } from "../../views/utils/border/replaceBorder";
-import { replaceCenterView } from "../../views/utils/center/replaceCenter";
-import { replaceHitboxBorder } from "../../views/utils/hitboxBorder/replaceHitboxBorder";
+import { replaceBorder } from "../../views/utils/borderView/replaceBorderView";
+import { replaceCenterView } from "../../views/utils/centerView/replaceCenterView";
+import { replaceViewSortingCurveView } from "@root/app/domains/viewSortingCurve/utils/replaceViewSortingCurveView/replaceViewSortingCurveView";
+import { replaceHitboxBorderView } from "../../views/utils/hitboxBorderView/replaceHitboxBorderView";
 
 type TOptions = {
 	onLoop?:        AnimatedSprite["onLoop"] | null,
@@ -60,6 +61,12 @@ export const setAction = (
 				locationComponent.coordinates,
 			);
 		}
+		if (configManager.config.debug.showsViewSortingCurves) {
+			replaceViewSortingCurveView(
+				actorEntity,
+				locationComponent.coordinates,
+			);
+		}
 
 		if (configManager.config.debug.showsEntityHitboxes && actorEntity.relations.has("hitboxes")) {
 			const hitboxEntities = actorEntity.getRelatedEntities("hitboxes");
@@ -93,7 +100,7 @@ export const setAction = (
 						},
 					];
 
-					replaceHitboxBorder(
+					replaceHitboxBorderView(
 						hitboxEntity,
 						locationComponent.coordinates,
 						bounds,

@@ -8,7 +8,7 @@ import { CMotionCollisionCandidates } from "../../components/motionCollisionCand
 import { CHitbox } from "../../components/hitbox/hitbox.component";
 import { CHitboxOffset } from "../../components/hitboxOffset/hitboxOffset.component";
 import { updateHitboxPosition } from "../updateHitboxPosition";
-import { rockArchetype } from "@root/app/common/archetypes/rock/rock.archetype";
+import { rockMDArchetype } from "@root/app/common/archetypes/rockMD/rockMD.archetype";
 
 /**
  * Returns constrained coordinates. Coordinates are constrained based on the hitboxes of other entities.
