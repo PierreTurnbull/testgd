@@ -1,0 +1,16 @@
+{
+	"environment": [
+		{
+			"name": "rockLG",
+			"coordinates": { "x": 24, "y": -668 },
+			"variant": 0,
+			"direction8": "up"
+		},
+		{
+			"name": "rockLG",
+			"coordinates": { "x": 274, "y": -637 },
+			"variant": 0,
+			"direction8": "upRight"
+		}
+	]
+}

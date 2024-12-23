@@ -7,11 +7,12 @@ import { CViewSortingCurve } from "@root/app/domains/viewSortingCurve/components
 import { CViewSortingCurveOffset } from "@root/app/domains/viewSortingCurve/components/viewSortingCurveOffset/viewSortingCurveOffset.component";
 import { CViewSortingCurveView } from "@root/app/domains/viewSortingCurve/components/viewSortingCurveView/viewSortingCurveView.component";
 import { sortableViewArchetype } from "../../../common/archetypes/sortableView/sortableView.archetype";
-import { configManager } from "../../configManager/configManager.singletons";
+import { configManager } from "../../configManager/configManager.singleton";
 import { DEBUG_VIEW_Z_OFFSET } from "./constants/sortViews.constants";
 import { ENTITIES_CENTER_OFFSETS } from "@root/app/common/views/constants/views.constants";
 import { TSegment } from "@root/app/common/types/segment.types";
 import { TPoint } from "@root/app/common/types/point.type";
+import { TOffset } from "@root/app/common/types/offset.types";
 
 /**
  * Updates the order in which views are rendered.
@@ -25,6 +26,7 @@ export const sortViews = () => {
 		const aCoordinates = a.getComponent(CLocation).coordinates;
 		const aView = a.getComponent(CView).view;
 		const aViewSortingCurve = a.getComponent(CViewSortingCurve).viewSortingCurve;
+		const aViewSortingCurveOffset = a.getComponent(CViewSortingCurveOffset).viewSortingCurveOffset;
 
 		const aOffset = ENTITIES_CENTER_OFFSETS[aView.label];
 		if (!aOffset) {
@@ -38,47 +40,75 @@ export const sortViews = () => {
 		// the x coordinate relative to the sorting curve
 		const aXOnSortingCurve = aCoordinates.x - (bCoordinates.x + bViewSortingCurveOffset.x);
 
-		const curveSegments: TSegment[] = bViewSortingCurve
+		const bCurveSegments: TSegment[] = bViewSortingCurve
 			.slice(0, -1)
 			.map((point, key) => [point, bViewSortingCurve[key + 1]]);
 
-		// segment from the curve which x interval includes aCoorddinates.x
+		// segment from the curve which x interval includes aPoint.x
 		let segmentCandidate: TSegment | null = null;
 		let aPoint: TPoint | null = null;
 
-		for (let i = 0; i < curveSegments.length; i++) {
-			const segment = curveSegments[i];
+		for (let i = 0; i < bCurveSegments.length; i++) {
+			const bSegment = bCurveSegments[i];
+
+			// points
+
+			const aTotalOffset: TOffset = {
+				x: aViewSortingCurveOffset.x + aCoordinates.x,
+				y: aViewSortingCurveOffset.y + aCoordinates.y,
+			};
+
+			const aLeftExtremity: TPoint = {
+				x: aViewSortingCurve[0].x + aTotalOffset.x,
+				y: aViewSortingCurve[0].y + aTotalOffset.y,
+			};
+			const aRightExtremity: TPoint = {
+				x: aViewSortingCurve[aViewSortingCurve.length - 1].x + aTotalOffset.x,
+				y: aViewSortingCurve[aViewSortingCurve.length - 1].y + aTotalOffset.y,
+			};
+
+			// entity a's center
 
 			const centerIsInInterval = (
-				aCoordinates.x > segment[0].x + bViewSortingCurveOffset.x &&
-				aCoordinates.x < segment[1].x + bViewSortingCurveOffset.x
+				aCoordinates.x > bSegment[0].x + bViewSortingCurveOffset.x + bCoordinates.x &&
+				aCoordinates.x < bSegment[1].x + bViewSortingCurveOffset.x + bCoordinates.x
 			);
 
 			if (centerIsInInterval) {
-				segmentCandidate = segment;
+				segmentCandidate = bSegment;
 				aPoint = aCoordinates;
 				break;
 			}
 
+			// entity a's left extremity
+
 			const leftExtremityIsInInterval = (
-				aViewSortingCurve[aViewSortingCurve.length - 1].x > segment[0].x + bViewSortingCurveOffset.x &&
-				aViewSortingCurve[aViewSortingCurve.length - 1].x < segment[1].x + bViewSortingCurveOffset.x
+				aLeftExtremity.x > bSegment[0].x + bViewSortingCurveOffset.x + bCoordinates.x &&
+				aLeftExtremity.x < bSegment[1].x + bViewSortingCurveOffset.x + bCoordinates.x
 			);
 
 			if (leftExtremityIsInInterval) {
-				segmentCandidate = segment;
-				aPoint = aViewSortingCurve[1];
+				segmentCandidate = bSegment;
+				aPoint = {
+					x: aLeftExtremity.x,
+					y: aLeftExtremity.y,
+				};
 				break;
 			}
 
+			// entity a's right extremity
+
 			const rightExtremityIsInInterval = (
-				aViewSortingCurve[0].x > segment[0].x + bViewSortingCurveOffset.x &&
-				aViewSortingCurve[0].x < segment[1].x + bViewSortingCurveOffset.x
+				aRightExtremity.x > bSegment[0].x + bViewSortingCurveOffset.x + bCoordinates.x &&
+				aRightExtremity.x < bSegment[1].x + bViewSortingCurveOffset.x + bCoordinates.x
 			);
 
 			if (rightExtremityIsInInterval) {
-				segmentCandidate = segment;
-				aPoint = aViewSortingCurve[0];
+				segmentCandidate = bSegment;
+				aPoint = {
+					x: aRightExtremity.x,
+					y: aRightExtremity.y,
+				};
 				break;
 			}
 		}

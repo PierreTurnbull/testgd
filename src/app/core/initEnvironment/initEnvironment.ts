@@ -1,5 +1,6 @@
 import { initSprite } from "@root/app/common/views/utils/sprites/initSprite";
 import { createRockLG } from "@root/app/domains/rockLG/utils/createRockLG";
+import { gameData } from "@root/app/gameData/gameData";
 
 export const initEnvironment = () => {
 	for (let i = -1; i <= 1; i++) {
@@ -11,8 +12,11 @@ export const initEnvironment = () => {
 		}
 	}
 
-	createRockLG({ x: 24, y: -668 }, 0, "up");
-	createRockLG({ x: 274, y: -637 }, 0, "upRight");
+	gameData.environment.forEach(environment => {
+		if (environment.name === "rockLG") {
+			createRockLG(environment.coordinates, environment.variant, environment.direction8);
+		}
+	});
 
 	// createRockMD({ x: -527, y: -180 }, 0);
 	// createRockLG({ x: 20, y: 30 }, 0, "up");
