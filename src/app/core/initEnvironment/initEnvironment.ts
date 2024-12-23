@@ -11,6 +11,9 @@ export const initEnvironment = () => {
 		}
 	}
 
+	createRockLG({ x: 24, y: -668 }, 0, "up");
+	createRockLG({ x: 274, y: -637 }, 0, "upRight");
+
 	// createRockMD({ x: -527, y: -180 }, 0);
 	// createRockLG({ x: 20, y: 30 }, 0, "up");
 	// createRockLG({ x: -20, y: -30 }, 0, "upRight");
@@ -46,5 +49,5 @@ export const initEnvironment = () => {
 	// createRockLG({ x: 0, y: 0 }, 3, "down");
 	// createRockLG({ x: 0, y: 0 }, 3, "downLeft");
 	// createRockLG({ x: 0, y: 0 }, 3, "left");
-	createRockLG({ x: 0, y: 0 }, 3, "upLeft");
+	// createRockLG({ x: 0, y: 0 }, 3, "upLeft");
 };
