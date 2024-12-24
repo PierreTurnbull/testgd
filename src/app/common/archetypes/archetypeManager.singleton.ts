@@ -8,6 +8,7 @@ import { fpsArchetype } from "./fps/fps.archetype";
 import { hitboxArchetype } from "./hitbox/hitbox.archetype";
 import { mortalArchetype } from "./mortal/mortal.archetype";
 import { muddyBuddyArchetype } from "./muddyBuddy/muddyBuddy.archetype";
+import { pathfinderArchetype } from "./pathfinder/pathfinder.archetype";
 import { playerArchetype } from "./player/player.archetype";
 import { projectileArchetype } from "./projectile/projectile.archetype";
 import { rockLGArchetype } from "./rockLG/rockLG.archetype";
@@ -38,6 +39,7 @@ class ArchetypeManager {
 		wallArchetype,
 		rockMDArchetype,
 		rockLGArchetype,
+		pathfinderArchetype,
 	];
 	archetypesByName = new Map<string, Archetype>();
 

@@ -7,7 +7,7 @@ import { getNodesKey } from "../../common/getNodesKey";
 import { getPointKey } from "../../common/getPointKey";
 import { getCanLinkNodes } from "../../createVisibilityGraph/createLinkedNodes/createLinkedNodes";
 import { worldManager } from "@root/app/core/worldManager/worldManager.singletons";
-import { configManager } from "@root/app/core/configManager/configManager.singletons";
+import { configManager } from "@root/app/core/configManager/configManager.singleton";
 import { getLinkedNodeView } from "../../createVisibilityGraph/createVisibilityGraphViews/createNodeLinkViews/createNodeLinkViews";
 import { TPoint } from "@root/app/common/types/point.type";
 

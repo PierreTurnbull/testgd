@@ -5,7 +5,11 @@ import { DIRECTIONS8 } from "@root/app/common/constants/space.constants";
 
 export const initCharacters = () => {
 	createPlayer({ x: 40, y: -50 }, 180);
-	// createMuddyBuddy({ x: 200, y: 200 }, "down");
+	createMuddyBuddy({ x: 200, y: 200 }, 180);
+	// createMuddyBuddy({ x: 230, y: 200 }, 180);
+	// createMuddyBuddy({ x: 260, y: 200 }, 180);
+	// createMuddyBuddy({ x: 290, y: 200 }, 180);
+	// createMuddyBuddy({ x: 320, y: 200 }, 180);
 	// createMuddyBuddy({ x: 300, y: 150 }, "downRight");
 	// createMuddyBuddy({ x: 490, y: 150 }, "upLeft");
 	// createMuddyBuddy({ x: 540, y: 190 }, "upLeft");

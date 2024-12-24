@@ -11,7 +11,7 @@ import { ENTITIES_CENTER_OFFSETS } from "@root/app/common/views/constants/views.
 import { initBorderView } from "@root/app/common/views/utils/borderView/initBorderView";
 import { initCenterView } from "@root/app/common/views/utils/centerView/initCenterView";
 import { initSprite } from "@root/app/common/views/utils/sprites/initSprite";
-import { configManager } from "@root/app/core/configManager/configManager.singletons";
+import { configManager } from "@root/app/core/configManager/configManager.singleton";
 import { Graphics } from "pixi.js";
 import { HITBOXES_POINTS } from "../../hitbox/constants/hitboxes.constants";
 import { TPolygonHitboxSettings } from "../../hitbox/types/hitbox.types";

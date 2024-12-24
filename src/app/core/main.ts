@@ -8,6 +8,7 @@ import { initFps } from "./initFps/initFps";
 import "./reset.css";
 import { initEnvironment } from "./initEnvironment/initEnvironment";
 import { initMouse } from "./initMouse/initMouse";
+import { GameEditor } from "./gameEditor/gameEditor.singleton";
 
 // prevent default browser behaviour when left clicking
 document.addEventListener("contextmenu", event => event.preventDefault());
@@ -17,6 +18,7 @@ await assetsManager.loadAssets();
 await initApplication();
 initEnvironment();
 initCharacters();
+new GameEditor();
 initMouse();
 initFps();
 initLoop();

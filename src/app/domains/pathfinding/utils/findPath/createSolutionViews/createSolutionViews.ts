@@ -3,7 +3,7 @@ import { CVisibilityGraph } from "../../../components/visibilityGraph/visibility
 import { TPoint } from "@root/app/common/types/point.type";
 import { Graphics } from "pixi.js";
 import { worldManager } from "@root/app/core/worldManager/worldManager.singletons";
-import { configManager } from "@root/app/core/configManager/configManager.singletons";
+import { configManager } from "@root/app/core/configManager/configManager.singleton";
 import { TSegment } from "@root/app/common/types/segment.types";
 
 /**

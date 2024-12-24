@@ -1,6 +1,6 @@
 import { CLocation } from "@root/app/common/components/location/location.component";
 import { CView } from "@root/app/common/components/view/view.component";
-import { configManager } from "@root/app/core/configManager/configManager.singletons";
+import { configManager } from "@root/app/core/configManager/configManager.singleton";
 import { CHitbox } from "@root/app/domains/hitbox/components/hitbox/hitbox.component";
 import { CHitboxOffset } from "@root/app/domains/hitbox/components/hitboxOffset/hitboxOffset.component";
 import { updateHitboxPosition } from "@root/app/domains/hitbox/utils/updateHitboxPosition";

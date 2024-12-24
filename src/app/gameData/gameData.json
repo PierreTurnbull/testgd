@@ -2,13 +2,13 @@
 	"environment": [
 		{
 			"name": "rockLG",
-			"coordinates": { "x": 24, "y": -668 },
+			"coordinates": { "x": 24, "y": -268 },
 			"variant": 0,
 			"direction8": "up"
 		},
 		{
 			"name": "rockLG",
-			"coordinates": { "x": 274, "y": -637 },
+			"coordinates": { "x": 374, "y": -287 },
 			"variant": 0,
 			"direction8": "upRight"
 		}

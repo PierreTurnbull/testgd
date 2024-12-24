@@ -1,6 +1,6 @@
 import { Graphics } from "pixi.js";
 import { Component } from "../component.models";
-import { configManager } from "@root/app/core/configManager/configManager.singletons";
+import { configManager } from "@root/app/core/configManager/configManager.singleton";
 
 /**
  * The center of an entity, represented by a dot. Used for debugging.

@@ -5,7 +5,7 @@ import { CANVAS_HEIGHT, CANVAS_WIDTH } from "../constants/app.constants";
 import { CMouseCoordinates } from "@root/app/common/components/mouseCoordinates/mouseCoordinates.component";
 import { Text } from "pixi.js";
 import { entityManager } from "@root/app/common/entities/entityManager.singleton";
-import { configManager } from "../configManager/configManager.singletons";
+import { configManager } from "../configManager/configManager.singleton";
 import { TCoordinates } from "@root/app/common/types/coordinates.types";
 
 export const initMouse = () => {

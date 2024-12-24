@@ -1,5 +1,5 @@
 import { logsFindPathPerformance } from "@root/app/domains/pathfinding/utils/findPath/findPath";
-import { configManager } from "../configManager/configManager.singletons";
+import { configManager } from "../configManager/configManager.singleton";
 import { createLinkedNodesPerformanceTimers } from "@root/app/domains/pathfinding/utils/createVisibilityGraph/createLinkedNodes/createLinkedNodes";
 import { hitboxArchetype } from "@root/app/common/archetypes/hitbox/hitbox.archetype";
 

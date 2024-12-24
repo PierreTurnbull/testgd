@@ -20,12 +20,11 @@ import { TCoordinates } from "@root/app/common/types/coordinates.types";
 import { TViewSortingCurve } from "@root/app/domains/viewSortingCurve/types/viewSortingCurve.types";
 import { ENTITIES_CENTER_OFFSETS } from "@root/app/common/views/constants/views.constants";
 import { initAnimatedSprite } from "@root/app/common/views/utils/animatedSprite/initAnimatedSprite";
-import { configManager } from "@root/app/core/configManager/configManager.singletons";
+import { configManager } from "@root/app/core/configManager/configManager.singleton";
 import { PLAYER_RUNNING_SPEED } from "@root/app/domains/player/constants/player.constants";
 import { Graphics } from "pixi.js";
 import { TRectangleHitboxSettings } from "../../hitbox/types/hitbox.types";
 import { createHitbox } from "../../hitbox/utils/createHitbox";
-import { CVisibilityGraph } from "../../pathfinding/components/visibilityGraph/visibilityGraph.component";
 import { CPlayer } from "../components/user/user.component";
 import { TOffset } from "@root/app/common/types/offset.types";
 import { initBorderView } from "@root/app/common/views/utils/borderView/initBorderView";
@@ -104,7 +103,6 @@ export const createPlayer = (
 			new CAction(currentAction, availableActions),
 			new CHealth(3),
 			new CPostHitInvincibility(),
-			new CVisibilityGraph(),
 
 			// view sorting curve
 			new CViewSortingCurve(viewSortingCurve),

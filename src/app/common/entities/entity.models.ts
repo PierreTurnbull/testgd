@@ -1,5 +1,5 @@
 import { collisionsManager } from "@root/app/core/collisionsManager/collisionsManager.singletons";
-import { configManager } from "@root/app/core/configManager/configManager.singletons";
+import { configManager } from "@root/app/core/configManager/configManager.singleton";
 import { CHitbox } from "@root/app/domains/hitbox/components/hitbox/hitbox.component";
 import { CHitboxView } from "@root/app/domains/hitbox/components/hitboxView/hitboxView.component";
 import { CVisibilityGraph } from "@root/app/domains/pathfinding/components/visibilityGraph/visibilityGraph.component";
