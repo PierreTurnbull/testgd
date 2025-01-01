@@ -1,4 +1,3 @@
-/* eslint-disable */
 import { execSync } from "child_process";
 import { cpSync, existsSync, lstatSync, mkdirSync, readdirSync, rmSync, writeFileSync } from "fs";
 import sizeOf from "image-size"
@@ -13,9 +12,9 @@ const getSpritesheetDatas = (path, images) => {
 
 	const spritesheetDatas = {}
 
-	spritesheetDatas.width = dimensions.width,
-	spritesheetDatas.height = dimensions.height,
-	spritesheetDatas.framesCount = images.length,
+	spritesheetDatas.width = dimensions.width
+	spritesheetDatas.height = dimensions.height
+	spritesheetDatas.framesCount = images.length
 	spritesheetDatas.name = path
 		.replace(`${baseRawPath}/animations/`, "")
 

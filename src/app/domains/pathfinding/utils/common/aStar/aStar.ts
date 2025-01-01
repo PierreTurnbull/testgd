@@ -2,7 +2,7 @@ import { TPoint } from "@root/app/common/types/point.type";
 import { getDistance } from "@root/app/common/utils/getDistance/getDistance";
 import { MinHeap } from "@root/app/common/utils/minHeap/minHeap";
 import { TGraphNode } from "../../../types/pathfinding.types";
-import { CVisibilityGraph } from "../../../components/visibilityGraph/visibilityGraph.component";
+import { TVisibilityGraphNode } from "../../../types/visibilityGraph.types";
 
 const getLinkedNodes = (
 	currentNode: TGraphNode,
@@ -35,27 +35,28 @@ const getLinkedNodes = (
 };
 
 export const aStar = (
-	visibilityGraphComponent: CVisibilityGraph,
+	fromNode: TVisibilityGraphNode | null,
+	toNode: TVisibilityGraphNode | null,
 ) => {
 	const comparator = (a: TGraphNode, b: TGraphNode) => a.totalDistanceEstimation - b.totalDistanceEstimation;
 	const openSet = new MinHeap(comparator);
 	const closedSet = new Set<TGraphNode["key"]>();
 
-	if (!visibilityGraphComponent.fromNode) {
+	if (!fromNode) {
 		throw new Error("Missing fromNode.");
 	}
-	if (!visibilityGraphComponent.toNode) {
+	if (!toNode) {
 		throw new Error("Missing toNode.");
 	}
 
 	openSet.insert({
-		key:                     visibilityGraphComponent.fromNode.key,
-		point:                   visibilityGraphComponent.fromNode.point,
-		linkedNodes:             visibilityGraphComponent.fromNode.linkedNodes,
+		key:                     fromNode.key,
+		point:                   fromNode.point,
+		linkedNodes:             fromNode.linkedNodes,
 		distance:                0,
-		totalDistanceEstimation: getDistance(visibilityGraphComponent.fromNode.point, visibilityGraphComponent.toNode.point),
+		totalDistanceEstimation: getDistance(fromNode.point, toNode.point),
 		parent:                  null,
-		isSuccess:               visibilityGraphComponent.fromNode.isSuccess,
+		isSuccess:               fromNode.isSuccess,
 	});
 
 	let solution: TPoint[] | null = null;
@@ -88,7 +89,7 @@ export const aStar = (
 
 		closedSet.add(currentNode.key);
 
-		const linkedNodes = getLinkedNodes(currentNode, visibilityGraphComponent.toNode.point, closedSet);
+		const linkedNodes = getLinkedNodes(currentNode, toNode.point, closedSet);
 
 		for (let i = 0; i < linkedNodes.length; i++) {
 			const linkedNode = linkedNodes[i];

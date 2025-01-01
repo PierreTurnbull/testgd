@@ -9,6 +9,7 @@
 		/* Bundler mode */
 		"moduleResolution": "bundler",
 		"allowImportingTsExtensions": true,
+		"allowJs": true,
 		"resolveJsonModule": true,
 		"isolatedModules": true,
 		"noEmit": true,
@@ -21,8 +22,8 @@
 		"baseUrl" : ".",
 		"paths": {
 			"@root/*": ["src/*"],
-			"@assets/*": ["src/assets/*"],
 			"@app/*": ["src/app/*"],
+			"@assets/*": ["src/assets/*"],
 		}
 	},
 	"include": ["src", "vite.config.ts"],

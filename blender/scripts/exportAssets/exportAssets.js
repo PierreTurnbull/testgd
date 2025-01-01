@@ -1,4 +1,3 @@
-/* eslint-disable */
 import { cpSync, existsSync, mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync } from "fs"
 
 const exportAssets = () => {

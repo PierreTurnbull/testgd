@@ -40,6 +40,7 @@ export class CVisibilityGraph extends Component {
 
 	fromLinkedNodes:       Map<string, [TVisibilityGraphNode, TVisibilityGraphNode]> = new Map();
 	toLinkedNodes:         Map<string, [TVisibilityGraphNode, TVisibilityGraphNode]> = new Map();
+	toAreaLinkedNodes:     Map<string, [TVisibilityGraphNode, TVisibilityGraphNode]> = new Map();
 	fromLinkedNodeViews:   Graphics[] = [];
 	toLinkedNodeViews:     Graphics[] = [];
 	toAreaLinkedNodeViews: Graphics[] = [];

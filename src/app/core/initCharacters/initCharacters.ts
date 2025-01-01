@@ -27,7 +27,7 @@ export const initCharacters = () => {
 	// createMuddyBuddy({ x: -50, y: 50 }, 180);
 	// createMuddyBuddy({ x: -50, y: 50 }, 180);
 
-	// for (let i = 0; i < 1; i++) {
+	// for (let i = 0; i < 30; i++) {
 	// 	createMuddyBuddy({ x: -500 + Math.random() * 500, y: 50 + Math.random() * 500 }, 180);
 	// }
 

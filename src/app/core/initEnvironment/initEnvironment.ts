@@ -35,9 +35,9 @@ export const initEnvironment = () => {
 
 	// setInterval(() => {
 	createMuddyBuddy({ x: 200, y: 200 }, 180);
-	createMuddyBuddy({ x: 100, y: 200 }, 180);
-	createMuddyBuddy({ x: 200, y: 100 }, 180);
-	createMuddyBuddy({ x: 100, y: 100 }, 180);
+	// createMuddyBuddy({ x: 100, y: 200 }, 180);
+	// createMuddyBuddy({ x: 200, y: 100 }, 180);
+	// createMuddyBuddy({ x: 100, y: 100 }, 180);
 	// }, 2000);
 
 	// createRockMD({ x: -527, y: -180 }, 0);

@@ -177,6 +177,7 @@ class RelationsManager {
 			if (valueAIsEmpty && valueBIsEmpty) {
 				// remove from entitiesManager
 				entityManager.entities.delete(relation);
+				entityManager.entitiesById.delete(relation.id);
 
 				// remove from relationsManager
 				this.relations.delete(relation);

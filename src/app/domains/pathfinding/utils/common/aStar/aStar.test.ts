@@ -31,7 +31,7 @@ describe("aStar", async () => {
 		visibilityGraphComponent.fromNode.linkedNodes.push(toNode);
 		visibilityGraphComponent.toNode.linkedNodes.push(fromNode);
 
-		expect(aStar(visibilityGraphComponent)).toEqual([
+		expect(aStar(visibilityGraphComponent.fromNode, visibilityGraphComponent.toNode)).toEqual([
 			{ x: 0, y: 0 },
 			{ x: 1, y: 0 },
 		]);
@@ -86,7 +86,7 @@ describe("aStar", async () => {
 		visibilityGraphComponent.fromNode = fromNode;
 		visibilityGraphComponent.toNode = toNode;
 
-		expect(aStar(visibilityGraphComponent)).toEqual([
+		expect(aStar(visibilityGraphComponent.fromNode, visibilityGraphComponent.toNode)).toEqual([
 			{ x: 0, y: 0 },
 			{ x: 2, y: 0 },
 		]);
@@ -116,7 +116,7 @@ describe("aStar", async () => {
 		};
 		visibilityGraphComponent.fromNode.linkedNodes.push(visibilityGraphComponent.toNode);
 
-		expect(aStar(visibilityGraphComponent)).toEqual([
+		expect(aStar(visibilityGraphComponent.fromNode, visibilityGraphComponent.toNode)).toEqual([
 			{ x: 1, y: 2 },
 			{ x: -3, y: -4 },
 		]);
@@ -219,7 +219,7 @@ describe("aStar", async () => {
 		visibilityGraphComponent.fromNode = fromNode;
 		visibilityGraphComponent.toNode = toNode;
 
-		expect(aStar(visibilityGraphComponent)).toEqual([
+		expect(aStar(visibilityGraphComponent.fromNode, visibilityGraphComponent.toNode)).toEqual([
 			{ x: 0, y: 0 },
 			{ x: -1, y: 0 },
 			{ x: -1, y: -1 },
@@ -250,6 +250,6 @@ describe("aStar", async () => {
 			isSuccess:     true,
 		};
 
-		expect(aStar(visibilityGraphComponent)).toEqual(null);
+		expect(aStar(visibilityGraphComponent.fromNode, visibilityGraphComponent.toNode)).toEqual(null);
 	});
 });

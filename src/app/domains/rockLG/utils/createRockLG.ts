@@ -95,7 +95,7 @@ export const createRockLG: TEntityBuilder = (
 		new CCenterView(centerView),
 	]);
 
-	if (gameEditorId) {
+	if (gameEditorId !== undefined) {
 		rockLGEntity.addComponent(new CGameEditorId(gameEditorId));
 	}
 

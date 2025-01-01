@@ -18,7 +18,8 @@
 		"render:export": "node blender/scripts/exportAssets/exportAssets.js",
 		"render:clean": "rm -rf blender/tmp",
 		"test": "vitest",
-		"test:cov": "vitest --coverage"
+		"test:cov": "vitest --coverage",
+		"workers:build": "sh scripts/buildWorkers/buildWorkers.sh"
 	},
 	"devDependencies": {
 		"@eslint/js": "^9.12.0",
@@ -28,17 +29,19 @@
 		"@types/express": "^5.0.0",
 		"@types/lodash": "^4.17.9",
 		"@types/node": "^22.7.2",
-		"@typescript-eslint/eslint-plugin": "^8.7.0",
+		"@typescript-eslint/eslint-plugin": "^8.19.0",
 		"@typescript-eslint/parser": "^8.7.0",
 		"@vitest/coverage-v8": "^2.1.4",
+		"esbuild": "^0.24.2",
 		"eslint": "^9.12.0",
 		"express": "^4.21.2",
+		"globals": "^15.14.0",
 		"image-size": "^1.1.1",
 		"jsdom": "^25.0.1",
 		"nodemon": "^3.1.7",
 		"tslib": "^2.7.0",
 		"typescript": "^5.7.2",
-		"typescript-eslint": "^8.7.0",
+		"typescript-eslint": "^8.19.0",
 		"vite": "^5.4.8",
 		"vitest": "^2.1.4"
 	},

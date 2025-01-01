@@ -1,3 +1,4 @@
+import { CIsFindingPath } from "@root/app/common/components/isFindingPath/isFindingPath.component";
 import { CKeyboard } from "@root/app/common/components/keyboard/keyboard.component";
 import { CLocation } from "@root/app/common/components/location/location.component";
 import { Entity } from "@root/app/common/entities/entity.models";
@@ -19,6 +20,7 @@ export const moveTowardsTarget = (
 	const keyboardComponent = muddyBuddyEntity.getComponent(CKeyboard);
 	const locationComponent = muddyBuddyEntity.getComponent(CLocation);
 	const visibilityGraphComponent = muddyBuddyEntity.getComponent(CVisibilityGraph);
+	const isFindingPathComponent = muddyBuddyEntity.getComponent(CIsFindingPath);
 	const memoryComponent = muddyBuddyEntity.getComponent(CMemory);
 
 	const didUpdatePathRecently = memoryComponent.memory.some(memoryItem => {
@@ -27,8 +29,9 @@ export const moveTowardsTarget = (
 			memoryItem.nextUpdateDate > new Date()
 		);
 	});
+	const isReadyToFindPath = !isFindingPathComponent.isFindingPath && !didUpdatePathRecently;
 
-	if (!didUpdatePathRecently) {
+	if (isReadyToFindPath) {
 		const playerExtendedPoints = getExtendedHitboxesPoints(muddyBuddyEntity, [playerEntity])[0];
 		const playerSegments = getShapeSegments(playerExtendedPoints);
 		const playerPreciseExtendedPoints: TPoint[] = [];
@@ -56,14 +59,18 @@ export const moveTowardsTarget = (
 			playerPreciseExtendedPoints.push(...inBetweenPoints);
 		});
 
-		// findPath(muddyBuddyEntity, playerLocationComponent.coordinates, playerPreciseExtendedPoints);
-
-		// if (visibilityGraphComponent.nextStep) {
-		// 	const angle = getAngleFromPoints(locationComponent.coordinates, visibilityGraphComponent.nextStep);
-
-		// 	keyboardComponent.joystickAngle = angle;
-		// } else {
-		// 	keyboardComponent.joystickAngle = null;
-		// }
+		findPath(
+			muddyBuddyEntity,
+			playerLocationComponent.coordinates,
+			playerPreciseExtendedPoints,
+		);
 	}
+
+	// if (visibilityGraphComponent.nextStep) {
+	// 	const angle = getAngleFromPoints(locationComponent.coordinates, visibilityGraphComponent.nextStep);
+
+	// 	keyboardComponent.joystickAngle = angle;
+	// } else {
+	// 	keyboardComponent.joystickAngle = null;
+	// }
 };

@@ -15,6 +15,11 @@ export const processMuddyBuddyAI = (
 	muddyBuddyEntities.forEach(muddyBuddyEntity => {
 		const keyboardComponent = muddyBuddyEntity.getComponent(CKeyboard);
 
+		if (muddyBuddyEntity.getComponent(CHealth).health === 0) {
+			keyboardComponent.joystickAngle = null;
+			return;
+		}
+
 		if (playerHealthComponent.health === 0 || getDidHitPlayerRecently(muddyBuddyEntity)) {
 			keyboardComponent.joystickAngle = null;
 		} else {

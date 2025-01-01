@@ -10,6 +10,7 @@ class EntityManager {
 	__brand = "entityManager";
 
 	entities = new Set<Entity>();
+	entitiesById = new Map<number, Entity>();
 
 	/**
 	 * Returns whether the entity is registered in the entity manager.
@@ -25,6 +26,7 @@ class EntityManager {
 		entity: Entity,
 	) => {
 		this.entities.delete(entity);
+		this.entitiesById.delete(entity.id);
 		archetypeManager.removeEntityFromArchetypes(entity);
 	};
 
@@ -43,6 +45,7 @@ class EntityManager {
 			new CTimers(),
 		]);
 		this.entities.add(entity);
+		this.entitiesById.set(entity.id, entity);
 
 		// register relations
 		if (entity.hasComponent(CRelation)) {

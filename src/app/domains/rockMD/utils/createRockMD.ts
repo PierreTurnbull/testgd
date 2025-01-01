@@ -94,7 +94,7 @@ export const createRockMD = (
 		new CCenterView(centerView),
 	]);
 
-	if (gameEditorId) {
+	if (gameEditorId !== undefined) {
 		rockMDEntity.addComponent(new CGameEditorId(gameEditorId));
 	}
 	

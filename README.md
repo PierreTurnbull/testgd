@@ -12,6 +12,11 @@ Generate assets from Blender:
 npm run render
 ```
 
+Generate web workers:
+```
+npm run workers:build
+```
+
 Run the app:
 ```
 npm run dev

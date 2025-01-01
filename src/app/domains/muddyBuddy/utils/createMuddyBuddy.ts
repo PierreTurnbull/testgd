@@ -41,6 +41,7 @@ import { TOffset } from "@root/app/common/types/offset.types";
 import { initViewSortingCurveView } from "../../viewSortingCurve/utils/initViewSortingCurveView/initViewSortingCurveView";
 import { initBorderView } from "@root/app/common/views/utils/borderView/initBorderView";
 import { initCenterView } from "@root/app/common/views/utils/centerView/initCenterView";
+import { CIsFindingPath } from "@root/app/common/components/isFindingPath/isFindingPath.component";
 
 export const createMuddyBuddy = (
 	initialCoordinates: TCoordinates,
@@ -115,6 +116,7 @@ export const createMuddyBuddy = (
 			new CDamage(1),
 			new CPostHitInvincibility(),
 			new CVisibilityGraph(),
+			new CIsFindingPath(),
 			new CMemory(),
 
 			// view sorting curve

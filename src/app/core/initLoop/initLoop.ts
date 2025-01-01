@@ -1,3 +1,4 @@
+import { hitboxArchetype } from "@root/app/common/archetypes/hitbox/hitbox.archetype";
 import { updateCamera } from "@root/app/common/utils/updateCamera/updateCamera";
 import { processActions } from "@root/app/core/systems/processActions/processActions.system";
 import { processAIs } from "@root/app/core/systems/processAIs/processAIs.system";
@@ -7,7 +8,6 @@ import { updateFps } from "@root/app/domains/fps/systems/updateFps/updateFps.sys
 import { Ticker } from "pixi.js";
 import { logDebug } from "../logDebug/logDebug";
 import { applyDamageCollisions } from "../systems/applyDamageCollisions/applyDamageCollisions";
-import { hitboxArchetype } from "@root/app/common/archetypes/hitbox/hitbox.archetype";
 import { sortViews } from "../systems/sortViews/sortViews.system";
 
 export const aaa = [];

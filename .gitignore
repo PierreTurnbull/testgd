@@ -26,3 +26,5 @@ __pycache__
 todo.txt
 blender/render
 coverage
+
+*.worker.js
