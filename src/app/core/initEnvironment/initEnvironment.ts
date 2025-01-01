@@ -1,6 +1,8 @@
 import { initSprite } from "@root/app/common/views/utils/sprites/initSprite";
+import { createMuddyBuddy } from "@root/app/domains/muddyBuddy/utils/createMuddyBuddy";
 import { createRockLG } from "@root/app/domains/rockLG/utils/createRockLG";
-import { gameData } from "@root/app/gameData/gameData";
+import { createRockMD } from "@root/app/domains/rockMD/utils/createRockMD";
+import { data } from "@root/app/editor/data/data";
 
 export const initEnvironment = () => {
 	for (let i = -1; i <= 1; i++) {
@@ -12,11 +14,31 @@ export const initEnvironment = () => {
 		}
 	}
 
-	gameData.environment.forEach(environment => {
+	data.environment.forEach(environment => {
 		if (environment.name === "rockLG") {
-			createRockLG(environment.coordinates, environment.variant, environment.direction8);
+			createRockLG(
+				environment.coordinates,
+				environment.variant,
+				environment.direction8,
+				environment.gameEditorId,
+			);
+		}
+		if (environment.name === "rockMD") {
+			createRockMD(
+				environment.coordinates,
+				environment.variant,
+				environment.direction8,
+				environment.gameEditorId,
+			);
 		}
 	});
+
+	// setInterval(() => {
+	createMuddyBuddy({ x: 200, y: 200 }, 180);
+	createMuddyBuddy({ x: 100, y: 200 }, 180);
+	createMuddyBuddy({ x: 200, y: 100 }, 180);
+	createMuddyBuddy({ x: 100, y: 100 }, 180);
+	// }, 2000);
 
 	// createRockMD({ x: -527, y: -180 }, 0);
 	// createRockLG({ x: 20, y: 30 }, 0, "up");

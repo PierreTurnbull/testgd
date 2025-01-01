@@ -1,0 +1,244 @@
+{
+    "environment": [
+        {
+            "gameEditorId": 38,
+            "name": "rockLG",
+            "coordinates": {
+                "x": 35,
+                "y": -307
+            },
+            "variant": 2,
+            "direction8": "down"
+        },
+        {
+            "gameEditorId": 42,
+            "name": "rockLG",
+            "coordinates": {
+                "x": 279,
+                "y": -244
+            },
+            "variant": 3,
+            "direction8": "upRight"
+        },
+        {
+            "gameEditorId": 45,
+            "name": "rockLG",
+            "coordinates": {
+                "x": 449,
+                "y": -185
+            },
+            "variant": 1,
+            "direction8": "left"
+        },
+        {
+            "gameEditorId": 46,
+            "name": "rockLG",
+            "coordinates": {
+                "x": 537,
+                "y": -90
+            },
+            "variant": 0,
+            "direction8": "down"
+        },
+        {
+            "gameEditorId": 49,
+            "name": "rockLG",
+            "coordinates": {
+                "x": 594,
+                "y": -2
+            },
+            "variant": 3,
+            "direction8": "right"
+        },
+        {
+            "gameEditorId": 54,
+            "name": "rockLG",
+            "coordinates": {
+                "x": 604,
+                "y": 98
+            },
+            "variant": 0,
+            "direction8": "right"
+        },
+        {
+            "gameEditorId": 56,
+            "name": "rockLG",
+            "coordinates": {
+                "x": 531,
+                "y": 251
+            },
+            "variant": 1,
+            "direction8": "downRight"
+        },
+        {
+            "gameEditorId": 60,
+            "name": "rockLG",
+            "coordinates": {
+                "x": 397,
+                "y": 308
+            },
+            "variant": 0,
+            "direction8": "upRight"
+        },
+        {
+            "gameEditorId": 61,
+            "name": "rockLG",
+            "coordinates": {
+                "x": 227,
+                "y": 374
+            },
+            "variant": 3,
+            "direction8": "down"
+        },
+        {
+            "gameEditorId": 63,
+            "name": "rockLG",
+            "coordinates": {
+                "x": -30,
+                "y": 356
+            },
+            "variant": 1,
+            "direction8": "downRight"
+        },
+        {
+            "gameEditorId": 69,
+            "name": "rockLG",
+            "coordinates": {
+                "x": -301,
+                "y": 349
+            },
+            "variant": 2,
+            "direction8": "downLeft"
+        },
+        {
+            "gameEditorId": 73,
+            "name": "rockLG",
+            "coordinates": {
+                "x": -259,
+                "y": 312
+            },
+            "variant": 3,
+            "direction8": "downLeft"
+        },
+        {
+            "gameEditorId": 74,
+            "name": "rockLG",
+            "coordinates": {
+                "x": -483,
+                "y": 314
+            },
+            "variant": 0,
+            "direction8": "down"
+        },
+        {
+            "gameEditorId": 79,
+            "name": "rockLG",
+            "coordinates": {
+                "x": -592,
+                "y": 236
+            },
+            "variant": 2,
+            "direction8": "right"
+        },
+        {
+            "gameEditorId": 81,
+            "name": "rockLG",
+            "coordinates": {
+                "x": -553,
+                "y": 165
+            },
+            "variant": 2,
+            "direction8": "downLeft"
+        },
+        {
+            "gameEditorId": 83,
+            "name": "rockLG",
+            "coordinates": {
+                "x": -538,
+                "y": 69
+            },
+            "variant": 0,
+            "direction8": "downRight"
+        },
+        {
+            "gameEditorId": 86,
+            "name": "rockLG",
+            "coordinates": {
+                "x": -495,
+                "y": -76
+            },
+            "variant": 1,
+            "direction8": "left"
+        },
+        {
+            "gameEditorId": 91,
+            "name": "rockLG",
+            "coordinates": {
+                "x": -216,
+                "y": -268
+            },
+            "variant": 2,
+            "direction8": "down"
+        },
+        {
+            "gameEditorId": 99,
+            "name": "rockLG",
+            "coordinates": {
+                "x": -193,
+                "y": -301
+            },
+            "variant": 1,
+            "direction8": "left"
+        },
+        {
+            "gameEditorId": 106,
+            "name": "rockLG",
+            "coordinates": {
+                "x": -407,
+                "y": -191
+            },
+            "variant": 2,
+            "direction8": "downRight"
+        },
+        {
+            "gameEditorId": 108,
+            "name": "rockMD",
+            "coordinates": {
+                "x": -76,
+                "y": 108
+            },
+            "variant": 2,
+            "direction8": "down"
+        },
+        {
+            "gameEditorId": 123,
+            "name": "rockMD",
+            "coordinates": {
+                "x": 221,
+                "y": 30
+            },
+            "variant": 3,
+            "direction8": "left"
+        },
+        {
+            "gameEditorId": 124,
+            "name": "rockMD",
+            "coordinates": {
+                "x": -17,
+                "y": -91
+            },
+            "variant": 0,
+            "direction8": "down"
+        },
+        {
+            "gameEditorId": 126,
+            "name": "rockMD",
+            "coordinates": {
+                "x": -121,
+                "y": -81
+            },
+            "variant": 0,
+            "direction8": "downRight"
+        }
+    ]
+}

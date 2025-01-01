@@ -56,7 +56,7 @@ export const moveTowardsTarget = (
 			playerPreciseExtendedPoints.push(...inBetweenPoints);
 		});
 
-		findPath(muddyBuddyEntity, playerLocationComponent.coordinates, playerPreciseExtendedPoints);
+		// findPath(muddyBuddyEntity, playerLocationComponent.coordinates, playerPreciseExtendedPoints);
 
 		// if (visibilityGraphComponent.nextStep) {
 		// 	const angle = getAngleFromPoints(locationComponent.coordinates, visibilityGraphComponent.nextStep);

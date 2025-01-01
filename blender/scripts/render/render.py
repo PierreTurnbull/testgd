@@ -114,18 +114,12 @@ def renderRockMD():
 	entities.scene.frame_end = 0
 
 	for i in range(0, 4):
-		entities.scene.render.filepath = "./blender/tmp/raw/images/environment.rockMD." + str(i) + "/"
-		entities.rockMD.all_objects[0].rotation_euler[2] = i * 90 * (pi / 180.0)
-
-		with silence():
-			bpy.ops.render.render(animation=True)
-
-		print("Rendered rockMD." + str(i))
+		entities.rockMD.all_objects[0].rotation_euler[0] = i * 90 * (pi / 180.0)
+		renderEnvironmentFromAllDirections(entities.rockMD.all_objects[0], "rockMD." + str(i))
 
 def renderRockLG():
 	entities.scene.frame_end = 0
 
 	for i in range(0, 4):
-		entities.scene.render.filepath = "./blender/tmp/raw/images/environment.rockLG." + str(i) + "/"
 		entities.rockLG.all_objects[0].rotation_euler[0] = i * 90 * (pi / 180.0)
 		renderEnvironmentFromAllDirections(entities.rockLG.all_objects[0], "rockLG." + str(i))

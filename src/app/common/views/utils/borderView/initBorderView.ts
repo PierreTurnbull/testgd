@@ -1,13 +1,13 @@
 import { TCoordinates } from "@root/app/common/types/coordinates.types";
 import { worldManager } from "@root/app/core/worldManager/worldManager.singletons";
-import { Graphics, Sprite } from "pixi.js";
+import { Graphics, ViewContainer } from "pixi.js";
 import { ENTITIES_CENTER_OFFSETS } from "../../constants/views.constants";
 
 /**
  * Initializes the view of a border 
  */
 export const initBorderView = (
-	animatedSprite: Sprite,
+	animatedSprite: ViewContainer,
 	coordinates: TCoordinates,
 ) => {
 	const borderView = new Graphics()

@@ -4,11 +4,10 @@ import { getEntityFromCollider } from "@root/app/core/systems/applyDamageCollisi
 import { Entity } from "../../../../common/entities/entity.models";
 import { TCoordinates } from "../../../../common/types/coordinates.types";
 import { getOffsetCoordinates } from "../../../../common/utils/getOffsetCoordinates/getOffsetCoordinates";
-import { CMotionCollisionCandidates } from "../../components/motionCollisionCandidates/motionCollisionCandidates.component";
 import { CHitbox } from "../../components/hitbox/hitbox.component";
 import { CHitboxOffset } from "../../components/hitboxOffset/hitboxOffset.component";
+import { CMotionCollisionCandidates } from "../../components/motionCollisionCandidates/motionCollisionCandidates.component";
 import { updateHitboxPosition } from "../updateHitboxPosition";
-import { rockMDArchetype } from "@root/app/common/archetypes/rockMD/rockMD.archetype";
 
 /**
  * Returns constrained coordinates. Coordinates are constrained based on the hitboxes of other entities.

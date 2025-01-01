@@ -1,4 +1,4 @@
-import { AnimatedSprite, Sprite, ViewContainer } from "pixi.js";
+import { ViewContainer } from "pixi.js";
 import { Component } from "../component.models";
 
 /**
@@ -6,7 +6,7 @@ import { Component } from "../component.models";
  */
 export class CView extends Component {
 	constructor(
-		initialView: Sprite | AnimatedSprite,
+		initialView: ViewContainer,
 	) {
 		super();
 

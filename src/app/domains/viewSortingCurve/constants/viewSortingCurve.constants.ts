@@ -138,4 +138,136 @@ export const VIEW_SORTING_CURVES: Record<string, TViewSortingCurve> = {
 		{ x: 0, y: 292 },
 		{ x: 384, y: 137 },
 	],
+
+	"environment.rockMD.0.up": [
+		{ x: 0, y: 150 },
+		{ x: 192, y: 150 },
+	],
+	"environment.rockMD.0.upRight": [
+		{ x: 0, y: 150 },
+		{ x: 192, y: 150 },
+	],
+	"environment.rockMD.0.right": [
+		{ x: 0, y: 150 },
+		{ x: 192, y: 150 },
+	],
+	"environment.rockMD.0.downRight": [
+		{ x: 0, y: 150 },
+		{ x: 192, y: 150 },
+	],
+	"environment.rockMD.0.down": [
+		{ x: 0, y: 150 },
+		{ x: 192, y: 150 },
+	],
+	"environment.rockMD.0.downLeft": [
+		{ x: 0, y: 150 },
+		{ x: 192, y: 150 },
+	],
+	"environment.rockMD.0.left": [
+		{ x: 0, y: 150 },
+		{ x: 192, y: 150 },
+	],
+	"environment.rockMD.0.upLeft": [
+		{ x: 0, y: 150 },
+		{ x: 192, y: 150 },
+	],
+
+	"environment.rockMD.1.up": [
+		{ x: 0, y: 150 },
+		{ x: 192, y: 150 },
+	],
+	"environment.rockMD.1.upRight": [
+		{ x: 0, y: 150 },
+		{ x: 192, y: 150 },
+	],
+	"environment.rockMD.1.right": [
+		{ x: 0, y: 150 },
+		{ x: 192, y: 150 },
+	],
+	"environment.rockMD.1.downRight": [
+		{ x: 0, y: 150 },
+		{ x: 192, y: 150 },
+	],
+	"environment.rockMD.1.down": [
+		{ x: 0, y: 150 },
+		{ x: 192, y: 150 },
+	],
+	"environment.rockMD.1.downLeft": [
+		{ x: 0, y: 150 },
+		{ x: 192, y: 150 },
+	],
+	"environment.rockMD.1.left": [
+		{ x: 0, y: 150 },
+		{ x: 192, y: 150 },
+	],
+	"environment.rockMD.1.upLeft": [
+		{ x: 0, y: 150 },
+		{ x: 192, y: 150 },
+	],
+
+	"environment.rockMD.2.up": [
+		{ x: 0, y: 150 },
+		{ x: 192, y: 150 },
+	],
+	"environment.rockMD.2.upRight": [
+		{ x: 0, y: 150 },
+		{ x: 192, y: 150 },
+	],
+	"environment.rockMD.2.right": [
+		{ x: 0, y: 150 },
+		{ x: 192, y: 150 },
+	],
+	"environment.rockMD.2.downRight": [
+		{ x: 0, y: 150 },
+		{ x: 192, y: 150 },
+	],
+	"environment.rockMD.2.down": [
+		{ x: 0, y: 150 },
+		{ x: 192, y: 150 },
+	],
+	"environment.rockMD.2.downLeft": [
+		{ x: 0, y: 150 },
+		{ x: 192, y: 150 },
+	],
+	"environment.rockMD.2.left": [
+		{ x: 0, y: 150 },
+		{ x: 192, y: 150 },
+	],
+	"environment.rockMD.2.upLeft": [
+		{ x: 0, y: 150 },
+		{ x: 192, y: 150 },
+	],
+
+	"environment.rockMD.3.up": [
+		{ x: 0, y: 150 },
+		{ x: 192, y: 150 },
+	],
+	"environment.rockMD.3.upRight": [
+		{ x: 0, y: 150 },
+		{ x: 192, y: 150 },
+	],
+	"environment.rockMD.3.right": [
+		{ x: 0, y: 150 },
+		{ x: 192, y: 150 },
+	],
+	"environment.rockMD.3.downRight": [
+		{ x: 0, y: 150 },
+		{ x: 192, y: 150 },
+	],
+	"environment.rockMD.3.down": [
+		{ x: 0, y: 150 },
+		{ x: 192, y: 150 },
+	],
+	"environment.rockMD.3.downLeft": [
+		{ x: 0, y: 150 },
+		{ x: 192, y: 150 },
+	],
+	"environment.rockMD.3.left": [
+		{ x: 0, y: 150 },
+		{ x: 192, y: 150 },
+	],
+	"environment.rockMD.3.upLeft": [
+		{ x: 0, y: 150 },
+		{ x: 192, y: 150 },
+	],
 };

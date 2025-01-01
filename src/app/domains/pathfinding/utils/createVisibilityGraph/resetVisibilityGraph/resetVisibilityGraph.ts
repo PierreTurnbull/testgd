@@ -14,6 +14,13 @@ export const resetVisibilityGraph = (
 	visibilityGraphComponent.toAreaLinkedNodeViews.forEach(toAreaLinkedNodeView => toAreaLinkedNodeView.destroy());
 	visibilityGraphComponent.highlightedNodeViews?.forEach(highlightedNodeView => highlightedNodeView.destroy());
 
+	visibilityGraphComponent.extendedHitboxPointViews = [];
+	visibilityGraphComponent.extendedHitboxViews = [];
+	visibilityGraphComponent.linkedNodeViews = [];
+	visibilityGraphComponent.fromLinkedNodeViews = [];
+	visibilityGraphComponent.toLinkedNodeViews = [];
+	visibilityGraphComponent.toAreaLinkedNodeViews = [];
+	visibilityGraphComponent.highlightedNodeViews = [];
 	visibilityGraphComponent.extendedHitboxesPointsSystem = null;
 	visibilityGraphComponent.extendedHitboxesPoints = [];
 	visibilityGraphComponent.nodes = [];

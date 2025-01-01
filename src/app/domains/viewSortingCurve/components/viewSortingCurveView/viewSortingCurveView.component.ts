@@ -1,5 +1,6 @@
 import { Graphics } from "pixi.js";
 import { Component } from "../../../../common/components/component.models";
+import { configManager } from "@root/app/core/configManager/configManager.singleton";
 
 /**
  * A view that represents the sorting curve of a view.
@@ -10,8 +11,21 @@ export class CViewSortingCurveView extends Component {
 	) {
 		super();
 
-		this.viewSortingCurveView = viewSortingCurveView;
+		this._viewSortingCurveView = viewSortingCurveView;
 	}
+	
+	/**
+	 * The view that represents the sorting curve of a view. Used for debugging.
+	 */
+	private _viewSortingCurveView: Graphics | null = null;
 
-	viewSortingCurveView: Graphics | null;
+	get viewSortingCurveView() {
+		if (!configManager.config.debug.showsEntityCenters) throw new Error("Cannot access center: the debug option is disabled.");
+		if (!this._viewSortingCurveView) throw new Error("Missing center.");
+
+		return this._viewSortingCurveView;
+	}
+	set viewSortingCurveView(value: Graphics) {
+		this._viewSortingCurveView = value;
+	}
 }

@@ -70,8 +70,8 @@ export const getSortedEntities = (
 				// entity a's center
 
 				const centerIsInInterval = (
-					aCoordinates.x > bSegment[0].x + bTotalOffset.x &&
-					aCoordinates.x < bSegment[1].x + bTotalOffset.x
+					aCoordinates.x >= bSegment[0].x + bTotalOffset.x &&
+					aCoordinates.x <= bSegment[1].x + bTotalOffset.x
 				);
 
 				if (centerIsInInterval) {
@@ -83,8 +83,8 @@ export const getSortedEntities = (
 				// entity a's left extremity
 
 				const leftExtremityIsInInterval = (
-					aLeftExtremity.x > bSegment[0].x + bTotalOffset.x &&
-					aLeftExtremity.x < bSegment[1].x + bTotalOffset.x
+					aLeftExtremity.x >= bSegment[0].x + bTotalOffset.x &&
+					aLeftExtremity.x <= bSegment[1].x + bTotalOffset.x
 				);
 
 				if (leftExtremityIsInInterval) {
@@ -99,8 +99,8 @@ export const getSortedEntities = (
 				// entity a's right extremity
 
 				const rightExtremityIsInInterval = (
-					aRightExtremity.x > bSegment[0].x + bTotalOffset.x &&
-					aRightExtremity.x < bSegment[1].x + bTotalOffset.x
+					aRightExtremity.x >= bSegment[0].x + bTotalOffset.x &&
+					aRightExtremity.x <= bSegment[1].x + bTotalOffset.x
 				);
 
 				if (rightExtremityIsInInterval) {

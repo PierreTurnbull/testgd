@@ -212,21 +212,161 @@
     {
         "width": 64,
         "height": 64,
-        "name": "environment.rockMD.0"
+        "name": "environment.rockMD.0.down"
     },
     {
         "width": 64,
         "height": 64,
-        "name": "environment.rockMD.1"
+        "name": "environment.rockMD.0.downLeft"
     },
     {
         "width": 64,
         "height": 64,
-        "name": "environment.rockMD.2"
+        "name": "environment.rockMD.0.downRight"
     },
     {
         "width": 64,
         "height": 64,
-        "name": "environment.rockMD.3"
+        "name": "environment.rockMD.0.left"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "name": "environment.rockMD.0.right"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "name": "environment.rockMD.0.up"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "name": "environment.rockMD.0.upLeft"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "name": "environment.rockMD.0.upRight"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "name": "environment.rockMD.1.down"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "name": "environment.rockMD.1.downLeft"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "name": "environment.rockMD.1.downRight"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "name": "environment.rockMD.1.left"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "name": "environment.rockMD.1.right"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "name": "environment.rockMD.1.up"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "name": "environment.rockMD.1.upLeft"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "name": "environment.rockMD.1.upRight"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "name": "environment.rockMD.2.down"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "name": "environment.rockMD.2.downLeft"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "name": "environment.rockMD.2.downRight"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "name": "environment.rockMD.2.left"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "name": "environment.rockMD.2.right"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "name": "environment.rockMD.2.up"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "name": "environment.rockMD.2.upLeft"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "name": "environment.rockMD.2.upRight"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "name": "environment.rockMD.3.down"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "name": "environment.rockMD.3.downLeft"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "name": "environment.rockMD.3.downRight"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "name": "environment.rockMD.3.left"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "name": "environment.rockMD.3.right"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "name": "environment.rockMD.3.up"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "name": "environment.rockMD.3.upLeft"
+    },
+    {
+        "width": 64,
+        "height": 64,
+        "name": "environment.rockMD.3.upRight"
     }
 ]

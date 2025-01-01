@@ -24,7 +24,7 @@ class ConfigManager {
 			/**
 			 * Nodes of visibility graphs, in the context of pathfinding.
 			 */
-			showsVisibilityGraphNodes:        false,
+			showsVisibilityGraphNodes:        true,
 			/**
 			 * Available paths in a visibility graph, in the context of pathfinding.
 			 */
@@ -36,7 +36,7 @@ class ConfigManager {
 			/**
 			 * The coordinates of the mouse, displayed on top of the mouse.
 			 */
-			showsMouseCoordinates:            true,
+			showsMouseCoordinates:            false,
 			/**
 			 * Logs the performance of updating visiblity graphs.
 			 */

@@ -15,33 +15,227 @@ export const HITBOX_BOUNDS: Record<string, TDimensions> = {
  * Points for polygonal hitboxes.
  */
 export const HITBOXES_POINTS: Record<string, TPoint[]> = {
-	"environment.rockMD.0": [
+
+	"environment.rockMD.0.up": [
 		{ x: 25, y: 134 },
 		{ x: 100, y: 185 },
 		{ x: 167, y: 155 },
 		{ x: 167, y: 145 },
 		{ x: 86, y: 104 },
 	],
-	"environment.rockMD.1": [
+	"environment.rockMD.0.upRight": [
+		{ x: 25, y: 134 },
+		{ x: 100, y: 185 },
+		{ x: 167, y: 155 },
+		{ x: 167, y: 145 },
+		{ x: 86, y: 104 },
+	],
+	"environment.rockMD.0.right": [
+		{ x: 25, y: 134 },
+		{ x: 100, y: 185 },
+		{ x: 167, y: 155 },
+		{ x: 167, y: 145 },
+		{ x: 86, y: 104 },
+	],
+	"environment.rockMD.0.downRight": [
+		{ x: 25, y: 134 },
+		{ x: 100, y: 185 },
+		{ x: 167, y: 155 },
+		{ x: 167, y: 145 },
+		{ x: 86, y: 104 },
+	],
+	"environment.rockMD.0.down": [
+		{ x: 25, y: 134 },
+		{ x: 100, y: 185 },
+		{ x: 167, y: 155 },
+		{ x: 167, y: 145 },
+		{ x: 86, y: 104 },
+	],
+	"environment.rockMD.0.downLeft": [
+		{ x: 25, y: 134 },
+		{ x: 100, y: 185 },
+		{ x: 167, y: 155 },
+		{ x: 167, y: 145 },
+		{ x: 86, y: 104 },
+	],
+	"environment.rockMD.0.left": [
+		{ x: 25, y: 134 },
+		{ x: 100, y: 185 },
+		{ x: 167, y: 155 },
+		{ x: 167, y: 145 },
+		{ x: 86, y: 104 },
+	],
+	"environment.rockMD.0.upLeft": [
+		{ x: 25, y: 134 },
+		{ x: 100, y: 185 },
+		{ x: 167, y: 155 },
+		{ x: 167, y: 145 },
+		{ x: 86, y: 104 },
+	],
+
+	"environment.rockMD.1.up": [
 		{ x: 10, y: 150 },
 		{ x: 100, y: 185 },
 		{ x: 183, y: 169 },
 		{ x: 190, y: 150 },
 		{ x: 115, y: 115 },
 	],
-	"environment.rockMD.2": [
+	"environment.rockMD.1.upRight": [
+		{ x: 10, y: 150 },
+		{ x: 100, y: 185 },
+		{ x: 183, y: 169 },
+		{ x: 190, y: 150 },
+		{ x: 115, y: 115 },
+	],
+	"environment.rockMD.1.right": [
+		{ x: 10, y: 150 },
+		{ x: 100, y: 185 },
+		{ x: 183, y: 169 },
+		{ x: 190, y: 150 },
+		{ x: 115, y: 115 },
+	],
+	"environment.rockMD.1.downRight": [
+		{ x: 10, y: 150 },
+		{ x: 100, y: 185 },
+		{ x: 183, y: 169 },
+		{ x: 190, y: 150 },
+		{ x: 115, y: 115 },
+	],
+	"environment.rockMD.1.down": [
+		{ x: 10, y: 150 },
+		{ x: 100, y: 185 },
+		{ x: 183, y: 169 },
+		{ x: 190, y: 150 },
+		{ x: 115, y: 115 },
+	],
+	"environment.rockMD.1.downLeft": [
+		{ x: 10, y: 150 },
+		{ x: 100, y: 185 },
+		{ x: 183, y: 169 },
+		{ x: 190, y: 150 },
+		{ x: 115, y: 115 },
+	],
+	"environment.rockMD.1.left": [
+		{ x: 10, y: 150 },
+		{ x: 100, y: 185 },
+		{ x: 183, y: 169 },
+		{ x: 190, y: 150 },
+		{ x: 115, y: 115 },
+	],
+	"environment.rockMD.1.upLeft": [
+		{ x: 10, y: 150 },
+		{ x: 100, y: 185 },
+		{ x: 183, y: 169 },
+		{ x: 190, y: 150 },
+		{ x: 115, y: 115 },
+	],
+
+	"environment.rockMD.2.up": [
 		{ x: 30, y: 160 },
 		{ x: 100, y: 185 },
 		{ x: 178, y: 129 },
 		{ x: 25, y: 130 },
 	],
-	"environment.rockMD.3": [
+	"environment.rockMD.2.upRight": [
+		{ x: 30, y: 160 },
+		{ x: 100, y: 185 },
+		{ x: 178, y: 129 },
+		{ x: 25, y: 130 },
+	],
+	"environment.rockMD.2.right": [
+		{ x: 30, y: 160 },
+		{ x: 100, y: 185 },
+		{ x: 178, y: 129 },
+		{ x: 25, y: 130 },
+	],
+	"environment.rockMD.2.downRight": [
+		{ x: 30, y: 160 },
+		{ x: 100, y: 185 },
+		{ x: 178, y: 129 },
+		{ x: 25, y: 130 },
+	],
+	"environment.rockMD.2.down": [
+		{ x: 30, y: 160 },
+		{ x: 100, y: 185 },
+		{ x: 178, y: 129 },
+		{ x: 25, y: 130 },
+	],
+	"environment.rockMD.2.downLeft": [
+		{ x: 30, y: 160 },
+		{ x: 100, y: 185 },
+		{ x: 178, y: 129 },
+		{ x: 25, y: 130 },
+	],
+	"environment.rockMD.2.left": [
+		{ x: 30, y: 160 },
+		{ x: 100, y: 185 },
+		{ x: 178, y: 129 },
+		{ x: 25, y: 130 },
+	],
+	"environment.rockMD.2.upLeft": [
+		{ x: 30, y: 160 },
+		{ x: 100, y: 185 },
+		{ x: 178, y: 129 },
+		{ x: 25, y: 130 },
+	],
+
+	"environment.rockMD.3.up": [
 		{ x: 5, y: 158 },
 		{ x: 33, y: 182 },
 		{ x: 140, y: 176 },
 		{ x: 183, y: 149 },
 		{ x: 96, y: 127 },
 	],
+	"environment.rockMD.3.upRight": [
+		{ x: 5, y: 158 },
+		{ x: 33, y: 182 },
+		{ x: 140, y: 176 },
+		{ x: 183, y: 149 },
+		{ x: 96, y: 127 },
+	],
+	"environment.rockMD.3.right": [
+		{ x: 5, y: 158 },
+		{ x: 33, y: 182 },
+		{ x: 140, y: 176 },
+		{ x: 183, y: 149 },
+		{ x: 96, y: 127 },
+	],
+	"environment.rockMD.3.downRight": [
+		{ x: 5, y: 158 },
+		{ x: 33, y: 182 },
+		{ x: 140, y: 176 },
+		{ x: 183, y: 149 },
+		{ x: 96, y: 127 },
+	],
+	"environment.rockMD.3.down": [
+		{ x: 5, y: 158 },
+		{ x: 33, y: 182 },
+		{ x: 140, y: 176 },
+		{ x: 183, y: 149 },
+		{ x: 96, y: 127 },
+	],
+	"environment.rockMD.3.downLeft": [
+		{ x: 5, y: 158 },
+		{ x: 33, y: 182 },
+		{ x: 140, y: 176 },
+		{ x: 183, y: 149 },
+		{ x: 96, y: 127 },
+	],
+	"environment.rockMD.3.left": [
+		{ x: 5, y: 158 },
+		{ x: 33, y: 182 },
+		{ x: 140, y: 176 },
+		{ x: 183, y: 149 },
+		{ x: 96, y: 127 },
+	],
+	"environment.rockMD.3.upLeft": [
+		{ x: 5, y: 158 },
+		{ x: 33, y: 182 },
+		{ x: 140, y: 176 },
+		{ x: 183, y: 149 },
+		{ x: 96, y: 127 },
+	],
+
 	"environment.rockLG.0.up": [
 		{ x: 10, y: 226 },
 		{ x: 46, y: 258 },

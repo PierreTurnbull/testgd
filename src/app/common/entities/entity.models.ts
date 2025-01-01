@@ -17,6 +17,7 @@ import { TMultiplicity, TRelationNode } from "../relations/types/relation.types"
 import { ConstructorOf } from "../types/constructor.types";
 import { entityManager } from "./entityManager.singleton";
 import { TEntitySettings } from "./types/entity.types";
+import { CViewSortingCurveView } from "@root/app/domains/viewSortingCurve/components/viewSortingCurveView/viewSortingCurveView.component";
 
 let nextId = 0;
 
@@ -188,6 +189,12 @@ export class Entity {
 			const centerViewComponent = this.getComponent(CCenterView);
 	
 			centerViewComponent.centerView.destroy();
+		}
+
+		if (configManager.config.debug.showsViewSortingCurves && this.hasComponent(CViewSortingCurveView)) {
+			const viewSortingCurveViewComponent = this.getComponent(CViewSortingCurveView);
+
+			viewSortingCurveViewComponent.viewSortingCurveView.destroy();
 		}
 
 		// destroy hitboxes
