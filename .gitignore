@@ -25,6 +25,7 @@ __pycache__
 .vscode
 todo.txt
 blender/render
+blender/tmp
 coverage
 
 *.worker.js

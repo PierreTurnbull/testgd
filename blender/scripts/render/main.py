@@ -7,7 +7,7 @@ from math import *
 
 start0 = time.time()
 
-sys.path.append("/Users/pierreturnbull/Desktop/games/testgd/blender/scripts/render")
+sys.path.append("/home/pierre/Documents/testgd/blender/scripts/render")
 
 import process
 import prepare

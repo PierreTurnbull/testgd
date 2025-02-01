@@ -2,9 +2,15 @@
 
 ## Get started
 
-Install dependencies:
+Install node dependencies:
 ```
 npm install
+```
+[Install blender](https://docs.blender.org/manual/fr/dev/getting_started/installing/)
+
+Install `imagemagick`:
+```
+sudo apt install imagemagick
 ```
 
 Generate assets from Blender:
@@ -65,7 +71,7 @@ PROJECTION=<projection> npm run render:export
 PROJECTION=<projection> npm run render:clean
 ```
 
-Projection format: `<character>.<action>`
+Projection format: JSON. Specify a list of key-boolean values, or true for all elements. Eg: `PROJECTION={"character1":true,"character2":{"action1":true,"action2":true}}`. This targets all actions for character1, and action1 from character2.
 
 ## Architecture
 
