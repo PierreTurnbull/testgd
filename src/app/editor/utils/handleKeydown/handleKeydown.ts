@@ -16,7 +16,7 @@ export const handleKeydown = async (event: KeyboardEvent) => {
 		throw new Error("Game editor store is not initialized.");
 	}
 
-	if (event.code === "IntlBackslash" /* @ */) {
+	if (event.code === "Backquote" /* ² */) {
 		if (gameEditorStore.environmentItemsContainer) {
 			closeEnvironmentItemsContainer();
 			closeEnvironmentItemVariantsContainer();
@@ -52,7 +52,7 @@ export const handleKeydown = async (event: KeyboardEvent) => {
 	}
 
 	// save the game data
-	if (event.metaKey && event.code === "KeyS") {
+	if (event.ctrlKey && event.code === "KeyS") {
 		try {
 			await fetch("http://localhost:12201/editor", {
 				method:  "put",

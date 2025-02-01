@@ -27,5 +27,5 @@ todo.txt
 blender/render
 blender/tmp
 coverage
-
+assets/
 *.worker.js

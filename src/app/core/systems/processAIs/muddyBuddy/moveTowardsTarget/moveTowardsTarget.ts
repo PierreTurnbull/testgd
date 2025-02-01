@@ -66,11 +66,11 @@ export const moveTowardsTarget = (
 		);
 	}
 
-	// if (visibilityGraphComponent.nextStep) {
-	// 	const angle = getAngleFromPoints(locationComponent.coordinates, visibilityGraphComponent.nextStep);
+	if (visibilityGraphComponent.nextStep) {
+		const angle = getAngleFromPoints(locationComponent.coordinates, visibilityGraphComponent.nextStep);
 
-	// 	keyboardComponent.joystickAngle = angle;
-	// } else {
-	// 	keyboardComponent.joystickAngle = null;
-	// }
+		keyboardComponent.joystickAngle = angle;
+	} else {
+		keyboardComponent.joystickAngle = null;
+	}
 };

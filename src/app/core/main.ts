@@ -1,6 +1,6 @@
 import { Assets } from "pixi.js";
 import { assetsManager } from "./assetsManager/assetsManager.singletons";
-import { watchInput } from "../domains/player/systems/watchInput/watchInput.system";
+import { watchInput } from "./systems/watchInput/watchInput.system";
 import { initApplication } from "./initApp/initApp";
 import { initCharacters } from "./initCharacters/initCharacters";
 import { initLoop } from "./initLoop/initLoop";

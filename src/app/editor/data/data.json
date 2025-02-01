@@ -39,6 +39,26 @@
             },
             "variant": 0,
             "direction8": "down"
+        },
+        {
+            "gameEditorId": 8,
+            "name": "rockLG",
+            "coordinates": {
+                "x": 390,
+                "y": -94
+            },
+            "variant": 3,
+            "direction8": "downRight"
+        },
+        {
+            "gameEditorId": 14,
+            "name": "rockLG",
+            "coordinates": {
+                "x": 365,
+                "y": -33
+            },
+            "variant": 1,
+            "direction8": "left"
         }
     ]
 }

@@ -28,6 +28,11 @@ Run the app:
 npm run dev
 ```
 
+Run the editor server:
+```
+npm run dev:editor
+```
+
 ## Assets generation
 
 Generate assets from Blender:

@@ -13,6 +13,11 @@ import { sortViews } from "../systems/sortViews/sortViews.system";
 export const aaa = [];
 export const initLoop = () => {
 	const loop = async (delta: Ticker) => {
+		aaa.push({
+			t: new Date(),
+			e: [...hitboxArchetype.entities],
+			l: [...hitboxArchetype.entities].length,
+		});
 		translateInputs();
 		processAIs();
 		processActions(delta);
@@ -20,11 +25,6 @@ export const initLoop = () => {
 		sortViews();
 		updateFps(delta);
 		updateCamera();
-		aaa.push({
-			t: new Date(),
-			e: [...hitboxArchetype.entities],
-			l: [...hitboxArchetype.entities].length,
-		});
 	};
 
 	setInterval(logDebug, 1000);

@@ -21,9 +21,7 @@ export const removeEntity = () => {
 		return item.gameEditorId === gameEditorStore.selectedEntity.getComponent(CGameEditorId).gameEditorId;
 	});
 
-	if (itemKey === -1) {
-		throw new Error("Missing item key.");
+	if (itemKey !== -1) {
+		gameEditorStore.data.environment.splice(itemKey, 1);
 	}
-
-	gameEditorStore.data.environment.splice(itemKey, 1);
 };
