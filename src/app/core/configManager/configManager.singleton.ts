@@ -8,7 +8,7 @@ class ConfigManager {
 			/**
 			 * Hitboxes of entities.
 			 */
-			showsEntityHitboxes:              false,
+			showsEntityHitboxes:              true,
 			/**
 			 * Centers of entities, which means their location.
 			 */

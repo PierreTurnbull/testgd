@@ -51,14 +51,14 @@
             "direction8": "downRight"
         },
         {
-            "gameEditorId": 14,
+            "gameEditorId": 10,
             "name": "rockLG",
             "coordinates": {
-                "x": 365,
-                "y": -33
+                "x": 362,
+                "y": -35
             },
-            "variant": 1,
-            "direction8": "left"
+            "variant": 0,
+            "direction8": "down"
         }
     ]
 }

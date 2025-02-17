@@ -16,7 +16,7 @@ export const getConstrainedCoordinates = (
 	colliderEntity: Entity,
 	nextCoordinates: TCoordinates,
 ) => {
-	const hitboxEntities = colliderEntity.getRelatedEntities("hitboxes");
+	const hitboxEntities = colliderEntity.getRelatedEntities("hitboxes")
 	const constrainedNextCoordinates: TCoordinates = {
 		x: nextCoordinates.x,
 		y: nextCoordinates.y,
@@ -30,7 +30,7 @@ export const getConstrainedCoordinates = (
 		}
 
 		const hitboxOffsetComponent = hitboxEntity.getComponent(CHitboxOffset);
-		const motionCollisionCandidatesComponent = hitboxEntity.getComponent(CMotionCollisionCandidates);
+		const motionCollisionCandidates = hitboxEntity.getComponent(CMotionCollisionCandidates).motionCollisionCandidates
 
 		const prevCoordinates: TCoordinates = {
 			x: hitboxComponent.body.x,
@@ -42,23 +42,27 @@ export const getConstrainedCoordinates = (
 		updateHitboxPosition(hitboxComponent, centeredCoordinates);
 
 		collisionsManager.system.checkOne(hitboxComponent.body, (response) => {
-			const targetEntity = getEntityFromCollider(response.b);
-			
-			const targetOriginEntity = findOriginEntity(targetEntity);
+			const targetHitboxEntity = getEntityFromCollider(response.b)
+			const targetEntity = targetHitboxEntity.getRelatedEntity("parent")
 
-			const targetIsCandidate = motionCollisionCandidatesComponent.motionCollisionCandidates.some(motionCollisionCandidate => {
-				return motionCollisionCandidate.entitiesById.has(targetOriginEntity.id);
+			// ensure that collider a can collide with collider b
+
+			const targetIsCandidate = motionCollisionCandidates.some(motionCollisionCandidate => {
+				return motionCollisionCandidate.entitiesById.has(targetEntity.id);
 			});
 
 			if (!targetIsCandidate) {
 				return;
 			}
 
+			// ensure that colliders are allowed to collide
+
 			if (response.a.isTrigger || response.b.isTrigger) {
 				return;
 			}
 
 			// constrain next coordinates
+
 			constrainedNextCoordinates.x -= response.overlapV.x;
 			constrainedNextCoordinates.y -= response.overlapV.y;
 
@@ -66,10 +70,7 @@ export const getConstrainedCoordinates = (
 		});
 
 		updateHitboxPosition(hitboxComponent, prevCoordinates);
-
-		// idea of possible optimization: if final point not in interval of from to dest, then replace it to original point
-		// this will prevent bugs where the collider teleports to the wrong coordinates
-	});
+	})
 
 	return constrainedNextCoordinates;
 };
