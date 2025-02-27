@@ -50,6 +50,7 @@
 		"cors": "^2.8.5",
 		"detect-collisions": "^9.17.0",
 		"lodash": "^4.17.21",
-		"pixi.js": "^8.4.1"
+		"pixi.js": "^8.4.1",
+		"preact": "^10.26.2"
 	}
 }

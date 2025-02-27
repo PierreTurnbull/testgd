@@ -8,6 +8,7 @@ import { initFps } from "./initFps/initFps";
 import "./reset.css";
 import { initEnvironment } from "./initEnvironment/initEnvironment";
 import { initMouse } from "./initMouse/initMouse";
+import { initUi } from "./initUi/initUi";
 
 // prevent default browser behaviour when left clicking
 document.addEventListener("contextmenu", event => event.preventDefault());
@@ -21,6 +22,7 @@ initMouse();
 initFps();
 initLoop();
 watchInput();
+initUi()
 
 window.addEventListener("keydown", event => {
 	if (event.code === "KeyQ") {

@@ -1,5 +1,7 @@
 {
 	"compilerOptions": {
+		"jsx": "preserve",
+		"jsxFactory": "preact",
 		"target": "ESNext",  
 		"useDefineForClassFields": true,
 		"module": "ESNext",
