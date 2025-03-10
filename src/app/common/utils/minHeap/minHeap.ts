@@ -2,67 +2,67 @@ export class MinHeap<T> {
 	constructor(
 		comparator: (a: T, b: T) => number,
 	) {
-		this.comparator = comparator;
+		this._comparator = comparator;
 	}
 
-	values:             T[] = [];
-	private comparator: (a: T, b: T) => number;
+	values:              T[] = [];
+	private _comparator: (a: T, b: T) => number;
 
-	private getParentIndex(index: number) {
+	private _getParentIndex(index: number) {
 		return Math.floor((index - 1) / 2);
 	}
 
-	private getLeftChildIndex(index: number) {
+	private _getLeftChildIndex(index: number) {
 		return (index * 2) + 1;
 	}
 
-	private getRightChildIndex(index: number) {
+	private _getRightChildIndex(index: number) {
 		return (index * 2) + 2;
 	}
 
 	insert(value: T) {
 		this.values.push(value);
-		this.heapifyUp(this.values.length - 1);
+		this._heapifyUp(this.values.length - 1);
 	}
 
-	private swap(a: number, b: number) {
+	private _swap(a: number, b: number) {
 		[this.values[a], this.values[b]] = [this.values[b], this.values[a]];
 	}
 
-	private heapifyUp(index: number) {
+	private _heapifyUp(index: number) {
 		if (index === 0) return;
 
-		const parentIndex = this.getParentIndex(index);
+		const parentIndex = this._getParentIndex(index);
 
 		const currentValue = this.values[index];
 		const parentValue = this.values[parentIndex];
 
-		if (this.comparator(currentValue, parentValue) < 0) {
-			this.swap(index, parentIndex);
+		if (this._comparator(currentValue, parentValue) < 0) {
+			this._swap(index, parentIndex);
 		}
 
-		this.heapifyUp(parentIndex);
+		this._heapifyUp(parentIndex);
 	}
 
-	private heapifyDown(index: number) {
-		const leftChildIndex = this.getLeftChildIndex(index);
-		const rightChildIndex = this.getRightChildIndex(index);
+	private _heapifyDown(index: number) {
+		const leftChildIndex = this._getLeftChildIndex(index);
+		const rightChildIndex = this._getRightChildIndex(index);
 		
 		const leftChildValue = this.values[leftChildIndex];
 		const rightChildValue = this.values[rightChildIndex];
 
 		let nextIndex: number = index;
 
-		if (leftChildValue !== undefined && this.comparator(leftChildValue, this.values[nextIndex]) < 0) {
+		if (leftChildValue !== undefined && this._comparator(leftChildValue, this.values[nextIndex]) < 0) {
 			nextIndex = leftChildIndex;
 		}
-		if (rightChildValue !== undefined && this.comparator(rightChildValue, this.values[nextIndex]) < 0) {
+		if (rightChildValue !== undefined && this._comparator(rightChildValue, this.values[nextIndex]) < 0) {
 			nextIndex = rightChildIndex;
 		}
 
 		if (nextIndex !== index) {
-			this.swap(index, nextIndex);
-			this.heapifyDown(nextIndex);
+			this._swap(index, nextIndex);
+			this._heapifyDown(nextIndex);
 		}
 	}
 
@@ -72,7 +72,7 @@ export class MinHeap<T> {
 	
 		const min = this.values[0];
 		this.values[0] = this.values.pop()!;
-		this.heapifyDown(0);
+		this._heapifyDown(0);
 	
 		return min;
 	}
