@@ -1,19 +1,16 @@
-import { TAvailableEvents as TAvailableEventsBase, TEmitOptions, TEventEmitterCallback, TEventPayload, TListener, TListenerCallback, TListenerId } from "../../types/eventBus/eventBus.types";
+import { TEventKey as TEventKeyBase, TListener, TListenerId } from "../../types/eventBus/eventBus.types";
 
 /**
  * An event bus providing bidirectionnal communication using listener and emitter callbacks.
  */
-export class EventBus<TAvailableEvents extends TAvailableEventsBase> {
+export class EventBus<TEventKey extends TEventKeyBase> {
 	private _idIncrementer = 0;
-	private _listeners: TListener<
-		TAvailableEvents[number]["key"],
-		TAvailableEvents[number] extends { payload: infer P } ? P : undefined
-	>[] = [];
+	private _listeners: TListener[] = [];
 
 	/**
 	 * Returns the list of listeners that listen to eventKey.
 	 */
-	private getListenersByEventKey<T extends TAvailableEvents[number]["key"]>(eventKey: T) {
+	private getListenersByEventKey(eventKey: T) {
 		const relevantListeners = this._listeners.filter(listener => listener.eventKey === eventKey); 
 
 		return relevantListeners;
@@ -22,11 +19,11 @@ export class EventBus<TAvailableEvents extends TAvailableEventsBase> {
 	/**
 	 * Subscribes a listener to an event.
 	 */
-	subscribe<T extends TAvailableEvents[number]["key"]>(
+	subscribe<T extends TEventKey>(
 		eventKey: T,
-		callback: TListenerCallback<Extract<TAvailableEvents[number], { key: T }> extends { payload: infer P } ? P : undefined>,
+		callback: TListener["callback"],
 	): TListenerId {
-		const newListener: TListener<T, Extract<TAvailableEvents[number], { key: T }> extends { payload: infer P } ? P : undefined> = {
+		const newListener: TListener = {
 			id:       this._idIncrementer++,
 			eventKey: eventKey,
 			callback: callback,
@@ -49,45 +46,32 @@ export class EventBus<TAvailableEvents extends TAvailableEventsBase> {
 	/**
 	 * Emits an event to all listeners that listen to this event.
 	 * 
-	 * If the event corresponding to the provided eventKey has a payload, then
-	 * options are required. If this event does not have a payload but has a callback,
-	 * then options are optional. Otherwise options are forbidden.
+	 * Listener callbacks are executed one by one synchronously.
 	 * 
-	 * If this event has a payload, then the payload is required, otherwise it is forbidden.
-	 * 
-	 * If this event has a callback, then the callback is optional, otherwise it is forbidden.
-	 * 
-	 * This method resolves when all listener and emitter callbacks have finished executing.
+	 * This function runs asynchronously and resolves once all listener callbacks have
+	 * finished running.
 	 */
 	async emit<
-		TKey extends TAvailableEvents[number]["key"],
+		TKey extends TEventKey,
 	>(
 		eventKey: TKey,
-		...args: (
-			Extract<TAvailableEvents[number], { key: TKey }> extends { payload: infer _ } ? [TEmitOptions<Extract<TAvailableEvents[number], { key: TKey }>>] :
-			Extract<TAvailableEvents[number], { key: TKey }> extends { callback: infer _ } ? [TEmitOptions<Extract<TAvailableEvents[number], { key: TKey }>>?] :
-			[]
-		)
+		options?: {
+			payload?: Parameters<TListener["callback"]>[0],
+		},
 	) {
-		const options = args[0];
-		let payload: TEventPayload | null = null;
-		let callback: TEventEmitterCallback | null = null;
+		let payload: Parameters<TListener["callback"]>[0] = null;
 
-		if (options && "payload" in options && options.payload) {
-			payload = options.payload as TEventPayload;
-		}
-		if (options && "callback" in options && options.callback) {
-			callback = options.callback as TEventEmitterCallback;
+		if (options && options.payload) {
+			payload = options.payload;
 		}
 
-		const listeners = this.getListenersByEventKey<TKey>(eventKey);
+		const listeners = this.getListenersByEventKey(eventKey);
 
-		const results: unknown[] = [];
+		const results: ReturnType<TListener["callback"]>[] = [];
 
 		listeners.forEach(listener => {
 			const result = listener.callback(payload);
 			results.push(result);
-			callback?.(result);
 		});
 
 		return results;

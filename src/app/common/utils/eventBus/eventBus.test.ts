@@ -3,17 +3,20 @@ import { EventBus } from "./eventBus";
 
 type TTestBusEvents = [
 	{
-		key:     "withPayload",
-		payload: number,
+		key:              "withPayload",
+		listenerCallback: (payload: number) => void,
 	},
 	{
-		key: "withoutPayload",
+		key:              "withoutPayload",
+		listenerCallback: () => void,
 	},
 	{
-		key: "a1",
+		key:              "a1",
+		listenerCallback: () => void,
 	},
 	{
-		key: "a2",
+		key:              "a2",
+		listenerCallback: () => void,
 	},
 ]
 
