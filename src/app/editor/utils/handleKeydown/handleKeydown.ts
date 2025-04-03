@@ -16,7 +16,7 @@ export const handleKeydown = async (event: KeyboardEvent) => {
 	}
 
 	if (event.code === "Backquote" /* ² */) {
-		uiBus.emit("toggleEditorMenuIsOpen");
+		await uiBus.emit("toggleEditorMenuIsOpen");
 
 		return true;
 	}

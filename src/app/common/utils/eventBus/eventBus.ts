@@ -1,5 +1,8 @@
 import { TAvailableEvents as TAvailableEventsBase, TEmitOptions, TEventEmitterCallback, TEventPayload, TListener, TListenerCallback, TListenerId } from "../../types/eventBus/eventBus.types";
 
+/**
+ * An event bus providing bidirectionnal communication using listener and emitter callbacks.
+ */
 export class EventBus<TAvailableEvents extends TAvailableEventsBase> {
 	private _idIncrementer = 0;
 	private _listeners: TListener<
@@ -45,13 +48,18 @@ export class EventBus<TAvailableEvents extends TAvailableEventsBase> {
 
 	/**
 	 * Emits an event to all listeners that listen to this event.
+	 * 
 	 * If the event corresponding to the provided eventKey has a payload, then
 	 * options are required. If this event does not have a payload but has a callback,
 	 * then options are optional. Otherwise options are forbidden.
+	 * 
 	 * If this event has a payload, then the payload is required, otherwise it is forbidden.
+	 * 
 	 * If this event has a callback, then the callback is optional, otherwise it is forbidden.
+	 * 
+	 * This method resolves when all listener and emitter callbacks have finished executing.
 	 */
-	emit<
+	async emit<
 		TKey extends TAvailableEvents[number]["key"],
 	>(
 		eventKey: TKey,
@@ -74,9 +82,14 @@ export class EventBus<TAvailableEvents extends TAvailableEventsBase> {
 
 		const listeners = this.getListenersByEventKey<TKey>(eventKey);
 
+		const results: unknown[] = [];
+
 		listeners.forEach(listener => {
 			const result = listener.callback(payload);
+			results.push(result);
 			callback?.(result);
 		});
+
+		return results;
 	}
 }
