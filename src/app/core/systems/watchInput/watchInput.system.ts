@@ -32,7 +32,7 @@ export const watchInput = () => {
 
 		let isHandled = false;
 
-		isHandled = handleKeyDown(event)
+		isHandled = handleKeyDown(event);
 
 		if (isHandled) {
 			return;

@@ -1,10 +1,9 @@
+import { uiBus } from "@root/app/core/ui/utils/uiBus/uiBus.singleton";
 import { gameEditorStore } from "../../store/store";
-import { clearDraggedEntity } from "../common/clearDraggedEntity/clearDraggedEntity";
 import { clearSelectedEntity } from "../common/clearSelectedEntity/clearSelectedEntity";
 import { updateVisibilityGraphs } from "../common/updateVisibilityGraphs/updateVisibilityGraphs";
 import { closeEnvironmentItemsContainer } from "./closeEnvironmentItemsContainer/closeEnvironmentItemsContainer";
 import { closeEnvironmentItemVariantsContainer } from "./openEnvironmentItemsContainer/getItemContainer/closeEnvironmentItemVariantsContainer/closeEnvironmentItemVariantsContainer";
-import { openEnvironmentItemsContainer } from "./openEnvironmentItemsContainer/openEnvironmentItemsContainer";
 import { removeEntity } from "./removeEntity/removeEntity";
 
 /**
@@ -17,31 +16,25 @@ export const handleKeydown = async (event: KeyboardEvent) => {
 	}
 
 	if (event.code === "Backquote" /* ² */) {
-		if (gameEditorStore.environmentItemsContainer) {
-			closeEnvironmentItemsContainer();
-			closeEnvironmentItemVariantsContainer();
-			clearSelectedEntity();
-			clearDraggedEntity();
-		} else {
-			openEnvironmentItemsContainer();
-		}
+		uiBus.emit("toggleEditorMenuIsOpen");
 
 		return true;
 	}
 
 	if (gameEditorStore.environmentItemsContainer) {
 		if (event.code === "Escape") {
-			if (gameEditorStore.draggedEntity) {
-				gameEditorStore.draggedEntity.destroy();
-				gameEditorStore.draggedEntity = null;
-			} else if (gameEditorStore.selectedEntity) {
-				clearSelectedEntity();
-			} else if (gameEditorStore.selectedItem) {
-				gameEditorStore.selectedItem = null;
-				closeEnvironmentItemVariantsContainer();
-			} else {
-				closeEnvironmentItemsContainer();
-			}
+			// const response = await uiBus.emit("closeFocusedUi");
+			// if (gameEditorStore.draggedEntity) {
+			// 	gameEditorStore.draggedEntity.destroy();
+			// 	gameEditorStore.draggedEntity = null;
+			// } else if (gameEditorStore.selectedEntity) {
+			// 	clearSelectedEntity();
+			// } else if (gameEditorStore.selectedItem) {
+			// 	gameEditorStore.selectedItem = null;
+			// 	closeEnvironmentItemVariantsContainer();
+			// } else {
+			// 	closeEnvironmentItemsContainer();
+			// }
 		}
 
 		if (gameEditorStore.selectedEntity && event.code === "KeyX") {

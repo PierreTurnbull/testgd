@@ -29,7 +29,7 @@ describe("eventBus", () => {
 		const valueToEmit: number = 1;
 
 		eventBus.subscribe("withPayload", (payload) => receivedValue = payload);
-		eventBus.emit("withPayload", valueToEmit);
+		eventBus.emit("withPayload", { payload: 1 });
 
 		expect(receivedValue).toEqual(valueToEmit);
 	});

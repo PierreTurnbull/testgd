@@ -1,7 +1,7 @@
 import eslint from "@eslint/js";
-import tseslint from "typescript-eslint";
 import stylisticTs from "@stylistic/eslint-plugin-ts";
-import globals from "globals"
+import globals from "globals";
+import tseslint from "typescript-eslint";
 
 export default tseslint.config(
 	{
@@ -17,7 +17,7 @@ export default tseslint.config(
 	...tseslint.configs.recommended.map(config => {
 		return {
 			...config,
-			files:   ["**/*.ts"],
+			files:   ["**/*.ts", "**/*.tsx"],
 		}
 	}),
 	{
@@ -25,7 +25,7 @@ export default tseslint.config(
 			"@stylistic/ts": stylisticTs, 
 		},
 		ignores: ["dist"],
-		files:   ["**/*.ts"],
+		files:   ["**/*.ts", "**/*.tsx"],
 		rules:   {
 			"indent":                            ["error", "tab"],
 			"semi":                              ["error", "always"],

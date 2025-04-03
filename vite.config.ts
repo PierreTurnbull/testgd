@@ -1,8 +1,11 @@
+import tailwindcss from "@tailwindcss/vite";
 import { fileURLToPath, URL } from "url";
 import { defineConfig } from "vite";
 
 export default defineConfig({
-	plugins: [],
+	plugins: [
+		tailwindcss(),
+	],
 	resolve: {
 		alias: {
 			"@root":   fileURLToPath(new URL("./src", import.meta.url)),

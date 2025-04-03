@@ -1,4 +1,4 @@
-import { TAvailableEvents as TAvailableEventsBase, TListener, TListenerCallback, TListenerId } from "../../types/eventBus.types";
+import { TAvailableEvents as TAvailableEventsBase, TEmitOptions, TEventEmitterCallback, TEventPayload, TListener, TListenerCallback, TListenerId } from "../../types/eventBus/eventBus.types";
 
 export class EventBus<TAvailableEvents extends TAvailableEventsBase> {
 	private _idIncrementer = 0;
@@ -45,19 +45,38 @@ export class EventBus<TAvailableEvents extends TAvailableEventsBase> {
 
 	/**
 	 * Emits an event to all listeners that listen to this event.
+	 * If the event corresponding to the provided eventKey has a payload, then
+	 * options are required. If this event does not have a payload but has a callback,
+	 * then options are optional. Otherwise options are forbidden.
+	 * If this event has a payload, then the payload is required, otherwise it is forbidden.
+	 * If this event has a callback, then the callback is optional, otherwise it is forbidden.
 	 */
-	emit<T extends TAvailableEvents[number]["key"]>(
-		eventKey: T,
-		...args: Extract<TAvailableEvents[number], { key: T }> extends { payload: infer P } ? [P] : []
+	emit<
+		TKey extends TAvailableEvents[number]["key"],
+	>(
+		eventKey: TKey,
+		...args: (
+			Extract<TAvailableEvents[number], { key: TKey }> extends { payload: infer _ } ? [TEmitOptions<Extract<TAvailableEvents[number], { key: TKey }>>] :
+			Extract<TAvailableEvents[number], { key: TKey }> extends { callback: infer _ } ? [TEmitOptions<Extract<TAvailableEvents[number], { key: TKey }>>?] :
+			[]
+		)
 	) {
-		const payload = args[0];
-		const payloadIsValid = (payload: unknown): payload is Extract<TAvailableEvents, { key: T }> extends { payload: infer P } ? P : undefined => true;
-		if (!payloadIsValid(payload)) {
-			throw new Error("Payload is invalid.");
+		const options = args[0];
+		let payload: TEventPayload | null = null;
+		let callback: TEventEmitterCallback | null = null;
+
+		if (options && "payload" in options && options.payload) {
+			payload = options.payload as TEventPayload;
+		}
+		if (options && "callback" in options && options.callback) {
+			callback = options.callback as TEventEmitterCallback;
 		}
 
-		const listeners = this.getListenersByEventKey<T>(eventKey);
+		const listeners = this.getListenersByEventKey<TKey>(eventKey);
 
-		listeners.forEach(listener => listener.callback(payload));
+		listeners.forEach(listener => {
+			const result = listener.callback(payload);
+			callback?.(result);
+		});
 	}
 }
