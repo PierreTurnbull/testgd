@@ -1,34 +1,34 @@
 {
     "environment": [
         {
-            "gameEditorId": 6,
+            "gameEditorId": 113,
             "name": "rockMD",
             "coordinates": {
-                "x": -160,
-                "y": -171
+                "x": 143,
+                "y": 240
             },
-            "variant": 1,
+            "variant": 2,
             "direction8": "down"
         },
         {
-            "gameEditorId": 12,
-            "name": "rockMD",
-            "coordinates": {
-                "x": -249,
-                "y": -149
-            },
-            "variant": 2,
-            "direction8": "downRight"
-        },
-        {
-            "gameEditorId": 23,
+            "gameEditorId": 144,
             "name": "rockLG",
             "coordinates": {
-                "x": 253,
-                "y": -100
+                "x": 464,
+                "y": -53
+            },
+            "variant": 0,
+            "direction8": "upRight"
+        },
+        {
+            "gameEditorId": 145,
+            "name": "rockMD",
+            "coordinates": {
+                "x": -235,
+                "y": -150
             },
             "variant": 2,
-            "direction8": "downLeft"
+            "direction8": "down"
         }
     ]
 }

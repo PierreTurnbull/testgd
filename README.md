@@ -76,7 +76,7 @@ PROJECTION=<projection> npm run render:export
 PROJECTION=<projection> npm run render:clean
 ```
 
-Projection format: JSON. Specify a list of key-boolean values, or true for all elements. Eg: `PROJECTION={"character1":true,"character2":{"action1":true,"action2":true}}`. This targets all actions for character1, and action1 from character2.
+Projection format: JSON. Specify a list of key-boolean values, or true for all elements. Eg: `PROJECTION={"character1":true,"character2":{"action1":true,"action2":true}}`. This targets all actions of character1, and action1 and action2 of character2.
 
 ## Architecture
 

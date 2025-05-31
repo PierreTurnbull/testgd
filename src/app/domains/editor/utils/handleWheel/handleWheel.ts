@@ -1,10 +1,11 @@
 import { CDirection } from "@root/app/common/components/direction/direction.component";
 import { CVariant } from "@root/app/common/components/variant/variant.component";
 import { DIRECTIONS8 } from "@root/app/common/constants/space.constants";
-import { clearDraggedEntity } from "@root/app/domains/editor/utils/clearDraggedEntity/clearDraggedEntity";
 import { createEntity } from "@root/app/domains/editor/utils/createEntity/createEntity";
-import { dragEntity } from "@root/app/domains/editor/utils/dragEntity/dragEntity";
+import { startDraggingEntity } from "@root/app/domains/editor/utils/startDraggingEntity/startDraggingEntity";
 import { gameEditorStore } from "../../store/store";
+import { getEntityIsPersisted } from "../getEntityIsPersisted/getEntityIsPersisted";
+import { stopDraggingEntity } from "../stopDraggingEntity/stopDraggingEntity";
 
 export const handleWheel = (event: WheelEvent) => {
 	if (!gameEditorStore) {
@@ -12,13 +13,19 @@ export const handleWheel = (event: WheelEvent) => {
 	}
 
 	if (gameEditorStore.draggedEntity) {
+		const isPersisted = getEntityIsPersisted(gameEditorStore.draggedEntity);
+
+		if (isPersisted) {
+			return;
+		}
+
 		const currentVariant = gameEditorStore.draggedEntity.getComponent(CVariant).variant;
 		const currentDirection8 = gameEditorStore.draggedEntity.getComponent(CDirection).direction8;
 		const key = DIRECTIONS8.indexOf(currentDirection8);
 		const name = gameEditorStore.draggedEntity.name;
 		let nextDirection8 = currentDirection8;
 
-		clearDraggedEntity();
+		stopDraggingEntity();
 
 		if (event.deltaY > 0) {
 			if (key === 0) {
@@ -35,6 +42,6 @@ export const handleWheel = (event: WheelEvent) => {
 		}
 
 		const entity = createEntity(name, currentVariant, nextDirection8);
-		dragEntity(entity);
+		startDraggingEntity(entity);
 	}
 };

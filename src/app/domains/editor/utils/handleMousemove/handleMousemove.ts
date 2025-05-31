@@ -1,7 +1,7 @@
 import { applyNextCoordinates } from "@root/app/common/utils/applyNextCoordinates/applyNextCoordinates";
 import { gameEditorStore } from "../../store/store";
-import { getMouseCoordinates } from "../getMouseCoordinates/getMouseCoordinates";
 import { getGlobalMouseCoordinates } from "../getGlobalMouseCoordinates/getGlobalMouseCoordinates";
+import { getMouseCoordinates } from "../getMouseCoordinates/getMouseCoordinates";
 
 export const handleMousemove = () => {
 	if (!gameEditorStore) {

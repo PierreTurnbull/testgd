@@ -23,12 +23,13 @@ export const init = () => {
 	const globalMouseCoordinates = getGlobalMouseCoordinates();
 
 	setGameEditorStore({
-		draggedEntity:           null,
-		selectedEntity:          null,
-		availableEntityBuilders: availableEntityBuilders,
-		data:                    data,
-		playerCoordinates:       playerLocationComponent.coordinates,
-		mouseCoordinates:        mouseCoordinates,
-		globalMouseCoordinates:  globalMouseCoordinates,
+		draggedEntity:                   null,
+		draggedEntityInitialCoordinates: null,
+		selectedEntity:                  null,
+		availableEntityBuilders:         availableEntityBuilders,
+		data:                            data,
+		playerCoordinates:               playerLocationComponent.coordinates,
+		mouseCoordinates:                mouseCoordinates,
+		globalMouseCoordinates:          globalMouseCoordinates,
 	});
 };

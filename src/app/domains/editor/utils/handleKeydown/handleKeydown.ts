@@ -3,7 +3,10 @@ import { unselectEntity } from "@root/app/domains/editor/utils/unselectEntity/un
 import { updateVisibilityGraphs } from "@root/app/domains/editor/utils/updateVisibilityGraphs/updateVisibilityGraphs";
 import { uiBus } from "@root/app/ui/utils/uiBus/uiBus.singleton";
 import { gameEditorStore } from "../../store/store";
+import { getEntityIsPersisted } from "../getEntityIsPersisted/getEntityIsPersisted";
 import { removeEntity } from "../removeEntity/removeEntity";
+import { startDraggingEntity } from "../startDraggingEntity/startDraggingEntity";
+import { stopDraggingEntity } from "../stopDraggingEntity/stopDraggingEntity";
 
 /**
  * Handles game editor events.
@@ -18,7 +21,7 @@ export const handleKeydown = async (event: KeyboardEvent) => {
 		await uiBus.emit("toggleEditorBarIsOpen");
 
 		if (gameEditorStore.draggedEntity) {
-			clearDraggedEntity();
+			stopDraggingEntity();
 		}
 
 		if (gameEditorStore.selectedEntity) {
@@ -30,7 +33,7 @@ export const handleKeydown = async (event: KeyboardEvent) => {
 
 	if (event.code === "Escape") {
 		if (gameEditorStore.draggedEntity) {
-			clearDraggedEntity();
+			stopDraggingEntity();
 		} else if (gameEditorStore.selectedEntity) {
 			unselectEntity();
 		} else {
@@ -59,6 +62,14 @@ export const handleKeydown = async (event: KeyboardEvent) => {
 			console.error(error);
 		}
 		return true;
+	}
+
+	if (event.code === "Semicolon") {
+		if (!gameEditorStore.selectedEntity) {
+			return;
+		}
+
+		startDraggingEntity(gameEditorStore.selectedEntity);
 	}
 
 	return false;

@@ -8,15 +8,16 @@ type TGameEditorStore = {
 	/**
 	 * An entity that was created and still needs to be placed in the world.
 	 */
-	draggedEntity:           Entity | null
+	draggedEntity:                   Entity | null
+	draggedEntityInitialCoordinates: TCoordinates | null
 	/**
 	 * An existing entity that is selected.
 	 */
-	selectedEntity:          Entity | null
+	selectedEntity:                  Entity | null
 	/**
 	 * A list of items that can be selected in the menu. This contains the builder functions of the items.
 	 */
-	availableEntityBuilders: Record<string, TEntityBuilder>
+	availableEntityBuilders:         Record<string, TEntityBuilder>
 
 	playerCoordinates:      TCoordinates
 	mouseCoordinates:       TCoordinates
