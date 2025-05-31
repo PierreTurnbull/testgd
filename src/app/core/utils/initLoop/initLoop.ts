@@ -1,4 +1,3 @@
-import { hitboxArchetype } from "@root/app/common/archetypes/hitbox/hitbox.archetype";
 import { processActions } from "@root/app/core/systems/processActions/processActions.system";
 import { processAIs } from "@root/app/core/systems/processAIs/processAIs.system";
 import { translateInputs } from "@root/app/core/systems/translateInputs/translateInputs.system";
@@ -9,14 +8,8 @@ import { applyDamageCollisions } from "../../systems/applyDamageCollisions/apply
 import { sortViews } from "../../systems/sortViews/sortViews.system";
 import { updateCamera } from "../updateCamera/updateCamera";
 
-export const aaa = [];
 export const initLoop = () => {
 	const loop = async (delta: Ticker) => {
-		aaa.push({
-			t: new Date(),
-			e: [...hitboxArchetype.entities],
-			l: [...hitboxArchetype.entities].length,
-		});
 		translateInputs();
 		processAIs();
 		processActions(delta);

@@ -27,7 +27,6 @@ class EntityManager {
 	) => {
 		this.entities.delete(entity);
 		this.entitiesById.delete(entity.id);
-		archetypeManager.removeEntityFromArchetypes(entity);
 	};
 
 	createEntity = (

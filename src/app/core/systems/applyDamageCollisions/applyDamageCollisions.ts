@@ -30,8 +30,8 @@ export const applyDamageCollisions = () => {
 		const damageCollisionCandidatesComponent = damageHitboxEntity.getComponent(CDamageCollisionCandidates);
 
 		collisionsManager.system.checkOne(hitboxComponent.body, (response) => {
-			// prevent processing the hitbox if it was destroyed during a previous loop turn
-			if (!hasParentEntity(response.a)) {
+			// prevent processing the hitboxes if they were destroyed during a previous loop turn
+			if (!hasParentEntity(response.a) || !hasParentEntity(response.b)) {
 				return;
 			}
 
