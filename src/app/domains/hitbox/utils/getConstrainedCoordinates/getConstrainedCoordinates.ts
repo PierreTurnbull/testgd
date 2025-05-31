@@ -1,9 +1,8 @@
-import { findOriginEntity } from "@root/app/common/utils/findOriginEntity/findOriginEntity";
-import { collisionsManager } from "@root/app/core/collisionsManager/collisionsManager.singletons";
 import { getEntityFromCollider } from "@root/app/core/systems/applyDamageCollisions/utils/getEntityFromCollider/getEntityFromCollider";
-import { Entity } from "../../../../common/entities/entity.models";
+import { collisionsManager } from "@root/app/domains/collisionsManager/collisionsManager.singletons";
 import { TCoordinates } from "../../../../common/types/coordinates.types";
-import { getOffsetCoordinates } from "../../../../common/utils/getOffsetCoordinates/getOffsetCoordinates";
+import { getOffsetCoordinates } from "../../../../common/utils/geometry/getOffsetCoordinates/getOffsetCoordinates";
+import { Entity } from "../../../entity/entity.models";
 import { CHitbox } from "../../components/hitbox/hitbox.component";
 import { CHitboxOffset } from "../../components/hitboxOffset/hitboxOffset.component";
 import { CMotionCollisionCandidates } from "../../components/motionCollisionCandidates/motionCollisionCandidates.component";
@@ -16,7 +15,7 @@ export const getConstrainedCoordinates = (
 	colliderEntity: Entity,
 	nextCoordinates: TCoordinates,
 ) => {
-	const hitboxEntities = colliderEntity.getRelatedEntities("hitboxes")
+	const hitboxEntities = colliderEntity.getRelatedEntities("hitboxes");
 	const constrainedNextCoordinates: TCoordinates = {
 		x: nextCoordinates.x,
 		y: nextCoordinates.y,
@@ -30,7 +29,7 @@ export const getConstrainedCoordinates = (
 		}
 
 		const hitboxOffsetComponent = hitboxEntity.getComponent(CHitboxOffset);
-		const motionCollisionCandidates = hitboxEntity.getComponent(CMotionCollisionCandidates).motionCollisionCandidates
+		const motionCollisionCandidates = hitboxEntity.getComponent(CMotionCollisionCandidates).motionCollisionCandidates;
 
 		const prevCoordinates: TCoordinates = {
 			x: hitboxComponent.body.x,
@@ -42,8 +41,8 @@ export const getConstrainedCoordinates = (
 		updateHitboxPosition(hitboxComponent, centeredCoordinates);
 
 		collisionsManager.system.checkOne(hitboxComponent.body, (response) => {
-			const targetHitboxEntity = getEntityFromCollider(response.b)
-			const targetEntity = targetHitboxEntity.getRelatedEntity("parent")
+			const targetHitboxEntity = getEntityFromCollider(response.b);
+			const targetEntity = targetHitboxEntity.getRelatedEntity("parent");
 
 			// ensure that collider a can collide with collider b
 
@@ -70,7 +69,7 @@ export const getConstrainedCoordinates = (
 		});
 
 		updateHitboxPosition(hitboxComponent, prevCoordinates);
-	})
+	});
 
 	return constrainedNextCoordinates;
 };

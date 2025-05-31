@@ -1,8 +1,8 @@
 import { TPoint } from "@root/app/common/types/point.type";
 import { TSegment } from "@root/app/common/types/segment.types";
-import { getAngleFromPoints } from "@root/app/common/utils/getAngleFromPoints/getAngleFromPoints";
-import { getPointIsOnSegment } from "@root/app/common/utils/getPointIsOnSegment/getPointIsOnSegment";
-import { getSegmentsIntersect } from "@root/app/common/utils/getSegmentsIntersect/getSegmentsIntersect";
+import { getAngleFromPoints } from "@root/app/common/utils/geometry/getAngleFromPoints/getAngleFromPoints";
+import { getPointIsOnSegment } from "@root/app/common/utils/geometry/getPointIsOnSegment/getPointIsOnSegment";
+import { getSegmentsIntersect } from "@root/app/common/utils/geometry/getSegmentsIntersect/getSegmentsIntersect";
 
 /**
  * Returns whether the point is inside the polygon, using ray casting.

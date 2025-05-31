@@ -1,7 +1,7 @@
 import { muddyBuddyArchetype } from "@root/app/common/archetypes/muddyBuddy/muddyBuddy.archetype";
 import { CHealth } from "@root/app/common/components/health/health.component";
 import { CKeyboard } from "@root/app/common/components/keyboard/keyboard.component";
-import { Entity } from "@root/app/common/entities/entity.models";
+import { Entity } from "@root/app/domains/entity/entity.models";
 import { getDidHitPlayerRecently } from "./getDidHitPlayerRecently/getDidHitPlayerRecently";
 import { moveTowardsTarget } from "./moveTowardsTarget/moveTowardsTarget";
 

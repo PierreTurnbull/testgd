@@ -1,11 +1,11 @@
 import { playerArchetype } from "@root/app/common/archetypes/player/player.archetype";
 import { CKeyboard } from "@root/app/common/components/keyboard/keyboard.component";
-import { handleKeydown as editorHandleKeyDown } from "@root/app/editor/utils/handleKeydown/handleKeydown";
-import { handleMousedown as editorHandleMousedown } from "@root/app/editor/utils/handleMousedown/handleMousedown";
-import { handleMousemove as editorHandleMousemove } from "@root/app/editor/utils/handleMousemove/handleMousemove";
-import { handleMouseup as editorHandleMouseup } from "@root/app/editor/utils/handleMouseup/handleMouseup";
-import { handleWheel as editorHandleWheel } from "@root/app/editor/utils/handleWheel/handleWheel";
-import { init } from "@root/app/editor/utils/init/init";
+import { handleKeydown as editorHandleKeyDown } from "@root/app/domains/editor/utils/handleKeydown/handleKeydown";
+import { handleMousedown as editorHandleMousedown } from "@root/app/domains/editor/utils/handleMousedown/handleMousedown";
+import { handleMousemove as editorHandleMousemove } from "@root/app/domains/editor/utils/handleMousemove/handleMousemove";
+import { handleMouseup as editorHandleMouseup } from "@root/app/domains/editor/utils/handleMouseup/handleMouseup";
+import { handleWheel as editorHandleWheel } from "@root/app/domains/editor/utils/handleWheel/handleWheel";
+import { init } from "@root/app/domains/editor/utils/init/init";
 import { handleKeyDown } from "./utils/handleKeyDown/handleKeydown";
 
 export const watchInput = () => {

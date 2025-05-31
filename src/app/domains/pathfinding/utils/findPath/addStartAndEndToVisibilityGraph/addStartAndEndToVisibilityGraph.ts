@@ -1,8 +1,8 @@
 import { CIsFindingPath } from "@root/app/common/components/isFindingPath/isFindingPath.component";
 import { CLocation } from "@root/app/common/components/location/location.component";
-import { Entity } from "@root/app/common/entities/entity.models";
 import { TCoordinates } from "@root/app/common/types/coordinates.types";
 import { TPoint } from "@root/app/common/types/point.type";
+import { Entity } from "@root/app/domains/entity/entity.models";
 import { CVisibilityGraph } from "@root/app/domains/pathfinding/components/visibilityGraph/visibilityGraph.component";
 import { getCanLinkNodesWorker } from "../../createVisibilityGraph/createLinkedNodes/getCanLinkNodes/worker/utils/getCanLinkNodes.worker";
 import { getMessage } from "./getMessage/getMessage";

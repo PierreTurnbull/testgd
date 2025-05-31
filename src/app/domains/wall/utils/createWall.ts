@@ -1,8 +1,8 @@
 import { actorArchetype } from "@root/app/common/archetypes/actor/actor.archetype";
-import { entityManager } from "@root/app/common/entities/entityManager.singleton";
-import { relationsManager } from "@root/app/common/relations/relationsManager.singleton";
 import { TCoordinates } from "@root/app/common/types/coordinates.types";
 import { TPoint } from "@root/app/common/types/point.type";
+import { entityManager } from "@root/app/domains/entity/entityManager.singleton";
+import { relationsManager } from "@root/app/domains/relationManager/relationsManager.singleton";
 import { createHitbox } from "../../hitbox/utils/createHitbox";
 import { CWall } from "../components/wall/wall.component";
 

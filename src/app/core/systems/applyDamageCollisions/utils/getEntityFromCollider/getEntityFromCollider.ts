@@ -1,6 +1,6 @@
 import { hitboxArchetype } from "@root/app/common/archetypes/hitbox/hitbox.archetype";
-import { Entity } from "@root/app/common/entities/entity.models";
-import { aaa } from "@root/app/core/initLoop/initLoop";
+import { aaa } from "@root/app/core/utils/initLoop/initLoop";
+import { Entity } from "@root/app/domains/entity/entity.models";
 import { CHitbox } from "@root/app/domains/hitbox/components/hitbox/hitbox.component";
 import { Box, Circle, Polygon } from "detect-collisions";
 

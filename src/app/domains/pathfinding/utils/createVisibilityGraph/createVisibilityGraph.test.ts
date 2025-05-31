@@ -1,13 +1,13 @@
-import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
-import { createVisibilityGraph } from "./createVisibilityGraph";
-import { Entity } from "@root/app/common/entities/entity.models";
-import { entityManager } from "@root/app/common/entities/entityManager.singleton";
-import { CVisibilityGraph } from "../../components/visibilityGraph/visibilityGraph.component";
-import { createHitbox } from "@root/app/domains/hitbox/utils/createHitbox";
 import { wallArchetype } from "@root/app/common/archetypes/wall/wall.archetype";
-import { relationsManager } from "@root/app/common/relations/relationsManager.singleton";
+import { Entity } from "@root/app/domains/entity/entity.models";
+import { entityManager } from "@root/app/domains/entity/entityManager.singleton";
 import { HITBOX_BOUNDS } from "@root/app/domains/hitbox/constants/hitboxes.constants";
+import { createHitbox } from "@root/app/domains/hitbox/utils/createHitbox";
+import { relationsManager } from "@root/app/domains/relationManager/relationsManager.singleton";
 import { createWall } from "@root/app/domains/wall/utils/createWall";
+import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
+import { CVisibilityGraph } from "../../components/visibilityGraph/visibilityGraph.component";
+import { createVisibilityGraph } from "./createVisibilityGraph";
 
 vi.mock("@root/app/domains/hitbox/constants/hitboxes.constants", async (importOriginal) => {
 	const ret: { HITBOX_BOUNDS: typeof HITBOX_BOUNDS } = await importOriginal();

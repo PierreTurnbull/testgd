@@ -1,19 +1,19 @@
 import { appManager } from "@root/app/domains/app/appManager.singleton";
 
 export const handleKeyDown = (
-    event: KeyboardEvent,
+	event: KeyboardEvent,
 ) => {
-    let isHandled = false;
+	let isHandled = false;
 
-    if (!isHandled && event.code === "KeyP") {
-        if (appManager.app.ticker.started) {
-            appManager.app.ticker.stop()
-        } else {
-            appManager.app.ticker.start()
-        }
+	if (event.code === "KeyP") {
+		if (appManager.app.ticker.started) {
+			appManager.app.ticker.stop();
+		} else {
+			appManager.app.ticker.start();
+		}
 
-        isHandled = true
-    }
+		isHandled = true;
+	}
 
-    return isHandled
-}
+	return isHandled;
+};

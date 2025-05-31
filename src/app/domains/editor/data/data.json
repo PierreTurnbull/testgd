@@ -1,0 +1,34 @@
+{
+    "environment": [
+        {
+            "gameEditorId": 6,
+            "name": "rockMD",
+            "coordinates": {
+                "x": -160,
+                "y": -171
+            },
+            "variant": 1,
+            "direction8": "down"
+        },
+        {
+            "gameEditorId": 12,
+            "name": "rockMD",
+            "coordinates": {
+                "x": -249,
+                "y": -149
+            },
+            "variant": 2,
+            "direction8": "downRight"
+        },
+        {
+            "gameEditorId": 23,
+            "name": "rockLG",
+            "coordinates": {
+                "x": 253,
+                "y": -100
+            },
+            "variant": 2,
+            "direction8": "downLeft"
+        }
+    ]
+}

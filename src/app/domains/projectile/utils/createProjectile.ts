@@ -3,16 +3,16 @@ import { CDirection } from "@root/app/common/components/direction/direction.comp
 import { CLocation } from "@root/app/common/components/location/location.component";
 import { CTimers } from "@root/app/common/components/timers/timers.component";
 import { CVelocity } from "@root/app/common/components/velocity/velocity.component";
-import { Entity } from "@root/app/common/entities/entity.models";
-import { relationsManager } from "@root/app/common/relations/relationsManager.singleton";
+import { ENTITIES_CENTER_OFFSETS } from "@root/app/common/constants/views.constants";
+import { Entity } from "@root/app/domains/entity/entity.models";
+import { entityManager } from "@root/app/domains/entity/entityManager.singleton";
+import { CRelation } from "@root/app/domains/relationManager/components/common/relation.component";
+import { relationsManager } from "@root/app/domains/relationManager/relationsManager.singleton";
 import { TConeHitboxSettings } from "../../hitbox/types/hitbox.types";
 import { createHitbox } from "../../hitbox/utils/createHitbox";
 import { CMustBeDestroyedOnCollision } from "../components/mustBeDestroyedOnCollision/mustBeDestroyedOnCollision.component";
-import { TProjectileSettings } from "../types/projectile.types";
-import { ENTITIES_CENTER_OFFSETS } from "@root/app/common/views/constants/views.constants";
-import { CRelation } from "@root/app/common/relations/components/common/relation.component";
-import { entityManager } from "@root/app/common/entities/entityManager.singleton";
 import { CProjectile } from "../components/projectile/projectile.component";
+import { TProjectileSettings } from "../types/projectile.types";
 
 export const createProjectile = (
 	parent: Entity,

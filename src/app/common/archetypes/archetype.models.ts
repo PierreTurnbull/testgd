@@ -1,5 +1,5 @@
+import { Entity } from "../../domains/entity/entity.models";
 import { Component } from "../components/component.models";
-import { Entity } from "../entities/entity.models";
 import { ConstructorOf } from "../types/constructor.types";
 
 export class Archetype {

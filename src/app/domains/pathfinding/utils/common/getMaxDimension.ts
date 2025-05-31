@@ -1,5 +1,5 @@
 import { TPoint } from "@root/app/common/types/point.type";
-import { getDistance } from "@root/app/common/utils/getDistance/getDistance";
+import { getDistance } from "@root/app/common/utils/geometry/getDistance/getDistance";
 
 /**
  * Returns the biggest distance between two points of a polygon.

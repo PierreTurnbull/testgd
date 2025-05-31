@@ -1,6 +1,6 @@
+import { configManager } from "@root/app/domains/configManager/configManager.singleton";
 import { Graphics } from "pixi.js";
 import { Component } from "../component.models";
-import { configManager } from "@root/app/core/configManager/configManager.singleton";
 
 /**
  * The border of an entity. Used for debugging.

@@ -7,7 +7,7 @@ import { CAction } from "../../../common/components/action/action.component";
 import { CDirection } from "../../../common/components/direction/direction.component";
 import { CLocation } from "../../../common/components/location/location.component";
 import { CVelocity } from "../../../common/components/velocity/velocity.component";
-import { getNextCoordinates } from "../../../common/utils/getNextCoordinates/getNextCoordinates";
+import { getNextCoordinates } from "../../../common/utils/geometry/getNextCoordinates/getNextCoordinates";
 
 /**
  * Applies effects based on the current actions of actors.

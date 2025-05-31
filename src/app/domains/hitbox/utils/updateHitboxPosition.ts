@@ -1,6 +1,6 @@
-import { collisionsManager } from "@root/app/core/collisionsManager/collisionsManager.singletons";
-import { CHitbox } from "../components/hitbox/hitbox.component";
+import { collisionsManager } from "@root/app/domains/collisionsManager/collisionsManager.singletons";
 import { TCoordinates } from "../../../common/types/coordinates.types";
+import { CHitbox } from "../components/hitbox/hitbox.component";
 
 /**
  * Updates the hitbox position using the provided coordinates.

@@ -1,8 +1,8 @@
 import { CBorderView } from "@root/app/common/components/borderView/borderView.component";
 import { CCenterView } from "@root/app/common/components/centerView/centerView.component";
 import { CView } from "@root/app/common/components/view/view.component";
-import { Entity } from "@root/app/common/entities/entity.models";
-import { configManager } from "@root/app/core/configManager/configManager.singleton";
+import { configManager } from "@root/app/domains/configManager/configManager.singleton";
+import { Entity } from "@root/app/domains/entity/entity.models";
 import { CHitboxView } from "@root/app/domains/hitbox/components/hitboxView/hitboxView.component";
 import { CViewSortingCurveView } from "@root/app/domains/viewSortingCurve/components/viewSortingCurveView/viewSortingCurveView.component";
 import { DEBUG_VIEW_Z_OFFSET } from "../../constants/sortViews.constants";

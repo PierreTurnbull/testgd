@@ -1,8 +1,8 @@
-import { TVisibilityGraphNode } from "@root/app/domains/pathfinding/types/visibilityGraph.types";
-import { getNodesKey } from "../../../common/getNodesKey";
+import { configManager } from "@root/app/domains/configManager/configManager.singleton";
 import { CVisibilityGraph } from "@root/app/domains/pathfinding/components/visibilityGraph/visibilityGraph.component";
-import { configManager } from "@root/app/core/configManager/configManager.singleton";
-import { worldManager } from "@root/app/core/worldManager/worldManager.singletons";
+import { TVisibilityGraphNode } from "@root/app/domains/pathfinding/types/visibilityGraph.types";
+import { worldManager } from "@root/app/domains/worldManager/worldManager.singletons";
+import { getNodesKey } from "../../../common/getNodesKey";
 import { getLinkedNodeView } from "../../../createVisibilityGraph/createVisibilityGraphViews/createNodeLinkViews/createNodeLinkViews";
 
 /**

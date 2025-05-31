@@ -1,8 +1,8 @@
 import { CIsFindingPath } from "@root/app/common/components/isFindingPath/isFindingPath.component";
-import { Entity } from "@root/app/common/entities/entity.models";
-import { CMemory } from "@root/app/common/memory/components/memory/memory.component";
 import { TCoordinates } from "@root/app/common/types/coordinates.types";
 import { TPoint } from "@root/app/common/types/point.type";
+import { Entity } from "@root/app/domains/entity/entity.models";
+import { CMemory } from "@root/app/domains/memory/components/memory/memory.component";
 import { addStartAndEndToVisibilityGraph } from "./addStartAndEndToVisibilityGraph/addStartAndEndToVisibilityGraph";
 
 export const logsFindPathPerformance = {

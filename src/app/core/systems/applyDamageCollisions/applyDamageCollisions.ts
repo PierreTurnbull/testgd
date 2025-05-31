@@ -1,14 +1,14 @@
 import { hitboxArchetype } from "@root/app/common/archetypes/hitbox/hitbox.archetype";
 import { findOriginEntity } from "@root/app/common/utils/findOriginEntity/findOriginEntity";
-import { collisionsManager } from "@root/app/core/collisionsManager/collisionsManager.singletons";
+import { collisionsManager } from "@root/app/domains/collisionsManager/collisionsManager.singletons";
 import { CDamageCollisionCandidates } from "@root/app/domains/hitbox/components/damageCollisionCandidates/damageCollisionCandidates.component";
 import { CHitboxIsActive } from "@root/app/domains/hitbox/components/hitboxIsActive/hitboxIsActive.component";
 import { CMustBeDestroyedOnCollision } from "@root/app/domains/projectile/components/mustBeDestroyedOnCollision/mustBeDestroyedOnCollision.component";
 import { damagerArchetype } from "../../../common/archetypes/damager/damager.archetype";
 import { mortalArchetype } from "../../../common/archetypes/mortal/mortal.archetype";
 import { CAction } from "../../../common/components/action/action.component";
-import { applyDamage } from "../../../common/utils/applyDamage/applyDamage";
 import { CHitbox } from "../../../domains/hitbox/components/hitbox/hitbox.component";
+import { applyDamage } from "./utils/applyDamage/applyDamage";
 import { getEntityFromCollider } from "./utils/getEntityFromCollider/getEntityFromCollider";
 import { hasParentEntity } from "./utils/hasParentEntity/hasParentEntity";
 

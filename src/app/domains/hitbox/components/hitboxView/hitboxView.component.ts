@@ -1,6 +1,6 @@
+import { configManager } from "@root/app/domains/configManager/configManager.singleton";
 import { Graphics } from "pixi.js";
 import { Component } from "../../../../common/components/component.models";
-import { configManager } from "@root/app/core/configManager/configManager.singleton";
 
 /**
  * The view of a hitbox, represented by a border. Used for debugging.

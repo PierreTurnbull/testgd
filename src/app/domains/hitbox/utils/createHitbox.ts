@@ -1,19 +1,19 @@
-import { Entity } from "@root/app/common/entities/entity.models";
-import { entityManager } from "@root/app/common/entities/entityManager.singleton";
-import { relationsManager } from "@root/app/common/relations/relationsManager.singleton";
-import { initHitboxBorderView } from "@root/app/common/views/utils/hitboxBorderView/initHitboxBorderView";
-import { configManager } from "@root/app/core/configManager/configManager.singleton";
+import { initHitboxBorderView } from "@root/app/common/utils/views/initHitboxBorderView/initHitboxBorderView";
+import { configManager } from "@root/app/domains/configManager/configManager.singleton";
+import { Entity } from "@root/app/domains/entity/entity.models";
+import { entityManager } from "@root/app/domains/entity/entityManager.singleton";
+import { relationsManager } from "@root/app/domains/relationManager/relationsManager.singleton";
 import { Graphics } from "pixi.js";
-import { CMotionCollisionCandidates } from "../components/motionCollisionCandidates/motionCollisionCandidates.component";
+import { CDamageCollisionCandidates } from "../components/damageCollisionCandidates/damageCollisionCandidates.component";
 import { CHitbox } from "../components/hitbox/hitbox.component";
 import { CHitboxIsActive } from "../components/hitboxIsActive/hitboxIsActive.component";
 import { CHitboxOffset } from "../components/hitboxOffset/hitboxOffset.component";
 import { CHitboxView } from "../components/hitboxView/hitboxView.component";
+import { CMotionCollisionCandidates } from "../components/motionCollisionCandidates/motionCollisionCandidates.component";
+import { CPathfindingCollisionCandidates } from "../components/pathfindingCollisionCandidates/pathfindingCollisionCandidates.component";
 import { THitboxSettings } from "../types/hitbox.types";
 import { getHitboxBody } from "./getHitboxBody";
 import { getHitboxPoints } from "./getHitboxPoints";
-import { CDamageCollisionCandidates } from "../components/damageCollisionCandidates/damageCollisionCandidates.component";
-import { CPathfindingCollisionCandidates } from "../components/pathfindingCollisionCandidates/pathfindingCollisionCandidates.component";
 
 /**
  * Create a hitbox related to the parent entity.

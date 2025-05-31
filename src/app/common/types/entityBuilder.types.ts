@@ -1,5 +1,5 @@
+import { Entity } from "../../domains/entity/entity.models";
 import { TDirection8 } from "../components/direction/types/direction.types";
-import { Entity } from "../entities/entity.models";
 import { TCoordinates } from "./coordinates.types";
 
 /**

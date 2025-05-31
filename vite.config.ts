@@ -18,6 +18,6 @@ export default defineConfig({
 	},
 	esbuild: {
 		jsxFactory: "preact.h",
-		jsxInject: "import * as preact from \"preact\""
+		jsxInject:  "import * as preact from \"preact\"",
 	},
 });

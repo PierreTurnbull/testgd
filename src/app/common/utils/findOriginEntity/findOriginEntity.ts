@@ -1,4 +1,4 @@
-import { Entity } from "../../entities/entity.models";
+import { Entity } from "../../../domains/entity/entity.models";
 
 /**
  * Finds the entity from which the entity passed as parameter originates.

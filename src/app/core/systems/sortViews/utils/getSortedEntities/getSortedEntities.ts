@@ -1,13 +1,13 @@
 import { CLocation } from "@root/app/common/components/location/location.component";
 import { CView } from "@root/app/common/components/view/view.component";
+import { ENTITIES_CENTER_OFFSETS } from "@root/app/common/constants/views.constants";
 import { TOffset } from "@root/app/common/types/offset.types";
 import { TPoint } from "@root/app/common/types/point.type";
 import { TSegment } from "@root/app/common/types/segment.types";
-import { ENTITIES_CENTER_OFFSETS } from "@root/app/common/views/constants/views.constants";
+import { Entity } from "@root/app/domains/entity/entity.models";
 import { CViewSortingCurve } from "@root/app/domains/viewSortingCurve/components/viewSortingCurve/viewSortingCurve.component";
 import { CViewSortingCurveOffset } from "@root/app/domains/viewSortingCurve/components/viewSortingCurveOffset/viewSortingCurveOffset.component";
 import { getAllSegmentsFromCurve } from "../getAllSegmentsFromCurve/getAllSegmentsFromCurve";
-import { Entity } from "@root/app/common/entities/entity.models";
 
 /**
  * Returns sorted entities.

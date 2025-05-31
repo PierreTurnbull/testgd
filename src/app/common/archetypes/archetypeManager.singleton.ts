@@ -1,4 +1,4 @@
-import { Entity } from "../entities/entity.models";
+import { Entity } from "../../domains/entity/entity.models";
 import { ConstructorOf } from "../types/constructor.types";
 import { actorArchetype } from "./actor/actor.archetype";
 import { Archetype } from "./archetype.models";

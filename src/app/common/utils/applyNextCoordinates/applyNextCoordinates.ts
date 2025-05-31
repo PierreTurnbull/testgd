@@ -1,19 +1,19 @@
 import { CLocation } from "@root/app/common/components/location/location.component";
 import { CView } from "@root/app/common/components/view/view.component";
-import { configManager } from "@root/app/core/configManager/configManager.singleton";
+import { configManager } from "@root/app/domains/configManager/configManager.singleton";
 import { CHitbox } from "@root/app/domains/hitbox/components/hitbox/hitbox.component";
 import { CHitboxOffset } from "@root/app/domains/hitbox/components/hitboxOffset/hitboxOffset.component";
 import { updateHitboxPosition } from "@root/app/domains/hitbox/utils/updateHitboxPosition";
+import { CViewSortingCurveOffset } from "@root/app/domains/viewSortingCurve/components/viewSortingCurveOffset/viewSortingCurveOffset.component";
+import { CViewSortingCurveView } from "@root/app/domains/viewSortingCurve/components/viewSortingCurveView/viewSortingCurveView.component";
+import { Entity } from "../../../domains/entity/entity.models";
 import { CHitboxView } from "../../../domains/hitbox/components/hitboxView/hitboxView.component";
 import { CBorderView } from "../../components/borderView/borderView.component";
 import { CCenterView } from "../../components/centerView/centerView.component";
-import { Entity } from "../../entities/entity.models";
+import { ENTITIES_CENTER_OFFSETS } from "../../constants/views.constants";
 import { TCoordinates } from "../../types/coordinates.types";
-import { ENTITIES_CENTER_OFFSETS } from "../../views/constants/views.constants";
-import { getOffsetCoordinates } from "../getOffsetCoordinates/getOffsetCoordinates";
+import { getOffsetCoordinates } from "../geometry/getOffsetCoordinates/getOffsetCoordinates";
 import { updateViewContainerCoordinates } from "../updateViewContainerCoordinates/updateViewContainerCoordinates";
-import { CViewSortingCurveView } from "@root/app/domains/viewSortingCurve/components/viewSortingCurveView/viewSortingCurveView.component";
-import { CViewSortingCurveOffset } from "@root/app/domains/viewSortingCurve/components/viewSortingCurveOffset/viewSortingCurveOffset.component";
 
 /**
  * Applies next coordinates.

@@ -1,10 +1,10 @@
-import { Entity } from "@root/app/common/entities/entity.models";
-import { CVisibilityGraph } from "../../../components/visibilityGraph/visibilityGraph.component";
 import { TPoint } from "@root/app/common/types/point.type";
-import { Graphics } from "pixi.js";
-import { worldManager } from "@root/app/core/worldManager/worldManager.singletons";
-import { configManager } from "@root/app/core/configManager/configManager.singleton";
 import { TSegment } from "@root/app/common/types/segment.types";
+import { configManager } from "@root/app/domains/configManager/configManager.singleton";
+import { Entity } from "@root/app/domains/entity/entity.models";
+import { worldManager } from "@root/app/domains/worldManager/worldManager.singletons";
+import { Graphics } from "pixi.js";
+import { CVisibilityGraph } from "../../../components/visibilityGraph/visibilityGraph.component";
 
 /**
  * Creates views to display the solution in the entity's visibility graph.

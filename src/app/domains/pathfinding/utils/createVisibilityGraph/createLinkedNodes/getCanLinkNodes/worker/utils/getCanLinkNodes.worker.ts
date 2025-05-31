@@ -1,5 +1,5 @@
 import { CIsFindingPath } from "@root/app/common/components/isFindingPath/isFindingPath.component";
-import { entityManager } from "@root/app/common/entities/entityManager.singleton";
+import { entityManager } from "@root/app/domains/entity/entityManager.singleton";
 import { TVisibilityGraphNode } from "@root/app/domains/pathfinding/types/visibilityGraph.types";
 import { aStar } from "@root/app/domains/pathfinding/utils/common/aStar/aStar";
 import { processSolution } from "@root/app/domains/pathfinding/utils/findPath/processSolution/processSolution";

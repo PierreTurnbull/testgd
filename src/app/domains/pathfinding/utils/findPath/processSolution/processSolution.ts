@@ -1,5 +1,5 @@
-import { entityManager } from "@root/app/common/entities/entityManager.singleton";
 import { TPoint } from "@root/app/common/types/point.type";
+import { entityManager } from "@root/app/domains/entity/entityManager.singleton";
 import { CVisibilityGraph } from "../../../components/visibilityGraph/visibilityGraph.component";
 import { createSolutionViews } from "../createSolutionViews/createSolutionViews";
 import { unblockEntity } from "../unblockEntity/unblockEntity";

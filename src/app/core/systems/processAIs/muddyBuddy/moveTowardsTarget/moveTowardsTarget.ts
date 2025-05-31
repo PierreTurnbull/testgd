@@ -1,11 +1,11 @@
 import { CIsFindingPath } from "@root/app/common/components/isFindingPath/isFindingPath.component";
 import { CKeyboard } from "@root/app/common/components/keyboard/keyboard.component";
 import { CLocation } from "@root/app/common/components/location/location.component";
-import { Entity } from "@root/app/common/entities/entity.models";
-import { CMemory } from "@root/app/common/memory/components/memory/memory.component";
 import { TPoint } from "@root/app/common/types/point.type";
-import { getAngleFromPoints } from "@root/app/common/utils/getAngleFromPoints/getAngleFromPoints";
-import { getDistance } from "@root/app/common/utils/getDistance/getDistance";
+import { getAngleFromPoints } from "@root/app/common/utils/geometry/getAngleFromPoints/getAngleFromPoints";
+import { getDistance } from "@root/app/common/utils/geometry/getDistance/getDistance";
+import { Entity } from "@root/app/domains/entity/entity.models";
+import { CMemory } from "@root/app/domains/memory/components/memory/memory.component";
 import { CVisibilityGraph } from "@root/app/domains/pathfinding/components/visibilityGraph/visibilityGraph.component";
 import { getExtendedHitboxesPoints } from "@root/app/domains/pathfinding/utils/createVisibilityGraph/createExtendedHitboxesPoints/createExtendedHitboxesPoints";
 import { getShapeSegments } from "@root/app/domains/pathfinding/utils/createVisibilityGraph/createShapesSegments/createShapesSegments";

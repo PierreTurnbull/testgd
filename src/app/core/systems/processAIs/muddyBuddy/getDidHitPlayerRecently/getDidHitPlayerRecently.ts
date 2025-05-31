@@ -1,5 +1,5 @@
-import { Entity } from "@root/app/common/entities/entity.models";
-import { CMemory } from "@root/app/common/memory/components/memory/memory.component";
+import { Entity } from "@root/app/domains/entity/entity.models";
+import { CMemory } from "@root/app/domains/memory/components/memory/memory.component";
 
 export const getDidHitPlayerRecently = (
 	muddyBuddyEntity: Entity,

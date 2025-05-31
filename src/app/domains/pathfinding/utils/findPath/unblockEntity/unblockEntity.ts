@@ -1,6 +1,6 @@
 import { CLocation } from "@root/app/common/components/location/location.component";
-import { Entity } from "@root/app/common/entities/entity.models";
 import { applyMotion } from "@root/app/common/utils/applyMotion/applyMotion";
+import { Entity } from "@root/app/domains/entity/entity.models";
 import { CVisibilityGraph } from "../../../components/visibilityGraph/visibilityGraph.component";
 
 /**

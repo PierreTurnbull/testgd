@@ -1,5 +1,5 @@
 import { TPoint } from "@root/app/common/types/point.type";
-import { getDistance } from "@root/app/common/utils/getDistance/getDistance";
+import { getDistance } from "@root/app/common/utils/geometry/getDistance/getDistance";
 import { MinHeap } from "@root/app/common/utils/minHeap/minHeap";
 import { TGraphNode } from "../../../types/pathfinding.types";
 import { TVisibilityGraphNode } from "../../../types/visibilityGraph.types";

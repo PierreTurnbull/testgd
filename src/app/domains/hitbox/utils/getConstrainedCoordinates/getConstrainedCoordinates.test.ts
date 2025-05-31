@@ -1,6 +1,6 @@
 import { CLocation } from "@root/app/common/components/location/location.component";
-import { Entity } from "@root/app/common/entities/entity.models";
-import { assetsManager } from "@root/app/core/assetsManager/assetsManager.singletons";
+import { assetsManager } from "@root/app/domains/assetsManager/assetsManager.singletons";
+import { Entity } from "@root/app/domains/entity/entity.models";
 import { createPlayer } from "@root/app/domains/player/utils/createPlayer";
 import { createWall } from "@root/app/domains/wall/utils/createWall";
 import { afterEach, beforeEach, describe, expect, test } from "vitest";

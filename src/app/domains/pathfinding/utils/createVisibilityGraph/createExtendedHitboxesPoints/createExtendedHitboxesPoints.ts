@@ -1,8 +1,8 @@
-import { Entity } from "@root/app/common/entities/entity.models";
+import { ENTITIES_CENTER_OFFSETS } from "@root/app/common/constants/views.constants";
 import { TPoint } from "@root/app/common/types/point.type";
 import { TSegment } from "@root/app/common/types/segment.types";
-import { getAngleFromPoints } from "@root/app/common/utils/getAngleFromPoints/getAngleFromPoints";
-import { ENTITIES_CENTER_OFFSETS } from "@root/app/common/views/constants/views.constants";
+import { getAngleFromPoints } from "@root/app/common/utils/geometry/getAngleFromPoints/getAngleFromPoints";
+import { Entity } from "@root/app/domains/entity/entity.models";
 import { CHitbox } from "@root/app/domains/hitbox/components/hitbox/hitbox.component";
 import { CPathfindingCollisionCandidates } from "@root/app/domains/hitbox/components/pathfindingCollisionCandidates/pathfindingCollisionCandidates.component";
 import { System } from "detect-collisions";

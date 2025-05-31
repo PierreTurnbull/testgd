@@ -1,7 +1,7 @@
 import { TCoordinates } from "@root/app/common/types/coordinates.types";
 import { TPoint } from "@root/app/common/types/point.type";
-import { getAngleInterval } from "@root/app/common/utils/getAngleInterval/getAngleInterval";
-import { getCirclePoint } from "@root/app/common/utils/getCirclePoint/getCirclePoint";
+import { getAngleInterval } from "@root/app/common/utils/geometry/getAngleInterval/getAngleInterval";
+import { getCirclePoint } from "@root/app/common/utils/geometry/getCirclePoint/getCirclePoint";
 import { HITBOX_BOUNDS } from "../constants/hitboxes.constants";
 import { THitboxSettings } from "../types/hitbox.types";
 import { isConeSettings, isPolygonSettings, isRectangleSettings } from "./typeGuards";

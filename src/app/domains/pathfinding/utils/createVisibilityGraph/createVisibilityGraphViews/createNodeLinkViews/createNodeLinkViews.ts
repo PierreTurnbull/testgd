@@ -1,8 +1,8 @@
-import { configManager } from "@root/app/core/configManager/configManager.singleton";
-import { CVisibilityGraph } from "../../../../components/visibilityGraph/visibilityGraph.component";
-import { worldManager } from "@root/app/core/worldManager/worldManager.singletons";
-import { TVisibilityGraphNode } from "../../../../types/visibilityGraph.types";
+import { configManager } from "@root/app/domains/configManager/configManager.singleton";
+import { worldManager } from "@root/app/domains/worldManager/worldManager.singletons";
 import { Graphics } from "pixi.js";
+import { CVisibilityGraph } from "../../../../components/visibilityGraph/visibilityGraph.component";
+import { TVisibilityGraphNode } from "../../../../types/visibilityGraph.types";
 
 export const getLinkedNodeView = (
 	nodePair: [TVisibilityGraphNode, TVisibilityGraphNode],

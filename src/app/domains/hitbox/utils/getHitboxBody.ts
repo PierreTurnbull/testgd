@@ -1,5 +1,5 @@
 import { TPoint } from "@root/app/common/types/point.type";
-import { collisionsManager } from "@root/app/core/collisionsManager/collisionsManager.singletons";
+import { collisionsManager } from "@root/app/domains/collisionsManager/collisionsManager.singletons";
 import { Polygon } from "detect-collisions";
 import { THitboxSettings } from "../types/hitbox.types";
 

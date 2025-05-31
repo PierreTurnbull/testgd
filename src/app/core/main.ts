@@ -1,14 +1,14 @@
 import { Assets } from "pixi.js";
-import { assetsManager } from "./assetsManager/assetsManager.singletons";
-import { initApplication } from "./initApp/initApp";
-import { initCharacters } from "./initCharacters/initCharacters";
-import { initEnvironment } from "./initEnvironment/initEnvironment";
-import { initFps } from "./initFps/initFps";
-import { initLoop } from "./initLoop/initLoop";
-import { initMouse } from "./initMouse/initMouse";
-import { initUi } from "./initUi/initUi";
-import "./reset.css";
+import { assetsManager } from "../domains/assetsManager/assetsManager.singletons";
 import { watchInput } from "./systems/watchInput/watchInput.system";
+import { initApplication } from "./utils/initApp/initApp";
+import { initCharacters } from "./utils/initCharacters/initCharacters";
+import { initEnvironment } from "./utils/initEnvironment/initEnvironment";
+import { initFps } from "./utils/initFps/initFps";
+import { initLoop } from "./utils/initLoop/initLoop";
+import { initMouse } from "./utils/initMouse/initMouse";
+import { initUi } from "./utils/initUi/initUi";
+import { watchUiBusEvents } from "./utils/watchUiBusEvents/watchUiBusEvents";
 
 // prevent default browser behaviour when left clicking
 document.addEventListener("contextmenu", event => event.preventDefault());
@@ -23,9 +23,4 @@ initFps();
 initLoop();
 watchInput();
 initUi();
-
-window.addEventListener("keydown", event => {
-	if (event.code === "KeyQ") {
-		document.body.style.display = document.body.style.display === "none" ? "block" : "none";
-	}
-});
+watchUiBusEvents();

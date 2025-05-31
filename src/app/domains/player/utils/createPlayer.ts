@@ -14,25 +14,25 @@ import { CVelocity } from "@root/app/common/components/velocity/velocity.compone
 import { CView } from "@root/app/common/components/view/view.component";
 import { AVAILABLE_ACTIONS } from "@root/app/common/constants/availableActions.constants";
 import { ANGLE_NAMES } from "@root/app/common/constants/space.constants";
-import { entityManager } from "@root/app/common/entities/entityManager.singleton";
-import { relationsManager } from "@root/app/common/relations/relationsManager.singleton";
+import { ENTITIES_CENTER_OFFSETS } from "@root/app/common/constants/views.constants";
 import { TCoordinates } from "@root/app/common/types/coordinates.types";
-import { TViewSortingCurve } from "@root/app/domains/viewSortingCurve/types/viewSortingCurve.types";
-import { ENTITIES_CENTER_OFFSETS } from "@root/app/common/views/constants/views.constants";
-import { initAnimatedSprite } from "@root/app/common/views/utils/animatedSprite/initAnimatedSprite";
-import { configManager } from "@root/app/core/configManager/configManager.singleton";
+import { TOffset } from "@root/app/common/types/offset.types";
+import { initAnimatedSprite } from "@root/app/common/utils/views/initAnimatedSprite/initAnimatedSprite";
+import { initBorderView } from "@root/app/common/utils/views/initBorderView/initBorderView";
+import { initCenterView } from "@root/app/common/utils/views/initCenterView/initCenterView";
+import { configManager } from "@root/app/domains/configManager/configManager.singleton";
+import { entityManager } from "@root/app/domains/entity/entityManager.singleton";
 import { PLAYER_RUNNING_SPEED } from "@root/app/domains/player/constants/player.constants";
+import { relationsManager } from "@root/app/domains/relationManager/relationsManager.singleton";
+import { TViewSortingCurve } from "@root/app/domains/viewSortingCurve/types/viewSortingCurve.types";
 import { Graphics } from "pixi.js";
 import { TRectangleHitboxSettings } from "../../hitbox/types/hitbox.types";
 import { createHitbox } from "../../hitbox/utils/createHitbox";
-import { CPlayer } from "../components/user/user.component";
-import { TOffset } from "@root/app/common/types/offset.types";
-import { initBorderView } from "@root/app/common/views/utils/borderView/initBorderView";
-import { initCenterView } from "@root/app/common/views/utils/centerView/initCenterView";
 import { CViewSortingCurve } from "../../viewSortingCurve/components/viewSortingCurve/viewSortingCurve.component";
 import { CViewSortingCurveOffset } from "../../viewSortingCurve/components/viewSortingCurveOffset/viewSortingCurveOffset.component";
 import { CViewSortingCurveView } from "../../viewSortingCurve/components/viewSortingCurveView/viewSortingCurveView.component";
 import { initViewSortingCurveView } from "../../viewSortingCurve/utils/initViewSortingCurveView/initViewSortingCurveView";
+import { CPlayer } from "../components/user/user.component";
 
 export const createPlayer = (
 	initialCoordinates: TCoordinates,

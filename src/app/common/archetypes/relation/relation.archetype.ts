@@ -1,5 +1,5 @@
-import { CRelation } from "../../relations/components/common/relation.component";
-import { TCardinality } from "../../relations/types/relation.types";
+import { CRelation } from "../../../domains/relationManager/components/common/relation.component";
+import { TCardinality } from "../../../domains/relationManager/types/relation.types";
 import { Archetype } from "../archetype.models";
 
 /**

@@ -1,4 +1,4 @@
-import { Entity } from "@root/app/common/entities/entity.models";
+import { Entity } from "@root/app/domains/entity/entity.models";
 import { CVisibilityGraph } from "../../components/visibilityGraph/visibilityGraph.component";
 import { createExtendedHitboxesPoints } from "./createExtendedHitboxesPoints/createExtendedHitboxesPoints";
 import { createLinkedNodes } from "./createLinkedNodes/createLinkedNodes";

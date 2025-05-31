@@ -1,8 +1,8 @@
 import { TCoordinates } from "@root/app/common/types/coordinates.types";
 import { TOffset } from "@root/app/common/types/offset.types";
 import { TPoint } from "@root/app/common/types/point.type";
-import { getOffsetCoordinates } from "@root/app/common/utils/getOffsetCoordinates/getOffsetCoordinates";
-import { worldManager } from "@root/app/core/worldManager/worldManager.singletons";
+import { getOffsetCoordinates } from "@root/app/common/utils/geometry/getOffsetCoordinates/getOffsetCoordinates";
+import { worldManager } from "@root/app/domains/worldManager/worldManager.singletons";
 import { Graphics } from "pixi.js";
 
 /**

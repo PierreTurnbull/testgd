@@ -3,9 +3,9 @@ import { CDirection } from "@root/app/common/components/direction/direction.comp
 import { CKeyboard } from "@root/app/common/components/keyboard/keyboard.component";
 import { AVAILABLE_ACTIONS } from "@root/app/common/constants/availableActions.constants";
 import { DIRECTION8_ANGLES } from "@root/app/common/constants/space.constants";
-import { Entity } from "@root/app/common/entities/entity.models";
-import { assetsManager } from "@root/app/core/assetsManager/assetsManager.singletons";
 import { translateInputs } from "@root/app/core/systems/translateInputs/translateInputs.system";
+import { assetsManager } from "@root/app/domains/assetsManager/assetsManager.singletons";
+import { Entity } from "@root/app/domains/entity/entity.models";
 import { createMuddyBuddy } from "@root/app/domains/muddyBuddy/utils/createMuddyBuddy";
 import { createPlayer } from "@root/app/domains/player/utils/createPlayer";
 import { afterEach, beforeEach, describe, expect, test } from "vitest";

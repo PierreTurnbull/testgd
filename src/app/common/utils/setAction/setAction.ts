@@ -2,21 +2,21 @@ import { CAction } from "@root/app/common/components/action/action.component";
 import { CDirection } from "@root/app/common/components/direction/direction.component";
 import { CLocation } from "@root/app/common/components/location/location.component";
 import { CView } from "@root/app/common/components/view/view.component";
-import { replaceAnimatedSprite } from "@root/app/common/views/utils/animatedSprite/replaceAnimatedSprite";
-import { configManager } from "@root/app/core/configManager/configManager.singleton";
+import { configManager } from "@root/app/domains/configManager/configManager.singleton";
 import { CHitbox } from "@root/app/domains/hitbox/components/hitbox/hitbox.component";
 import { CHitboxIsActive } from "@root/app/domains/hitbox/components/hitboxIsActive/hitboxIsActive.component";
 import { HITBOX_BOUNDS } from "@root/app/domains/hitbox/constants/hitboxes.constants";
+import { replaceViewSortingCurveView } from "@root/app/domains/viewSortingCurve/utils/replaceViewSortingCurveView/replaceViewSortingCurveView";
 import { AnimatedSprite } from "pixi.js";
+import { Entity } from "../../../domains/entity/entity.models";
 import { CBorderView } from "../../components/borderView/borderView.component";
 import { CCenterView } from "../../components/centerView/centerView.component";
 import { ANGLE_NAMES } from "../../constants/space.constants";
-import { Entity } from "../../entities/entity.models";
 import { TPoint } from "../../types/point.type";
-import { replaceBorder } from "../../views/utils/borderView/replaceBorderView";
-import { replaceCenterView } from "../../views/utils/centerView/replaceCenterView";
-import { replaceViewSortingCurveView } from "@root/app/domains/viewSortingCurve/utils/replaceViewSortingCurveView/replaceViewSortingCurveView";
-import { replaceHitboxBorderView } from "../../views/utils/hitboxBorderView/replaceHitboxBorderView";
+import { replaceAnimatedSprite } from "../views/replaceAnimatedSprite/replaceAnimatedSprite";
+import { replaceBorder } from "../views/replaceBorderView/replaceBorderView";
+import { replaceCenterView } from "../views/replaceCenterView/replaceCenterView";
+import { replaceHitboxBorderView } from "../views/replaceHitboxBorderView/replaceHitboxBorderView";
 
 type TOptions = {
 	onLoop?:        AnimatedSprite["onLoop"] | null,

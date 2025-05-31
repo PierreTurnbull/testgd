@@ -1,8 +1,8 @@
 import { TSegment } from "@root/app/common/types/segment.types";
 import { TSquareBounds } from "@root/app/common/types/squareBounds.types";
-import { getPointIsInSquare } from "@root/app/common/utils/getPointIsInSquare/getPointIsInSquare";
-import { getPointIsOnSegment } from "@root/app/common/utils/getPointIsOnSegment/getPointIsOnSegment";
-import { getSegmentsIntersect } from "@root/app/common/utils/getSegmentsIntersect/getSegmentsIntersect";
+import { getPointIsInSquare } from "@root/app/common/utils/geometry/getPointIsInSquare/getPointIsInSquare";
+import { getPointIsOnSegment } from "@root/app/common/utils/geometry/getPointIsOnSegment/getPointIsOnSegment";
+import { getSegmentsIntersect } from "@root/app/common/utils/geometry/getSegmentsIntersect/getSegmentsIntersect";
 import { CVisibilityGraph } from "@root/app/domains/pathfinding/components/visibilityGraph/visibilityGraph.component";
 import { TRules } from "@root/app/domains/pathfinding/types/rules.types";
 import { TVisibilityGraphNode } from "@root/app/domains/pathfinding/types/visibilityGraph.types";
