@@ -11,5 +11,6 @@ export const unselectEntity = () => {
 
 	if (gameEditorStore.selectedEntity) {
 		gameEditorStore.selectedEntity.getComponent(CView).view.tint = 0xffffff;
+		gameEditorStore.selectedEntity = null;
 	}
 };

@@ -1,5 +1,5 @@
 import { clearDraggedEntity } from "@root/app/domains/editor/utils/clearDraggedEntity/clearDraggedEntity";
-import { clearSelectedEntity } from "@root/app/domains/editor/utils/clearSelectedEntity/clearSelectedEntity";
+import { unselectEntity } from "@root/app/domains/editor/utils/unselectEntity/unselectEntity";
 import { updateVisibilityGraphs } from "@root/app/domains/editor/utils/updateVisibilityGraphs/updateVisibilityGraphs";
 import { uiBus } from "@root/app/ui/utils/uiBus/uiBus.singleton";
 import { gameEditorStore } from "../../store/store";
@@ -22,7 +22,7 @@ export const handleKeydown = async (event: KeyboardEvent) => {
 		}
 
 		if (gameEditorStore.selectedEntity) {
-			clearSelectedEntity();
+			unselectEntity();
 		}
 
 		return true;
@@ -32,7 +32,7 @@ export const handleKeydown = async (event: KeyboardEvent) => {
 		if (gameEditorStore.draggedEntity) {
 			clearDraggedEntity();
 		} else if (gameEditorStore.selectedEntity) {
-			clearSelectedEntity();
+			unselectEntity();
 		} else {
 			await uiBus.emit("closeFocusedUi");
 		}
@@ -41,7 +41,7 @@ export const handleKeydown = async (event: KeyboardEvent) => {
 	if (gameEditorStore.selectedEntity && event.code === "KeyX") {
 		gameEditorStore.selectedEntity.destroy();
 		removeEntity();
-		clearSelectedEntity();
+		unselectEntity();
 		updateVisibilityGraphs();
 	}
 

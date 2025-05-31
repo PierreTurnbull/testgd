@@ -1,7 +1,7 @@
 import { gameEditorStore } from "@root/app/domains/editor/store/store";
 import { Entity } from "@root/app/domains/entity/entity.models";
 import { clearDraggedEntity } from "../clearDraggedEntity/clearDraggedEntity";
-import { clearSelectedEntity } from "../clearSelectedEntity/clearSelectedEntity";
+import { unselectEntity } from "../unselectEntity/unselectEntity";
 
 /**
  * Starts dragging an entity with the mouse.
@@ -20,6 +20,6 @@ export const dragEntity = (
 	gameEditorStore.draggedEntity = entity;
 
 	if (gameEditorStore.selectedEntity) {
-		clearSelectedEntity();
+		unselectEntity();
 	}
 };

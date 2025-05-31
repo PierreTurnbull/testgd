@@ -1,4 +1,4 @@
-import { TEventKey as TEventKeyBase, TListener, TListenerId } from "../../../../common/types/eventBus/eventBus.types";
+import { TEventKey as TEventKeyBase, TListener, TListenerId } from "../../types/eventBus.types";
 
 /**
  * An event bus providing bidirectionnal communication through listener and emitter callbacks.
