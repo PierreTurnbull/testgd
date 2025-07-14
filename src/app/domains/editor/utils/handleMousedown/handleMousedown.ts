@@ -5,7 +5,7 @@ import { gameEditorStore } from "../../store/store";
 import { registerEntity } from "../registerEntity/registerEntity";
 import { stopDraggingEntity } from "../stopDraggingEntity/stopDraggingEntity";
 
-export const handleMousedown = (event: MouseEvent) => {
+export const handleMousedown = async (event: MouseEvent) => {
 	if (!gameEditorStore) {
 		throw new Error("Game editor store is not initialized.");
 	}

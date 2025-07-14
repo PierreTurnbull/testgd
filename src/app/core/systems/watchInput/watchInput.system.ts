@@ -57,10 +57,10 @@ export const watchInput = () => {
 		}
 	});
 
-	window.addEventListener("mousedown", event => {
+	window.addEventListener("mousedown", async event => {
 		event.preventDefault();
 
-		editorHandleMousedown(event);
+		await editorHandleMousedown(event);
 	});
 
 	window.addEventListener("mouseup", event => {

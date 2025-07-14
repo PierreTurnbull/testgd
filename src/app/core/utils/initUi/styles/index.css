@@ -1,3 +1,7 @@
+* {
+	font-family: sans-serif;
+}
+
 p, span {
 	line-height: 1;
 }

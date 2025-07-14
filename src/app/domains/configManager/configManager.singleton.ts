@@ -12,11 +12,11 @@ class ConfigManager {
 			/**
 			 * Centers of entities, which means their location.
 			 */
-			showsEntityCenters:               false,
+			showsEntityCenters:               true,
 			/**
 			 * Sorting curves, used for displaying entities in the right order from a visual perspective.
 			 */
-			showsViewSortingCurves:           false,
+			showsViewSortingCurves:           true,
 			/**
 			 * Bigger version of hitboxes. They are used for creating visibility graphs, in the context of pathfinding.
 			 */

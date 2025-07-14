@@ -3,7 +3,7 @@ import math
 characterSize = 64
 groundSize = 256
 rockMDSize = 64
-rockLGSize = 128
+rockLGSize = 256
 
 characterDimensionX = characterSize
 characterDimensionY = characterSize

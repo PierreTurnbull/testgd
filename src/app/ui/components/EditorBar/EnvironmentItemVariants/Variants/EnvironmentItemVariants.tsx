@@ -35,7 +35,9 @@ export const EnvironmentItemVariants = ({
 
 	return (
 		<EditorBarPage>
-			{renderVariants()}
+			<div class="flex space-x-2">
+				{renderVariants()}
+			</div>
 		</EditorBarPage>
 	);
 };

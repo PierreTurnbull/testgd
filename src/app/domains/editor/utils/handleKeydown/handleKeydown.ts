@@ -1,9 +1,7 @@
-import { clearDraggedEntity } from "@root/app/domains/editor/utils/clearDraggedEntity/clearDraggedEntity";
 import { unselectEntity } from "@root/app/domains/editor/utils/unselectEntity/unselectEntity";
 import { updateVisibilityGraphs } from "@root/app/domains/editor/utils/updateVisibilityGraphs/updateVisibilityGraphs";
 import { uiBus } from "@root/app/ui/utils/uiBus/uiBus.singleton";
 import { gameEditorStore } from "../../store/store";
-import { getEntityIsPersisted } from "../getEntityIsPersisted/getEntityIsPersisted";
 import { removeEntity } from "../removeEntity/removeEntity";
 import { startDraggingEntity } from "../startDraggingEntity/startDraggingEntity";
 import { stopDraggingEntity } from "../stopDraggingEntity/stopDraggingEntity";
@@ -65,11 +63,9 @@ export const handleKeydown = async (event: KeyboardEvent) => {
 	}
 
 	if (event.code === "Semicolon") {
-		if (!gameEditorStore.selectedEntity) {
-			return;
+		if (gameEditorStore.selectedEntity) {
+			startDraggingEntity(gameEditorStore.selectedEntity);
 		}
-
-		startDraggingEntity(gameEditorStore.selectedEntity);
 	}
 
 	return false;

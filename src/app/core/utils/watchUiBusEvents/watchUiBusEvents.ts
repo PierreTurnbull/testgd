@@ -24,4 +24,12 @@ export const watchUiBusEvents = () => {
 			unselectEntity();
 		},
 	);
+
+	uiBus.subscribe(
+		"closeFocusedUi",
+		() => {
+			stopDraggingEntity();
+			unselectEntity();
+		},
+	);
 };

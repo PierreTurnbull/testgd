@@ -1,10 +1,12 @@
 import { EventBus } from "@root/app/domains/eventBus/utils/eventBus/eventBus";
 
 type TUiBusEvents = (
-	"toggleEditorBarIsOpen" |
 	"closeFocusedUi" |
+	"interactWithEditorBar" |
 	"selectEnvironmentItemVariant" |
-	"interactWithEditorBar"
+	"stopDraggingEntity" |
+	"toggleEditorBarIsOpen" |
+	"startDraggingEntity"
 )
 
 /**

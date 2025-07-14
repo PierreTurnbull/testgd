@@ -1,12 +1,13 @@
 import { CView } from "@root/app/common/components/view/view.component";
 import { applyNextCoordinates } from "@root/app/common/utils/applyNextCoordinates/applyNextCoordinates";
+import { uiBus } from "@root/app/ui/utils/uiBus/uiBus.singleton";
 import { gameEditorStore } from "../../store/store";
 import { getEntityIsPersisted } from "../getEntityIsPersisted/getEntityIsPersisted";
 
 /**
  * Stops dragging an entity.
  */
-export const stopDraggingEntity = () => {
+export const stopDraggingEntity = async () => {
 	if (!gameEditorStore) {
 		throw new Error("Game editor store is not initialized.");
 	}
@@ -29,4 +30,6 @@ export const stopDraggingEntity = () => {
 		gameEditorStore.draggedEntity = null;
 		gameEditorStore.draggedEntityInitialCoordinates = null;
 	}
+
+	await uiBus.emit("stopDraggingEntity");
 };

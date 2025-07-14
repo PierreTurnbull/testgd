@@ -11,7 +11,17 @@ export const MenuItem = ({
 }: TMenuItemProps) => {
 	return (
 		<div
-			class="h-full aspect-square border-2 border-amber-950 hover:bg-amber-800 flex justify-center items-center"
+			class={`
+				h-full
+				aspect-square
+				rounded
+				bg-amber-900
+				hover:bg-amber-700
+				flex
+				justify-center
+				items-center
+				cursor-pointer
+			`}
 			onClick={onClick}
 		>
 			{children}
