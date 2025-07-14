@@ -1,30 +1,26 @@
 import { IconButton } from "@root/app/ui/components/common/IconButton/IconButton";
-import { useState } from "preact/hooks";
 import { EnvironmentItemVariantOptionsMenu } from "./EnvironmentItemVariantOptionsMenu/EnvironmentItemVariantOptionsMenu";
 
 type TEnvironmentItemVariantOptionsProps = {
-	name:    string
-	variant: number
+	name:                 string
+	variant:              number
+	optionsMenuIsOpen:    boolean
+	setOptionsMenuIsOpen: (value: boolean) => void
 }
 
-/**
- * afdsfdf
- * @param param0 a
- * @returns 
- */
 export const EnvironmentItemVariantOptions = ({
 	name,
 	variant,
+	optionsMenuIsOpen,
+	setOptionsMenuIsOpen,
 }: TEnvironmentItemVariantOptionsProps) => {
-	const [isOpen, setIsOpen] = useState(false);
-
 	return (
 		<div>
 			<div class="absolute bottom-2 right-2 z-20">
 				<IconButton
-					icon={isOpen ? "✖" : "⚙"}
+					icon={optionsMenuIsOpen ? "✖" : "⚙"}
 					onClick={async _ => {
-						setIsOpen(prev => !prev);
+						setOptionsMenuIsOpen(!optionsMenuIsOpen);
 					}}
 					size="sm"
 				/>
@@ -32,7 +28,7 @@ export const EnvironmentItemVariantOptions = ({
 			<EnvironmentItemVariantOptionsMenu
 				name={name}
 				variant={variant}
-				isOpen={isOpen}
+				isOpen={optionsMenuIsOpen}
 			/>
 		</div>
 	);

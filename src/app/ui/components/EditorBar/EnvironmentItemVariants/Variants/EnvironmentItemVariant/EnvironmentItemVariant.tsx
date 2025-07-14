@@ -5,13 +5,17 @@ import { useEffect, useState } from "preact/hooks";
 import { EnvironmentItemVariantOptions } from "./EnvironmentItemVariantOptions/EnvironmentItemVariantOptions";
 
 type TEnvironmentItemVariantProps = {
-	name:    string
-	variant: number
+	name:                 string
+	variant:              number
+	optionsMenuIsOpen:    boolean
+	setOptionsMenuIsOpen: (value: boolean) => void
 }
 
 export const EnvironmentItemVariant = ({
 	name,
 	variant,
+	optionsMenuIsOpen,
+	setOptionsMenuIsOpen,
 }: TEnvironmentItemVariantProps) => {
 	const [isDraggingItem, setIsDraggingItem] = useState(false);
 
@@ -77,6 +81,8 @@ export const EnvironmentItemVariant = ({
 						<EnvironmentItemVariantOptions
 							name={name}
 							variant={variant}
+							optionsMenuIsOpen={optionsMenuIsOpen}
+							setOptionsMenuIsOpen={setOptionsMenuIsOpen}
 						/>
 					)
 			}
