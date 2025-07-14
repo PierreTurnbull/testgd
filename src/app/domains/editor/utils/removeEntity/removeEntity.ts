@@ -9,7 +9,7 @@ export const removeEntity = () => {
 		throw new Error("Game editor store is not initialized.");
 	}
 
-	const itemKey = gameEditorStore.data.environment.findIndex(item => {
+	const itemKey = gameEditorStore.data.items.environment.findIndex(item => {
 		if (!gameEditorStore) {
 			throw new Error("Game editor store is not initialized.");
 		}
@@ -22,6 +22,6 @@ export const removeEntity = () => {
 	});
 
 	if (itemKey !== -1) {
-		gameEditorStore.data.environment.splice(itemKey, 1);
+		gameEditorStore.data.items.environment.splice(itemKey, 1);
 	}
 };

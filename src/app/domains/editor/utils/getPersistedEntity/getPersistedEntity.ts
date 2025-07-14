@@ -10,7 +10,7 @@ export const getPersistedEntity = (
 		throw new Error("Game editor store is not initialized.");
 	}
 
-	const persistedEntity = gameEditorStore.data.environment.find(environmentItem => environmentItem.gameEditorId === gameEditorId);
+	const persistedEntity = gameEditorStore.data.items.environment.find(environmentItem => environmentItem.gameEditorId === gameEditorId);
 
 	return persistedEntity;
 };

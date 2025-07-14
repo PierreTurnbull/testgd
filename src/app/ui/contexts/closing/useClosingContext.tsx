@@ -2,6 +2,11 @@ import { useContext, useEffect } from "preact/hooks";
 import { uiBus } from "../../utils/uiBus/uiBus.singleton";
 import { ClosingContext } from "./closing.context";
 
+/**
+ * Registers the current component as a closable element.
+ * When a request for closing the current element is received, the element that was last registered
+ * is closed (LIFO).
+ */
 export const useClosingContext = (
 	name: string,
 	close: () => void,

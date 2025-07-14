@@ -1,34 +1,444 @@
 {
-    "environment": [
-        {
-            "gameEditorId": 113,
-            "name": "rockMD",
-            "coordinates": {
-                "x": 143,
-                "y": 240
+    "config": {
+        "environment": {
+            "rockLG": {
+                "0": {
+                    "up": {
+                        "center": {
+                            "x": 128,
+                            "y": 158
+                        }
+                    },
+                    "upRight": {
+                        "center": {
+                            "x": 134,
+                            "y": 163
+                        }
+                    },
+                    "right": {
+                        "center": {
+                            "x": 129,
+                            "y": 168
+                        }
+                    },
+                    "downRight": {
+                        "center": {
+                            "x": 128,
+                            "y": 156
+                        }
+                    },
+                    "down": {
+                        "center": {
+                            "x": 132,
+                            "y": 154
+                        }
+                    },
+                    "downLeft": {
+                        "center": {
+                            "x": 139,
+                            "y": 157
+                        }
+                    },
+                    "left": {
+                        "center": {
+                            "x": 129,
+                            "y": 165
+                        }
+                    },
+                    "upLeft": {
+                        "center": {
+                            "x": 125,
+                            "y": 157
+                        }
+                    }
+                },
+                "1": {
+                    "up": {
+                        "center": {
+                            "x": 126,
+                            "y": 148
+                        }
+                    },
+                    "upRight": {
+                        "center": {
+                            "x": 134,
+                            "y": 152
+                        }
+                    },
+                    "right": {
+                        "center": {
+                            "x": 130,
+                            "y": 159
+                        }
+                    },
+                    "downRight": {
+                        "center": {
+                            "x": 124,
+                            "y": 154
+                        }
+                    },
+                    "down": {
+                        "center": {
+                            "x": 125,
+                            "y": 150
+                        }
+                    },
+                    "downLeft": {
+                        "center": {
+                            "x": 133,
+                            "y": 154
+                        }
+                    },
+                    "left": {
+                        "center": {
+                            "x": 126,
+                            "y": 167
+                        }
+                    },
+                    "upLeft": {
+                        "center": {
+                            "x": 121,
+                            "y": 153
+                        }
+                    }
+                },
+                "2": {
+                    "up": {
+                        "center": {
+                            "x": 128,
+                            "y": 155
+                        }
+                    },
+                    "upRight": {
+                        "center": {
+                            "x": 132,
+                            "y": 152
+                        }
+                    },
+                    "right": {
+                        "center": {
+                            "x": 128,
+                            "y": 162
+                        }
+                    },
+                    "downRight": {
+                        "center": {
+                            "x": 123,
+                            "y": 159
+                        }
+                    },
+                    "down": {
+                        "center": {
+                            "x": 128,
+                            "y": 153
+                        }
+                    },
+                    "downLeft": {
+                        "center": {
+                            "x": 133,
+                            "y": 155
+                        }
+                    },
+                    "left": {
+                        "center": {
+                            "x": 127,
+                            "y": 164
+                        }
+                    },
+                    "upLeft": {
+                        "center": {
+                            "x": 119,
+                            "y": 157
+                        }
+                    }
+                },
+                "3": {
+                    "up": {
+                        "center": {
+                            "x": 125,
+                            "y": 157
+                        }
+                    },
+                    "upRight": {
+                        "center": {
+                            "x": 132,
+                            "y": 155
+                        }
+                    },
+                    "right": {
+                        "center": {
+                            "x": 128,
+                            "y": 162
+                        }
+                    },
+                    "downRight": {
+                        "center": {
+                            "x": 117,
+                            "y": 156
+                        }
+                    },
+                    "down": {
+                        "center": {
+                            "x": 127,
+                            "y": 150
+                        }
+                    },
+                    "downLeft": {
+                        "center": {
+                            "x": 134,
+                            "y": 151
+                        }
+                    },
+                    "left": {
+                        "center": {
+                            "x": 130,
+                            "y": 164
+                        }
+                    },
+                    "upLeft": {
+                        "center": {
+                            "x": 119,
+                            "y": 163
+                        }
+                    }
+                }
             },
-            "variant": 2,
-            "direction8": "down"
-        },
-        {
-            "gameEditorId": 144,
-            "name": "rockLG",
-            "coordinates": {
-                "x": 206,
-                "y": -248
-            },
-            "variant": 0,
-            "direction8": "upRight"
-        },
-        {
-            "gameEditorId": 145,
-            "name": "rockMD",
-            "coordinates": {
-                "x": -235,
-                "y": -150
-            },
-            "variant": 2,
-            "direction8": "down"
+            "rockMD": {
+                "0": {
+                    "up": {
+                        "center": {
+                            "x": 32,
+                            "y": 45
+                        }
+                    },
+                    "upRight": {
+                        "center": {
+                            "x": 35,
+                            "y": 45
+                        }
+                    },
+                    "right": {
+                        "center": {
+                            "x": 33,
+                            "y": 43
+                        }
+                    },
+                    "downRight": {
+                        "center": {
+                            "x": 34,
+                            "y": 44
+                        }
+                    },
+                    "down": {
+                        "center": {
+                            "x": 33,
+                            "y": 45
+                        }
+                    },
+                    "downLeft": {
+                        "center": {
+                            "x": 33,
+                            "y": 45
+                        }
+                    },
+                    "left": {
+                        "center": {
+                            "x": 29,
+                            "y": 42
+                        }
+                    },
+                    "upLeft": {
+                        "center": {
+                            "x": 33,
+                            "y": 44
+                        }
+                    }
+                },
+                "1": {
+                    "up": {
+                        "center": {
+                            "x": 31,
+                            "y": 49
+                        }
+                    },
+                    "upRight": {
+                        "center": {
+                            "x": 32,
+                            "y": 49
+                        }
+                    },
+                    "right": {
+                        "center": {
+                            "x": 33,
+                            "y": 47
+                        }
+                    },
+                    "downRight": {
+                        "center": {
+                            "x": 34,
+                            "y": 47
+                        }
+                    },
+                    "down": {
+                        "center": {
+                            "x": 31,
+                            "y": 48
+                        }
+                    },
+                    "downLeft": {
+                        "center": {
+                            "x": 33,
+                            "y": 47
+                        }
+                    },
+                    "left": {
+                        "center": {
+                            "x": 29,
+                            "y": 44
+                        }
+                    },
+                    "upLeft": {
+                        "center": {
+                            "x": 33,
+                            "y": 48
+                        }
+                    }
+                },
+                "2": {
+                    "up": {
+                        "center": {
+                            "x": 31,
+                            "y": 44
+                        }
+                    },
+                    "upRight": {
+                        "center": {
+                            "x": 30,
+                            "y": 45
+                        }
+                    },
+                    "right": {
+                        "center": {
+                            "x": 31,
+                            "y": 42
+                        }
+                    },
+                    "downRight": {
+                        "center": {
+                            "x": 31,
+                            "y": 41
+                        }
+                    },
+                    "down": {
+                        "center": {
+                            "x": 33,
+                            "y": 44
+                        }
+                    },
+                    "downLeft": {
+                        "center": {
+                            "x": 31,
+                            "y": 44
+                        }
+                    },
+                    "left": {
+                        "center": {
+                            "x": 36,
+                            "y": 45
+                        }
+                    },
+                    "upLeft": {
+                        "center": {
+                            "x": 33,
+                            "y": 44
+                        }
+                    }
+                },
+                "3": {
+                    "up": {
+                        "center": {
+                            "x": 34,
+                            "y": 48
+                        }
+                    },
+                    "upRight": {
+                        "center": {
+                            "x": 32,
+                            "y": 46
+                        }
+                    },
+                    "right": {
+                        "center": {
+                            "x": 32,
+                            "y": 45
+                        }
+                    },
+                    "downRight": {
+                        "center": {
+                            "x": 32,
+                            "y": 47
+                        }
+                    },
+                    "down": {
+                        "center": {
+                            "x": 33,
+                            "y": 48
+                        }
+                    },
+                    "downLeft": {
+                        "center": {
+                            "x": 32,
+                            "y": 50
+                        }
+                    },
+                    "left": {
+                        "center": {
+                            "x": 31,
+                            "y": 46
+                        }
+                    },
+                    "upLeft": {
+                        "center": {
+                            "x": 32,
+                            "y": 46
+                        }
+                    }
+                }
+            }
         }
-    ]
+    },
+    "items": {
+        "environment": [
+            {
+                "gameEditorId": 113,
+                "name": "rockMD",
+                "coordinates": {
+                    "x": 143,
+                    "y": 240
+                },
+                "variant": 2,
+                "direction8": "down"
+            },
+            {
+                "gameEditorId": 144,
+                "name": "rockLG",
+                "coordinates": {
+                    "x": 206,
+                    "y": -248
+                },
+                "variant": 0,
+                "direction8": "upRight"
+            },
+            {
+                "gameEditorId": 145,
+                "name": "rockMD",
+                "coordinates": {
+                    "x": -235,
+                    "y": -150
+                },
+                "variant": 2,
+                "direction8": "down"
+            }
+        ]
+    }
 }

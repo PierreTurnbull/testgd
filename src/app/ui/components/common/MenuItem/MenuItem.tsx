@@ -17,6 +17,8 @@ export const MenuItem = ({
 				rounded
 				bg-amber-900
 				hover:bg-amber-700
+				border
+				border-amber-400
 				flex
 				justify-center
 				items-center

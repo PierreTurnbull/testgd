@@ -31,7 +31,7 @@ export const registerEntity = (
 
 		persistedEntity.coordinates = locationComponent.coordinates;
 	} else {
-		gameEditorStore.data.environment.push({
+		gameEditorStore.data.items.environment.push({
 			gameEditorId: gameEditorIdComponent.gameEditorId,
 			name:         entity.name,
 			coordinates:  gameEditorStore.mouseCoordinates,

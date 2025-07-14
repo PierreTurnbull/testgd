@@ -14,7 +14,7 @@ export const initEnvironment = () => {
 		}
 	}
 
-	data.environment.forEach(environment => {
+	data.items.environment.forEach(environment => {
 		if (environment.name === "rockLG") {
 			createRockLG(
 				environment.coordinates,

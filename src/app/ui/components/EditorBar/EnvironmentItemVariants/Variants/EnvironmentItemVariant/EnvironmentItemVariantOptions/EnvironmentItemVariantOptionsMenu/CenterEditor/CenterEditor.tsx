@@ -1,0 +1,112 @@
+import { TDirection8 } from "@root/app/common/components/direction/types/direction.types";
+import { DIRECTIONS8 } from "@root/app/common/constants/space.constants";
+import { TCoordinates } from "@root/app/common/types/coordinates.types";
+import { gameEditorStore } from "@root/app/domains/editor/store/store";
+import { IconButton } from "@root/app/ui/components/common/IconButton/IconButton";
+import { Modal } from "@root/app/ui/components/common/Modal/Modal";
+import { useEffect, useState } from "preact/hooks";
+import { CenterEditorItem } from "./CenterEditorItem/CenterEditorItem";
+
+type TCenterEditorProps = {
+	close:   () => void
+	name:    string
+	variant: number
+}
+
+export const CenterEditor = ({
+	close,
+	name,
+	variant,
+}: TCenterEditorProps) => {
+	const [direction, setDirection] = useState<TDirection8>("up");
+	const [centers, setCenters] = useState<Record<TDirection8, TCoordinates>>({
+		up:        { x: 0, y: 0 },
+		upRight:   { x: 0, y: 0 },
+		right:     { x: 0, y: 0 },
+		downRight: { x: 0, y: 0 },
+		down:      { x: 0, y: 0 },
+		downLeft:  { x: 0, y: 0 },
+		left:      { x: 0, y: 0 },
+		upLeft:    { x: 0, y: 0 },
+	});
+	
+	useEffect(() => {
+		if (!gameEditorStore) {
+			throw new Error("Game editor store is not initialized.");
+		}
+
+		setCenters({
+			up:        gameEditorStore.data.config.environment[name][variant].up.center,
+			upRight:   gameEditorStore.data.config.environment[name][variant].upRight.center,
+			right:     gameEditorStore.data.config.environment[name][variant].right.center,
+			downRight: gameEditorStore.data.config.environment[name][variant].downRight.center,
+			down:      gameEditorStore.data.config.environment[name][variant].down.center,
+			downLeft:  gameEditorStore.data.config.environment[name][variant].downLeft.center,
+			left:      gameEditorStore.data.config.environment[name][variant].left.center,
+			upLeft:    gameEditorStore.data.config.environment[name][variant].upLeft.center,
+		});
+	}, []);
+
+	return (
+		<Modal
+			close={close}
+		>
+			<div class="flex flex-col space-y-4 items-center">
+				<p class="text-amber-400">{name}.{variant}.{"down"}</p>
+				<CenterEditorItem
+					name={name}
+					variant={variant}
+					direction={direction}
+					center={centers[direction]}
+					setCenter={(direction: TDirection8, center: TCoordinates) => setCenters(prev => {
+						return {
+							...prev,
+							[direction]: center,
+						};
+					})}
+				/>
+				<div class="flex space-x-2">
+					<IconButton
+						icon="<"
+						onClick={async _ => {
+							setDirection(prev => {
+								const prevIndex = DIRECTIONS8.indexOf(prev);
+
+								const nextIndex = prevIndex === 0 ? DIRECTIONS8.length - 1 : prevIndex - 1;
+
+								return DIRECTIONS8[nextIndex];
+							});
+						}}
+					/>
+					<IconButton
+						icon="✓"
+						onClick={async _ => {
+							Object.entries(centers).forEach(entry => {
+								gameEditorStore!.data.config.environment[name][variant][entry[0] as TDirection8].center = entry[1];
+							});
+							close();
+						}}
+					/>
+					<IconButton
+						icon="✖"
+						onClick={async _ => {
+							close();
+						}}
+					/>
+					<IconButton
+						icon=">"
+						onClick={async _ => {
+							setDirection(prev => {
+								const prevIndex = DIRECTIONS8.indexOf(prev);
+
+								const nextIndex = prevIndex === DIRECTIONS8.length - 1 ? 0 : prevIndex + 1;
+
+								return DIRECTIONS8[nextIndex];
+							});
+						}}
+					/>
+				</div>
+			</div>
+		</Modal>
+	);
+};

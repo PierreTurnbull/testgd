@@ -32,7 +32,7 @@ export let gameEditorId = 0;
 export const incrementGameEditorId = () => gameEditorId++;
 
 // Ensures the next gameEditorIds are higher than all the previous ones, in order to prevent duplicating them.
-data.environment.forEach(environment => {
+data.items.environment.forEach(environment => {
 	if (gameEditorId <= environment.gameEditorId) {
 		gameEditorId = environment.gameEditorId + 1;
 	}

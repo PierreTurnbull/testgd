@@ -1,3 +1,5 @@
+import { TEnvironmentConfigItem } from "@root/app/domains/editor/data/data.types";
+import { data as editorData } from "../../domains/editor/data/data";
 import { HITBOX_BOUNDS } from "../../domains/hitbox/constants/hitboxes.constants";
 import { SCALE_FACTOR } from "../types/animatedSprites.types";
 import { TCoordinates } from "../types/coordinates.types";
@@ -15,6 +17,19 @@ export const ANIMATION_SPEEDS: Record<string, number> = {
 	"characters.player.beingDead":     1,
 	"characters.player.beingHit":      0.05,
 };
+
+// a: { b: value } => "a.b": value
+const flatEnvironmentConfigItems: Record<string, TEnvironmentConfigItem> = {};
+
+Object.entries(editorData.config.environment).forEach(entry1 => {
+	Object.entries(entry1[1]).forEach(entry2 => {
+		Object.entries(entry2[1]).forEach(entry3 => {
+			const key = `environment.${entry1[0]}.${entry2[0]}.${entry3[0]}`;
+
+			flatEnvironmentConfigItems[key] = entry3[1];
+		});
+	});
+});
 
 const SPRITES_CENTER_OFFSETS: Record<string, TCoordinates> = {
 	"characters.muddyBuddy.rolling.up":        { x: -32,	y: -40 },
@@ -116,78 +131,6 @@ const SPRITES_CENTER_OFFSETS: Record<string, TCoordinates> = {
 	"characters.player.beingHit.left":      { x: -32,	y: -32 },
 	"characters.player.beingHit.upLeft":    { x: -32,	y: -32 },
 
-	"environment.rockMD.0.up":        { x: -32,	y: -44 },
-	"environment.rockMD.0.upRight":   { x: -32,	y: -44 },
-	"environment.rockMD.0.right":     { x: -32,	y: -44 },
-	"environment.rockMD.0.downRight": { x: -32,	y: -44 },
-	"environment.rockMD.0.down":      { x: -32,	y: -44 },
-	"environment.rockMD.0.downLeft":  { x: -32,	y: -44 },
-	"environment.rockMD.0.left":      { x: -32,	y: -44 },
-	"environment.rockMD.0.upLeft":    { x: -32,	y: -44 },
-
-	"environment.rockMD.1.up":        { x: -32,	y: -50 },
-	"environment.rockMD.1.upRight":   { x: -32,	y: -50 },
-	"environment.rockMD.1.right":     { x: -32,	y: -50 },
-	"environment.rockMD.1.downRight": { x: -32,	y: -50 },
-	"environment.rockMD.1.down":      { x: -32,	y: -50 },
-	"environment.rockMD.1.downLeft":  { x: -32,	y: -50 },
-	"environment.rockMD.1.left":      { x: -32,	y: -50 },
-	"environment.rockMD.1.upLeft":    { x: -32,	y: -50 },
-
-	"environment.rockMD.2.up":        { x: -32,	y: -44 },
-	"environment.rockMD.2.upRight":   { x: -32,	y: -44 },
-	"environment.rockMD.2.right":     { x: -32,	y: -44 },
-	"environment.rockMD.2.downRight": { x: -32,	y: -44 },
-	"environment.rockMD.2.down":      { x: -32,	y: -44 },
-	"environment.rockMD.2.downLeft":  { x: -32,	y: -44 },
-	"environment.rockMD.2.left":      { x: -32,	y: -44 },
-	"environment.rockMD.2.upLeft":    { x: -32,	y: -44 },
-
-	"environment.rockMD.3.up":        { x: -32,	y: -50 },
-	"environment.rockMD.3.upRight":   { x: -32,	y: -50 },
-	"environment.rockMD.3.right":     { x: -32,	y: -50 },
-	"environment.rockMD.3.downRight": { x: -32,	y: -50 },
-	"environment.rockMD.3.down":      { x: -32,	y: -50 },
-	"environment.rockMD.3.downLeft":  { x: -32,	y: -50 },
-	"environment.rockMD.3.left":      { x: -32,	y: -50 },
-	"environment.rockMD.3.upLeft":    { x: -32,	y: -50 },
-
-	"environment.rockLG.0.up":        { x: -64,	y: -75 },
-	"environment.rockLG.0.upRight":   { x: -64,	y: -72 },
-	"environment.rockLG.0.right":     { x: -64,	y: -72 },
-	"environment.rockLG.0.downRight": { x: -64,	y: -72 },
-	"environment.rockLG.0.down":      { x: -64,	y: -72 },
-	"environment.rockLG.0.downLeft":  { x: -64,	y: -72 },
-	"environment.rockLG.0.left":      { x: -64,	y: -72 },
-	"environment.rockLG.0.upLeft":    { x: -64,	y: -72 },
-
-	"environment.rockLG.1.up":        { x: -64,	y: -75 },
-	"environment.rockLG.1.upRight":   { x: -64,	y: -75 },
-	"environment.rockLG.1.right":     { x: -64,	y: -75 },
-	"environment.rockLG.1.downRight": { x: -64,	y: -75 },
-	"environment.rockLG.1.down":      { x: -64,	y: -75 },
-	"environment.rockLG.1.downLeft":  { x: -64,	y: -75 },
-	"environment.rockLG.1.left":      { x: -64,	y: -75 },
-	"environment.rockLG.1.upLeft":    { x: -64,	y: -75 },
-
-	"environment.rockLG.2.up":        { x: -64,	y: -73 },
-	"environment.rockLG.2.upRight":   { x: -64,	y: -73 },
-	"environment.rockLG.2.right":     { x: -64,	y: -73 },
-	"environment.rockLG.2.downRight": { x: -64,	y: -73 },
-	"environment.rockLG.2.down":      { x: -64,	y: -73 },
-	"environment.rockLG.2.downLeft":  { x: -64,	y: -73 },
-	"environment.rockLG.2.left":      { x: -64,	y: -73 },
-	"environment.rockLG.2.upLeft":    { x: -64,	y: -73 },
-
-	"environment.rockLG.3.up":        { x: -64,	y: -80 },
-	"environment.rockLG.3.upRight":   { x: -64,	y: -80 },
-	"environment.rockLG.3.right":     { x: -64,	y: -80 },
-	"environment.rockLG.3.downRight": { x: -64,	y: -80 },
-	"environment.rockLG.3.down":      { x: -64,	y: -80 },
-	"environment.rockLG.3.downLeft":  { x: -64,	y: -80 },
-	"environment.rockLG.3.left":      { x: -64,	y: -80 },
-	"environment.rockLG.3.upLeft":    { x: -64,	y: -80 },
-
 	"environment.dirt.0": { x: -128,	y: -128 },
 	"environment.dirt.1": { x: -128,	y: -128 },
 	"environment.dirt.2": { x: -128,	y: -128 },
@@ -198,6 +141,16 @@ const SPRITES_CENTER_OFFSETS: Record<string, TCoordinates> = {
 	"environment.dirt.7": { x: -128,	y: -128 },
 	"environment.dirt.8": { x: -128,	y: -128 },
 	"environment.dirt.9": { x: -128,	y: -128 },
+
+	...Object.fromEntries(Object.entries(flatEnvironmentConfigItems).map(entry => {
+		return [
+			entry[0],
+			{
+				x: -entry[1].center.x,
+				y: -entry[1].center.y,
+			},
+		];
+	})),
 };
 
 const BORDERS_CENTER_OFFSETS = Object.fromEntries(

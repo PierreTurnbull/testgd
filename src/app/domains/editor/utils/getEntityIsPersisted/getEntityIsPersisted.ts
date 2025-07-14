@@ -13,7 +13,7 @@ export const getEntityIsPersisted = (
 	}
 
 	const gameEditorId = entity.getComponent(CGameEditorId).gameEditorId;
-	const isPersisted = Boolean(gameEditorStore.data.environment.find(environmentItem => environmentItem.gameEditorId === gameEditorId));
+	const isPersisted = Boolean(gameEditorStore.data.items.environment.find(environmentItem => environmentItem.gameEditorId === gameEditorId));
 
 	return isPersisted;
 };
