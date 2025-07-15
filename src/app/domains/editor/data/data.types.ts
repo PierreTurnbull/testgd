@@ -1,9 +1,11 @@
 import { TDirection8 } from "@root/app/common/components/direction/types/direction.types";
 import { TCoordinates } from "@root/app/common/types/coordinates.types";
+import { TPoint } from "@root/app/common/types/point.type";
 import { TVariant } from "@root/app/common/types/variant.types";
 
 export type TEnvironmentConfigItem = {
-	center: TCoordinates
+	center:       TCoordinates
+	hitboxPoints: TPoint[]
 }
 
 /**

@@ -1,0 +1,79 @@
+import { TDirection8 } from "@root/app/common/components/direction/types/direction.types";
+import { TPoint } from "@root/app/common/types/point.type";
+import { TSegment } from "@root/app/common/types/segment.types";
+import { useState } from "preact/hooks";
+import { EditorImage } from "../../common/EditorImage/EditorImage";
+import { EditorPoint } from "../../common/EditorPoint/EditorPoint";
+import { EditorSegment } from "../../common/EditorSegment/EditorSegment";
+
+type THitboxPointsEditorItemProps = {
+	name:              string
+	variant:           number
+	direction:         TDirection8
+	hitboxPoints:      TPoint[]
+	appendHitboxPoint: (hitboxPoint: TPoint) => void
+	updateHitboxPoint: (key: number, hitboxPoint: TPoint) => void
+}
+
+export const HitboxPointsEditorItem = ({
+	name,
+	variant,
+	direction,
+	hitboxPoints,
+	appendHitboxPoint,
+	updateHitboxPoint,
+}: THitboxPointsEditorItemProps) => {
+	const [mouseCoordinatesInImage, setMouseCoordinatesInImage] = useState({ x: 0, y: 0 });
+
+	return (
+		<div class="border border-amber-400 rounded p-4">
+			<div class="relative">
+				<EditorImage
+					name={name}
+					variant={variant}
+					direction={direction}
+					onClick={(point: TPoint) => {
+						appendHitboxPoint({
+							x: point.x,
+							y: point.y,
+						});
+					}}
+					onMouseMove={(point: TPoint) => {
+						setMouseCoordinatesInImage({
+							x: point.x,
+							y: point.y,
+						});
+					}}
+				/>
+				{
+					hitboxPoints.map((hitboxPoint, key) => {
+						const isLastPoint = key === hitboxPoints.length - 1;
+
+						const segment: TSegment = isLastPoint
+							? [hitboxPoint, hitboxPoints[0]]
+							: [hitboxPoint, hitboxPoints[key + 1]];
+
+						return (
+							<EditorSegment
+								segment={segment}
+							/>
+						);
+					})
+				}
+				{
+					hitboxPoints.map((hitboxPoint, key) => {
+						return (
+							<div key={`${hitboxPoint.x}.${hitboxPoint.y}`}>
+								<EditorPoint
+									coordinates={hitboxPoint}
+									mouseCoordinatesInImage={mouseCoordinatesInImage}
+									updatePoint={(point: TPoint) => updateHitboxPoint(key, point)}
+								/>
+							</div>
+						);
+					})
+				}
+			</div>
+		</div>
+	);
+};

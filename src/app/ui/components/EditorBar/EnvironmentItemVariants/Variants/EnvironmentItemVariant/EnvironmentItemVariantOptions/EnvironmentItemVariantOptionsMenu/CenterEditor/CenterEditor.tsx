@@ -5,6 +5,7 @@ import { gameEditorStore } from "@root/app/domains/editor/store/store";
 import { IconButton } from "@root/app/ui/components/common/IconButton/IconButton";
 import { Modal } from "@root/app/ui/components/common/Modal/Modal";
 import { useEffect, useState } from "preact/hooks";
+import { EditorButtons } from "../common/EditorButtons/EditorButtons";
 import { CenterEditorItem } from "./CenterEditorItem/CenterEditorItem";
 
 type TCenterEditorProps = {
@@ -52,60 +53,29 @@ export const CenterEditor = ({
 			close={close}
 		>
 			<div class="flex flex-col space-y-4 items-center">
-				<p class="text-amber-400">{name}.{variant}.{"down"}</p>
+				<p class="text-amber-400">{name}.{variant}.{direction}</p>
 				<CenterEditorItem
 					name={name}
 					variant={variant}
 					direction={direction}
 					center={centers[direction]}
-					setCenter={(direction: TDirection8, center: TCoordinates) => setCenters(prev => {
+					setCenter={(center: TCoordinates) => setCenters(prev => {
 						return {
 							...prev,
 							[direction]: center,
 						};
 					})}
 				/>
-				<div class="flex space-x-2">
-					<IconButton
-						icon="<"
-						onClick={async _ => {
-							setDirection(prev => {
-								const prevIndex = DIRECTIONS8.indexOf(prev);
-
-								const nextIndex = prevIndex === 0 ? DIRECTIONS8.length - 1 : prevIndex - 1;
-
-								return DIRECTIONS8[nextIndex];
-							});
-						}}
-					/>
-					<IconButton
-						icon="✓"
-						onClick={async _ => {
-							Object.entries(centers).forEach(entry => {
-								gameEditorStore!.data.config.environment[name][variant][entry[0] as TDirection8].center = entry[1];
-							});
-							close();
-						}}
-					/>
-					<IconButton
-						icon="✖"
-						onClick={async _ => {
-							close();
-						}}
-					/>
-					<IconButton
-						icon=">"
-						onClick={async _ => {
-							setDirection(prev => {
-								const prevIndex = DIRECTIONS8.indexOf(prev);
-
-								const nextIndex = prevIndex === DIRECTIONS8.length - 1 ? 0 : prevIndex + 1;
-
-								return DIRECTIONS8[nextIndex];
-							});
-						}}
-					/>
-				</div>
+				<EditorButtons
+					submit={async () => {
+						Object.entries(centers).forEach(entry => {
+							gameEditorStore!.data.config.environment[name][variant][entry[0] as TDirection8].center = entry[1];
+						});
+						close();
+					}}
+					close={close}
+					setDirection={setDirection}
+				/>
 			</div>
 		</Modal>
 	);

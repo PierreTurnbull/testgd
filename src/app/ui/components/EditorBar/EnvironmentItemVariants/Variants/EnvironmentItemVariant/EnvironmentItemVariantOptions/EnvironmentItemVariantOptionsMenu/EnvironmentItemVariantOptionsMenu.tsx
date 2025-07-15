@@ -2,6 +2,7 @@ import { IconButton } from "@root/app/ui/components/common/IconButton/IconButton
 import { Fragment } from "preact";
 import { useState } from "preact/hooks";
 import { CenterEditor } from "./CenterEditor/CenterEditor";
+import { HitboxPointsEditor } from "./HitboxPointsEditor/HitboxPointsEditor";
 
 type TEnvironmentItemVariantOptionsMenuProps = {
 	name:    string
@@ -15,6 +16,7 @@ export const EnvironmentItemVariantOptionsMenu = ({
 	isOpen,
 }: TEnvironmentItemVariantOptionsMenuProps) => {
 	const [centerEditorIsOpen, setCenterEditorIsOpen] = useState(false);
+	const [hitboxPointsEditorIsOpen, setHitboxPointsEditorIsOpen] = useState(false);
 
 	return (
 		<Fragment>
@@ -27,11 +29,18 @@ export const EnvironmentItemVariantOptionsMenu = ({
 			{
 				isOpen
 					? (
-						<div class="absolute top-2 left-2 z-20">
+						<div class="absolute top-2 left-2 z-20 flex space-x-1">
 							<IconButton
 								icon="·"
 								onClick={async _ => {
 									setCenterEditorIsOpen(prev => !prev);
+								}}
+								size="sm"
+							/>
+							<IconButton
+								icon="⁘"
+								onClick={async _ => {
+									setHitboxPointsEditorIsOpen(prev => !prev);
 								}}
 								size="sm"
 							/>
@@ -44,6 +53,17 @@ export const EnvironmentItemVariantOptionsMenu = ({
 					? (
 						<CenterEditor
 							close={() => setCenterEditorIsOpen(false)}
+							name={name}
+							variant={variant}
+						/>
+					)
+					: null
+			}
+			{
+				hitboxPointsEditorIsOpen
+					? (
+						<HitboxPointsEditor
+							close={() => setHitboxPointsEditorIsOpen(false)}
 							name={name}
 							variant={variant}
 						/>
