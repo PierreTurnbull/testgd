@@ -13,4 +13,9 @@ h1, h2, h3, h4, p, span {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	pointer-events: none;
+
+	:has(*) {
+		pointer-events: initial;
+	}
 }
