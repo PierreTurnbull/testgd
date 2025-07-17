@@ -1,5 +1,4 @@
 import { TDirection8 } from "@root/app/common/components/direction/types/direction.types";
-import { TCoordinates } from "@root/app/common/types/coordinates.types";
 import { TPoint } from "@root/app/common/types/point.type";
 import { gameEditorStore } from "@root/app/domains/editor/store/store";
 import { Modal } from "@root/app/ui/components/common/Modal/Modal";

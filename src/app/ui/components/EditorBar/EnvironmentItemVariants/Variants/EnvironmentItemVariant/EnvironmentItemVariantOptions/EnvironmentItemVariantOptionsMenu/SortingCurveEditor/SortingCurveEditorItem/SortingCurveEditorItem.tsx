@@ -1,29 +1,37 @@
 import { TDirection8 } from "@root/app/common/components/direction/types/direction.types";
 import { TPoint } from "@root/app/common/types/point.type";
 import { TSegment } from "@root/app/common/types/segment.types";
+import { gameEditorStore } from "@root/app/domains/editor/store/store";
+import { TViewSortingCurve } from "@root/app/domains/viewSortingCurve/types/viewSortingCurve.types";
 import { useState } from "preact/hooks";
 import { EditorImage } from "../../common/EditorImage/EditorImage";
 import { EditorPoint } from "../../common/EditorPoint/EditorPoint";
 import { EditorSegment } from "../../common/EditorSegment/EditorSegment";
 
-type THitboxPointsEditorItemProps = {
-	name:              string
-	variant:           number
-	direction:         TDirection8
-	hitboxPoints:      TPoint[]
-	appendHitboxPoint: (hitboxPoint: TPoint) => void
-	updateHitboxPoint: (key: number, hitboxPoint: TPoint) => void
+type TSortingCurveEditorItemProps = {
+	name:               string
+	variant:            number
+	direction:          TDirection8
+	sortingCurve:       TViewSortingCurve
+	appendSortingCurve: (sortingCurve: TPoint) => void
+	updateSortingCurve: (key: number, sortingCurve: TPoint) => void
 }
 
-export const HitboxPointsEditorItem = ({
+export const SortingCurveEditorItem = ({
 	name,
 	variant,
 	direction,
-	hitboxPoints,
-	appendHitboxPoint,
-	updateHitboxPoint,
-}: THitboxPointsEditorItemProps) => {
+	sortingCurve,
+	appendSortingCurve,
+	updateSortingCurve,
+}: TSortingCurveEditorItemProps) => {
 	const [mouseCoordinatesInImage, setMouseCoordinatesInImage] = useState({ x: 0, y: 0 });
+
+	if (!gameEditorStore) {
+		throw new Error("Game editor store is not initialized.");
+	}
+
+	const hitboxPoints = gameEditorStore.data.config.environment[name][variant][direction].hitboxPoints;
 
 	return (
 		<div class="border border-amber-400 rounded p-4">
@@ -33,7 +41,7 @@ export const HitboxPointsEditorItem = ({
 					variant={variant}
 					direction={direction}
 					onClick={(point: TPoint) => {
-						appendHitboxPoint({
+						appendSortingCurve({
 							x: point.x,
 							y: point.y,
 						});
@@ -45,6 +53,9 @@ export const HitboxPointsEditorItem = ({
 						});
 					}}
 				/>
+
+				{/* Display hitbox points as a reference. They cannot be updated from here. */}
+
 				{
 					hitboxPoints.map((hitboxPoint, key) => {
 						const isLastPoint = key === hitboxPoints.length - 1;
@@ -54,7 +65,7 @@ export const HitboxPointsEditorItem = ({
 							: [hitboxPoint, hitboxPoints[key + 1]];
 
 						return (
-							<div key={`${hitboxPoint.x}.${hitboxPoint.y}`}>
+							<div key={`${hitboxPoint.x}.${hitboxPoint.y}`} class="pointer-events-none">
 								<EditorSegment
 									segment={segment}
 								/>
@@ -63,13 +74,40 @@ export const HitboxPointsEditorItem = ({
 					})
 				}
 				{
-					hitboxPoints.map((hitboxPoint, key) => {
+					hitboxPoints.map(hitboxPoint => {
 						return (
 							<div key={`${hitboxPoint.x}.${hitboxPoint.y}`}>
 								<EditorPoint
 									coordinates={hitboxPoint}
+								/>
+							</div>
+						);
+					})
+				}
+
+				{/* Edit the sorting curve. */}
+
+				{
+					sortingCurve.slice(0, -1).map((point, key) => {
+						const segment: TSegment = [point, sortingCurve[key + 1]];
+
+						return (
+							<EditorSegment
+								segment={segment}
+								color={"blue"}
+							/>
+						);
+					})
+				}
+				{
+					sortingCurve.map((point, key) => {
+						return (
+							<div key={`${point.x}.${point.y}`}>
+								<EditorPoint
+									coordinates={point}
 									mouseCoordinatesInImage={mouseCoordinatesInImage}
-									updatePoint={(point: TPoint) => updateHitboxPoint(key, point)}
+									updatePoint={(point: TPoint) => updateSortingCurve(key, point)}
+									color={"blue"}
 								/>
 							</div>
 						);

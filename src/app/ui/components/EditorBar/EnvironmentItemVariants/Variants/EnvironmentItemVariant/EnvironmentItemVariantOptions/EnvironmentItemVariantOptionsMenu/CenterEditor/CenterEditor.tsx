@@ -1,8 +1,6 @@
 import { TDirection8 } from "@root/app/common/components/direction/types/direction.types";
-import { DIRECTIONS8 } from "@root/app/common/constants/space.constants";
 import { TCoordinates } from "@root/app/common/types/coordinates.types";
 import { gameEditorStore } from "@root/app/domains/editor/store/store";
-import { IconButton } from "@root/app/ui/components/common/IconButton/IconButton";
 import { Modal } from "@root/app/ui/components/common/Modal/Modal";
 import { useEffect, useState } from "preact/hooks";
 import { EditorButtons } from "../common/EditorButtons/EditorButtons";

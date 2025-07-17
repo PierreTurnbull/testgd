@@ -2,10 +2,12 @@ import { TDirection8 } from "@root/app/common/components/direction/types/directi
 import { TCoordinates } from "@root/app/common/types/coordinates.types";
 import { TPoint } from "@root/app/common/types/point.type";
 import { TVariant } from "@root/app/common/types/variant.types";
+import { TViewSortingCurve } from "../../viewSortingCurve/types/viewSortingCurve.types";
 
 export type TEnvironmentConfigItem = {
 	center:       TCoordinates
 	hitboxPoints: TPoint[]
+	sortingCurve: TViewSortingCurve
 }
 
 /**

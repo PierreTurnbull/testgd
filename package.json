@@ -39,6 +39,7 @@
 		"image-size": "^1.1.1",
 		"jsdom": "^25.0.1",
 		"nodemon": "^3.1.7",
+		"tailwindcss": "^4.1.11",
 		"tslib": "^2.7.0",
 		"typescript": "^5.7.2",
 		"typescript-eslint": "^8.19.0",
@@ -53,7 +54,6 @@
 		"lodash": "^4.17.21",
 		"pixi.js": "^8.4.1",
 		"preact": "^10.26.2",
-		"tailwindcss": "^4.1.11",
 		"upgrade": "^1.1.0"
 	}
 }

@@ -3,6 +3,7 @@ import { Fragment } from "preact";
 import { useState } from "preact/hooks";
 import { CenterEditor } from "./CenterEditor/CenterEditor";
 import { HitboxPointsEditor } from "./HitboxPointsEditor/HitboxPointsEditor";
+import { SortingCurveEditor } from "./SortingCurveEditor/SortingCurveEditor";
 
 type TEnvironmentItemVariantOptionsMenuProps = {
 	name:    string
@@ -17,6 +18,7 @@ export const EnvironmentItemVariantOptionsMenu = ({
 }: TEnvironmentItemVariantOptionsMenuProps) => {
 	const [centerEditorIsOpen, setCenterEditorIsOpen] = useState(false);
 	const [hitboxPointsEditorIsOpen, setHitboxPointsEditorIsOpen] = useState(false);
+	const [sortingCurveEditorIsOpen, setSortingCurveEditorIsOpen] = useState(false);
 
 	return (
 		<Fragment>
@@ -44,6 +46,13 @@ export const EnvironmentItemVariantOptionsMenu = ({
 								}}
 								size="sm"
 							/>
+							<IconButton
+								icon="–"
+								onClick={async _ => {
+									setSortingCurveEditorIsOpen(prev => !prev);
+								}}
+								size="sm"
+							/>
 						</div>
 					)
 					: null
@@ -64,6 +73,17 @@ export const EnvironmentItemVariantOptionsMenu = ({
 					? (
 						<HitboxPointsEditor
 							close={() => setHitboxPointsEditorIsOpen(false)}
+							name={name}
+							variant={variant}
+						/>
+					)
+					: null
+			}
+			{
+				sortingCurveEditorIsOpen
+					? (
+						<SortingCurveEditor
+							close={() => setSortingCurveEditorIsOpen(false)}
 							name={name}
 							variant={variant}
 						/>

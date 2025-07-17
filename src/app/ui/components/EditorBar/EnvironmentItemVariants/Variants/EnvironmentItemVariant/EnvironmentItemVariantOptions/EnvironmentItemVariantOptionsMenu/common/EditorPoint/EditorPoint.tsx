@@ -1,23 +1,26 @@
 import { TCoordinates } from "@root/app/common/types/coordinates.types";
 import { TPoint } from "@root/app/common/types/point.type";
 import { useEffect, useState } from "preact/hooks";
+import { TColor } from "../colors/colors";
 
 type TEditorPoint = {
-	coordinates:             TCoordinates
-	mouseCoordinatesInImage: TPoint
-	updatePoint?:            (point: TPoint) => void
+	coordinates:              TCoordinates
+	mouseCoordinatesInImage?: TPoint
+	updatePoint?:             (point: TPoint) => void
+	color?:                   TColor
 }
 
 export const EditorPoint = ({
 	coordinates,
 	mouseCoordinatesInImage,
 	updatePoint,
+	color = "amber",
 }: TEditorPoint) => {
 	const [isDragging, setIsDragging] = useState(false);
 	const [localCoordinates, setLocalCoordinates] = useState(coordinates);
 
 	useEffect(() => {
-		if (!isDragging || !updatePoint) return;
+		if (!isDragging || !updatePoint || !mouseCoordinatesInImage) return;
 
 		const nextPoint = {
 			x: mouseCoordinatesInImage.x,
@@ -33,9 +36,20 @@ export const EditorPoint = ({
 
 	return (
 		<div
-			class={"absolute top-0 left-0 w-2 h-2 rounded bg-amber-400 -translate-1"}
-			onMouseDown={updatePoint ? () => setIsDragging(true) : undefined}
-			onMouseUp={updatePoint ? () => {
+			class={`
+				absolute
+				top-0
+				left-0
+				w-2
+				h-2
+				rounded
+				${color === "blue" ? "bg-blue-600" : ""}
+				${color === "amber" ? "bg-amber-400" : ""}
+				-translate-1
+				${updatePoint ? "" : "pointer-events-none"}
+			`}
+			onMouseDown={updatePoint && mouseCoordinatesInImage ? () => setIsDragging(true) : undefined}
+			onMouseUp={updatePoint && mouseCoordinatesInImage ? () => {
 				setIsDragging(false);
 				updatePoint(localCoordinates);
 			} : undefined}

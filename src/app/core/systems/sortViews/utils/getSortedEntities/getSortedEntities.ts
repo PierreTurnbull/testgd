@@ -1,6 +1,4 @@
 import { CLocation } from "@root/app/common/components/location/location.component";
-import { CView } from "@root/app/common/components/view/view.component";
-import { ENTITIES_CENTER_OFFSETS } from "@root/app/common/constants/views.constants";
 import { TOffset } from "@root/app/common/types/offset.types";
 import { TPoint } from "@root/app/common/types/point.type";
 import { TSegment } from "@root/app/common/types/segment.types";
@@ -17,20 +15,14 @@ export const getSortedEntities = (
 ) => {
 	const sortedViewEntities = sortableViewEntities.sort((a, b) => {
 		const aCoordinates = a.getComponent(CLocation).coordinates;
-		const aView = a.getComponent(CView).view;
 		const aViewSortingCurve = a.getComponent(CViewSortingCurve).viewSortingCurve;
 		const aViewSortingCurveOffset = a.getComponent(CViewSortingCurveOffset).viewSortingCurveOffset;
-
-		const aOffset = ENTITIES_CENTER_OFFSETS[aView.label];
-		if (!aOffset) {
-			throw new Error(`Missing offset for entity "${aView.label}".`);
-		}
 
 		const bCoordinates = b.getComponent(CLocation).coordinates;
 		const bViewSortingCurve = b.getComponent(CViewSortingCurve).viewSortingCurve;
 		const bViewSortingCurveOffset = b.getComponent(CViewSortingCurveOffset).viewSortingCurveOffset;
 
-		// the x coordinate relative to the sorting curve
+		// a's x coordinateS relative to the sorting curve
 		const aXOnSortingCurve = aCoordinates.x - (bCoordinates.x + bViewSortingCurveOffset.x);
 
 		const bCurveSegments: TSegment[] = getAllSegmentsFromCurve(bViewSortingCurve);
@@ -40,6 +32,9 @@ export const getSortedEntities = (
 		let segmentCandidate: TSegment | null = null;
 		let aPoint: TPoint | null = null;
 
+		// Find comparable values between the two entities.
+		// The comparable values are:
+		// The center of a, or extremities if the center is unav 
 		for (let i = 0; i < bCurveSegments.length; i++) {
 			const bSegment = bCurveSegments[i];
 
@@ -112,8 +107,13 @@ export const getSortedEntities = (
 					break;
 				}
 			}
+
 		}
 
+		// These must never happen because "infinite" leading and trailing segments are inferred on
+		// each entity's sorting curve, providing a point of reference for any position of each
+		// entity. Note that "infinite" does not actually mean infinite, but an extreme value,
+		// because infinity makes the computation impossible.
 		if (!segmentCandidate) {
 			throw new Error("Missing segment candidate.");
 		}
