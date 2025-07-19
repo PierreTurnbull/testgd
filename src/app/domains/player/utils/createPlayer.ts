@@ -16,7 +16,6 @@ import { AVAILABLE_ACTIONS } from "@root/app/common/constants/availableActions.c
 import { ANGLE_NAMES } from "@root/app/common/constants/space.constants";
 import { ENTITIES_CENTER_OFFSETS } from "@root/app/common/constants/views.constants";
 import { TCoordinates } from "@root/app/common/types/coordinates.types";
-import { TOffset } from "@root/app/common/types/offset.types";
 import { initAnimatedSprite } from "@root/app/common/utils/views/initAnimatedSprite/initAnimatedSprite";
 import { initBorderView } from "@root/app/common/utils/views/initBorderView/initBorderView";
 import { initCenterView } from "@root/app/common/utils/views/initCenterView/initCenterView";
@@ -26,10 +25,10 @@ import { PLAYER_RUNNING_SPEED } from "@root/app/domains/player/constants/player.
 import { relationsManager } from "@root/app/domains/relationManager/relationsManager.singleton";
 import { TViewSortingCurve } from "@root/app/domains/viewSortingCurve/types/viewSortingCurve.types";
 import { Graphics } from "pixi.js";
+import { HITBOX_BOUNDS } from "../../hitbox/constants/hitboxes.constants";
 import { TRectangleHitboxSettings } from "../../hitbox/types/hitbox.types";
 import { createHitbox } from "../../hitbox/utils/createHitbox";
 import { CViewSortingCurve } from "../../viewSortingCurve/components/viewSortingCurve/viewSortingCurve.component";
-import { CViewSortingCurveOffset } from "../../viewSortingCurve/components/viewSortingCurveOffset/viewSortingCurveOffset.component";
 import { CViewSortingCurveView } from "../../viewSortingCurve/components/viewSortingCurveView/viewSortingCurveView.component";
 import { initViewSortingCurveView } from "../../viewSortingCurve/utils/initViewSortingCurveView/initViewSortingCurveView";
 import { CPlayer } from "../components/user/user.component";
@@ -38,9 +37,9 @@ export const createPlayer = (
 	initialCoordinates: TCoordinates,
 	initialDirection: TDirection = 90,
 ) => {
-	const name = `characters.player.standing.${ANGLE_NAMES.get(initialDirection)}`;
+	const viewName = `characters.player.standing.${ANGLE_NAMES.get(initialDirection)}`;
 
-	const animatedSprite = initAnimatedSprite(name, initialCoordinates);
+	const animatedSprite = initAnimatedSprite(viewName, initialCoordinates);
 
 	let borderView: Graphics | null = null;
 	let centerView: Graphics | null = null;
@@ -66,18 +65,20 @@ export const createPlayer = (
 		throw new Error("Missing center offset for player.");
 	}
 
-	const centerOffset = ENTITIES_CENTER_OFFSETS[name];
+	const centerOffset = ENTITIES_CENTER_OFFSETS[viewName];
 	if (!centerOffset) {
-		throw new Error(`Missing center offsets for "${name}".`);
+		throw new Error(`Missing center offsets for "${viewName}".`);
 	}
 
-	const viewSortingCurveOffset: TOffset = {
-		x: centerOffset.x,
-		y: centerOffset.y,
-	};
 	const viewSortingCurve: TViewSortingCurve = [
-		{ x: 0, y: -viewSortingCurveOffset.y },
-		{ x: animatedSprite.width, y: -viewSortingCurveOffset.y },
+		{
+			x: 0 - centerOffset.x - HITBOX_BOUNDS["characters.player.motion"].w / 2,
+			y: 0 - centerOffset.y,
+		},
+		{
+			x: 0 - centerOffset.x + HITBOX_BOUNDS["characters.player.motion"].w / 2,
+			y: 0 - centerOffset.y,
+		},
 	];
 
 	if (configManager.config.debug.showsViewSortingCurves) {
@@ -85,7 +86,7 @@ export const createPlayer = (
 			"characters.player",
 			initialCoordinates,
 			viewSortingCurve,
-			viewSortingCurveOffset,
+			centerOffset,
 		);
 	}
 
@@ -106,7 +107,6 @@ export const createPlayer = (
 
 			// view sorting curve
 			new CViewSortingCurve(viewSortingCurve),
-			new CViewSortingCurveOffset(viewSortingCurveOffset),
 			new CViewSortingCurveView(viewSortingCurveView),
 
 			// views

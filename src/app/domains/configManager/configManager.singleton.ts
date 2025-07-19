@@ -36,7 +36,7 @@ class ConfigManager {
 			/**
 			 * The coordinates of the mouse, displayed on top of the mouse.
 			 */
-			showsMouseCoordinates:            false,
+			showsMouseCoordinates:            true,
 			/**
 			 * Logs the performance of updating visiblity graphs.
 			 */

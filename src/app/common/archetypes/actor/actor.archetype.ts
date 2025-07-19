@@ -8,7 +8,6 @@ import { CLocation } from "../../components/location/location.component";
 import { CVelocity } from "../../components/velocity/velocity.component";
 import { CView } from "../../components/view/view.component";
 import { Archetype } from "../archetype.models";
-import { CViewSortingCurveOffset } from "@root/app/domains/viewSortingCurve/components/viewSortingCurveOffset/viewSortingCurveOffset.component";
 
 /**
  * Any entity that can perform some actions.
@@ -25,7 +24,6 @@ export class AActor extends Archetype {
 			CBorderView,
 			CCenterView,
 			CViewSortingCurve,
-			CViewSortingCurveOffset,
 		]);
 	}
 }

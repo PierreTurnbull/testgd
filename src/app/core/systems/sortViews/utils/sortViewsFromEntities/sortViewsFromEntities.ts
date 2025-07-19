@@ -7,6 +7,9 @@ import { CHitboxView } from "@root/app/domains/hitbox/components/hitboxView/hitb
 import { CViewSortingCurveView } from "@root/app/domains/viewSortingCurve/components/viewSortingCurveView/viewSortingCurveView.component";
 import { DEBUG_VIEW_Z_OFFSET } from "../../constants/sortViews.constants";
 
+/**
+ * Reorder entity views in order.
+ */
 export const sortViewsFromEntities = (
 	sortedViewEntities: Entity[],
 ) => {

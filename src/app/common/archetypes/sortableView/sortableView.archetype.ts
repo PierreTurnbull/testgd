@@ -1,6 +1,5 @@
 import { CViewSortingCurve } from "@root/app/domains/viewSortingCurve/components/viewSortingCurve/viewSortingCurve.component";
 import { Archetype } from "../archetype.models";
-import { CViewSortingCurveOffset } from "@root/app/domains/viewSortingCurve/components/viewSortingCurveOffset/viewSortingCurveOffset.component";
 
 /**
  * Any entity that has a visual representation.
@@ -11,7 +10,6 @@ export class ASortableView extends Archetype {
 	constructor() {
 		super([
 			CViewSortingCurve,
-			CViewSortingCurveOffset,
 		]);
 	}
 }

@@ -1,4 +1,4 @@
-import { Entity } from "../../entities/entity.models";
+import { Entity } from "../../entity/entity.models";
 
 export type TMemoryItemType = "didHit" | "didUpdatePath"
 

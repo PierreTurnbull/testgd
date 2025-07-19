@@ -11,29 +11,29 @@
                         "sortingCurve": [
                             {
                                 "x": 16,
-                                "y": 442
+                                "y": 443
                             },
                             {
-                                "x": 727,
-                                "y": 433
+                                "x": 724,
+                                "y": 440
                             }
                         ],
                         "hitboxPoints": [
                             {
-                                "x": 15,
-                                "y": 444
+                                "x": 17,
+                                "y": 445
                             },
                             {
-                                "x": 132,
-                                "y": 510
+                                "x": 139,
+                                "y": 511
                             },
                             {
-                                "x": 684,
-                                "y": 507
+                                "x": 693,
+                                "y": 506
                             },
                             {
-                                "x": 726,
-                                "y": 432
+                                "x": 723,
+                                "y": 441
                             }
                         ]
                     },
@@ -162,30 +162,30 @@
                         },
                         "sortingCurve": [
                             {
-                                "x": 52,
-                                "y": 431
+                                "x": 744,
+                                "y": 439
                             },
                             {
-                                "x": 751,
-                                "y": 427
+                                "x": 42,
+                                "y": 444
                             }
                         ],
                         "hitboxPoints": [
                             {
-                                "x": 51,
-                                "y": 432
+                                "x": 44,
+                                "y": 444
                             },
                             {
-                                "x": 111,
-                                "y": 507
+                                "x": 114,
+                                "y": 508
                             },
                             {
-                                "x": 702,
-                                "y": 498
+                                "x": 700,
+                                "y": 501
                             },
                             {
-                                "x": 753,
-                                "y": 423
+                                "x": 749,
+                                "y": 438
                             }
                         ]
                     },
@@ -2390,54 +2390,14 @@
     "items": {
         "environment": [
             {
-                "gameEditorId": 113,
-                "name": "rockMD",
-                "coordinates": {
-                    "x": 143,
-                    "y": 240
-                },
-                "variant": 2,
-                "direction8": "down"
-            },
-            {
-                "gameEditorId": 144,
+                "gameEditorId": 145,
                 "name": "rockLG",
                 "coordinates": {
-                    "x": 206,
-                    "y": -248
+                    "x": -358,
+                    "y": 4
                 },
                 "variant": 0,
-                "direction8": "upRight"
-            },
-            {
-                "gameEditorId": 145,
-                "name": "rockMD",
-                "coordinates": {
-                    "x": -235,
-                    "y": -150
-                },
-                "variant": 2,
                 "direction8": "down"
-            },
-            {
-                "gameEditorId": 152,
-                "name": "rockLG",
-                "coordinates": {
-                    "x": -191,
-                    "y": 106
-                },
-                "variant": 1,
-                "direction8": "right"
-            },
-            {
-                "gameEditorId": 154,
-                "name": "rockLG",
-                "coordinates": {
-                    "x": 580,
-                    "y": 210
-                },
-                "variant": 3,
-                "direction8": "downLeft"
             }
         ]
     }

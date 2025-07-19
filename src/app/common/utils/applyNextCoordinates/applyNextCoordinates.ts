@@ -4,7 +4,6 @@ import { configManager } from "@root/app/domains/configManager/configManager.sin
 import { CHitbox } from "@root/app/domains/hitbox/components/hitbox/hitbox.component";
 import { CHitboxOffset } from "@root/app/domains/hitbox/components/hitboxOffset/hitboxOffset.component";
 import { updateHitboxPosition } from "@root/app/domains/hitbox/utils/updateHitboxPosition";
-import { CViewSortingCurveOffset } from "@root/app/domains/viewSortingCurve/components/viewSortingCurveOffset/viewSortingCurveOffset.component";
 import { CViewSortingCurveView } from "@root/app/domains/viewSortingCurve/components/viewSortingCurveView/viewSortingCurveView.component";
 import { Entity } from "../../../domains/entity/entity.models";
 import { CHitboxView } from "../../../domains/hitbox/components/hitboxView/hitboxView.component";
@@ -27,7 +26,6 @@ export const applyNextCoordinates = (
 	const locationComponent = entity.getComponent(CLocation);
 	const centerViewComponent = entity.getComponent(CCenterView);
 	const viewSortingCurveViewComponent = entity.getComponent(CViewSortingCurveView);
-	const viewSortingCurveOffsetComponent = entity.getComponent(CViewSortingCurveOffset);
 
 	// update coordinates
 
@@ -35,8 +33,8 @@ export const applyNextCoordinates = (
 
 	// update views
 
-	const centerOffsets = ENTITIES_CENTER_OFFSETS[viewComponent.view.label];
-	const offsetCoordinates = getOffsetCoordinates(nextCoordinates, centerOffsets);
+	const centerOffset = ENTITIES_CENTER_OFFSETS[viewComponent.view.label];
+	const offsetCoordinates = getOffsetCoordinates(nextCoordinates, centerOffset);
 
 	updateViewContainerCoordinates(viewComponent.view, offsetCoordinates);
 
@@ -65,7 +63,8 @@ export const applyNextCoordinates = (
 	}
 
 	if (configManager.config.debug.showsViewSortingCurves && viewSortingCurveViewComponent.viewSortingCurveView) {
-		const offsetCoordinates = getOffsetCoordinates(nextCoordinates, viewSortingCurveOffsetComponent.viewSortingCurveOffset);
+		const centerOffset = ENTITIES_CENTER_OFFSETS[viewComponent.view.label];
+		const offsetCoordinates = getOffsetCoordinates(nextCoordinates, centerOffset);
 
 		updateViewContainerCoordinates(viewSortingCurveViewComponent.viewSortingCurveView, offsetCoordinates);
 	}

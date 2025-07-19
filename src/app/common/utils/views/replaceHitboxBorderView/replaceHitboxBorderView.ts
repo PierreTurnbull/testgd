@@ -6,6 +6,9 @@ import { CHitboxOffset } from "@root/app/domains/hitbox/components/hitboxOffset/
 import { CHitboxView } from "@root/app/domains/hitbox/components/hitboxView/hitboxView.component";
 import { initHitboxBorderView } from "../initHitboxBorderView/initHitboxBorderView";
 
+/**
+ * Frees the previous hitbox border view and sets the new one.
+ */
 export const replaceHitboxBorderView = (
 	hitboxEntity: Entity,
 	coordinates: TCoordinates,

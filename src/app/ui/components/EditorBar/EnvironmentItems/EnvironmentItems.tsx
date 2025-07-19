@@ -1,7 +1,6 @@
 import { useState } from "preact/hooks";
 import { useClosingContext } from "../../../contexts/closing/useClosingContext";
 import { uiBus } from "../../../utils/uiBus/uiBus.singleton";
-import { IconButton } from "../../common/IconButton/IconButton";
 import { MenuItems } from "../../common/MenuItems/MenuItems";
 import { EnvironmentItemVariants } from "../EnvironmentItemVariants/Variants/EnvironmentItemVariants";
 import { EnvironmentItem } from "./EnvironmentItem/EnvironmentItem";

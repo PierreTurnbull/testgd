@@ -20,7 +20,6 @@ import { AVAILABLE_ACTIONS } from "@root/app/common/constants/availableActions.c
 import { ANGLE_NAMES, DIRECTION8_ANGLES } from "@root/app/common/constants/space.constants";
 import { ENTITIES_CENTER_OFFSETS } from "@root/app/common/constants/views.constants";
 import { TCoordinates } from "@root/app/common/types/coordinates.types";
-import { TOffset } from "@root/app/common/types/offset.types";
 import { initAnimatedSprite } from "@root/app/common/utils/views/initAnimatedSprite/initAnimatedSprite";
 import { initBorderView } from "@root/app/common/utils/views/initBorderView/initBorderView";
 import { initCenterView } from "@root/app/common/utils/views/initCenterView/initCenterView";
@@ -31,6 +30,7 @@ import { relationsManager } from "@root/app/domains/relationManager/relationsMan
 import { CViewSortingCurveView } from "@root/app/domains/viewSortingCurve/components/viewSortingCurveView/viewSortingCurveView.component";
 import { TViewSortingCurve } from "@root/app/domains/viewSortingCurve/types/viewSortingCurve.types";
 import { Graphics } from "pixi.js";
+import { HITBOX_BOUNDS } from "../../hitbox/constants/hitboxes.constants";
 import { TRectangleHitboxSettings } from "../../hitbox/types/hitbox.types";
 import { createHitbox } from "../../hitbox/utils/createHitbox";
 import { CMemory } from "../../memory/components/memory/memory.component";
@@ -39,7 +39,6 @@ import { createVisibilityGraph } from "../../pathfinding/utils/createVisibilityG
 import { CMustBeDestroyedOnCollision } from "../../projectile/components/mustBeDestroyedOnCollision/mustBeDestroyedOnCollision.component";
 import { CProjectile } from "../../projectile/components/projectile/projectile.component";
 import { CViewSortingCurve } from "../../viewSortingCurve/components/viewSortingCurve/viewSortingCurve.component";
-import { CViewSortingCurveOffset } from "../../viewSortingCurve/components/viewSortingCurveOffset/viewSortingCurveOffset.component";
 import { initViewSortingCurveView } from "../../viewSortingCurve/utils/initViewSortingCurveView/initViewSortingCurveView";
 import { CMuddyBuddy } from "../components/muddyBuddy/muddyBuddy.component";
 
@@ -47,9 +46,9 @@ export const createMuddyBuddy = (
 	initialCoordinates: TCoordinates,
 	initialDirection: TDirection = DIRECTION8_ANGLES.down,
 ) => {
-	const name = `characters.muddyBuddy.standing.${ANGLE_NAMES.get(initialDirection)}`;
+	const viewName = `characters.muddyBuddy.standing.${ANGLE_NAMES.get(initialDirection)}`;
 
-	const animatedSprite = initAnimatedSprite(name, initialCoordinates);
+	const animatedSprite = initAnimatedSprite(viewName, initialCoordinates);
 
 	let border: Graphics | null = null;
 	let center: Graphics | null = null;
@@ -75,18 +74,20 @@ export const createMuddyBuddy = (
 		throw new Error("Missing center offset for muddyBuddy.");
 	}
 
-	const centerOffset = ENTITIES_CENTER_OFFSETS[name];
+	const centerOffset = ENTITIES_CENTER_OFFSETS[viewName];
 	if (!centerOffset) {
-		throw new Error(`Missing center offsets for "${name}".`);
+		throw new Error(`Missing center offsets for "${viewName}".`);
 	}
-
-	const viewSortingCurveOffset: TOffset = {
-		x: centerOffset.x,
-		y: centerOffset.y,
-	};
+	
 	const viewSortingCurve: TViewSortingCurve = [
-		{ x: 0, y: -viewSortingCurveOffset.y },
-		{ x: animatedSprite.width, y: -viewSortingCurveOffset.y },
+		{
+			x: 0 - HITBOX_BOUNDS["characters.muddyBuddy.motion"].w / 2,
+			y: 0,
+		},
+		{
+			x: 0 + HITBOX_BOUNDS["characters.muddyBuddy.motion"].w / 2,
+			y: 0,
+		},
 	];
 
 	if (configManager.config.debug.showsViewSortingCurves) {
@@ -94,7 +95,7 @@ export const createMuddyBuddy = (
 			"characters.muddyBuddy",
 			initialCoordinates,
 			viewSortingCurve,
-			viewSortingCurveOffset,
+			centerOffset,
 		);
 	}
 
@@ -121,7 +122,6 @@ export const createMuddyBuddy = (
 
 			// view sorting curve
 			new CViewSortingCurve(viewSortingCurve),
-			new CViewSortingCurveOffset(viewSortingCurveOffset),
 			new CViewSortingCurveView(viewSortingCurveView),
 
 			// views

@@ -1,132 +1,88 @@
-import { CLocation } from "@root/app/common/components/location/location.component";
-import { TOffset } from "@root/app/common/types/offset.types";
 import { TPoint } from "@root/app/common/types/point.type";
-import { TSegment } from "@root/app/common/types/segment.types";
+import { getPolygonalChainExtremities } from "@root/app/common/utils/geometry/getPolygonalChainExtremities/getPolygonalChainExtremities";
 import { Entity } from "@root/app/domains/entity/entity.models";
-import { CViewSortingCurve } from "@root/app/domains/viewSortingCurve/components/viewSortingCurve/viewSortingCurve.component";
-import { CViewSortingCurveOffset } from "@root/app/domains/viewSortingCurve/components/viewSortingCurveOffset/viewSortingCurveOffset.component";
-import { getAllSegmentsFromCurve } from "../getAllSegmentsFromCurve/getAllSegmentsFromCurve";
+import { addIntervalExtremities } from "@root/app/domains/viewSortingCurve/utils/addIntervalExtremities/addIntervalExtremities";
+import { addMatchingPoints } from "@root/app/domains/viewSortingCurve/utils/addMatchingPoints/addMatchingPoints";
+import { addSegmentIntersections } from "@root/app/domains/viewSortingCurve/utils/addSegmentIntersections/addSegmentIntersections";
+import { getAbsoluteSortingCurve } from "@root/app/domains/viewSortingCurve/utils/getAbsoluteSortingCurve/getAbsoluteSortingCurve";
+import { getScores } from "@root/app/domains/viewSortingCurve/utils/getScores/getScores";
 
 /**
  * Returns sorted entities.
+ * 
+ * Entities are sorted by comparing their sorting curves. A sorting curve is a polygonal chain.
+ * 
+ * Curves are considered fully in front or behind other curves, even though they might cross in
+ * multiple points. This makes the process simpler, at the expense of making crossing objects
+ * visually incoherent. It is expected that objects are configured in a coherent way with few to no
+ * crossing. This will drastically reduce incoherent results from this function.
  */
 export const getSortedEntities = (
 	sortableViewEntities: Entity[],
 ) => {
 	const sortedViewEntities = sortableViewEntities.sort((a, b) => {
-		const aCoordinates = a.getComponent(CLocation).coordinates;
-		const aViewSortingCurve = a.getComponent(CViewSortingCurve).viewSortingCurve;
-		const aViewSortingCurveOffset = a.getComponent(CViewSortingCurveOffset).viewSortingCurveOffset;
+		// Convert sorting curves values into absolute values in order to compare them with each
+		// other.
+		const absoluteASortingCurve = getAbsoluteSortingCurve(a);
+		const absoluteBSortingCurve = getAbsoluteSortingCurve(b);
 
-		const bCoordinates = b.getComponent(CLocation).coordinates;
-		const bViewSortingCurve = b.getComponent(CViewSortingCurve).viewSortingCurve;
-		const bViewSortingCurveOffset = b.getComponent(CViewSortingCurveOffset).viewSortingCurveOffset;
+		const aExtremities = getPolygonalChainExtremities(absoluteASortingCurve);
+		const bExtremities = getPolygonalChainExtremities(absoluteBSortingCurve);
 
-		// a's x coordinateS relative to the sorting curve
-		const aXOnSortingCurve = aCoordinates.x - (bCoordinates.x + bViewSortingCurveOffset.x);
-
-		const bCurveSegments: TSegment[] = getAllSegmentsFromCurve(bViewSortingCurve);
-		const aCurveSegments: TSegment[] = getAllSegmentsFromCurve(aViewSortingCurve);
-
-		// segment from the curve which x interval includes aPoint.x
-		let segmentCandidate: TSegment | null = null;
-		let aPoint: TPoint | null = null;
-
-		// Find comparable values between the two entities.
-		// The comparable values are:
-		// The center of a, or extremities if the center is unav 
-		for (let i = 0; i < bCurveSegments.length; i++) {
-			const bSegment = bCurveSegments[i];
-
-			for (let i = 0; i < aCurveSegments.length; i++) {
-				const aSegment = aCurveSegments[i];
-
-				// points
-
-				const aTotalOffset: TOffset = {
-					x: aViewSortingCurveOffset.x + aCoordinates.x,
-					y: aViewSortingCurveOffset.y + aCoordinates.y,
-				};
-
-				const bTotalOffset: TOffset = {
-					x: bViewSortingCurveOffset.x + bCoordinates.x,
-					y: bViewSortingCurveOffset.y + bCoordinates.y,
-				};
-
-				const aLeftExtremity: TPoint = {
-					x: aSegment[0].x + aTotalOffset.x,
-					y: aSegment[0].y + aTotalOffset.y,
-				};
-				const aRightExtremity: TPoint = {
-					x: aSegment[1].x + aTotalOffset.x,
-					y: aSegment[1].y + aTotalOffset.y,
-				};
-
-				// entity a's center
-
-				const centerIsInInterval = (
-					aCoordinates.x >= bSegment[0].x + bTotalOffset.x &&
-					aCoordinates.x <= bSegment[1].x + bTotalOffset.x
-				);
-
-				if (centerIsInInterval) {
-					segmentCandidate = bSegment;
-					aPoint = aCoordinates;
-					break;
-				}
-
-				// entity a's left extremity
-
-				const leftExtremityIsInInterval = (
-					aLeftExtremity.x >= bSegment[0].x + bTotalOffset.x &&
-					aLeftExtremity.x <= bSegment[1].x + bTotalOffset.x
-				);
-
-				if (leftExtremityIsInInterval) {
-					segmentCandidate = bSegment;
-					aPoint = {
-						x: aLeftExtremity.x,
-						y: aLeftExtremity.y,
-					};
-					break;
-				}
-
-				// entity a's right extremity
-
-				const rightExtremityIsInInterval = (
-					aRightExtremity.x >= bSegment[0].x + bTotalOffset.x &&
-					aRightExtremity.x <= bSegment[1].x + bTotalOffset.x
-				);
-
-				if (rightExtremityIsInInterval) {
-					segmentCandidate = bSegment;
-					aPoint = {
-						x: aRightExtremity.x,
-						y: aRightExtremity.y,
-					};
-					break;
-				}
+		// If the curves do not overlap on the x axis, then there's no point computing their order
+		// a single point intersection is not considered as an overlap.
+		const curvesDontOverlap = (
+			aExtremities.start.x >= bExtremities.end.x ||
+			bExtremities.start.x >= aExtremities.end.x
+		);
+		if (curvesDontOverlap) {
+			if (aExtremities.start.x >= bExtremities.end.x) {
+				return aExtremities.start.y - bExtremities.end.y;
+			} else if (bExtremities.start.x >= aExtremities.end.x) {
+				return aExtremities.end.y - bExtremities.start.y;
 			}
-
 		}
 
-		// These must never happen because "infinite" leading and trailing segments are inferred on
-		// each entity's sorting curve, providing a point of reference for any position of each
-		// entity. Note that "infinite" does not actually mean infinite, but an extreme value,
-		// because infinity makes the computation impossible.
-		if (!segmentCandidate) {
-			throw new Error("Missing segment candidate.");
-		}
-		if (!aPoint) {
-			throw new Error("Missing point.");
-		}
+		// Get the overlapping x interval.
+		const xInterval = {
+			start: aExtremities.start.x >= bExtremities.start.x ? aExtremities.start.x : bExtremities.start.x,
+			end:   aExtremities.end.x <= bExtremities.end.x ? aExtremities.end.x : bExtremities.end.x,
+		};
 
-		const slope = (segmentCandidate[1].y - segmentCandidate[0].y) / (segmentCandidate[1].x - segmentCandidate[0].x);
-		const yFromX = slope * (aXOnSortingCurve - segmentCandidate[0].x) + segmentCandidate[0].y + bViewSortingCurveOffset.y + bCoordinates.y;
+		// Get all the points in the interval.
+		const checkIfPointIsInInterval = (point: TPoint) => {
+			const pointIsInInterval = point.x > xInterval.start && point.x < xInterval.end;
 
-		const aIsAboveB = aPoint.y > yFromX;
+			return pointIsInInterval;
+		};
+		const aPoints = absoluteASortingCurve.filter(checkIfPointIsInInterval);
+		const bPoints = absoluteBSortingCurve.filter(checkIfPointIsInInterval);
 
-		return aIsAboveB ? 1 : -1;
+		// Add points on each curve at the interval extremities.
+		addIntervalExtremities(
+			aPoints,
+			bPoints,
+			absoluteASortingCurve,
+			absoluteBSortingCurve,
+			xInterval,
+		);
+
+		// Add matching points so both curves have points on the same x's.
+		addMatchingPoints(
+			aPoints,
+			bPoints,
+		);
+
+		// Add segment intersections to make comparisons easier.
+		addSegmentIntersections(
+			aPoints,
+			bPoints,
+		);
+
+		// Get the score of aPoints and bPoints.
+		const { aScore, bScore } = getScores(aPoints, bPoints);
+
+		return aScore - bScore;
 	});
 
 	return sortedViewEntities;

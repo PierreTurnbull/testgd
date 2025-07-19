@@ -3,7 +3,7 @@ import { TCoordinates } from "@root/app/common/types/coordinates.types";
 import { initCenterView } from "../initCenterView/initCenterView";
 
 /**
- * Frees the previous hitbox border and sets the new one.
+ * Frees the previous center view and sets the new one.
  */
 export const replaceCenterView = (
 	centerViewComponent: CCenterView,

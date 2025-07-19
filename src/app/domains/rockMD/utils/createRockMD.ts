@@ -9,7 +9,6 @@ import { CView } from "@root/app/common/components/view/view.component";
 import { DIRECTION8_ANGLES } from "@root/app/common/constants/space.constants";
 import { ENTITIES_CENTER_OFFSETS } from "@root/app/common/constants/views.constants";
 import { TCoordinates } from "@root/app/common/types/coordinates.types";
-import { TOffset } from "@root/app/common/types/offset.types";
 import { initBorderView } from "@root/app/common/utils/views/initBorderView/initBorderView";
 import { initCenterView } from "@root/app/common/utils/views/initCenterView/initCenterView";
 import { initSprite } from "@root/app/common/utils/views/initSprite/initSprite";
@@ -22,7 +21,6 @@ import { HITBOXES_POINTS } from "../../hitbox/constants/hitboxes.constants";
 import { TPolygonHitboxSettings } from "../../hitbox/types/hitbox.types";
 import { createHitbox } from "../../hitbox/utils/createHitbox";
 import { CViewSortingCurve } from "../../viewSortingCurve/components/viewSortingCurve/viewSortingCurve.component";
-import { CViewSortingCurveOffset } from "../../viewSortingCurve/components/viewSortingCurveOffset/viewSortingCurveOffset.component";
 import { CViewSortingCurveView } from "../../viewSortingCurve/components/viewSortingCurveView/viewSortingCurveView.component";
 import { VIEW_SORTING_CURVES } from "../../viewSortingCurve/constants/viewSortingCurve.constants";
 import { initViewSortingCurveView } from "../../viewSortingCurve/utils/initViewSortingCurveView/initViewSortingCurveView";
@@ -34,9 +32,9 @@ export const createRockMD = (
 	direction8: TDirection8,
 	gameEditorId?: number,
 ) => {
-	const name = `environment.rockMD.${variant}.${direction8}`;
+	const viewName = `environment.rockMD.${variant}.${direction8}`;
 
-	const sprite = initSprite(name, coordinates);
+	const sprite = initSprite(viewName, coordinates);
 
 	let borderView: Graphics | null = null;
 	let centerView: Graphics | null = null;
@@ -47,22 +45,17 @@ export const createRockMD = (
 	}
 
 	if (configManager.config.debug.showsEntityCenters) {
-		centerView = initCenterView(name, coordinates);
+		centerView = initCenterView(viewName, coordinates);
 	}
 	
-	const centerOffset = ENTITIES_CENTER_OFFSETS[name];
+	const centerOffset = ENTITIES_CENTER_OFFSETS[viewName];
 	if (!centerOffset) {
-		throw new Error(`Missing center offsets for "${name}".`);
+		throw new Error(`Missing center offsets for "${viewName}".`);
 	}
 
-	const viewSortingCurveOffset: TOffset = {
-		x: centerOffset.x,
-		y: centerOffset.y,
-	};
-
-	const viewSortingCurve = VIEW_SORTING_CURVES[name];
+	const viewSortingCurve = VIEW_SORTING_CURVES[viewName];
 	if (!viewSortingCurve) {
-		throw new Error(`Missing view sorting curve for "${name}".`);
+		throw new Error(`Missing view sorting curve for "${viewName}".`);
 	}
 
 	if (configManager.config.debug.showsViewSortingCurves) {
@@ -70,7 +63,7 @@ export const createRockMD = (
 			"characters.player",
 			coordinates,
 			viewSortingCurve,
-			viewSortingCurveOffset,
+			centerOffset,
 		);
 	}
 
@@ -85,7 +78,6 @@ export const createRockMD = (
 
 		// view sorting curve
 		new CViewSortingCurve(viewSortingCurve),
-		new CViewSortingCurveOffset(viewSortingCurveOffset),
 		new CViewSortingCurveView(viewSortingCurveView),
 
 		// views
@@ -117,7 +109,7 @@ export const createRockMD = (
 
 	const motionHitboxSettings: TPolygonHitboxSettings = {
 		shape:              "polygon",
-		name:               name,
+		name:               viewName,
 		type:               "motion",
 		isActive:           true,
 		initialCoordinates: coordinates,
@@ -125,7 +117,7 @@ export const createRockMD = (
 			x: centerOffset.x,
 			y: centerOffset.y,
 		},
-		points: HITBOXES_POINTS[name],
+		points: HITBOXES_POINTS[viewName],
 	};
 
 	// motion hitbox

@@ -66,7 +66,7 @@ export const watchInput = () => {
 	window.addEventListener("mouseup", event => {
 		event.preventDefault();
 
-		editorHandleMouseup(event);
+		editorHandleMouseup();
 	});
 
 	window.addEventListener("mousemove", event => {

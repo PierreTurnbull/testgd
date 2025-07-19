@@ -11,13 +11,13 @@ import { Graphics } from "pixi.js";
 export const initViewSortingCurveView = (
 	label: string,
 	coordinates: TCoordinates,
-	bounds: TPoint[],
+	points: TPoint[],
 	offset: TOffset,
 ) => {
 	const viewSortingCurveView = new Graphics();
 
-	viewSortingCurveView.moveTo(bounds[0].x, bounds[0].y);
-	bounds.slice(1).forEach(point => {
+	viewSortingCurveView.moveTo(points[0].x, points[0].y);
+	points.slice(1).forEach(point => {
 		viewSortingCurveView.lineTo(point.x, point.y);
 	});
 
@@ -33,7 +33,7 @@ export const initViewSortingCurveView = (
 	viewSortingCurveView.label = label;
 
 	const offsetCoordinates = getOffsetCoordinates(coordinates, offset);
-	
+
 	viewSortingCurveView.x = offsetCoordinates.x;
 	viewSortingCurveView.y = offsetCoordinates.y;
 
