@@ -23,6 +23,7 @@ export const EditorSegment = ({
 				${color === "blue" ? "bg-blue-600" : ""}
 				${color === "amber" ? "bg-amber-400" : ""}
 				origin-top-left
+				pointer-events-none
 			`}
 			style={{
 				width:     distance,
