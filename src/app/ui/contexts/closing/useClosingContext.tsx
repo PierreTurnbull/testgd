@@ -30,7 +30,7 @@ export const useClosingContext = (
 	// When the user requests to close the focused ui, the current component
 	// is closed if it's the one that was opened the most recently.
 	useEffect(() => {
-		const closeListenerId = uiBus.subscribe("closeFocusedUi", () => {
+		const closeListenerId = uiBus.subscribe("escape", () => {
 			if (name === closingContext.getLastOpenedUi()) {
 				close();
 			}

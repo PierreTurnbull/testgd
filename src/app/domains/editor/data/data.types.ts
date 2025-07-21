@@ -16,6 +16,7 @@ export type TEnvironmentConfigItem = {
 export type TConfig = {
 	//                  name           variant          direction
 	environment: Record<string, Record<TVariant, Record<TDirection8, TEnvironmentConfigItem>>>
+	debug:       Record<string, boolean>
 }
 
 export type TEnvironmentItem = {

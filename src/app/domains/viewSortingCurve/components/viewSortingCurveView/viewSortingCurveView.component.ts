@@ -20,7 +20,7 @@ export class CViewSortingCurveView extends Component {
 	private _viewSortingCurveView: Graphics | null = null;
 
 	get viewSortingCurveView() {
-		if (!configManager.config.debug.showsEntityCenters) throw new Error("Cannot access center: the debug option is disabled.");
+		if (!configManager.config.debug.showsViewSortingCurves) throw new Error("Cannot access center: the debug option is disabled.");
 		if (!this._viewSortingCurveView) throw new Error("Missing center.");
 
 		return this._viewSortingCurveView;

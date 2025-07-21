@@ -26,7 +26,7 @@ export const watchUiBusEvents = () => {
 	);
 
 	uiBus.subscribe(
-		"closeFocusedUi",
+		"escape",
 		() => {
 			stopDraggingEntity();
 			unselectEntity();

@@ -35,7 +35,7 @@ export const handleKeydown = async (event: KeyboardEvent) => {
 		} else if (gameEditorStore.selectedEntity) {
 			unselectEntity();
 		} else {
-			await uiBus.emit("closeFocusedUi");
+			await uiBus.emit("escape");
 		}
 	}
 

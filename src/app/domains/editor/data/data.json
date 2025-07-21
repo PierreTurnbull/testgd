@@ -2385,19 +2385,30 @@
                     }
                 }
             }
+        },
+        "debug": {
+            "showsEntityBorders": false,
+            "showsEntityHitboxes": true,
+            "showsEntityCenters": true,
+            "showsViewSortingCurves": true,
+            "showsExtendedHitboxes": false,
+            "showsVisibilityGraphNodes": false,
+            "showsVisibilityGraphNodeLinks": false,
+            "showsVisibilityGraphBestPath": false,
+            "showsMouseCoordinates": true
         }
     },
     "items": {
         "environment": [
             {
-                "gameEditorId": 145,
+                "gameEditorId": 206,
                 "name": "rockLG",
                 "coordinates": {
-                    "x": -358,
-                    "y": 4
+                    "x": 160,
+                    "y": -323
                 },
                 "variant": 0,
-                "direction8": "down"
+                "direction8": "downLeft"
             }
         ]
     }

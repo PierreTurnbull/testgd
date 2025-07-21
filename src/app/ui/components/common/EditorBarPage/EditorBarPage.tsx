@@ -23,7 +23,7 @@ export const EditorBarPage = ({
 			{children}
 			<IconButton
 				icon="✖"
-				onClick={() => uiBus.emit("closeFocusedUi")}
+				onClick={() => uiBus.emit("escape")}
 			/>
 		</div>
 	);

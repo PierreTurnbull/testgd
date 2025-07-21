@@ -78,15 +78,15 @@ export const createMuddyBuddy = (
 	if (!centerOffset) {
 		throw new Error(`Missing center offsets for "${viewName}".`);
 	}
-	
+
 	const viewSortingCurve: TViewSortingCurve = [
 		{
-			x: 0 - HITBOX_BOUNDS["characters.muddyBuddy.motion"].w / 2,
-			y: 0,
+			x: 0 - centerOffset.x - HITBOX_BOUNDS["characters.muddyBuddy.motion"].w / 2,
+			y: 0 - centerOffset.y,
 		},
 		{
-			x: 0 + HITBOX_BOUNDS["characters.muddyBuddy.motion"].w / 2,
-			y: 0,
+			x: 0 - centerOffset.x + HITBOX_BOUNDS["characters.muddyBuddy.motion"].w / 2,
+			y: 0 - centerOffset.y,
 		},
 	];
 
