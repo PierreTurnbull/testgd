@@ -2,7 +2,6 @@ import { CIsFindingPath } from "@root/app/common/components/isFindingPath/isFind
 import { CKeyboard } from "@root/app/common/components/keyboard/keyboard.component";
 import { CLocation } from "@root/app/common/components/location/location.component";
 import { TPoint } from "@root/app/common/types/point.type";
-import { getAngleFromPoints } from "@root/app/common/utils/geometry/getAngleFromPoints/getAngleFromPoints";
 import { getDistance } from "@root/app/common/utils/geometry/getDistance/getDistance";
 import { Entity } from "@root/app/domains/entity/entity.models";
 import { CMemory } from "@root/app/domains/memory/components/memory/memory.component";
@@ -10,6 +9,7 @@ import { CVisibilityGraph } from "@root/app/domains/pathfinding/components/visib
 import { getExtendedHitboxesPoints } from "@root/app/domains/pathfinding/utils/createVisibilityGraph/createExtendedHitboxesPoints/createExtendedHitboxesPoints";
 import { getShapeSegments } from "@root/app/domains/pathfinding/utils/createVisibilityGraph/createShapesSegments/createShapesSegments";
 import { findPath } from "@root/app/domains/pathfinding/utils/findPath/findPath";
+import { getNextAngle } from "./getNextAngle/getNextAngle";
 
 export const moveTowardsTarget = (
 	muddyBuddyEntity: Entity,
@@ -66,10 +66,13 @@ export const moveTowardsTarget = (
 		);
 	}
 
-	if (visibilityGraphComponent.nextStep) {
-		const angle = getAngleFromPoints(locationComponent.coordinates, visibilityGraphComponent.nextStep);
+	if (visibilityGraphComponent.nextStep && visibilityGraphComponent.highlightedNodes) {
+		const nextAngle = getNextAngle(
+			visibilityGraphComponent,
+			locationComponent.coordinates,
+		);
 
-		keyboardComponent.joystickAngle = angle;
+		keyboardComponent.joystickAngle = nextAngle;
 	} else {
 		keyboardComponent.joystickAngle = null;
 	}

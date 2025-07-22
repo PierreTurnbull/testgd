@@ -2387,28 +2387,98 @@
             }
         },
         "debug": {
-            "showsEntityBorders": false,
+            "showsEntityBorders": true,
             "showsEntityHitboxes": true,
             "showsEntityCenters": true,
             "showsViewSortingCurves": true,
-            "showsExtendedHitboxes": false,
-            "showsVisibilityGraphNodes": false,
-            "showsVisibilityGraphNodeLinks": false,
-            "showsVisibilityGraphBestPath": false,
+            "showsExtendedHitboxes": true,
+            "showsVisibilityGraphNodes": true,
+            "showsVisibilityGraphNodeLinks": true,
+            "showsVisibilityGraphBestPath": true,
             "showsMouseCoordinates": true
         }
     },
     "items": {
         "environment": [
             {
-                "gameEditorId": 206,
+                "gameEditorId": 207,
+                "name": "rockMD",
+                "coordinates": {
+                    "x": -15,
+                    "y": -19
+                },
+                "variant": 1,
+                "direction8": "down"
+            },
+            {
+                "gameEditorId": 208,
                 "name": "rockLG",
                 "coordinates": {
-                    "x": 160,
-                    "y": -323
+                    "x": -287,
+                    "y": -28
                 },
                 "variant": 0,
+                "direction8": "down"
+            },
+            {
+                "gameEditorId": 210,
+                "name": "rockLG",
+                "coordinates": {
+                    "x": 334,
+                    "y": -169
+                },
+                "variant": 2,
                 "direction8": "downLeft"
+            },
+            {
+                "gameEditorId": 213,
+                "name": "rockLG",
+                "coordinates": {
+                    "x": 303,
+                    "y": 132
+                },
+                "variant": 2,
+                "direction8": "left"
+            },
+            {
+                "gameEditorId": 214,
+                "name": "rockLG",
+                "coordinates": {
+                    "x": -252,
+                    "y": 293
+                },
+                "variant": 3,
+                "direction8": "down"
+            },
+            {
+                "gameEditorId": 217,
+                "name": "rockLG",
+                "coordinates": {
+                    "x": 462,
+                    "y": 330
+                },
+                "variant": 2,
+                "direction8": "left"
+            },
+            {
+                "gameEditorId": 218,
+                "name": "rockMD",
+                "coordinates": {
+                    "x": -446,
+                    "y": 159
+                },
+                "variant": 1,
+                "direction8": "down"
+            },
+            {
+                "gameEditorId": 219,
+                "name": "rockMD",
+                "coordinates": {
+                    "x": -25,
+                    "y": 75
+                },
+                "variant": 2,
+                "direction8": "down"
             }
         ]
     }

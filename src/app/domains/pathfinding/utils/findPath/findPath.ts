@@ -5,11 +5,6 @@ import { Entity } from "@root/app/domains/entity/entity.models";
 import { CMemory } from "@root/app/domains/memory/components/memory/memory.component";
 import { addStartAndEndToVisibilityGraph } from "./addStartAndEndToVisibilityGraph/addStartAndEndToVisibilityGraph";
 
-export const logsFindPathPerformance = {
-	findPath:      0,
-	findPathCount: 0,
-};
-
 /**
  * Finds a path between two nodes using the A* algorithm.
  * This function requires the entity's visibility graph to be created first.
@@ -22,8 +17,6 @@ export const findPath = (
 	 */
 	toArea?: TPoint[],
 ) => {
-	logsFindPathPerformance.findPathCount++;
-
 	const memoryComponent = entity.getComponent(CMemory);
 	const isFindingPathComponent = entity.getComponent(CIsFindingPath);
 

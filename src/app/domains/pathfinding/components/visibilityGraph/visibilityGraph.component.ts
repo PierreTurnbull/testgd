@@ -13,7 +13,7 @@ export class CVisibilityGraph extends Component {
 	 */
 	extendedHitboxesPoints:       TPoint[][] = [];
 	/**
-	 * A detect-collisions system use to unblock the entity if it is stuck inside a shape.
+	 * A detect-collisions system used to unblock the entity if it is stuck inside a shape.
 	 */
 	extendedHitboxesPointsSystem: System | null = null;
 	extendedHitboxPointViews:     Graphics[] = [];
