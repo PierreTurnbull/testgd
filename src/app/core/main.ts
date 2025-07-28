@@ -1,5 +1,8 @@
 import { Assets } from "pixi.js";
 import { assetsManager } from "../domains/assetsManager/assetsManager.singletons";
+import { entityManager } from "../domains/entity/entityManager.singleton";
+import { CPlayer } from "../domains/player/components/user/user.component";
+import { CViewSortingCurveView } from "../domains/viewSortingCurve/components/viewSortingCurveView/viewSortingCurveView.component";
 import { watchInput } from "./systems/watchInput/watchInput.system";
 import { initApplication } from "./utils/initApp/initApp";
 import { initCharacters } from "./utils/initCharacters/initCharacters";
@@ -24,3 +27,6 @@ initLoop();
 watchInput();
 initUi();
 watchUiBusEvents();
+setTimeout(() => {
+	console.log([...entityManager.entities].find(a => a.hasComponent(CPlayer))!.getComponent(CViewSortingCurveView));
+}, 500);

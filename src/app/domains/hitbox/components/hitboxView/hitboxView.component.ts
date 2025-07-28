@@ -23,6 +23,7 @@ export class CHitboxView extends Component {
 		return this._hitboxBorderView;
 	}
 	set hitboxBorderView(value: Graphics) {
+		if (!configManager.config.debug.showsEntityHitboxes) throw new Error("Cannot access hitboxBorderView: the debug option is disabled.");
 		this._hitboxBorderView = value;
 	}
 }

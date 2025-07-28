@@ -7,14 +7,14 @@ export const resetStartAndEndLinks = (
 	visibilityGraphComponent: CVisibilityGraph,
 ) => {
 	visibilityGraphComponent.fromLinkedNodes.clear();
-	visibilityGraphComponent.fromLinkedNodeViews.forEach(fromNodeLinkView => fromNodeLinkView.destroy());
-	visibilityGraphComponent.fromLinkedNodeViews = [];
+	visibilityGraphComponent.fromLinkedNodeViewGroup.forEach(fromNodeLinkView => fromNodeLinkView.destroy());
+	visibilityGraphComponent.fromLinkedNodeViewGroup = [];
 
 	visibilityGraphComponent.toLinkedNodes.clear();
-	visibilityGraphComponent.toLinkedNodeViews.forEach(toNodeLinkView => toNodeLinkView.destroy());
-	visibilityGraphComponent.toLinkedNodeViews = [];
+	visibilityGraphComponent.toLinkedNodeViewGroup.forEach(toNodeLinkView => toNodeLinkView.destroy());
+	visibilityGraphComponent.toLinkedNodeViewGroup = [];
 
 	visibilityGraphComponent.toAreaLinkedNodes.clear();
-	visibilityGraphComponent.toAreaLinkedNodeViews.forEach(toNodeLinkView => toNodeLinkView.destroy());
-	visibilityGraphComponent.toAreaLinkedNodeViews = [];
+	visibilityGraphComponent.toAreaLinkedNodeViewGroup.forEach(toNodeLinkView => toNodeLinkView.destroy());
+	visibilityGraphComponent.toAreaLinkedNodeViewGroup = [];
 };

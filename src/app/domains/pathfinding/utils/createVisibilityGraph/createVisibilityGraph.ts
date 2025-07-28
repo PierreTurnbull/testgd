@@ -4,7 +4,7 @@ import { createExtendedHitboxesPoints } from "./createExtendedHitboxesPoints/cre
 import { createLinkedNodes } from "./createLinkedNodes/createLinkedNodes";
 import { createNodes } from "./createNodes/createNodes";
 import { createShapesSegments } from "./createShapesSegments/createShapesSegments";
-import { createVisibilityGraphViews } from "./createVisibilityGraphViews/createVisibilityGraphViews";
+import { createVisibilityGraphViewGroup } from "./createVisibilityGraphViewGroup/createVisibilityGraphViewGroup";
 import { resetVisibilityGraph } from "./resetVisibilityGraph/resetVisibilityGraph";
 
 /**
@@ -28,5 +28,5 @@ export const createVisibilityGraph = (
 	createLinkedNodes(visibilityGraphComponent);
 
 	// create the visibility graph's views (debug only)
-	createVisibilityGraphViews(visibilityGraphComponent);
+	createVisibilityGraphViewGroup(entity);
 };

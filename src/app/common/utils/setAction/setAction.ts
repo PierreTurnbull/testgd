@@ -5,18 +5,23 @@ import { CView } from "@root/app/common/components/view/view.component";
 import { configManager } from "@root/app/domains/configManager/configManager.singleton";
 import { CHitbox } from "@root/app/domains/hitbox/components/hitbox/hitbox.component";
 import { CHitboxIsActive } from "@root/app/domains/hitbox/components/hitboxIsActive/hitboxIsActive.component";
+import { CHitboxPoints } from "@root/app/domains/hitbox/components/hitboxPoints/hitboxPoints.component";
+import { CHitboxView } from "@root/app/domains/hitbox/components/hitboxView/hitboxView.component";
 import { HITBOX_BOUNDS } from "@root/app/domains/hitbox/constants/hitboxes.constants";
-import { replaceViewSortingCurveView } from "@root/app/domains/viewSortingCurve/utils/replaceViewSortingCurveView/replaceViewSortingCurveView";
+import { getHitboxBorderView } from "@root/app/domains/hitbox/utils/getHitboxBorderView/getHitboxBorderView";
+import { getAnimatedSprite } from "@root/app/domains/view/animatedSprite/utils/getAnimatedSprite/getAnimatedSprite";
+import { getBorderView } from "@root/app/domains/view/border/utils/getBorderView/getBorderView";
+import { getCenterView } from "@root/app/domains/view/center/utils/getCenterView/getCenterView";
+import { createView } from "@root/app/domains/view/utils/createView/createView";
+import { removeView } from "@root/app/domains/view/utils/removeView/removeView";
+import { CViewSortingCurveView } from "@root/app/domains/viewSortingCurve/components/viewSortingCurveView/viewSortingCurveView.component";
+import { getViewSortingCurveView } from "@root/app/domains/viewSortingCurve/utils/getViewSortingCurveView/getViewSortingCurveView";
 import { AnimatedSprite } from "pixi.js";
 import { Entity } from "../../../domains/entity/entity.models";
 import { CBorderView } from "../../components/borderView/borderView.component";
 import { CCenterView } from "../../components/centerView/centerView.component";
 import { ANGLE_NAMES } from "../../constants/space.constants";
 import { TPoint } from "../../types/point.type";
-import { replaceAnimatedSprite } from "../views/replaceAnimatedSprite/replaceAnimatedSprite";
-import { replaceBorder } from "../views/replaceBorderView/replaceBorderView";
-import { replaceCenterView } from "../views/replaceCenterView/replaceCenterView";
-import { replaceHitboxBorderView } from "../views/replaceHitboxBorderView/replaceHitboxBorderView";
 
 type TOptions = {
 	onLoop?:        AnimatedSprite["onLoop"] | null,
@@ -34,8 +39,6 @@ export const setAction = (
 	const directionComponent = actorEntity.getComponent(CDirection);
 	const locationComponent = actorEntity.getComponent(CLocation);
 	const viewComponent = actorEntity.getComponent(CView);
-	const borderViewComponent = actorEntity.getComponent(CBorderView);
-	const centerViewComponent = actorEntity.getComponent(CCenterView);
 
 	const viewMustBeUpdated = actionComponent.currentAction !== action || directionComponent.direction8 !== ANGLE_NAMES.get(direction);
 
@@ -46,26 +49,19 @@ export const setAction = (
 		// prevent the current animation from continuing after being changed, triggering events such as onComplete or onFrameChange
 		viewComponent.view.stop();
 
-		replaceAnimatedSprite(
-			viewComponent,
-			`characters.${actorEntity.name}.${action}.${directionComponent.direction8}`,
-			locationComponent.coordinates,
-		);
+		removeView(actorEntity, CView, "view");
+		createView(actorEntity, CView, getAnimatedSprite, "view");
 		if (configManager.config.debug.showsEntityBorders) {
-			replaceBorder(viewComponent, borderViewComponent, locationComponent.coordinates);
+			removeView(actorEntity, CBorderView, "borderView");
+			createView(actorEntity, CBorderView, getBorderView, "borderView");
 		}
 		if (configManager.config.debug.showsEntityCenters) {
-			replaceCenterView(
-				centerViewComponent,
-				`characters.${actorEntity.name}`,
-				locationComponent.coordinates,
-			);
+			removeView(actorEntity, CCenterView, "centerView");
+			createView(actorEntity, CCenterView, getCenterView, "centerView");
 		}
 		if (configManager.config.debug.showsViewSortingCurves) {
-			replaceViewSortingCurveView(
-				actorEntity,
-				locationComponent.coordinates,
-			);
+			removeView(actorEntity, CViewSortingCurveView, "viewSortingCurveView");
+			createView(actorEntity, CViewSortingCurveView, getViewSortingCurveView, "viewSortingCurveView");
 		}
 
 		if (configManager.config.debug.showsEntityHitboxes && actorEntity.relations.has("hitboxes")) {
@@ -75,13 +71,15 @@ export const setAction = (
 				.filter(hitboxEntity => hitboxEntity.getComponent(CHitbox).type === "motion")
 				.forEach((hitboxEntity) => {
 					const hitboxComponent = hitboxEntity.getComponent(CHitbox);
+					const hitboxPointsComponent = hitboxEntity.getComponent(CHitboxPoints);
+					const hitboxLocationComponent = hitboxEntity.getComponent(CLocation);
 
 					const hitboxBounds = HITBOX_BOUNDS[hitboxComponent.name];
 					if (!hitboxBounds) {
 						throw new Error(`Missing bounds for hitbox "${hitboxComponent.name}".`);
 					}
 
-					const bounds: TPoint[] = [
+					const hitboxPoints: TPoint[] = [
 						{
 							x: 0,
 							y: 0,
@@ -100,11 +98,11 @@ export const setAction = (
 						},
 					];
 
-					replaceHitboxBorderView(
-						hitboxEntity,
-						locationComponent.coordinates,
-						bounds,
-					);
+					hitboxPointsComponent.hitboxPoints = hitboxPoints;
+					hitboxLocationComponent.coordinates = locationComponent.coordinates;
+
+					removeView(hitboxEntity, CHitboxView, "hitboxBorderView");
+					createView(hitboxEntity, CHitboxView, getHitboxBorderView, "hitboxBorderView");
 				});
 		}
 

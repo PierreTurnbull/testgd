@@ -2387,15 +2387,15 @@
             }
         },
         "debug": {
-            "showsEntityBorders": true,
-            "showsEntityHitboxes": true,
-            "showsEntityCenters": true,
-            "showsViewSortingCurves": true,
-            "showsExtendedHitboxes": true,
-            "showsVisibilityGraphNodes": true,
-            "showsVisibilityGraphNodeLinks": true,
-            "showsVisibilityGraphBestPath": true,
-            "showsMouseCoordinates": true
+            "showsEntityBorders": false,
+            "showsEntityHitboxes": false,
+            "showsEntityCenters": false,
+            "showsViewSortingCurves": false,
+            "showsExtendedHitboxes": false,
+            "showsVisibilityGraphNodes": false,
+            "showsVisibilityGraphNodeLinks": false,
+            "showsVisibilityGraphSolution": false,
+            "showsMouseCoordinates": false
         }
     },
     "items": {

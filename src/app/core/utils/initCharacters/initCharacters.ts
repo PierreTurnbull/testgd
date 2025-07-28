@@ -3,8 +3,8 @@ import { createPlayer } from "@root/app/domains/player/utils/createPlayer";
 
 export const initCharacters = () => {
 	createPlayer({ x: 155, y: -8 }, 180);
-	// createMuddyBuddy({ x: -28, y: 30 }, 180);
-	// createMuddyBuddy({ x: 230, y: 200 }, 180);
+	createMuddyBuddy({ x: -28, y: 30 }, 180);
+	createMuddyBuddy({ x: 230, y: 200 }, 180);
 	// createMuddyBuddy({ x: 260, y: 200 }, 180);
 	// createMuddyBuddy({ x: 290, y: 200 }, 180);
 	// createMuddyBuddy({ x: 320, y: 200 }, 180);

@@ -1,7 +1,7 @@
 import { TPoint } from "@root/app/common/types/point.type";
 import { entityManager } from "@root/app/domains/entity/entityManager.singleton";
 import { CVisibilityGraph } from "../../../components/visibilityGraph/visibilityGraph.component";
-import { createSolutionViews } from "../createSolutionViews/createSolutionViews";
+import { replaceSolutionViewGroup } from "../../common/views/replaceSolutionViewGroup/replaceSolutionViewGroup";
 import { unblockEntity } from "../unblockEntity/unblockEntity";
 
 /**
@@ -19,8 +19,14 @@ export const processSolution = (
 
 	const visibilityGraphComponent = entity.getComponent(CVisibilityGraph);
 
-	visibilityGraphComponent.highlightedNodes = solution;
-	createSolutionViews(entity, solution);
+	visibilityGraphComponent.solution = solution;
+
+	if (solution) {
+		replaceSolutionViewGroup(entity, solution);
+	} else {
+		visibilityGraphComponent.solutionViewGroup?.forEach(nodeView => nodeView.destroy());
+		visibilityGraphComponent.solutionViewGroup = [];
+	}
 
 	if (!solution && visibilityGraphComponent.extendedHitboxesPointsSystem) {
 		unblockEntity(entity);

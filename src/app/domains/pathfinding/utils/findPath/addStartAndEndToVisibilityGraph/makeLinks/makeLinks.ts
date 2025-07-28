@@ -3,7 +3,7 @@ import { CVisibilityGraph } from "@root/app/domains/pathfinding/components/visib
 import { TVisibilityGraphNode } from "@root/app/domains/pathfinding/types/visibilityGraph.types";
 import { worldManager } from "@root/app/domains/worldManager/worldManager.singletons";
 import { getNodesKey } from "../../../common/getNodesKey";
-import { getLinkedNodeView } from "../../../createVisibilityGraph/createVisibilityGraphViews/createNodeLinkViews/createNodeLinkViews";
+import { getLinkedNodeView } from "../../../createVisibilityGraph/createVisibilityGraphViewGroup/createNodeLinkViewGroup/createNodeLinkViewGroup";
 
 /**
  * Apply the links found in linksResult.
@@ -98,17 +98,17 @@ export const makeLinks = (
 		visibilityGraphComponent.fromLinkedNodes.forEach(nodePair => {
 			const nodeLinkView = getLinkedNodeView(nodePair, 0xff00ff);
 			worldManager.world.addChild(nodeLinkView);
-			visibilityGraphComponent.fromLinkedNodeViews.push(nodeLinkView);
+			visibilityGraphComponent.fromLinkedNodeViewGroup.push(nodeLinkView);
 		});
 		visibilityGraphComponent.toLinkedNodes.forEach(nodePair => {
 			const nodeLinkView = getLinkedNodeView(nodePair, 0xff00ff);
 			worldManager.world.addChild(nodeLinkView);
-			visibilityGraphComponent.toLinkedNodeViews.push(nodeLinkView);
+			visibilityGraphComponent.toLinkedNodeViewGroup.push(nodeLinkView);
 		});
 		visibilityGraphComponent.toAreaLinkedNodes.forEach(nodePair => {
 			const nodeLinkView = getLinkedNodeView(nodePair, 0xffaaaa);
 			worldManager.world.addChild(nodeLinkView);
-			visibilityGraphComponent.toAreaLinkedNodeViews.push(nodeLinkView);
+			visibilityGraphComponent.toAreaLinkedNodeViewGroup.push(nodeLinkView);
 		});
 	}
 };

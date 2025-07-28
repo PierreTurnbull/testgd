@@ -26,6 +26,7 @@ export class CCenterView extends Component {
 		return this._centerView;
 	}
 	set centerView(value: Graphics) {
+		if (!configManager.config.debug.showsEntityCenters) throw new Error("Cannot access center: the debug option is disabled.");
 		this._centerView = value;
 	}
 }

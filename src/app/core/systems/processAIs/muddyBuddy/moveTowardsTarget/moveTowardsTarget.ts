@@ -66,13 +66,13 @@ export const moveTowardsTarget = (
 		);
 	}
 
-	if (visibilityGraphComponent.nextStep && visibilityGraphComponent.highlightedNodes) {
+	if (visibilityGraphComponent.nextStep && visibilityGraphComponent.solution) {
 		const nextAngle = getNextAngle(
 			visibilityGraphComponent,
 			locationComponent.coordinates,
 		);
 
-		keyboardComponent.joystickAngle = nextAngle;
+		// keyboardComponent.joystickAngle = nextAngle;
 	} else {
 		keyboardComponent.joystickAngle = null;
 	}

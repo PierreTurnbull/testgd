@@ -21,11 +21,12 @@ export class CViewSortingCurveView extends Component {
 
 	get viewSortingCurveView() {
 		if (!configManager.config.debug.showsViewSortingCurves) throw new Error("Cannot access center: the debug option is disabled.");
-		if (!this._viewSortingCurveView) throw new Error("Missing center.");
+		if (!this._viewSortingCurveView) throw new Error("Missing viewSortingCurveView.");
 
 		return this._viewSortingCurveView;
 	}
 	set viewSortingCurveView(value: Graphics) {
+		if (!configManager.config.debug.showsViewSortingCurves) throw new Error("Cannot access center: the debug option is disabled.");
 		this._viewSortingCurveView = value;
 	}
 }

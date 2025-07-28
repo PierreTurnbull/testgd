@@ -6,21 +6,21 @@ import { CVisibilityGraph } from "../../../components/visibilityGraph/visibility
 export const resetVisibilityGraph = (
 	visibilityGraphComponent: CVisibilityGraph,
 ) => {
-	visibilityGraphComponent.extendedHitboxPointViews.forEach(extendedHitboxPointView => extendedHitboxPointView.destroy());
-	visibilityGraphComponent.extendedHitboxViews.forEach(extendedHitboxView => extendedHitboxView.destroy());
-	visibilityGraphComponent.linkedNodeViews.forEach(linkedNodeView => linkedNodeView.destroy());
-	visibilityGraphComponent.fromLinkedNodeViews.forEach(fromLinkedNodeView => fromLinkedNodeView.destroy());
-	visibilityGraphComponent.toLinkedNodeViews.forEach(toLinkedNodeView => toLinkedNodeView.destroy());
-	visibilityGraphComponent.toAreaLinkedNodeViews.forEach(toAreaLinkedNodeView => toAreaLinkedNodeView.destroy());
-	visibilityGraphComponent.highlightedNodeViews?.forEach(highlightedNodeView => highlightedNodeView.destroy());
+	visibilityGraphComponent.extendedHitboxPointViewGroup.forEach(extendedHitboxPointView => extendedHitboxPointView.destroy());
+	visibilityGraphComponent.extendedHitboxViewGroup.forEach(extendedHitboxView => extendedHitboxView.destroy());
+	visibilityGraphComponent.linkedNodeViewGroup.forEach(linkedNodeView => linkedNodeView.destroy());
+	visibilityGraphComponent.fromLinkedNodeViewGroup.forEach(fromLinkedNodeView => fromLinkedNodeView.destroy());
+	visibilityGraphComponent.toLinkedNodeViewGroup.forEach(toLinkedNodeView => toLinkedNodeView.destroy());
+	visibilityGraphComponent.toAreaLinkedNodeViewGroup.forEach(toAreaLinkedNodeView => toAreaLinkedNodeView.destroy());
+	visibilityGraphComponent.solutionViewGroup?.forEach(solutionView => solutionView.destroy());
 
-	visibilityGraphComponent.extendedHitboxPointViews = [];
-	visibilityGraphComponent.extendedHitboxViews = [];
-	visibilityGraphComponent.linkedNodeViews = [];
-	visibilityGraphComponent.fromLinkedNodeViews = [];
-	visibilityGraphComponent.toLinkedNodeViews = [];
-	visibilityGraphComponent.toAreaLinkedNodeViews = [];
-	visibilityGraphComponent.highlightedNodeViews = [];
+	visibilityGraphComponent.extendedHitboxPointViewGroup = [];
+	visibilityGraphComponent.extendedHitboxViewGroup = [];
+	visibilityGraphComponent.linkedNodeViewGroup = [];
+	visibilityGraphComponent.fromLinkedNodeViewGroup = [];
+	visibilityGraphComponent.toLinkedNodeViewGroup = [];
+	visibilityGraphComponent.toAreaLinkedNodeViewGroup = [];
+	visibilityGraphComponent.solutionViewGroup = [];
 	visibilityGraphComponent.extendedHitboxesPointsSystem = null;
 	visibilityGraphComponent.extendedHitboxesPoints = [];
 	visibilityGraphComponent.nodes = [];
@@ -31,5 +31,5 @@ export const resetVisibilityGraph = (
 	visibilityGraphComponent.toLinkedNodes = new Map();
 	visibilityGraphComponent.fromNode = null;
 	visibilityGraphComponent.toNode = null;
-	visibilityGraphComponent.highlightedNodes = null;
+	visibilityGraphComponent.solution = null;
 };

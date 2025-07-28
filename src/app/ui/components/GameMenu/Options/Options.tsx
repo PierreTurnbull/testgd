@@ -1,4 +1,5 @@
 import { data as editorData } from "@app/domains/editor/data/data";
+import { configManager } from "@root/app/domains/configManager/configManager.singleton";
 import { useClosingContext } from "@root/app/ui/contexts/closing/useClosingContext";
 import { useState } from "preact/hooks";
 import { Button } from "../../common/Button/Button";
@@ -12,9 +13,9 @@ type TOptionsProps = {
 export const Options = ({
 	close,
 }: TOptionsProps) => {
-	const [options, setOptions] = useState<Record<string, boolean>>(editorData.config.debug);
+	const [options, setOptions] = useState<typeof configManager.config.debug>(editorData.config.debug);
 
-	const setIsChecked = (key: string) => {
+	const setIsChecked = (key: keyof typeof configManager.config.debug) => {
 		setOptions(prev => {
 			const nextOptions = structuredClone(prev);
 
@@ -25,7 +26,7 @@ export const Options = ({
 	};
 
 	const submit = () => {
-		editorData.config.debug = options;
+		configManager.update({ debug: options });
 		close();
 	};
 
@@ -37,8 +38,8 @@ export const Options = ({
 			<div class="space-y-2">
 				{
 					Object.entries(options).map(entry => {
-						const key = entry[0];
-						const value = entry[1];
+						const key = entry[0] as keyof typeof configManager.config.debug;
+						const value = entry[1] as typeof configManager.config.debug[keyof typeof configManager.config.debug];
 
 						return (
 							<Checkbox
