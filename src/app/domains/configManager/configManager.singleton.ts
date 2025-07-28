@@ -1,7 +1,8 @@
 import { data as editorData } from "@app/domains/editor/data/data";
+import { TConfig } from "../editor/data/data.types";
 
 class ConfigManager {
-	config = {
+	config: Pick<TConfig, "debug"> = {
 		debug: {
 			/**
 			 * Borders of images that are used to display entities.
@@ -34,7 +35,7 @@ class ConfigManager {
 			/**
 			 * The best path of a visibility graph, using a pathfinding algorithm.
 			 */
-			showsVisibilityGraphBestPath:  editorData.config.debug.showsVisibilityGraphBestPath,
+			showsVisibilityGraphSolution:  editorData.config.debug.showsVisibilityGraphSolution,
 			/**
 			 * The coordinates of the mouse, displayed on top of the mouse.
 			 */

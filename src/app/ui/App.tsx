@@ -1,4 +1,5 @@
 import { useEffect, useState } from "preact/hooks";
+import { appManager } from "../domains/app/appManager.singleton";
 import { EditorBar } from "./components/EditorBar/EditorBar";
 import { GameMenu } from "./components/GameMenu/GameMenu";
 import { ClosingProvider } from "./contexts/closing/closing.provider";
@@ -36,6 +37,14 @@ export const App = () => {
 			uiBus.unsubscribe(listenerId);
 		};
 	}, [editorBarIsOpen]);
+
+	useEffect(() => {
+		if (gameMenuIsOpen) {
+			appManager.app.ticker.stop();
+		} else {
+			appManager.app.ticker.start();
+		}
+	}, [gameMenuIsOpen]);
 
 	return (
 		<ClosingProvider>

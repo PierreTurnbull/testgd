@@ -16,13 +16,14 @@ export class CVisibilityGraph extends Component {
 	 * A detect-collisions system used to unblock the entity if it is stuck inside a shape.
 	 */
 	extendedHitboxesPointsSystem: System | null = null;
-	extendedHitboxPointViews:     Graphics[] = [];
-	extendedHitboxViews:          Graphics[] = [];
+	extendedHitboxViewGroup:      Graphics[] | null = null;
+	extendedHitboxPointViewGroup: Graphics[] | null = null;
 
 	/**
 	 * All the existing nodes before any computation.
 	 */
 	nodes:          TVisibilityGraphNode[] = [];
+	nodeViewGroup:  Graphics[] | null = null;
 	/**
 	 * Shape segments. Each pair of direct siblings in a shape form a segment.
 	 */
@@ -33,27 +34,25 @@ export class CVisibilityGraph extends Component {
 	shapesSegments: TSegment[][] = [];
 
 	/**
-	 * Points available for an aStar search.
+	 * Pairs of points forming a path.
 	 */
-	linkedNodes:     Map<string, [TVisibilityGraphNode, TVisibilityGraphNode]> = new Map();
-	linkedNodeViews: Graphics[] = [];
+	linkedNodes:         Map<string, [TVisibilityGraphNode, TVisibilityGraphNode]> = new Map();
+	linkedNodeViewGroup: Graphics[] | null = null;
 
-	fromLinkedNodes:       Map<string, [TVisibilityGraphNode, TVisibilityGraphNode]> = new Map();
-	toLinkedNodes:         Map<string, [TVisibilityGraphNode, TVisibilityGraphNode]> = new Map();
-	toAreaLinkedNodes:     Map<string, [TVisibilityGraphNode, TVisibilityGraphNode]> = new Map();
-	fromLinkedNodeViews:   Graphics[] = [];
-	toLinkedNodeViews:     Graphics[] = [];
-	toAreaLinkedNodeViews: Graphics[] = [];
-	fromNode:              TVisibilityGraphNode | null = null;
-	toNode:                TVisibilityGraphNode | null = null;
+	fromLinkedNodes:           Map<string, [TVisibilityGraphNode, TVisibilityGraphNode]> = new Map();
+	toLinkedNodes:             Map<string, [TVisibilityGraphNode, TVisibilityGraphNode]> = new Map();
+	toAreaLinkedNodes:         Map<string, [TVisibilityGraphNode, TVisibilityGraphNode]> = new Map();
+	fromLinkedNodeViewGroup:   Graphics[] | null = null;
+	toLinkedNodeViewGroup:     Graphics[] | null = null;
+	toAreaLinkedNodeViewGroup: Graphics[] | null = null;
 
 	/**
-	 * Highlighted points that represent a path.
+	 * Highlighted points that represent the best path.
 	 */
-	highlightedNodes:     TPoint[] | null = null;
-	highlightedNodeViews: Graphics[] | null = null;
+	solution:          TPoint[] | null = null;
+	solutionViewGroup: Graphics[] | null = null;
 
 	get nextStep() {
-		return this.highlightedNodes?.[1] ? this.highlightedNodes[1] : null;
+		return this.solution?.[1] ? this.solution[1] : null;
 	}
 }

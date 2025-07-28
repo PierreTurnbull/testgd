@@ -2387,15 +2387,15 @@
             }
         },
         "debug": {
-            "showsEntityBorders": true,
-            "showsEntityHitboxes": true,
-            "showsEntityCenters": true,
-            "showsViewSortingCurves": true,
-            "showsExtendedHitboxes": true,
-            "showsVisibilityGraphNodes": true,
-            "showsVisibilityGraphNodeLinks": true,
-            "showsVisibilityGraphBestPath": true,
-            "showsMouseCoordinates": true
+            "showsEntityBorders": false,
+            "showsEntityHitboxes": false,
+            "showsEntityCenters": false,
+            "showsViewSortingCurves": false,
+            "showsExtendedHitboxes": false,
+            "showsVisibilityGraphNodes": false,
+            "showsVisibilityGraphNodeLinks": false,
+            "showsVisibilityGraphSolution": false,
+            "showsMouseCoordinates": false
         }
     },
     "items": {
@@ -2434,8 +2434,8 @@
                 "gameEditorId": 213,
                 "name": "rockLG",
                 "coordinates": {
-                    "x": 303,
-                    "y": 132
+                    "x": 326,
+                    "y": 128
                 },
                 "variant": 2,
                 "direction8": "left"
@@ -2478,6 +2478,36 @@
                     "y": 75
                 },
                 "variant": 2,
+                "direction8": "down"
+            },
+            {
+                "gameEditorId": 220,
+                "name": "rockMD",
+                "coordinates": {
+                    "x": -223,
+                    "y": 669
+                },
+                "variant": 2,
+                "direction8": "down"
+            },
+            {
+                "gameEditorId": 335,
+                "name": "rockMD",
+                "coordinates": {
+                    "x": 445,
+                    "y": 751
+                },
+                "variant": 2,
+                "direction8": "left"
+            },
+            {
+                "gameEditorId": 336,
+                "name": "rockMD",
+                "coordinates": {
+                    "x": 168,
+                    "y": 482
+                },
+                "variant": 1,
                 "direction8": "down"
             }
         ]

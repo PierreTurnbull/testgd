@@ -1,8 +1,11 @@
 import { TPoint } from "@root/app/common/types/point.type";
+import { configManager } from "@root/app/domains/configManager/configManager.singleton";
 import { entityManager } from "@root/app/domains/entity/entityManager.singleton";
+import { getSolutionView } from "@root/app/domains/pathfinding/utils/visibilityGraph/views/getSolutionViewGroup/getSolutionViewGroup";
+import { createViewGroup } from "@root/app/domains/view/utils/create/createViewGroup/createViewGroup";
+import { removeViewGroup } from "@root/app/domains/view/utils/remove/removeViewGroup/removeViewGroup";
 import { CVisibilityGraph } from "../../../components/visibilityGraph/visibilityGraph.component";
-import { createSolutionViews } from "../createSolutionViews/createSolutionViews";
-import { unblockEntity } from "../unblockEntity/unblockEntity";
+import { unblockEntity } from "./unblockEntity/unblockEntity";
 
 /**
  * Processes an aStar solution.
@@ -19,8 +22,12 @@ export const processSolution = (
 
 	const visibilityGraphComponent = entity.getComponent(CVisibilityGraph);
 
-	visibilityGraphComponent.highlightedNodes = solution;
-	createSolutionViews(entity, solution);
+	visibilityGraphComponent.solution = solution;
+
+	removeViewGroup(entity, CVisibilityGraph, "solutionViewGroup");
+	if (solution && configManager.config.debug.showsVisibilityGraphSolution) {
+		createViewGroup(entity, CVisibilityGraph, getSolutionView, "solutionViewGroup");
+	}
 
 	if (!solution && visibilityGraphComponent.extendedHitboxesPointsSystem) {
 		unblockEntity(entity);

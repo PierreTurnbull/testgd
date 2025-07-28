@@ -80,7 +80,19 @@ Projection format: JSON. Specify a list of key-boolean values, or true for all e
 
 ## Architecture
 
-The game has an [ECS](https://en.wikipedia.org/wiki/Entity_component_system) architecture. 
+The app is divided into 2 sub-apps:
+- a highly interactive 2D part of the game is implemented with PixiJS and a an [ECS](https://en.wikipedia.org/wiki/Entity_component_system) architecture.
+- user interfaces are implemented with a PReact app.
+
+This specialization makes the codebase simpler and more reliable. However it requires an additional communication layer for both sub-apps to communicate together. An event bus and a global store are used for this purpose.
+
+```
+--------     ----------------     --------
+|      | <-> | event bus    | <-> |      |
+|  UI  |     ----------------     | game |
+|      | --> | global store | <-- |      |
+--------     ----------------     --------
+```
 
 ### File structure
 
@@ -90,8 +102,21 @@ The game has an [ECS](https://en.wikipedia.org/wiki/Entity_component_system) arc
 		/common
 		/core
 		/domains
+		/ui
 ```
 
-- /common contains contains common data and control structures, such as components and archetypes.
-- /core contains the core logic of the game engine
-- /domains contains concepts of the game, such as the player or the fps counter.
+- `/common` contains contains common data and control structures, such as components and archetypes.
+- `/core` contains the core logic of the game engine
+- `/domains` contains concepts of the game, such as the player or the fps counter.
+- `/ui` contains user interfaces, such as the game menu or the editor menu.
+
+## TODO
+
+- distinction between views (CView): sprite and animatedSprite
+- replace string key hierarchies (e.g.: "environment.muddyBuddy.hitbox") with complex structures where it is more appropriate.
+- replace "view sorting curve" with "sorting curve"
+- reorganize view utility functions (init, replace, remove...) -> more domains, less common
+- replace "hitbox border view" with "hitbox view"
+- make more domains from common and core content
+- add readme in each domain to explain the domain
+- replace "location" with "coordinates"

@@ -50,7 +50,7 @@ class EntityManager {
 		if (entity.hasComponent(CRelation)) {
 			relationsManager.relations.add(entity);
 		}
-	
+
 		archetypeManager.registerEntity(entity);
 
 		return entity;

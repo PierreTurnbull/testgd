@@ -20,26 +20,26 @@ import { AVAILABLE_ACTIONS } from "@root/app/common/constants/availableActions.c
 import { ANGLE_NAMES, DIRECTION8_ANGLES } from "@root/app/common/constants/space.constants";
 import { ENTITIES_CENTER_OFFSETS } from "@root/app/common/constants/views.constants";
 import { TCoordinates } from "@root/app/common/types/coordinates.types";
-import { initAnimatedSprite } from "@root/app/common/utils/views/initAnimatedSprite/initAnimatedSprite";
-import { initBorderView } from "@root/app/common/utils/views/initBorderView/initBorderView";
-import { initCenterView } from "@root/app/common/utils/views/initCenterView/initCenterView";
 import { configManager } from "@root/app/domains/configManager/configManager.singleton";
 import { entityManager } from "@root/app/domains/entity/entityManager.singleton";
 import { MUDDYBUDDY_ROLLING_SPEED } from "@root/app/domains/muddyBuddy/constants/muddyBuddy.constants";
 import { relationsManager } from "@root/app/domains/relationManager/relationsManager.singleton";
+import { getCenterView } from "@root/app/domains/view/utils/common/getCenterView/getCenterView";
 import { CViewSortingCurveView } from "@root/app/domains/viewSortingCurve/components/viewSortingCurveView/viewSortingCurveView.component";
 import { TViewSortingCurve } from "@root/app/domains/viewSortingCurve/types/viewSortingCurve.types";
-import { Graphics } from "pixi.js";
 import { HITBOX_BOUNDS } from "../../hitbox/constants/hitboxes.constants";
 import { TRectangleHitboxSettings } from "../../hitbox/types/hitbox.types";
 import { createHitbox } from "../../hitbox/utils/createHitbox";
 import { CMemory } from "../../memory/components/memory/memory.component";
 import { CVisibilityGraph } from "../../pathfinding/components/visibilityGraph/visibilityGraph.component";
-import { createVisibilityGraph } from "../../pathfinding/utils/createVisibilityGraph/createVisibilityGraph";
+import { createVisibilityGraph } from "../../pathfinding/utils/visibilityGraph/createVisibilityGraph/createVisibilityGraph";
 import { CMustBeDestroyedOnCollision } from "../../projectile/components/mustBeDestroyedOnCollision/mustBeDestroyedOnCollision.component";
 import { CProjectile } from "../../projectile/components/projectile/projectile.component";
+import { getBorderView } from "../../view/utils/common/getBorderView/getBorderView";
+import { createView } from "../../view/utils/create/createView/createView";
+import { getAnimatedSprite } from "../../view/utils/getAnimatedSprite/getAnimatedSprite";
 import { CViewSortingCurve } from "../../viewSortingCurve/components/viewSortingCurve/viewSortingCurve.component";
-import { initViewSortingCurveView } from "../../viewSortingCurve/utils/initViewSortingCurveView/initViewSortingCurveView";
+import { getViewSortingCurveView } from "../../viewSortingCurve/utils/getViewSortingCurveView/getViewSortingCurveView";
 import { CMuddyBuddy } from "../components/muddyBuddy/muddyBuddy.component";
 
 export const createMuddyBuddy = (
@@ -47,20 +47,6 @@ export const createMuddyBuddy = (
 	initialDirection: TDirection = DIRECTION8_ANGLES.down,
 ) => {
 	const viewName = `characters.muddyBuddy.standing.${ANGLE_NAMES.get(initialDirection)}`;
-
-	const animatedSprite = initAnimatedSprite(viewName, initialCoordinates);
-
-	let border: Graphics | null = null;
-	let center: Graphics | null = null;
-	let viewSortingCurveView: Graphics | null = null;
-
-	if (configManager.config.debug.showsEntityBorders) {
-		border = initBorderView(animatedSprite, initialCoordinates);
-	}
-
-	if (configManager.config.debug.showsEntityCenters) {
-		center = initCenterView("characters.muddyBuddy", initialCoordinates);
-	}
 
 	const actionVelocities = {
 		"rolling": MUDDYBUDDY_ROLLING_SPEED,
@@ -90,15 +76,6 @@ export const createMuddyBuddy = (
 		},
 	];
 
-	if (configManager.config.debug.showsViewSortingCurves) {
-		viewSortingCurveView = initViewSortingCurveView(
-			"characters.muddyBuddy",
-			initialCoordinates,
-			viewSortingCurve,
-			centerOffset,
-		);
-	}
-
 	const muddyBuddyEntity = entityManager.createEntity(
 		"muddyBuddy",
 		[
@@ -122,14 +99,28 @@ export const createMuddyBuddy = (
 
 			// view sorting curve
 			new CViewSortingCurve(viewSortingCurve),
-			new CViewSortingCurveView(viewSortingCurveView),
+			new CViewSortingCurveView(null),
 
 			// views
-			new CView(animatedSprite),
-			new CBorderView(border),
-			new CCenterView(center),
+			new CView(null),
+			new CBorderView(null),
+			new CCenterView(null),
 		],
 	);
+
+	createView(muddyBuddyEntity, CView, getAnimatedSprite, "view");
+
+	if (configManager.config.debug.showsEntityBorders) {
+		createView(muddyBuddyEntity, CBorderView, getBorderView, "borderView");
+	}
+
+	if (configManager.config.debug.showsEntityCenters) {
+		createView(muddyBuddyEntity, CCenterView, getCenterView, "centerView");
+	}
+
+	if (configManager.config.debug.showsViewSortingCurves) {
+		createView(muddyBuddyEntity, CViewSortingCurveView, getViewSortingCurveView, "viewSortingCurveView");
+	}
 
 	relationsManager.createRelation({
 		a: {

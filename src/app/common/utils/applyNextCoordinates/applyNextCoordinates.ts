@@ -45,11 +45,13 @@ export const applyNextCoordinates = (
 	const hitboxEntities = entity.getRelatedEntities("hitboxes");
 	hitboxEntities.forEach(hitboxEntity => {
 		const hitboxComponent = hitboxEntity.getComponent(CHitbox);
+		const hitboxLocationComponent = hitboxEntity.getComponent(CLocation);
 		const hitboxOffsetComponent = hitboxEntity.getComponent(CHitboxOffset);
 
 		const offsetCoordinates = getOffsetCoordinates(nextCoordinates, hitboxOffsetComponent.offset);
 
 		updateHitboxPosition(hitboxComponent, offsetCoordinates);
+		hitboxLocationComponent.coordinates = locationComponent.coordinates;
 
 		if (configManager.config.debug.showsEntityHitboxes) {
 			const hitboxViewComponent = hitboxEntity.getComponent(CHitboxView);

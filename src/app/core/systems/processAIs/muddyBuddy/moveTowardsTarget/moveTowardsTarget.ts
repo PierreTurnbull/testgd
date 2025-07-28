@@ -6,9 +6,9 @@ import { getDistance } from "@root/app/common/utils/geometry/getDistance/getDist
 import { Entity } from "@root/app/domains/entity/entity.models";
 import { CMemory } from "@root/app/domains/memory/components/memory/memory.component";
 import { CVisibilityGraph } from "@root/app/domains/pathfinding/components/visibilityGraph/visibilityGraph.component";
-import { getExtendedHitboxesPoints } from "@root/app/domains/pathfinding/utils/createVisibilityGraph/createExtendedHitboxesPoints/createExtendedHitboxesPoints";
-import { getShapeSegments } from "@root/app/domains/pathfinding/utils/createVisibilityGraph/createShapesSegments/createShapesSegments";
 import { findPath } from "@root/app/domains/pathfinding/utils/findPath/findPath";
+import { getExtendedHitboxesPoints } from "@root/app/domains/pathfinding/utils/visibilityGraph/createVisibilityGraph/createExtendedHitboxesPoints/createExtendedHitboxesPoints";
+import { getShapeSegments } from "@root/app/domains/pathfinding/utils/visibilityGraph/createVisibilityGraph/createShapesSegments/createShapesSegments";
 import { getNextAngle } from "./getNextAngle/getNextAngle";
 
 export const moveTowardsTarget = (
@@ -66,7 +66,7 @@ export const moveTowardsTarget = (
 		);
 	}
 
-	if (visibilityGraphComponent.nextStep && visibilityGraphComponent.highlightedNodes) {
+	if (visibilityGraphComponent.nextStep && visibilityGraphComponent.solution) {
 		const nextAngle = getNextAngle(
 			visibilityGraphComponent,
 			locationComponent.coordinates,

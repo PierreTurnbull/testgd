@@ -16,7 +16,17 @@ export type TEnvironmentConfigItem = {
 export type TConfig = {
 	//                  name           variant          direction
 	environment: Record<string, Record<TVariant, Record<TDirection8, TEnvironmentConfigItem>>>
-	debug:       Record<string, boolean>
+	debug:       {
+		showsEntityBorders:            boolean
+		showsEntityHitboxes:           boolean
+		showsEntityCenters:            boolean
+		showsViewSortingCurves:        boolean
+		showsExtendedHitboxes:         boolean
+		showsVisibilityGraphNodes:     boolean
+		showsVisibilityGraphNodeLinks: boolean
+		showsVisibilityGraphSolution:  boolean
+		showsMouseCoordinates:         boolean
+	}
 }
 
 export type TEnvironmentItem = {

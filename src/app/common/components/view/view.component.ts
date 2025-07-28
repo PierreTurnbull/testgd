@@ -2,16 +2,25 @@ import { ViewContainer } from "pixi.js";
 import { Component } from "../component.models";
 
 /**
- * An animated sprite is the dynamic representation of an entity.
+ * A view is the visual representation of an entity.
  */
 export class CView extends Component {
-	constructor(
-		initialView: ViewContainer,
+	constructor (
+		view: ViewContainer | null,
 	) {
 		super();
 
-		this.view = initialView;
+		this._view = view;
 	}
 
-	view: ViewContainer;
+	private _view: ViewContainer | null = null;
+
+	get view() {
+		if (!this._view) throw new Error("Missing border view.");
+
+		return this._view;
+	}
+	set view(value: ViewContainer) {
+		this._view = value;
+	}
 }

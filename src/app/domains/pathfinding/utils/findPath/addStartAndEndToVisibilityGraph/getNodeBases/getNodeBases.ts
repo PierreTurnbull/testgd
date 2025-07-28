@@ -1,6 +1,6 @@
-import { TVisibilityGraphNode } from "@root/app/domains/pathfinding/types/visibilityGraph.types";
-import { getPointKey } from "../../../common/getPointKey";
 import { TCoordinates } from "@root/app/common/types/coordinates.types";
+import { TVisibilityGraphNode } from "@root/app/domains/pathfinding/types/visibilityGraph.types";
+import { getPointKey } from "../../../common/getPointKey/getPointKey";
 
 /**
  * Returns the bases of the start and end nodes.

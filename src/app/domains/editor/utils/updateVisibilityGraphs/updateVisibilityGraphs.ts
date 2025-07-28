@@ -1,6 +1,6 @@
 import { archetypeManager } from "@root/app/common/archetypes/archetypeManager.singleton";
 import { APathfinder } from "@root/app/common/archetypes/pathfinder/pathfinder.archetype";
-import { createVisibilityGraph } from "@root/app/domains/pathfinding/utils/createVisibilityGraph/createVisibilityGraph";
+import { createVisibilityGraph } from "@root/app/domains/pathfinding/utils/visibilityGraph/createVisibilityGraph/createVisibilityGraph";
 
 /**
  * Updates the visibility graphs of all pathfinders.

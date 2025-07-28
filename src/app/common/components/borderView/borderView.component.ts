@@ -14,9 +14,6 @@ export class CBorderView extends Component {
 		this._borderView = borderView;
 	}
 
-	/**
-	 * The border of an entity. Used for debugging.
-	 */
 	private _borderView: Graphics | null = null;
 
 	get borderView() {
@@ -26,6 +23,7 @@ export class CBorderView extends Component {
 		return this._borderView;
 	}
 	set borderView(value: Graphics) {
+		if (!configManager.config.debug.showsEntityBorders) throw new Error("Cannot access border view: the debug option is disabled.");
 		this._borderView = value;
 	}
 }

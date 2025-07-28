@@ -3,7 +3,7 @@ import { configManager } from "@root/app/domains/configManager/configManager.sin
 import { CHitbox } from "@root/app/domains/hitbox/components/hitbox/hitbox.component";
 import { CHitboxView } from "@root/app/domains/hitbox/components/hitboxView/hitboxView.component";
 import { CVisibilityGraph } from "@root/app/domains/pathfinding/components/visibilityGraph/visibilityGraph.component";
-import { resetVisibilityGraph } from "@root/app/domains/pathfinding/utils/createVisibilityGraph/resetVisibilityGraph/resetVisibilityGraph";
+import { resetVisibilityGraph } from "@root/app/domains/pathfinding/utils/visibilityGraph/createVisibilityGraph/resetVisibilityGraph/resetVisibilityGraph";
 import { CViewSortingCurveView } from "@root/app/domains/viewSortingCurve/components/viewSortingCurveView/viewSortingCurveView.component";
 import { Archetype } from "../../common/archetypes/archetype.models";
 import { archetypeManager } from "../../common/archetypes/archetypeManager.singleton";

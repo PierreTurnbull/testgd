@@ -1,5 +1,5 @@
 import { TVisibilityGraphNode } from "@root/app/domains/pathfinding/types/visibilityGraph.types";
-import { getNodesKey } from "../../../common/getNodesKey";
+import { getNodesKey } from "../../../common/getNodesKey/getNodesKey";
 import { TPairsToCompute } from "../types/pairsToCompute.types";
 
 /**

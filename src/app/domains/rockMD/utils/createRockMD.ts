@@ -9,21 +9,21 @@ import { CView } from "@root/app/common/components/view/view.component";
 import { DIRECTION8_ANGLES } from "@root/app/common/constants/space.constants";
 import { ENTITIES_CENTER_OFFSETS } from "@root/app/common/constants/views.constants";
 import { TCoordinates } from "@root/app/common/types/coordinates.types";
-import { initBorderView } from "@root/app/common/utils/views/initBorderView/initBorderView";
-import { initCenterView } from "@root/app/common/utils/views/initCenterView/initCenterView";
-import { initSprite } from "@root/app/common/utils/views/initSprite/initSprite";
 import { configManager } from "@root/app/domains/configManager/configManager.singleton";
 import { selectEntity } from "@root/app/domains/editor/utils/selectEntity/selectEntity";
 import { entityManager } from "@root/app/domains/entity/entityManager.singleton";
 import { relationsManager } from "@root/app/domains/relationManager/relationsManager.singleton";
-import { Graphics } from "pixi.js";
+import { getCenterView } from "@root/app/domains/view/utils/common/getCenterView/getCenterView";
+import { getSprite } from "@root/app/domains/view/utils/getSprite/getSprite";
 import { HITBOXES_POINTS } from "../../hitbox/constants/hitboxes.constants";
 import { TPolygonHitboxSettings } from "../../hitbox/types/hitbox.types";
 import { createHitbox } from "../../hitbox/utils/createHitbox";
+import { getBorderView } from "../../view/utils/common/getBorderView/getBorderView";
+import { createView } from "../../view/utils/create/createView/createView";
 import { CViewSortingCurve } from "../../viewSortingCurve/components/viewSortingCurve/viewSortingCurve.component";
 import { CViewSortingCurveView } from "../../viewSortingCurve/components/viewSortingCurveView/viewSortingCurveView.component";
 import { VIEW_SORTING_CURVES } from "../../viewSortingCurve/constants/viewSortingCurve.constants";
-import { initViewSortingCurveView } from "../../viewSortingCurve/utils/initViewSortingCurveView/initViewSortingCurveView";
+import { getViewSortingCurveView } from "../../viewSortingCurve/utils/getViewSortingCurveView/getViewSortingCurveView";
 import { CRockMD } from "../components/rockMD/rockMD.component";
 
 export const createRockMD = (
@@ -34,20 +34,6 @@ export const createRockMD = (
 ) => {
 	const viewName = `environment.rockMD.${variant}.${direction8}`;
 
-	const sprite = initSprite(viewName, coordinates);
-
-	let borderView: Graphics | null = null;
-	let centerView: Graphics | null = null;
-	let viewSortingCurveView: Graphics | null = null;
-
-	if (configManager.config.debug.showsEntityBorders) {
-		borderView = initBorderView(sprite, coordinates);
-	}
-
-	if (configManager.config.debug.showsEntityCenters) {
-		centerView = initCenterView(viewName, coordinates);
-	}
-	
 	const centerOffset = ENTITIES_CENTER_OFFSETS[viewName];
 	if (!centerOffset) {
 		throw new Error(`Missing center offsets for "${viewName}".`);
@@ -56,15 +42,6 @@ export const createRockMD = (
 	const viewSortingCurve = VIEW_SORTING_CURVES[viewName];
 	if (!viewSortingCurve) {
 		throw new Error(`Missing view sorting curve for "${viewName}".`);
-	}
-
-	if (configManager.config.debug.showsViewSortingCurves) {
-		viewSortingCurveView = initViewSortingCurveView(
-			"characters.player",
-			coordinates,
-			viewSortingCurve,
-			centerOffset,
-		);
 	}
 
 	const rockMDEntity = entityManager.createEntity("rockMD", [
@@ -78,20 +55,34 @@ export const createRockMD = (
 
 		// view sorting curve
 		new CViewSortingCurve(viewSortingCurve),
-		new CViewSortingCurveView(viewSortingCurveView),
+		new CViewSortingCurveView(null),
 
 		// views
-		new CView(sprite),
-		new CBorderView(borderView),
-		new CCenterView(centerView),
+		new CView(null),
+		new CBorderView(null),
+		new CCenterView(null),
 	]);
+	
+	createView(rockMDEntity, CView, getSprite, "view");
+
+	if (configManager.config.debug.showsEntityBorders) {
+		createView(rockMDEntity, CBorderView, getBorderView, "borderView");
+	}
+
+	if (configManager.config.debug.showsEntityCenters) {
+		createView(rockMDEntity, CCenterView, getCenterView, "centerView");
+	}
+
+	if (configManager.config.debug.showsViewSortingCurves) {
+		createView(rockMDEntity, CViewSortingCurveView, getViewSortingCurveView, "viewSortingCurveView");
+	}
 
 	if (gameEditorId !== undefined) {
 		rockMDEntity.addComponent(new CGameEditorId(gameEditorId));
 	}
 	
-	sprite.interactive = true;
-	sprite.addEventListener("mousedown", () => {
+	rockMDEntity.getComponent(CView).view.interactive = true;
+	rockMDEntity.getComponent(CView).view.addEventListener("mousedown", () => {
 		selectEntity(rockMDEntity);
 	});
 

@@ -15,13 +15,13 @@ export const getNextAngle = (
 	visibilityGraphComponent: CVisibilityGraph,
 	entityCoordinate: TCoordinates,
 ) => {
-	if (!visibilityGraphComponent.nextStep || !visibilityGraphComponent.highlightedNodes) {
-		throw new Error("Missing highlightedNodes.");
+	if (!visibilityGraphComponent.nextStep || !visibilityGraphComponent.solution) {
+		throw new Error("Missing solution.");
 	}
 
 	const lastSolutionAngle = getAngleFromPoints(
-		visibilityGraphComponent.highlightedNodes[0],
-		visibilityGraphComponent.highlightedNodes[1],
+		visibilityGraphComponent.solution[0],
+		visibilityGraphComponent.solution[1],
 	);
 	let angle = getAngleFromPoints(
 		entityCoordinate,
@@ -34,7 +34,7 @@ export const getNextAngle = (
 	const entityOvertookNextStep = angleDiff > 90;
 	if (entityOvertookNextStep) {
 		// Enable the entity to start moving towards the following step.
-		visibilityGraphComponent.highlightedNodes.splice(0, 2, entityCoordinate);
+		visibilityGraphComponent.solution.splice(0, 2, entityCoordinate);
 		angle = getAngleFromPoints(
 			entityCoordinate,
 			visibilityGraphComponent.nextStep,
