@@ -1,3 +1,4 @@
+import { configManager } from "@root/app/domains/configManager/configManager.singleton";
 import { Entity } from "@root/app/domains/entity/entity.models";
 import { getExtendedHitboxPointViewGroup } from "@root/app/domains/view/extendedHitbox/utils/getExtendedHitboxPointViewGroup/getExtendedHitboxPointViewGroup";
 import { getExtendedHitboxViewGroup } from "@root/app/domains/view/extendedHitbox/utils/getExtendedHitboxViewGroup/getExtendedHitboxViewGroup";
@@ -13,11 +14,15 @@ import { createExtendedHitboxViewGroup } from "./createNodeViewGroup/createNodeV
 export const createVisibilityGraphViewGroup = (
 	entity: Entity,
 ) => {
-	removeViewGroup(entity, CVisibilityGraph, "extendedHitboxViewGroup");
-	createViewGroup(entity, CVisibilityGraph, getExtendedHitboxViewGroup, "extendedHitboxViewGroup");
+	if (configManager.config.debug.showsVisibilityGraphNodeLinks) {
+		removeViewGroup(entity, CVisibilityGraph, "extendedHitboxViewGroup");
+		createViewGroup(entity, CVisibilityGraph, getExtendedHitboxViewGroup, "extendedHitboxViewGroup");
+	}
 
-	removeViewGroup(entity, CVisibilityGraph, "extendedHitboxPointViewGroup");
-	createViewGroup(entity, CVisibilityGraph, getExtendedHitboxPointViewGroup, "extendedHitboxPointViewGroup");
+	if (configManager.config.debug.showsVisibilityGraphNodes) {
+		removeViewGroup(entity, CVisibilityGraph, "extendedHitboxPointViewGroup");
+		createViewGroup(entity, CVisibilityGraph, getExtendedHitboxPointViewGroup, "extendedHitboxPointViewGroup");
+	}
 
 	// removeViewGroup(entity, CVisibilityGraph, "linkedNodeViewGroup");
 	// createViewGroup(entity, CVisibilityGraph, getLinkedNodeViewGroup, "linkedNodeViewGroup");

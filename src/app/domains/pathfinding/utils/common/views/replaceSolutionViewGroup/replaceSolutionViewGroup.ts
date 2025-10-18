@@ -15,5 +15,4 @@ export const replaceSolutionViewGroup = (
 	prevSolutionViewGroup?.forEach(view => view.removeFromParent());
 
 	initSolutionViewGroup(entity, solution);
-
 };

@@ -1,4 +1,5 @@
 import { TPoint } from "@root/app/common/types/point.type";
+import { configManager } from "@root/app/domains/configManager/configManager.singleton";
 import { entityManager } from "@root/app/domains/entity/entityManager.singleton";
 import { CVisibilityGraph } from "../../../components/visibilityGraph/visibilityGraph.component";
 import { replaceSolutionViewGroup } from "../../common/views/replaceSolutionViewGroup/replaceSolutionViewGroup";
@@ -21,7 +22,7 @@ export const processSolution = (
 
 	visibilityGraphComponent.solution = solution;
 
-	if (solution) {
+	if (solution && configManager.config.debug.showsVisibilityGraphSolution) {
 		replaceSolutionViewGroup(entity, solution);
 	} else {
 		visibilityGraphComponent.solutionViewGroup?.forEach(nodeView => nodeView.destroy());
