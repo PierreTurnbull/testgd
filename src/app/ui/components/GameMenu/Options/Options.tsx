@@ -1,5 +1,6 @@
 import { data as editorData } from "@app/domains/editor/data/data";
 import { configManager } from "@root/app/domains/configManager/configManager.singleton";
+import { updateConfig } from "@root/app/domains/configManager/utils/updateConfig";
 import { useClosingContext } from "@root/app/ui/contexts/closing/useClosingContext";
 import { useState } from "preact/hooks";
 import { Button } from "../../common/Button/Button";
@@ -26,7 +27,7 @@ export const Options = ({
 	};
 
 	const submit = () => {
-		configManager.update({ debug: options });
+		updateConfig({ debug: options });
 		close();
 	};
 

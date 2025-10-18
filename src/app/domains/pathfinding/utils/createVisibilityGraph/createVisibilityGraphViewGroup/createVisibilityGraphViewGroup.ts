@@ -19,6 +19,6 @@ export const createVisibilityGraphViewGroup = (
 	removeViewGroup(entity, CVisibilityGraph, "extendedHitboxPointViewGroup");
 	createViewGroup(entity, CVisibilityGraph, getExtendedHitboxPointViewGroup, "extendedHitboxPointViewGroup");
 
-	removeViewGroup(entity, CVisibilityGraph, "linkedNodeViewGroup");
-	createViewGroup(entity, CVisibilityGraph, getLinkedNodeViewGroup, "linkedNodeViewGroup");
+	// removeViewGroup(entity, CVisibilityGraph, "linkedNodeViewGroup");
+	// createViewGroup(entity, CVisibilityGraph, getLinkedNodeViewGroup, "linkedNodeViewGroup");
 };

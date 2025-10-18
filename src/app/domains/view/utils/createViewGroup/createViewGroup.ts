@@ -17,10 +17,6 @@ export const createViewGroup = <TComponent extends Component>(
 
 	const viewGroup = getViewGroup(entity);
 
-	if (!viewComponent.constructor.name.includes("View")) {
-		throw new Error("componentClass must be a view component.");
-	}
-
 	viewGroup.forEach(view => {
 		worldManager.world.addChild(view);
 	})

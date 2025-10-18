@@ -13,11 +13,11 @@ export const removeViewGroup = <TComponent extends Component>(
 ) => {
 	const viewComponent = entity.getComponent(componentClass);
 
-	if (!viewComponent.constructor.name.includes("View")) {
-		throw new Error("componentClass must be a view component.");
-	}
-
 	;(viewComponent[key] as ViewContainer[] | null)?.forEach(view => {
+		if (!(view instanceof ViewContainer)) {
+			throw new Error("Invalid key.");
+		}
+
 		view.removeFromParent();
 	})
 

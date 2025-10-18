@@ -13,10 +13,6 @@ export const removeView = <TComponent extends Component>(
 ) => {
 	const viewComponent = entity.getComponent(componentClass);
 
-	if (!viewComponent.constructor.name.includes("View")) {
-		throw new Error("componentClass must be a view component.");
-	}
-
 	if (!(viewComponent[key] instanceof ViewContainer)) {
 		throw new Error("Invalid key.");
 	}

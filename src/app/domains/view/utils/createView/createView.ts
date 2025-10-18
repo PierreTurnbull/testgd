@@ -17,10 +17,6 @@ export const createView = <TComponent extends Component>(
 
 	const view = getView(entity);
 
-	if (!viewComponent.constructor.name.includes("View")) {
-		throw new Error("componentClass must be a view component.");
-	}
-
 	worldManager.world.addChild(view);
 
 	;(viewComponent[key] as ViewContainer | null) = view;

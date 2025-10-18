@@ -27,6 +27,6 @@ initLoop();
 watchInput();
 initUi();
 watchUiBusEvents();
-setTimeout(() => {
-	console.log([...entityManager.entities].find(a => a.hasComponent(CPlayer))!.getComponent(CViewSortingCurveView));
-}, 500);
+// setTimeout(() => {
+// 	console.log([...entityManager.entities].find(a => a.hasComponent(CPlayer))!.getComponent(CViewSortingCurveView));
+// }, 500);
