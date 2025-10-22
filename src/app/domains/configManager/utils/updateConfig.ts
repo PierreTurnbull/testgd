@@ -1,21 +1,39 @@
 import { data as editorData } from "@app/domains/editor/data/data";
+import { archetypeManager } from "@root/app/common/archetypes/archetypeManager.singleton";
+import { AMouseCoordinates } from "@root/app/common/archetypes/mouseCoordinates/mouseCoordinates.archetype";
 import { CBorderView } from "@root/app/common/components/borderView/borderView.component";
 import { CCenterView } from "@root/app/common/components/centerView/centerView.component";
+import { CMouseCoordinates } from "@root/app/common/components/mouseCoordinates/mouseCoordinates.component";
+import { appManager } from "../../app/appManager.singleton";
 import { TConfig } from "../../editor/data/data.types";
+import { entityManager } from "../../entity/entityManager.singleton";
 import { CHitboxView } from "../../hitbox/components/hitboxView/hitboxView.component";
 import { getHitboxBorderView } from "../../hitbox/utils/getHitboxBorderView/getHitboxBorderView";
 import { CVisibilityGraph } from "../../pathfinding/components/visibilityGraph/visibilityGraph.component";
+import { getLinkedNodeView } from "../../pathfinding/utils/createVisibilityGraph/createVisibilityGraphViewGroup/createNodeLinkViewGroup/createNodeLinkViewGroup";
 import { getBorderView } from "../../view/border/utils/getBorderView/getBorderView";
 import { getCenterView } from "../../view/center/utils/getCenterView/getCenterView";
 import { getExtendedHitboxPointViewGroup } from "../../view/extendedHitbox/utils/getExtendedHitboxPointViewGroup/getExtendedHitboxPointViewGroup";
+import { getExtendedHitboxViewGroup } from "../../view/extendedHitbox/utils/getExtendedHitboxViewGroup/getExtendedHitboxViewGroup";
+import { getFromLinkedNodeViewGroup } from "../../view/linkedNode/utils/getFromNodeViewGroup/getFromNodeViewGroup";
+import { getToAreaLinkedNodeViewGroup } from "../../view/linkedNode/utils/getToAreaNodeViewGroup/getToAreaNodeViewGroup";
+import { getToLinkedNodeViewGroup } from "../../view/linkedNode/utils/getToNodeViewGroup/getToNodeViewGroup";
+import { getMouseCoordinatesView } from "../../view/mouseCoordinates/utils/getMouseCoordinatesView/getMouseCoordinatesView";
+import { createView } from "../../view/utils/createView/createView";
 import { createViewGroups } from "../../view/utils/createViewGroups/createViewGroups";
 import { createViews } from "../../view/utils/createViews/createViews";
+import { removeView } from "../../view/utils/removeView/removeView";
+import { removeViewGroups } from "../../view/utils/removeViewGroups/removeViewGroups";
 import { removeViews } from "../../view/utils/removeViews/removeViews";
+import { getVisibilityGraphNodeViewGroup } from "../../view/visibilityGraphNode/utils/getVisibilityGraphNodeViewGroup/getVisibilityGraphNodeViewGroup";
 import { CViewSortingCurveView } from "../../viewSortingCurve/components/viewSortingCurveView/viewSortingCurveView.component";
 import { getViewSortingCurveView } from "../../viewSortingCurve/utils/getViewSortingCurveView/getViewSortingCurveView";
 import { configManager } from "../configManager.singleton";
 
 export const updateConfig = (nextConfig: Pick<TConfig, "debug">) => {
+	const mouseCoordinatesEntity = [...archetypeManager.getArchetype(AMouseCoordinates).entities][0];
+	console.log(archetypeManager.getArchetype(AMouseCoordinates).entities);
+
 	const mustRemoveBorderViews = configManager.config.debug.showsEntityBorders && !nextConfig.debug.showsEntityBorders;
 	const mustRemoveCenterViews = configManager.config.debug.showsEntityCenters && !nextConfig.debug.showsEntityCenters;
 	const mustRemoveHitboxBorderViews = configManager.config.debug.showsEntityHitboxes && !nextConfig.debug.showsEntityHitboxes;
@@ -48,21 +66,24 @@ export const updateConfig = (nextConfig: Pick<TConfig, "debug">) => {
 	if (mustRemoveViewSortingCurveViews) {
 		removeViews(CViewSortingCurveView, "viewSortingCurveView");
 	}
-	// if (mustRemoveExtendedHitboxViewGroups) {
-	// 	removeExtendedHitboxViewGroups();
-	// }
-	// if (mustRemoveVisibilityGraphNodeViewGroups) {
-	// 	removeVisibilityGraphNodeViewGroups();
-	// }
-	// if (mustRemoveVisibilityGraphNodeLinkViewGroups) {
-	// 	removeVisibilityGraphNodeLinkViewGroups();
-	// }
+	if (mustRemoveExtendedHitboxViewGroups) {
+		removeViewGroups(CVisibilityGraph, "extendedHitboxViewGroup");
+		removeViewGroups(CVisibilityGraph, "extendedHitboxPointViewGroup");
+	}
+	if (mustRemoveVisibilityGraphNodeViewGroups) {
+		removeViewGroups(CVisibilityGraph, "nodeViewGroup");
+	}
+	if (mustRemoveVisibilityGraphNodeLinkViewGroups) {
+		removeViewGroups(CVisibilityGraph, "fromLinkedNodeViewGroup");
+		removeViewGroups(CVisibilityGraph, "toLinkedNodeViewGroup");
+		removeViewGroups(CVisibilityGraph, "toAreaLinkedNodeViewGroup");
+	}
 	// if (mustRemoveVisibilityGraphSolutionViewGroups) {
 	// 	removeVisibilityGraphSolutionViewGroups();
 	// }
-	// if (mustRemoveMouseCoordinatesView) {
-	// 	removeMouseCoordinatesView();
-	// }
+	if (mustRemoveMouseCoordinatesView) {
+		removeView(mouseCoordinatesEntity, CMouseCoordinates, "text");
+	}
 
 	configManager.config = nextConfig;
 	editorData.config.debug = nextConfig.debug;
@@ -80,18 +101,22 @@ export const updateConfig = (nextConfig: Pick<TConfig, "debug">) => {
 		createViews(CViewSortingCurveView, getViewSortingCurveView, "viewSortingCurveView");
 	}
 	if (mustCreateExtendedHitboxViewGroups) {
+		createViewGroups(CVisibilityGraph, getExtendedHitboxViewGroup, "extendedHitboxViewGroup");
 		createViewGroups(CVisibilityGraph, getExtendedHitboxPointViewGroup, "extendedHitboxPointViewGroup");
 	}
-	// if (mustCreateVisibilityGraphNodeViewGroups) {
-	// 	removeVisibilityGraphNodeViewGroups();
-	// }
-	// if (mustCreateVisibilityGraphNodeLinkViewGroups) {
-	// 	removeVisibilityGraphNodeLinkViewGroups();
-	// }
+	if (mustCreateVisibilityGraphNodeViewGroups) {
+		createViewGroups(CVisibilityGraph, getVisibilityGraphNodeViewGroup, "nodeViewGroup");
+	}
+	if (mustCreateVisibilityGraphNodeLinkViewGroups) {
+		createViewGroups(CVisibilityGraph, getFromLinkedNodeViewGroup, "fromLinkedNodeViewGroup");
+		createViewGroups(CVisibilityGraph, getToLinkedNodeViewGroup, "toLinkedNodeViewGroup");
+		createViewGroups(CVisibilityGraph, getToAreaLinkedNodeViewGroup, "toAreaLinkedNodeViewGroup");
+	}
 	// if (mustCreateVisibilityGraphSolutionViewGroups) {
 	// 	removeVisibilityGraphSolutionViewGroups();
 	// }
-	// if (mustCreateMouseCoordinatesView) {
-	// 	removeMouseCoordinatesView();
-	// }
+	if (mustCreateMouseCoordinatesView) {
+		const mouseCoordinatesView = getMouseCoordinatesView();
+		appManager.app.stage.addChild(mouseCoordinatesView);
+	}
 };

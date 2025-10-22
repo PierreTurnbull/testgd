@@ -15,7 +15,6 @@ export const createViewGroups = <TComponent extends Component>(
 ) => {
 	entityManager.entities.forEach(entity => {
 		if (entity.hasComponent(componentClass)) {
-
 			createViewGroup(entity, componentClass, getViewGroup, key);
 		}
 	});

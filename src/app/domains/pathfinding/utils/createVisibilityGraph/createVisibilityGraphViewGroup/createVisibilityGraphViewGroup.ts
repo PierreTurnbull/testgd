@@ -14,15 +14,15 @@ import { createExtendedHitboxViewGroup } from "./createNodeViewGroup/createNodeV
 export const createVisibilityGraphViewGroup = (
 	entity: Entity,
 ) => {
-	if (configManager.config.debug.showsVisibilityGraphNodeLinks) {
-		removeViewGroup(entity, CVisibilityGraph, "extendedHitboxViewGroup");
-		createViewGroup(entity, CVisibilityGraph, getExtendedHitboxViewGroup, "extendedHitboxViewGroup");
-	}
+	// if (configManager.config.debug.showsVisibilityGraphNodeLinks) {
+	// 	removeViewGroup(entity, CVisibilityGraph, "extendedHitboxViewGroup");
+	// 	createViewGroup(entity, CVisibilityGraph, getExtendedHitboxViewGroup, "extendedHitboxViewGroup");
+	// }
 
-	if (configManager.config.debug.showsVisibilityGraphNodes) {
-		removeViewGroup(entity, CVisibilityGraph, "extendedHitboxPointViewGroup");
-		createViewGroup(entity, CVisibilityGraph, getExtendedHitboxPointViewGroup, "extendedHitboxPointViewGroup");
-	}
+	// if (configManager.config.debug.showsVisibilityGraphNodes) {
+	// 	removeViewGroup(entity, CVisibilityGraph, "extendedHitboxPointViewGroup");
+	// 	createViewGroup(entity, CVisibilityGraph, getExtendedHitboxPointViewGroup, "extendedHitboxPointViewGroup");
+	// }
 
 	// removeViewGroup(entity, CVisibilityGraph, "linkedNodeViewGroup");
 	// createViewGroup(entity, CVisibilityGraph, getLinkedNodeViewGroup, "linkedNodeViewGroup");

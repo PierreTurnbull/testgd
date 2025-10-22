@@ -1,9 +1,12 @@
 import { CLocation } from "@root/app/common/components/location/location.component";
+import { getOffsetCoordinates } from "@root/app/common/utils/geometry/getOffsetCoordinates/getOffsetCoordinates";
+import { updateViewContainerCoordinates } from "@root/app/common/utils/updateViewContainerCoordinates/updateViewContainerCoordinates";
 import { Entity } from "@root/app/domains/entity/entity.models";
 import { Graphics } from "pixi.js";
 import { CHitbox } from "../../components/hitbox/hitbox.component";
 import { CHitboxOffset } from "../../components/hitboxOffset/hitboxOffset.component";
 import { CHitboxPoints } from "../../components/hitboxPoints/hitboxPoints.component";
+import { updateHitboxPosition } from "../updateHitboxPosition";
 
 /**
  * Initializes the view of a hitbox border.
@@ -42,7 +45,7 @@ export const getHitboxBorderView = (
 
 	const label = `${entity.name}.border`;
 	hitboxBorderView.label = label;
-	
+
 	hitboxBorderView.x = coordinates.x + offset.x;
 	hitboxBorderView.y = coordinates.y + offset.y;
 

@@ -23,6 +23,7 @@ export class CVisibilityGraph extends Component {
 	 * All the existing nodes before any computation.
 	 */
 	nodes:          TVisibilityGraphNode[] = [];
+	nodeViewGroup:  Graphics[] = [];
 	/**
 	 * Shape segments. Each pair of direct siblings in a shape form a segment.
 	 */
@@ -44,8 +45,6 @@ export class CVisibilityGraph extends Component {
 	fromLinkedNodeViewGroup:   Graphics[] = [];
 	toLinkedNodeViewGroup:     Graphics[] = [];
 	toAreaLinkedNodeViewGroup: Graphics[] = [];
-	fromNode:                  TVisibilityGraphNode | null = null;
-	toNode:                    TVisibilityGraphNode | null = null;
 
 	/**
 	 * Highlighted points that represent the best path.

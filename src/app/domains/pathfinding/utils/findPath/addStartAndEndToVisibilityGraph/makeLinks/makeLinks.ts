@@ -95,20 +95,20 @@ export const makeLinks = (
 	}
 
 	if (configManager.config.debug.showsVisibilityGraphNodeLinks) {
-		visibilityGraphComponent.fromLinkedNodes.forEach(nodePair => {
-			const nodeLinkView = getLinkedNodeView(nodePair, 0xff00ff);
-			worldManager.world.addChild(nodeLinkView);
-			visibilityGraphComponent.fromLinkedNodeViewGroup.push(nodeLinkView);
-		});
-		visibilityGraphComponent.toLinkedNodes.forEach(nodePair => {
-			const nodeLinkView = getLinkedNodeView(nodePair, 0xff00ff);
-			worldManager.world.addChild(nodeLinkView);
-			visibilityGraphComponent.toLinkedNodeViewGroup.push(nodeLinkView);
-		});
-		visibilityGraphComponent.toAreaLinkedNodes.forEach(nodePair => {
-			const nodeLinkView = getLinkedNodeView(nodePair, 0xffaaaa);
-			worldManager.world.addChild(nodeLinkView);
-			visibilityGraphComponent.toAreaLinkedNodeViewGroup.push(nodeLinkView);
-		});
+		// visibilityGraphComponent.fromLinkedNodes.forEach(nodePair => {
+		// 	const nodeLinkView = getLinkedNodeView(nodePair, 0xff00ff);
+		// 	worldManager.world.addChild(nodeLinkView);
+		// 	visibilityGraphComponent.fromLinkedNodeViewGroup.push(nodeLinkView);
+		// });
+		// visibilityGraphComponent.toLinkedNodes.forEach(nodePair => {
+		// 	const nodeLinkView = getLinkedNodeView(nodePair, 0xff00ff);
+		// 	worldManager.world.addChild(nodeLinkView);
+		// 	visibilityGraphComponent.toLinkedNodeViewGroup.push(nodeLinkView);
+		// });
+		// visibilityGraphComponent.toAreaLinkedNodes.forEach(nodePair => {
+		// 	const nodeLinkView = getLinkedNodeView(nodePair, 0xffaaaa);
+		// 	worldManager.world.addChild(nodeLinkView);
+		// 	visibilityGraphComponent.toAreaLinkedNodeViewGroup.push(nodeLinkView);
+		// });
 	}
 };

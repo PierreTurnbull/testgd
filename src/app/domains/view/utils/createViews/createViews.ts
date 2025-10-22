@@ -15,7 +15,6 @@ export const createViews = <TComponent extends Component>(
 ) => {
 	entityManager.entities.forEach(entity => {
 		if (entity.hasComponent(componentClass)) {
-
 			createView(entity, componentClass, getView, key);
 		}
 	});

@@ -14,7 +14,7 @@ import { resetStartAndEndLinks } from "./resetStartAndEndLinks/resetStartAndEndL
 /**
  * Adds nodes and node links to the entity's visibility graph corresponding to the entity's position and its destination.
  */
-export function* addStartAndEndToVisibilityGraph (
+export function* addStartAndEndToVisibilityGraph(
 	entity: Entity,
 	to: TCoordinates,
 	/**

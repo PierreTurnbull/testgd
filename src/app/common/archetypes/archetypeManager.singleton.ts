@@ -7,6 +7,7 @@ import { damagerArchetype } from "./damager/damager.archetype";
 import { fpsArchetype } from "./fps/fps.archetype";
 import { hitboxArchetype } from "./hitbox/hitbox.archetype";
 import { mortalArchetype } from "./mortal/mortal.archetype";
+import { mouseCoordinatesArchetype } from "./mouseCoordinates/mouseCoordinates.archetype";
 import { muddyBuddyArchetype } from "./muddyBuddy/muddyBuddy.archetype";
 import { pathfinderArchetype } from "./pathfinder/pathfinder.archetype";
 import { playerArchetype } from "./player/player.archetype";
@@ -28,6 +29,7 @@ class ArchetypeManager {
 	archetypes: Archetype[] = [
 		playerArchetype,
 		muddyBuddyArchetype,
+		mouseCoordinatesArchetype,
 		actorArchetype,
 		fpsArchetype,
 		colliderArchetype,

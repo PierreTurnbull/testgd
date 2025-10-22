@@ -171,7 +171,7 @@ export const getExtendedHitboxesPoints = (
  * Creates a detect-collisions system for extended hitboxes.
  * This helps unblocking the pathfinding when AI entities' center is inside a shape. Theoretically,
  * this should never happen, but there is a slight margin of error when calculating new coordinates of
- * a moving entity.
+ * a moving entity due to language limits.
  */
 const createSystem = (visibilityGraphComponent: CVisibilityGraph) => {
 	visibilityGraphComponent.extendedHitboxesPointsSystem = new System();
