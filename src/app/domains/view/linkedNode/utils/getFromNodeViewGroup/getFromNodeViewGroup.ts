@@ -6,7 +6,6 @@ import { CVisibilityGraph } from "../../../../pathfinding/components/visibilityG
 const getFromLinkedNodeView = (fromLinkedNode: [TVisibilityGraphNode, TVisibilityGraphNode]) => {
 	const fromLinkedNodeView = new Graphics();
 
-	console.log(fromLinkedNode);
 	fromLinkedNodeView.poly(fromLinkedNode.map(visibilityGraphNode => visibilityGraphNode.point));
 
 	fromLinkedNodeView

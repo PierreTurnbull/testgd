@@ -5,7 +5,6 @@ import { TCoordinates } from "@root/app/common/types/coordinates.types";
 import { appManager } from "@root/app/domains/app/appManager.singleton";
 import { entityManager } from "@root/app/domains/entity/entityManager.singleton";
 import { getMouseCoordinatesView } from "@root/app/domains/view/mouseCoordinates/utils/getMouseCoordinatesView/getMouseCoordinatesView";
-import { createView } from "@root/app/domains/view/utils/createView/createView";
 import { CANVAS_HEIGHT, CANVAS_WIDTH } from "../../../common/constants/app.constants";
 import { configManager } from "../../../domains/configManager/configManager.singleton";
 
@@ -15,27 +14,29 @@ export const initMouse = () => {
 
 	const mouseCoordinatesComponent = new CMouseCoordinates();
 
-	const mouseCoordinatesEntity = entityManager.createEntity(
+	entityManager.createEntity(
 		"mouseCoordinates",
 		[
 			mouseCoordinatesComponent,
 		],
 	);
 
-	createView(mouseCoordinatesEntity, CMouseCoordinates, getMouseCoordinatesView, "text");
+	if (configManager.config.debug.showsMouseCoordinates) {
+		mouseCoordinatesComponent.text = getMouseCoordinatesView();
+		appManager.app.stage.addChild(mouseCoordinatesComponent.text);
+	}
 
 	const updateMouseCoordinates = () => {
 		if (configManager.config.debug.showsMouseCoordinates) {
 			const x = appManager.app.renderer.events.pointer.x;
 			const y = appManager.app.renderer.events.pointer.y;
-			console.log(appManager.app.renderer.events.pointer.x);
 
 			const textX = Math.round(x - CANVAS_WIDTH / 2 + playerLocationComponent.coordinates.x);
 			const textY = Math.round(y - CANVAS_HEIGHT / 2 + playerLocationComponent.coordinates.y);
 
 			mouseCoordinatesComponent.text.text = `x: ${textX} y: ${textY}`;
-			mouseCoordinatesComponent.text.x = 10;
-			mouseCoordinatesComponent.text.y = 10;
+			mouseCoordinatesComponent.text.x = x - mouseCoordinatesComponent.text.width / 2;
+			mouseCoordinatesComponent.text.y = y - 30;
 		}
 	};
 

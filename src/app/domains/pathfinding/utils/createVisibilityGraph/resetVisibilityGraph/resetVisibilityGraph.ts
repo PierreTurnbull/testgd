@@ -6,21 +6,21 @@ import { CVisibilityGraph } from "../../../components/visibilityGraph/visibility
 export const resetVisibilityGraph = (
 	visibilityGraphComponent: CVisibilityGraph,
 ) => {
-	visibilityGraphComponent.extendedHitboxPointViewGroup.forEach(extendedHitboxPointView => extendedHitboxPointView.destroy());
-	visibilityGraphComponent.extendedHitboxViewGroup.forEach(extendedHitboxView => extendedHitboxView.destroy());
-	visibilityGraphComponent.nodeViewGroup.forEach(nodeView => nodeView.destroy());
-	visibilityGraphComponent.fromLinkedNodeViewGroup.forEach(fromLinkedNodeView => fromLinkedNodeView.destroy());
-	visibilityGraphComponent.toLinkedNodeViewGroup.forEach(toLinkedNodeView => toLinkedNodeView.destroy());
-	visibilityGraphComponent.toAreaLinkedNodeViewGroup.forEach(toAreaLinkedNodeView => toAreaLinkedNodeView.destroy());
+	visibilityGraphComponent.extendedHitboxPointViewGroup?.forEach(extendedHitboxPointView => extendedHitboxPointView.destroy());
+	visibilityGraphComponent.extendedHitboxViewGroup?.forEach(extendedHitboxView => extendedHitboxView.destroy());
+	visibilityGraphComponent.nodeViewGroup?.forEach(nodeView => nodeView.destroy());
+	visibilityGraphComponent.fromLinkedNodeViewGroup?.forEach(fromLinkedNodeView => fromLinkedNodeView.destroy());
+	visibilityGraphComponent.toLinkedNodeViewGroup?.forEach(toLinkedNodeView => toLinkedNodeView.destroy());
+	visibilityGraphComponent.toAreaLinkedNodeViewGroup?.forEach(toAreaLinkedNodeView => toAreaLinkedNodeView.destroy());
 	visibilityGraphComponent.solutionViewGroup?.forEach(solutionView => solutionView.destroy());
 
-	visibilityGraphComponent.extendedHitboxPointViewGroup = [];
-	visibilityGraphComponent.extendedHitboxViewGroup = [];
-	visibilityGraphComponent.nodeViewGroup = [];
-	visibilityGraphComponent.fromLinkedNodeViewGroup = [];
-	visibilityGraphComponent.toLinkedNodeViewGroup = [];
-	visibilityGraphComponent.toAreaLinkedNodeViewGroup = [];
-	visibilityGraphComponent.solutionViewGroup = [];
+	visibilityGraphComponent.extendedHitboxPointViewGroup = null;
+	visibilityGraphComponent.extendedHitboxViewGroup = null;
+	visibilityGraphComponent.nodeViewGroup = null;
+	visibilityGraphComponent.fromLinkedNodeViewGroup = null;
+	visibilityGraphComponent.toLinkedNodeViewGroup = null;
+	visibilityGraphComponent.toAreaLinkedNodeViewGroup = null;
+	visibilityGraphComponent.solutionViewGroup = null;
 	visibilityGraphComponent.extendedHitboxesPointsSystem = null;
 	visibilityGraphComponent.extendedHitboxesPoints = [];
 	visibilityGraphComponent.nodes = [];

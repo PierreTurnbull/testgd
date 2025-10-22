@@ -16,14 +16,14 @@ export class CVisibilityGraph extends Component {
 	 * A detect-collisions system used to unblock the entity if it is stuck inside a shape.
 	 */
 	extendedHitboxesPointsSystem: System | null = null;
-	extendedHitboxViewGroup:      Graphics[] = [];
-	extendedHitboxPointViewGroup: Graphics[] = [];
+	extendedHitboxViewGroup:      Graphics[] | null = null;
+	extendedHitboxPointViewGroup: Graphics[] | null = null;
 
 	/**
 	 * All the existing nodes before any computation.
 	 */
 	nodes:          TVisibilityGraphNode[] = [];
-	nodeViewGroup:  Graphics[] = [];
+	nodeViewGroup:  Graphics[] | null = null;
 	/**
 	 * Shape segments. Each pair of direct siblings in a shape form a segment.
 	 */
@@ -37,14 +37,14 @@ export class CVisibilityGraph extends Component {
 	 * Points available for an aStar search.
 	 */
 	linkedNodes:         Map<string, [TVisibilityGraphNode, TVisibilityGraphNode]> = new Map();
-	linkedNodeViewGroup: Graphics[] = [];
+	linkedNodeViewGroup: Graphics[] | null = null;
 
 	fromLinkedNodes:           Map<string, [TVisibilityGraphNode, TVisibilityGraphNode]> = new Map();
 	toLinkedNodes:             Map<string, [TVisibilityGraphNode, TVisibilityGraphNode]> = new Map();
 	toAreaLinkedNodes:         Map<string, [TVisibilityGraphNode, TVisibilityGraphNode]> = new Map();
-	fromLinkedNodeViewGroup:   Graphics[] = [];
-	toLinkedNodeViewGroup:     Graphics[] = [];
-	toAreaLinkedNodeViewGroup: Graphics[] = [];
+	fromLinkedNodeViewGroup:   Graphics[] | null = null;
+	toLinkedNodeViewGroup:     Graphics[] | null = null;
+	toAreaLinkedNodeViewGroup: Graphics[] | null = null;
 
 	/**
 	 * Highlighted points that represent the best path.

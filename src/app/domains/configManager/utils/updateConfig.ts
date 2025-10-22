@@ -32,7 +32,6 @@ import { configManager } from "../configManager.singleton";
 
 export const updateConfig = (nextConfig: Pick<TConfig, "debug">) => {
 	const mouseCoordinatesEntity = [...archetypeManager.getArchetype(AMouseCoordinates).entities][0];
-	console.log(archetypeManager.getArchetype(AMouseCoordinates).entities);
 
 	const mustRemoveBorderViews = configManager.config.debug.showsEntityBorders && !nextConfig.debug.showsEntityBorders;
 	const mustRemoveCenterViews = configManager.config.debug.showsEntityCenters && !nextConfig.debug.showsEntityCenters;
@@ -116,7 +115,8 @@ export const updateConfig = (nextConfig: Pick<TConfig, "debug">) => {
 	// 	removeVisibilityGraphSolutionViewGroups();
 	// }
 	if (mustCreateMouseCoordinatesView) {
-		const mouseCoordinatesView = getMouseCoordinatesView();
-		appManager.app.stage.addChild(mouseCoordinatesView);
+		const mouseCoordinatesComponent = mouseCoordinatesEntity.getComponent(CMouseCoordinates);
+		mouseCoordinatesComponent.text = getMouseCoordinatesView();
+		appManager.app.stage.addChild(mouseCoordinatesComponent.text);
 	}
 };
