@@ -32,7 +32,8 @@ export const getNextAngle = (
 	const angleDiff = Math.abs((((lastSolutionAngle - angle) % 360) + 540) % 360 - 180);
 
 	const entityOvertookNextStep = angleDiff > 90;
-	if (entityOvertookNextStep) {
+	const nextStepIsEnd = visibilityGraphComponent.solution.length === 2;
+	if (entityOvertookNextStep && !nextStepIsEnd) {
 		// Enable the entity to start moving towards the following step.
 		visibilityGraphComponent.solution.splice(0, 2, entityCoordinate);
 		angle = getAngleFromPoints(
