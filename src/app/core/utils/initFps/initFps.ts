@@ -1,6 +1,6 @@
-import { appManager } from "@root/app/domains/app/appManager.singleton";
-import { entityManager } from "@root/app/domains/entity/entityManager.singleton";
-import { CFps } from "@root/app/domains/fps/components/fps/fps.component";
+import { entityManager } from "@root/app/ecs/entities/singletons/entityManager.singleton";
+import { appManager } from "@root/app/features/app/appManager.singleton";
+import { CFps } from "@root/app/features/fps/components/fps/fps.component";
 import { Text } from "pixi.js";
 
 export const initFps = () => {

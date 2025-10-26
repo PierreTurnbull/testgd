@@ -1,10 +1,10 @@
-import { ENTITIES_CENTER_OFFSETS } from "@root/app/common/constants/views.constants";
-import { SCALE_FACTOR } from "@root/app/common/types/animatedSprites.types";
-import { assetsManager } from "@root/app/domains/assetsManager/assetsManager.singletons";
-import { data } from "@root/app/domains/editor/data/data";
-import { createRockLG } from "@root/app/domains/rockLG/utils/createRockLG";
-import { createRockMD } from "@root/app/domains/rockMD/utils/createRockMD";
-import { worldManager } from "@root/app/domains/worldManager/worldManager.singletons";
+import { assetsManager } from "@root/app/features/assets/singletons/assetsManager.singleton";
+import { data } from "@root/app/features/editor/data/data";
+import { createRockLG } from "@root/app/features/rockLG/utils/createRockLG";
+import { createRockMD } from "@root/app/features/rockMD/utils/createRockMD";
+import { ENTITIES_CENTER_OFFSETS } from "@root/app/features/view/constants/views.constants";
+import { SCALE_FACTOR } from "@root/app/features/view/types/views.types";
+import { worldManager } from "@root/app/features/world/singletons/worldManager.singleton";
 import { Sprite } from "pixi.js";
 
 export const initEnvironment = () => {

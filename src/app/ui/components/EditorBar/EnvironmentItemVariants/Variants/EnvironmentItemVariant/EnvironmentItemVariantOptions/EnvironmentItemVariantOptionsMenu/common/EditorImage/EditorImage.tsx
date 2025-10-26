@@ -1,6 +1,6 @@
-import { TDirection8 } from "@root/app/common/components/direction/types/direction.types";
-import { SCALE_FACTOR } from "@root/app/common/types/animatedSprites.types";
-import { TPoint } from "@root/app/common/types/point.type";
+import { TDirection8 } from "@root/app/features/math/types/direction.types";
+import { TPoint } from "@root/app/features/math/types/point.type";
+import { SCALE_FACTOR } from "@root/app/features/view/types/views.types";
 import { useEffect, useRef } from "preact/hooks";
 
 type TEditorImageProps = {

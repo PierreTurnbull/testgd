@@ -1,1 +1,0 @@
-export type TSide = "top" | "bottom" | "left" | "right";

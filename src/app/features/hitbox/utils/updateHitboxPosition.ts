@@ -1,0 +1,14 @@
+import { collisionsManager } from "@root/app/features/collisions/singletons/collisionsManager.singleton";
+import { TCoordinates } from "../../math/types/coordinates.types";
+import { CHitbox } from "../components/hitbox/hitbox.component";
+
+/**
+ * Updates the hitbox position using the provided coordinates.
+ */
+export const updateHitboxPosition = (
+	hitboxComponent: CHitbox,
+	nextCoordinates: TCoordinates,
+) => {
+	hitboxComponent.body.setPosition(nextCoordinates.x, nextCoordinates.y);
+	collisionsManager.system.updateBody(hitboxComponent.body);
+};

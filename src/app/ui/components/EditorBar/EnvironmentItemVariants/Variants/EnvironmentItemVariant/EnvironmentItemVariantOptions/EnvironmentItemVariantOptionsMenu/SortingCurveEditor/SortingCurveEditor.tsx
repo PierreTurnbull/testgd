@@ -1,7 +1,7 @@
-import { TDirection8 } from "@root/app/common/components/direction/types/direction.types";
-import { TPoint } from "@root/app/common/types/point.type";
-import { gameEditorStore } from "@root/app/domains/editor/store/store";
-import { TViewSortingCurve } from "@root/app/domains/viewSortingCurve/types/viewSortingCurve.types";
+import { gameEditorStore } from "@root/app/features/editor/store/store";
+import { TDirection8 } from "@root/app/features/math/types/direction.types";
+import { TPoint } from "@root/app/features/math/types/point.type";
+import { TViewSortingCurve } from "@root/app/features/viewSortingCurve/types/viewSortingCurve.types";
 import { Modal } from "@root/app/ui/components/common/Modal/Modal";
 import { useEffect, useState } from "preact/hooks";
 import { EditorButtons } from "../common/EditorButtons/EditorButtons";

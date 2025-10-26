@@ -1,8 +1,8 @@
-import { TDirection8 } from "@root/app/common/components/direction/types/direction.types";
-import { TPoint } from "@root/app/common/types/point.type";
-import { TSegment } from "@root/app/common/types/segment.types";
-import { gameEditorStore } from "@root/app/domains/editor/store/store";
-import { TViewSortingCurve } from "@root/app/domains/viewSortingCurve/types/viewSortingCurve.types";
+import { gameEditorStore } from "@root/app/features/editor/store/store";
+import { TDirection8 } from "@root/app/features/math/types/direction.types";
+import { TPoint } from "@root/app/features/math/types/point.type";
+import { TSegment } from "@root/app/features/math/types/segment.types";
+import { TViewSortingCurve } from "@root/app/features/viewSortingCurve/types/viewSortingCurve.types";
 import { useState } from "preact/hooks";
 import { EditorImage } from "../../common/EditorImage/EditorImage";
 import { EditorPoint } from "../../common/EditorPoint/EditorPoint";

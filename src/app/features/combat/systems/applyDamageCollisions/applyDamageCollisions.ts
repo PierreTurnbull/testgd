@@ -1,0 +1,119 @@
+import { damagerArchetype } from "@root/app/ecs/archetypes/common/damager.archetype";
+import { mortalArchetype } from "@root/app/ecs/archetypes/common/mortal.archetype";
+import { CAction } from "@root/app/ecs/components/common/action.component";
+import { findOriginEntity } from "@root/app/ecs/entities/utils/findOriginEntity/findOriginEntity";
+import { collisionsManager } from "@root/app/features/collisions/singletons/collisionsManager.singleton";
+import { hitboxArchetype } from "@root/app/features/hitbox/archetypes/hitbox.archetype";
+import { CDamageCollisionCandidates } from "@root/app/features/hitbox/components/damageCollisionCandidates/damageCollisionCandidates.component";
+import { CHitboxIsActive } from "@root/app/features/hitbox/components/hitboxIsActive/hitboxIsActive.component";
+import { CMustBeDestroyedOnCollision } from "@root/app/features/projectile/components/mustBeDestroyedOnCollision/mustBeDestroyedOnCollision.component";
+import { CHitbox } from "../../../hitbox/components/hitbox/hitbox.component";
+import { applyDamage } from "./utils/applyDamage/applyDamage";
+import { getEntityFromCollider } from "./utils/getEntityFromCollider/getEntityFromCollider";
+import { hasParentEntity } from "./utils/hasParentEntity/hasParentEntity";
+
+/**
+ * Applies collisions between projectiles and colliders.
+ */
+export const applyDamageCollisions = () => {
+	const damageHitboxEntities = [...hitboxArchetype.entities]
+		.filter(hitboxEntity => {
+			return (
+				hitboxEntity.getComponent(CHitbox).type === "damage" &&
+				hitboxEntity.hasComponent(CHitboxIsActive) &&
+				hitboxEntity.getComponent(CHitboxIsActive).hitboxIsActive
+			);
+		});
+
+	damageHitboxEntities.forEach(damageHitboxEntity => {
+		const hitboxComponent = damageHitboxEntity.getComponent(CHitbox);
+		const damageCollisionCandidatesComponent = damageHitboxEntity.getComponent(CDamageCollisionCandidates);
+
+		collisionsManager.system.checkOne(hitboxComponent.body, (response) => {
+			// prevent processing the hitboxes if they were destroyed during a previous loop turn
+			if (!hasParentEntity(response.a) || !hasParentEntity(response.b)) {
+				return;
+			}
+
+			// get the damager and victim hitbox entities
+
+			const damagerHitboxEntity = getEntityFromCollider(response.a);
+			const victimHitboxEntity = getEntityFromCollider(response.b);
+
+			// reset the collision response
+
+			response.clear();
+
+			// get the hitboxes parents.
+			// eg: if a player shoots a projectile and that projectile has a damage hitbox, the projectile is the parent of the hitbox.
+
+			const damagerEntity = damagerHitboxEntity.getRelatedEntity("parent");
+			const victimEntity = victimHitboxEntity.getRelatedEntity("parent");
+
+			// get the entities from which the damage originates.
+			// eg: if a player shoots a projectile and that projectile has a damage hitbox, the player is the origin.
+
+			const damagerOriginEntity = findOriginEntity(damagerHitboxEntity);
+			const victimOriginEntity = findOriginEntity(victimHitboxEntity);
+
+			// ensure the victim is a mortal entity
+
+			const victimIsMortal = mortalArchetype.entitiesById.has(victimEntity.id);
+
+			if (!victimIsMortal) {
+				return;
+			}
+
+			// ensure the damager is a damager entity
+
+			const damagerIsDamager = damagerArchetype.entityMatchesArchetype(damagerEntity);
+
+			if (!damagerIsDamager) {
+				throw new Error("damager must be a damager.");
+			}
+
+			// prevent the damager from damaging themself or their projectiles
+
+			if (victimOriginEntity === damagerOriginEntity) {
+				return;
+			}
+
+			// some actor's actions do not trigger damage on collision
+
+			if (victimOriginEntity.hasComponent(CAction)) {
+				const victimActionComponent = victimOriginEntity.getComponent(CAction);
+
+				if (victimActionComponent.currentAction === "beingDead" || victimActionComponent.currentAction === "dying") {
+					return;
+				}
+			}
+
+			// ensure the victim is among the list of collision candidates of the damager
+
+			const victimIsCandidate = damageCollisionCandidatesComponent.damageCollisionCandidates.some(damageCollisionCandidate => {
+				return damageCollisionCandidate.entityMatchesArchetype(victimOriginEntity);
+			});
+
+			if (!victimIsCandidate) {
+				return;
+			}
+
+			// apply the damage
+
+			applyDamage(damagerEntity, victimOriginEntity);
+
+			// destroy the hitbox's parent if needed
+
+			let mustBeDestroyedOnCollision = false;
+
+			if (damagerEntity.hasComponent(CMustBeDestroyedOnCollision)) {
+				const mustBeDestroyedOnCollisionComponent = damagerEntity.getComponent(CMustBeDestroyedOnCollision);
+				mustBeDestroyedOnCollision = mustBeDestroyedOnCollisionComponent.mustBeDestroyedOnCollision;
+			}
+
+			if (mustBeDestroyedOnCollision) {
+				damagerEntity.destroy();
+			}
+		});
+	});
+};

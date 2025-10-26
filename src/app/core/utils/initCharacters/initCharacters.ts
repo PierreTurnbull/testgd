@@ -1,5 +1,5 @@
-import { createMuddyBuddy } from "@root/app/domains/muddyBuddy/utils/createMuddyBuddy";
-import { createPlayer } from "@root/app/domains/player/utils/createPlayer";
+import { createMuddyBuddy } from "@root/app/features/muddyBuddy/utils/createMuddyBuddy";
+import { createPlayer } from "@root/app/features/player/utils/createPlayer";
 
 export const initCharacters = () => {
 	createPlayer({ x: 155, y: -8 }, 180);

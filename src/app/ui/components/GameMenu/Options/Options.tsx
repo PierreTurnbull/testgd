@@ -1,6 +1,6 @@
-import { data as editorData } from "@app/domains/editor/data/data";
-import { configManager } from "@root/app/domains/configManager/configManager.singleton";
-import { updateConfig } from "@root/app/domains/configManager/utils/updateConfig";
+import { configManager } from "@root/app/features/config/singletons/configManager.singleton";
+import { updateConfig } from "@root/app/features/config/utils/updateConfig";
+import { data as editorData } from "@root/app/features/editor/data/data";
 import { useClosingContext } from "@root/app/ui/contexts/closing/useClosingContext";
 import { useState } from "preact/hooks";
 import { Button } from "../../common/Button/Button";

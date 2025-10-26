@@ -1,12 +1,12 @@
-import { playerArchetype } from "@root/app/common/archetypes/player/player.archetype";
-import { CLocation } from "@root/app/common/components/location/location.component";
-import { CMouseCoordinates } from "@root/app/common/components/mouseCoordinates/mouseCoordinates.component";
-import { TCoordinates } from "@root/app/common/types/coordinates.types";
-import { appManager } from "@root/app/domains/app/appManager.singleton";
-import { entityManager } from "@root/app/domains/entity/entityManager.singleton";
-import { getMouseCoordinatesView } from "@root/app/domains/mouseCoordinates/utils/views/getMouseCoordinatesView/getMouseCoordinatesView";
-import { CANVAS_HEIGHT, CANVAS_WIDTH } from "../../../common/constants/app.constants";
-import { configManager } from "../../../domains/configManager/configManager.singleton";
+import { CLocation } from "@root/app/ecs/components/common/location.component";
+import { entityManager } from "@root/app/ecs/entities/singletons/entityManager.singleton";
+import { appManager } from "@root/app/features/app/appManager.singleton";
+import { TCoordinates } from "@root/app/features/math/types/coordinates.types";
+import { CMouseCoordinates } from "@root/app/features/mouseCoordinates/components/mouseCoordinates.component";
+import { getMouseCoordinatesView } from "@root/app/features/mouseCoordinates/utils/views/getMouseCoordinatesView/getMouseCoordinatesView";
+import { playerArchetype } from "@root/app/features/player/archetypes/player.archetype";
+import { CANVAS_HEIGHT, CANVAS_WIDTH } from "../../../features/app/constants/app.constants";
+import { configManager } from "../../../features/config/singletons/configManager.singleton";
 
 export const initMouse = () => {
 	const playerEntity = [...playerArchetype.entities][0];

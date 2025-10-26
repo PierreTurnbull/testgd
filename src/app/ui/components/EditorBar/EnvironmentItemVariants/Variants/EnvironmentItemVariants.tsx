@@ -1,5 +1,5 @@
 import { trimDirection } from "@root/app/common/utils/trimDirection/trimDirection";
-import { assetsManager } from "@root/app/domains/assetsManager/assetsManager.singletons";
+import { assetsManager } from "@root/app/features/assets/singletons/assetsManager.singleton";
 import { useClosingContext } from "@root/app/ui/contexts/closing/useClosingContext";
 import { ReactNode, useState } from "preact/compat";
 import { EditorBarPage } from "../../../common/EditorBarPage/EditorBarPage";

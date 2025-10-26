@@ -1,5 +1,5 @@
-import { appManager } from "@root/app/domains/app/appManager.singleton";
-import { CANVAS_HEIGHT, CANVAS_WIDTH } from "../../../common/constants/app.constants";
+import { appManager } from "@root/app/features/app/appManager.singleton";
+import { CANVAS_HEIGHT, CANVAS_WIDTH } from "../../../features/app/constants/app.constants";
 
 export const initApplication = async () => {
 	await appManager.app.init({

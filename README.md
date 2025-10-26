@@ -101,13 +101,13 @@ This specialization makes the codebase simpler and more reliable. However it req
 	/app
 		/common
 		/core
-		/domains
+		/features
 		/ui
 ```
 
 - `/common` contains contains common data and control structures, such as components and archetypes.
 - `/core` contains the core logic of the game engine
-- `/domains` contains concepts of the game, such as the player or the fps counter.
+- `/features` contains features of the game, such as the player, archetypes, views, or the fps counter.
 - `/ui` contains user interfaces, such as the game menu or the editor menu.
 
 ## TODO
@@ -115,8 +115,8 @@ This specialization makes the codebase simpler and more reliable. However it req
 - distinction between views (CView): sprite and animatedSprite
 - replace string key hierarchies (e.g.: "environment.muddyBuddy.hitbox") with complex structures where it is more appropriate.
 - replace "view sorting curve" with "sorting curve"
-- reorganize view utility functions (init, replace, remove...) -> more domains, less common
+- reorganize view utility functions (init, replace, remove...) -> more features, less common
 - replace "hitbox border view" with "hitbox view"
-- make more domains from common and core content
+- make more features from common and core content
 - add readme in each domain to explain the domain
 - replace "location" with "coordinates"

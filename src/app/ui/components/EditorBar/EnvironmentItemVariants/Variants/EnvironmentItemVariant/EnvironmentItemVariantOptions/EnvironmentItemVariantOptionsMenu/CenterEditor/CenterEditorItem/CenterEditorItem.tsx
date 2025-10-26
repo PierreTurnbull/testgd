@@ -1,6 +1,6 @@
-import { TDirection8 } from "@root/app/common/components/direction/types/direction.types";
-import { TCoordinates } from "@root/app/common/types/coordinates.types";
-import { TPoint } from "@root/app/common/types/point.type";
+import { TCoordinates } from "@root/app/features/math/types/coordinates.types";
+import { TDirection8 } from "@root/app/features/math/types/direction.types";
+import { TPoint } from "@root/app/features/math/types/point.type";
 import { useState } from "preact/hooks";
 import { EditorImage } from "../../common/EditorImage/EditorImage";
 import { EditorPoint } from "../../common/EditorPoint/EditorPoint";

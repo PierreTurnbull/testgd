@@ -1,5 +1,5 @@
-import { TDirection8 } from "@root/app/common/components/direction/types/direction.types";
-import { DIRECTIONS8 } from "@root/app/common/constants/space.constants";
+import { DIRECTIONS8 } from "@root/app/features/math/constants/space.constants";
+import { TDirection8 } from "@root/app/features/math/types/direction.types";
 import { IconButton } from "@root/app/ui/components/common/IconButton/IconButton";
 import { Dispatch, StateUpdater } from "preact/hooks";
 

@@ -1,4 +1,4 @@
-import { assetsManager } from "@root/app/domains/assetsManager/assetsManager.singletons";
+import { assetsManager } from "@root/app/features/assets/singletons/assetsManager.singleton";
 import { MenuItem } from "@root/app/ui/components/common/MenuItem/MenuItem";
 import { uiBus } from "@root/app/ui/utils/uiBus/uiBus.singleton";
 import { useEffect, useState } from "preact/hooks";

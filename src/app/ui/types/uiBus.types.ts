@@ -1,4 +1,4 @@
-import { EventBus } from "@root/app/domains/eventBus/utils/eventBus/eventBus";
+import { EventBus } from "@root/app/features/eventBus/utils/eventBus/eventBus";
 
 type TUiBusEvents = (
 	"escape" |

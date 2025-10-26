@@ -1,7 +1,7 @@
-import { playerArchetype } from "@root/app/common/archetypes/player/player.archetype";
-import { CLocation } from "@root/app/common/components/location/location.component";
-import { CANVAS_HEIGHT, CANVAS_WIDTH } from "@root/app/common/constants/app.constants";
-import { worldManager } from "@root/app/domains/worldManager/worldManager.singletons";
+import { CLocation } from "@root/app/ecs/components/common/location.component";
+import { CANVAS_HEIGHT, CANVAS_WIDTH } from "@root/app/features/app/constants/app.constants";
+import { playerArchetype } from "@root/app/features/player/archetypes/player.archetype";
+import { worldManager } from "@root/app/features/world/singletons/worldManager.singleton";
 
 export const updateCamera = () => {
 	const playerEntity = [...playerArchetype.entities][0];

@@ -1,6 +1,6 @@
-import { TSegment } from "@root/app/common/types/segment.types";
-import { getAngleFromPoints } from "@root/app/common/utils/geometry/getAngleFromPoints/getAngleFromPoints";
-import { getDistance } from "@root/app/common/utils/geometry/getDistance/getDistance";
+import { TSegment } from "@root/app/features/math/types/segment.types";
+import { getAngleFromPoints } from "@root/app/features/math/utils/getAngleFromPoints/getAngleFromPoints";
+import { getDistance } from "@root/app/features/math/utils/getDistance/getDistance";
 import { TColor } from "../colors/colors";
 
 type TEditorSegmentProps = {

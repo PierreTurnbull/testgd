@@ -1,6 +1,6 @@
 import { Assets } from "pixi.js";
-import { assetsManager } from "../domains/assetsManager/assetsManager.singletons";
-import { watchInput } from "./systems/watchInput/watchInput.system";
+import { assetsManager } from "../features/assets/singletons/assetsManager.singleton";
+import { watchInput } from "../features/input/systems/watchInput/watchInput.system";
 import { initApplication } from "./utils/initApp/initApp";
 import { initCharacters } from "./utils/initCharacters/initCharacters";
 import { initEnvironment } from "./utils/initEnvironment/initEnvironment";

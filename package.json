@@ -5,7 +5,7 @@
 	"type": "module",
 	"scripts": {
 		"dev": "vite --port=12200",
-		"dev:editor": "node src/app/domains/editor/server/server.js",
+		"dev:editor": "node src/app/features/editor/server/server.js",
 		"build": "tsc && vite build",
 		"preview": "vite preview",
 		"lint": "eslint src",

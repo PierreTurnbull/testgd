@@ -1,5 +1,5 @@
-import { TCoordinates } from "@root/app/common/types/coordinates.types";
-import { TPoint } from "@root/app/common/types/point.type";
+import { TCoordinates } from "@root/app/features/math/types/coordinates.types";
+import { TPoint } from "@root/app/features/math/types/point.type";
 import { useEffect, useState } from "preact/hooks";
 import { TColor } from "../colors/colors";
 

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "preact/hooks";
-import { appManager } from "../domains/app/appManager.singleton";
+import { appManager } from "../features/app/appManager.singleton";
 import { EditorBar } from "./components/EditorBar/EditorBar";
 import { GameMenu } from "./components/GameMenu/GameMenu";
 import { ClosingProvider } from "./contexts/closing/closing.provider";
