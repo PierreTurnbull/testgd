@@ -38,6 +38,10 @@ export const setAction = (
 	const directionComponent = actorEntity.getComponent(CDirection);
 	const viewComponent = actorEntity.getComponent(CView);
 
+	if (!(viewComponent.view instanceof AnimatedSprite)) {
+		throw new Error("View is not an AnimatedSprite.");
+	}
+
 	const viewMustBeUpdated = actionComponent.currentAction !== action || directionComponent.direction8 !== ANGLE_NAMES.get(direction);
 
 	directionComponent.direction = direction;
@@ -131,7 +135,7 @@ export const setAction = (
 		viewComponent.view.onFrameChange = (currentFrame: number) => {
 			if (!options.onFrameChange) throw new Error("Options were altered since setting up the action.");
 			const clear = () => {
-				viewComponent.view.onFrameChange = undefined;
+				;(viewComponent.view as AnimatedSprite).onFrameChange = undefined;
 			};
 			options.onFrameChange(
 				currentFrame,

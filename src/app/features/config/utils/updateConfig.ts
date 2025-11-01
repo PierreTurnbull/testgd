@@ -1,14 +1,11 @@
 import { AActor } from "@root/app/ecs/archetypes/common/actor.archetype";
 import { archetypeManager } from "@root/app/ecs/archetypes/singletons/archetypeManager.singleton";
-import { CDirection } from "@root/app/ecs/components/common/direction.component";
 import { CKeyboard } from "@root/app/ecs/components/common/keyboard.component";
-import { entityManager } from "@root/app/ecs/entities/singletons/entityManager.singleton";
 import { data as editorData } from "@root/app/features/editor/data/data";
 import { AMouseCoordinates } from "@root/app/features/mouseCoordinates/archetypes/mouseCoordinates.archetype";
 import { CMouseCoordinates } from "@root/app/features/mouseCoordinates/components/mouseCoordinates.component";
 import { CBorderView } from "@root/app/features/view/components/borderView.component";
 import { CCenterView } from "@root/app/features/view/components/centerView.component";
-import { setAction } from "../../action/utils/setAction/setAction";
 import { appManager } from "../../app/appManager.singleton";
 import { TConfig } from "../../editor/data/data.types";
 import { CHitboxView } from "../../hitbox/components/hitboxView/hitboxView.component";
