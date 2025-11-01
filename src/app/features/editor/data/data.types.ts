@@ -26,6 +26,7 @@ export type TConfig = {
 		showsVisibilityGraphNodeLinks: boolean
 		showsVisibilityGraphSolution:  boolean
 		showsMouseCoordinates:         boolean
+		processesAis:                  boolean
 	}
 }
 

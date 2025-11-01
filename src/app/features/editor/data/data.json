@@ -2395,7 +2395,8 @@
             "showsVisibilityGraphNodes": false,
             "showsVisibilityGraphNodeLinks": false,
             "showsVisibilityGraphSolution": false,
-            "showsMouseCoordinates": false
+            "showsMouseCoordinates": false,
+            "processesAis": false
         }
     },
     "items": {

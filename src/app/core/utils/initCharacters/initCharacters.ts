@@ -4,7 +4,7 @@ import { createPlayer } from "@root/app/features/player/utils/createPlayer";
 export const initCharacters = () => {
 	createPlayer({ x: 155, y: -8 }, 180);
 	// createMuddyBuddy({ x: -28, y: 30 }, 180);
-	createMuddyBuddy({ x: 250, y: 180 }, 180);
+	createMuddyBuddy({ x: 250, y: 380 }, 180);
 	// createMuddyBuddy({ x: 260, y: 200 }, 180);
 	// createMuddyBuddy({ x: 290, y: 200 }, 180);
 	// createMuddyBuddy({ x: 320, y: 200 }, 180);

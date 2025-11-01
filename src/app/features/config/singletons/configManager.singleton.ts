@@ -40,6 +40,10 @@ class ConfigManager {
 			 * The coordinates of the mouse, displayed on top of the mouse.
 			 */
 			showsMouseCoordinates:         editorData.config.debug.showsMouseCoordinates,
+			/**
+			 * Whether the AIs are processed.
+			 */
+			processesAis:                  editorData.config.debug.processesAis,
 		},
 	};
 }

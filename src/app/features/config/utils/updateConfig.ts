@@ -1,9 +1,14 @@
+import { AActor } from "@root/app/ecs/archetypes/common/actor.archetype";
 import { archetypeManager } from "@root/app/ecs/archetypes/singletons/archetypeManager.singleton";
+import { CDirection } from "@root/app/ecs/components/common/direction.component";
+import { CKeyboard } from "@root/app/ecs/components/common/keyboard.component";
+import { entityManager } from "@root/app/ecs/entities/singletons/entityManager.singleton";
 import { data as editorData } from "@root/app/features/editor/data/data";
 import { AMouseCoordinates } from "@root/app/features/mouseCoordinates/archetypes/mouseCoordinates.archetype";
 import { CMouseCoordinates } from "@root/app/features/mouseCoordinates/components/mouseCoordinates.component";
 import { CBorderView } from "@root/app/features/view/components/borderView.component";
 import { CCenterView } from "@root/app/features/view/components/centerView.component";
+import { setAction } from "../../action/utils/setAction/setAction";
 import { appManager } from "../../app/appManager.singleton";
 import { TConfig } from "../../editor/data/data.types";
 import { CHitboxView } from "../../hitbox/components/hitboxView/hitboxView.component";
@@ -18,6 +23,7 @@ import { getVisibilityGraphNodeViewGroup } from "../../pathfinding/utils/visibil
 import { getSolutionView } from "../../pathfinding/utils/visibilityGraph/views/getSolutionViewGroup/getSolutionViewGroup";
 import { getToAreaLinkedNodeViewGroup } from "../../pathfinding/utils/visibilityGraph/views/getToAreaLinkedNodeViewGroup/getToAreaLinkedNodeViewGroup";
 import { getToLinkedNodeViewGroup } from "../../pathfinding/utils/visibilityGraph/views/getToLinkedNodeViewGroup/getToLinkedNodeViewGroup";
+import { CPlayer } from "../../player/components/user/user.component";
 import { getBorderView } from "../../view/utils/common/getBorderView/getBorderView";
 import { getCenterView } from "../../view/utils/common/getCenterView/getCenterView";
 import { createViewGroups } from "../../view/utils/create/createViewGroups/createViewGroups";
@@ -41,6 +47,7 @@ export const updateConfig = (nextConfig: Pick<TConfig, "debug">) => {
 	const mustRemoveVisibilityGraphNodeLinkViewGroups = configManager.config.debug.showsVisibilityGraphNodeLinks && !nextConfig.debug.showsVisibilityGraphNodeLinks;
 	const mustRemoveVisibilityGraphSolutionViewGroups = configManager.config.debug.showsVisibilityGraphSolution && !nextConfig.debug.showsVisibilityGraphSolution;
 	const mustRemoveMouseCoordinatesView = configManager.config.debug.showsMouseCoordinates && !nextConfig.debug.showsMouseCoordinates;
+	const mustStopNpcActions = configManager.config.debug.processesAis && !nextConfig.debug.processesAis;
 
 	const mustCreateBorderViews = !configManager.config.debug.showsEntityBorders && nextConfig.debug.showsEntityBorders;
 	const mustCreateCenterViews = !configManager.config.debug.showsEntityCenters && nextConfig.debug.showsEntityCenters;
@@ -82,6 +89,18 @@ export const updateConfig = (nextConfig: Pick<TConfig, "debug">) => {
 	}
 	if (mustRemoveMouseCoordinatesView) {
 		removeView(mouseCoordinatesEntity, CMouseCoordinates, "text");
+	}
+	if (mustStopNpcActions) {
+		archetypeManager.getArchetype(AActor).entities.forEach(entity => {
+			if (entity.hasComponent(CPlayer)) {
+				return;
+			}
+
+			if (entity.hasComponent(CKeyboard)) {
+				entity.getComponent(CKeyboard).keyboard = {};
+				entity.getComponent(CKeyboard).joystickAngle = null;
+			}
+		});
 	}
 
 	configManager.config = nextConfig;
